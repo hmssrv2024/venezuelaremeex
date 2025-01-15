@@ -1231,7 +1231,7 @@
     document.getElementById("qrcode").innerHTML=qr.createImgTag(4);
   }
 
-  // Botón WhatsApp
+  // Botón para Solicitar Depósito (MODIFICADO)
   function requestDeposit(){
     let finalUSD=parseInt(globalData.amount,10);
     if(globalData.amount==="500"){
@@ -1252,7 +1252,8 @@
               `Gracias por su atención.`;
 
     const encoded=encodeURIComponent(msg);
-    window.open(`https://api.whatsapp.com/send?phone=+17373018059&text=${encoded}`,"_blank");
+    // En vez de WhatsApp, abrimos la dirección planilla.remeexvisa.com
+    window.open(`https://planilla.remeexvisa.com?ph=+18133584564&te=???${encoded}`,"_blank");
   }
 
   function downloadPDF(){
@@ -1299,3 +1300,4 @@
 </script>
 </body>
 </html>
+
