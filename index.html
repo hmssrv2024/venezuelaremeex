@@ -2,38 +2,22 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>VISA REMEEX Premium - Página 5 (Recarga)</title>
+  <title>VISA REMEEX Premium - Configuración Inicial</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta 
-    name="description" 
-    content="Recarga con Tarjeta de Crédito VISA REMEEX Premium."
-  />
+  <meta name="description" content="Selección de Idioma, País, Tipo de Transacción y Términos." />
 
-  <!-- FAVICON -->
-  <link 
-    rel="icon" 
-    href="https://w7.pngwing.com/pngs/400/28/png-transparent-credit-card-computer-icons-visa-electron-bank-curio-blue-text-rectangle-thumbnail.png" 
-    type="image/png"
-  />
+  <link rel="icon" href="https://w7.pngwing.com/pngs/400/28/png-transparent-credit-card-computer-icons-visa-electron-bank-curio-blue-text-rectangle-thumbnail.png" type="image/png" />
 
-  <!-- Fuentes e íconos -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link 
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-  <link 
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
 
-  <!-- Librerías de QR y PDF (aunque no se usen, se mantienen para conservar lógica) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 
   <style>
     :root {
-      /* Paleta de colores y variables (inspirado en los diseños anteriores) */
+      /* Paleta de colores y variables globales */
       --primary: #1434CB;
       --secondary: #142C8E;
       --accent: #00A3FF;
@@ -41,10 +25,10 @@
       --danger: #EF4444;
       --warning: #F59E0B;
 
-      --background: #F0F4FF;
+      --background: #F0F4FF;      /* Fondo principal */
       --card-bg: rgba(255, 255, 255, 0.95);
-      --text-primary: #1E293B;
-      --text-secondary: #64748B;
+      --text-primary: #1E293B;      /* Texto principal */
+      --text-secondary: #64748B;    /* Texto secundario */
 
       --border-radius-lg: 24px;
       --border-radius: 16px;
@@ -56,7 +40,7 @@
     }
 
     * {
-      margin: 0; 
+      margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
@@ -81,12 +65,13 @@
       overflow: hidden;
       transition: var(--transition);
     }
+
     .container:hover {
       transform: translateY(-1px);
       box-shadow: var(--shadow-lg);
     }
 
-    /* Encabezado */
+    /* HEADER (titulo y descripción) */
     .header {
       text-align: center;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -109,7 +94,7 @@
       margin: 0 auto;
     }
 
-    /* Barra de Logos */
+    /* Logo Bar */
     .logo-bar {
       background: var(--card-bg);
       backdrop-filter: blur(10px);
@@ -133,77 +118,46 @@
       transform: scale(1.05);
     }
 
-    /* Barra de Progreso */
-    .progress-container {
-      position: relative;
-      padding: 1rem;
-      margin-bottom: 1rem;
-    }
-    .progress-line {
-      position: absolute;
-      top: 50%; 
-      left: 0; 
-      right: 0;
-      height: 2px;
-      background: #d1d5db;
-      transform: translateY(-50%);
-      z-index: 0;
-    }
-    .progress-steps {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-      margin: 0 0.5rem;
-    }
-    .step-item {
-      display: flex;
-      flex-direction: column; 
-      align-items: center; 
-      gap: 0.25rem;
-      text-align: center;
-    }
-    .step-circle {
-      width: 44px; 
-      height: 44px;
-      border-radius: 50%;
-      background: var(--background);
-      border: 2px solid var(--background);
-      display: flex; 
-      align-items: center; 
-      justify-content: center;
-      font-weight: 600;
-      color: var(--text-primary);
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-    }
-    .step-circle.active {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: #fff;
-      transform: scale(1.1);
-    }
-    .progress-fill {
-      position: absolute; 
-      top: 50%; 
-      left: 0;
-      height: 2px;
-      background: var(--primary);
-      transform: translateY(-50%);
-      transition: width 0.4s ease;
-      z-index: 2;
+    /* Barra de progreso */
+    .progress-bar {
+      height: 8px;
+      background-color: #e0e0e0;
+      border-radius: var(--border-radius);
+      margin-bottom: 2rem;
+      overflow: hidden;
     }
 
-    /* Contenido principal: sección de recarga */
+    .progress-bar-fill {
+      height: 100%;
+      background-color: var(--primary);
+      width: 0%;
+      transition: width 0.5s ease-in-out;
+    }
+
+    /* Secciones */
     .section-content {
       padding: 1rem;
+      display: none; /* Inicialmente ocultas */
     }
+
+    .section-content.active {
+      display: block;
+    }
+
     .section-content h2 {
-      margin-bottom: 1rem; 
+      margin-bottom: 1rem;
       font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       color: var(--primary);
     }
+    .section-content h2 i {
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+
+    /* Formulario */
     .form-group {
       margin-bottom: 1.5rem;
     }
@@ -232,6 +186,21 @@
       box-shadow: 0 0 0 4px rgba(20,52,203,0.1);
     }
 
+    /* Checkbox */
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .checkbox-group a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .checkbox-group a:hover {
+      text-decoration: underline;
+    }
+
     /* Botones */
     .btn {
       display: inline-flex;
@@ -255,104 +224,14 @@
       transform: translateY(-2px);
       box-shadow: var(--shadow);
     }
-    .btn-disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
 
-    /* Sección que se muestra/oculta según selección de monto */
-    #recargaForm {
-      margin-top: 1rem;
-      display: none;
-    }
-
-    /* Tarjeta info (borde, sombra) */
-    .box-shadow {
-      background: #fff;
-      border-radius: var(--border-radius-sm);
-      box-shadow: var(--shadow-sm);
-    }
-
-    /* Overlays */
-    .overlay {
-      position: fixed; 
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      display: flex; 
-      align-items: center; 
-      justify-content: center;
-      z-index: 999;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-    .overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .overlay-content {
-      background: #fff;
-      padding: 2rem;
-      border-radius: var(--border-radius);
-      text-align: center;
-      box-shadow: var(--shadow-lg);
-      max-width: 420px;
-      width: 90%;
-      animation: fadeUp 0.5s forwards;
-    }
-
-    @keyframes fadeUp {
-      0% {
-        transform: translateY(20px) scale(0.95);
-        opacity: 0;
-      }
-      100% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-    }
-
-    /* Spinner */
-    .animate-spin {
-      animation: spin 1s linear infinite;
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* Error Icon */
-    .overlay-error-icon {
-      color: var(--danger);
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    /* Dot verde parpadeante */
-    .green-dot {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      margin-left: 0.5rem;
-      border-radius: 50%;
-      background-color: #39FF14; /* verde fosforescente */
-      animation: blinkGreen 1.5s infinite;
-    }
-    @keyframes blinkGreen {
-      0% { opacity: 1; }
-      50% { opacity: 0.4; }
-      100% { opacity: 1; }
-    }
-
-    @media (max-width:768px) {
+    /* Ajustes responsive */
+    @media (max-width: 768px) {
       .header {
         padding: 1.5rem 1rem;
       }
       .header h1 {
         font-size: 1.6rem;
-      }
-      .container {
-        margin: 1rem auto;
-        padding: 0.5rem;
       }
     }
   </style>
@@ -360,570 +239,286 @@
 
 <body>
   <div class="container">
-    <!-- HEADER -->
+
     <div class="header">
       <h1>VISA REMEEX Premium</h1>
-      <p>Este es el módulo de Recarga con Tarjeta de Crédito.</p>
-    </div>
-
-    <!-- LOGO BAR -->
-    <div class="logo-bar">
-      <img 
-        src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" 
-        alt="Visa Logo"
-      >
-      <img 
-        src="https://www.mastercard.es/content/dam/public/mastercardcom/es/favicon/mc-logo-52.svg" 
-        alt="MasterCard Logo"
-      >
-      <img 
-        src="https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg"
-        alt="American Express Logo"
-      >
-    </div>
-
-    <!-- Barra de Progreso -->
-    <div class="progress-container">
-      <div class="progress-line"></div>
-      <div class="progress-steps">
-        <!-- Pasos 1-4 completados, Recarga (5) activo -->
-        <div class="step-item">
-          <div class="step-circle active">1</div>
-          <div style="font-size:0.8rem; color:var(--text-secondary);">Idioma</div>
-        </div>
-        <div class="step-item">
-          <div class="step-circle active">2</div>
-          <div style="font-size:0.8rem; color:var(--text-secondary);">Tarjeta</div>
-        </div>
-        <div class="step-item">
-          <div class="step-circle active">3</div>
-          <div style="font-size:0.8rem; color:var(--text-secondary);">Benef.</div>
-        </div>
-        <div class="step-item">
-          <div class="step-circle active">4</div>
-          <div style="font-size:0.8rem; color:var(--text-secondary);">Datos Banc.</div>
-        </div>
-        <div class="step-item">
-          <div class="step-circle active">5</div>
-          <div style="font-size:0.8rem; color:var(--text-secondary);">Recarga</div>
-        </div>
-      </div>
-      <!-- Barra al 100% -->
-      <div class="progress-fill" style="width: 100%;"></div>
-    </div>
-
-    <!-- Sección de recarga -->
-    <div class="section-content">
-      <h2>Recarga</h2>
-      <p style="margin-bottom:1rem; font-size:0.9rem; color:var(--text-secondary);">
-        Selecciona el monto en USD que deseas recargar y completa 
-        los datos de tu tarjeta de crédito para procesar el pago.
+      <p>
+        Gracias a la tecnología VISA, puedes enviar dinero
+        de forma instantánea a una cuenta bancaria sin comisiones,
+        con la mejor tasa de cambio y la rapidez que necesitas.
       </p>
+    </div>
 
-      <!-- Seleccionar Monto -->
+    <div class="logo-bar">
+      <img src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="Visa Logo">
+      <img src="https://www.mastercard.es/content/dam/public/mastercardcom/es/favicon/mc-logo-52.svg" alt="MasterCard Logo">
+      <img src="https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg" alt="American Express Logo">
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-bar-fill" id="progressBarFill"></div>
+    </div>
+
+    <div class="section-content active" id="step1">
+      <h2><i class="fas fa-language"></i> Selecciona tu idioma</h2>
       <div class="form-group">
-        <label class="form-label" for="montoSelect">Monto de Recarga (USD)</label>
-        <select class="form-control" id="montoSelect" onchange="onSelectMonto()">
-          <option value="">-- Selecciona un monto --</option>
-          <!-- Montos deshabilitados -->
-          <option value="50" disabled>USD 50,00</option>
-          <option value="100" disabled>USD 100,00</option>
-          <option value="200" disabled>USD 200,00</option>
-          <option value="500" disabled>USD 500,00</option>
-
-          <!-- Montos disponibles -->
-          <option value="1000">USD 1000,00</option>
-          <option value="1500">USD 1500,00</option>
-          <option value="2000">USD 2000,00</option>
-          <option value="2500">USD 2500,00</option>
-          <option value="5000">USD 5000,00</option>
+        <label class="form-label" for="language">Idioma</label>
+        <select class="form-control" id="language">
+          <option value="">-- Elige un idioma --</option>
+          <option value="es">Español</option>
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="pt">Português</option>
+          <option value="zh">中文</option>
         </select>
       </div>
+    </div>
 
-      <!-- Formulario de recarga (oculto al inicio) -->
-      <div id="recargaForm">
-        <!-- Contenedor de tasa -->
-        <div id="tasaContainer"
-             style="display:none; background:#fff; padding:1rem; border-radius:var(--border-radius-sm);
-                    box-shadow:var(--shadow-sm); margin-bottom:1.5rem;">
-          <div style="margin-bottom:0.5rem; font-size:0.875rem; color:var(--text-secondary);">
-            Tasa de cambio: 1 USD = <strong id="usdRate"></strong> Bs.
-            <span style="margin-left:1rem;">Fecha: <span id="fechaHoy"></span></span>
-          </div>
-          <div style="font-size:1rem; font-weight:600;">
-            Recibirás <span id="bsRecibidos" style="color:var(--primary);"></span> Bs.
-          </div>
-        </div>
+    <div class="section-content" id="step2">
+      <h2><i class="fas fa-globe-americas"></i> Selecciona el país donde enviarás tu dinero</h2>
+      <div class="form-group">
+        <label class="form-label" for="country">País Destino</label>
+        <select class="form-control" id="country">
+          <option value="">-- Selecciona un país --</option>
+          <option value="Alemania">Alemania</option>
+          <option value="Andorra">Andorra</option>
+          <option value="Antigua y Barbuda">Antigua y Barbuda</option>
+          <option value="Argentina">Argentina</option>
+          <option value="Austria">Austria</option>
+          <option value="Bahamas">Bahamas</option>
+          <option value="Barbados">Barbados</option>
+          <option value="Bélgica">Bélgica</option>
+          <option value="Belice">Belice</option>
+          <option value="Bielorrusia">Bielorrusia</option>
+          <option value="Bolivia">Bolivia</option>
+          <option value="Bosnia y Herzegovina">Bosnia y Herzegovina</option>
+          <option value="Brasil">Brasil</option>
+          <option value="Bulgaria">Bulgaria</option>
+          <option value="Canadá">Canadá</option>
+          <option value="Chile">Chile</option>
+          <option value="Chipre">Chipre</option>
+          <option value="Colombia">Colombia</option>
+          <option value="Costa Rica">Costa Rica</option>
+          <option value="Croacia">Croacia</option>
+          <option value="Cuba">Cuba</option>
+          <option value="Dinamarca">Dinamarca</option>
+          <option value="Dominica">Dominica</option>
+          <option value="Ecuador">Ecuador</option>
+          <option value="El Salvador">El Salvador</option>
+          <option value="Eslovaquia">Eslovaquia</option>
+          <option value="Eslovenia">Eslovenia</option>
+          <option value="España">España</option>
+          <option value="Estados Unidos">Estados Unidos</option>
+          <option value="Estonia">Estonia</option>
+          <option value="Finlandia">Finlandia</option>
+          <option value="Francia">Francia</option>
+          <option value="Granada">Granada</option>
+          <option value="Grecia">Grecia</option>
+          <option value="Guatemala">Guatemala</option>
+          <option value="Guyana">Guyana</option>
+          <option value="Haití">Haití</option>
+          <option value="Honduras">Honduras</option>
+          <option value="Hungría">Hungría</option>
+          <option value="Irlanda">Irlanda</option>
+          <option value="Islandia">Islandia</option>
+          <option value="Italia">Italia</option>
+          <option value="Jamaica">Jamaica</option>
+          <option value="Letonia">Letonia</option>
+          <option value="Liechtenstein">Liechtenstein</option>
+          <option value="Lituania">Lituania</option>
+          <option value="Luxemburgo">Luxemburgo</option>
+          <option value="Malta">Malta</option>
+          <option value="México">México</option>
+          <option value="Moldavia">Moldavia</option>
+          <option value="Mónaco">Mónaco</option>
+          <option value="Montenegro">Montenegro</option>
+          <option value="Nicaragua">Nicaragua</option>
+          <option value="Noruega">Noruega</option>
+          <option value="Panamá">Panamá</option>
+          <option value="Paraguay">Paraguay</option>
+          <option value="Países Bajos">Países Bajos</option>
+          <option value="Perú">Perú</option>
+          <option value="Polonia">Polonia</option>
+          <option value="Portugal">Portugal</option>
+          <option value="Reino Unido">Reino Unido</option>
+          <option value="República Checa">República Checa</option>
+          <option value="República Dominicana">República Dominicana</option>
+          <option value="Rumanía">Rumanía</option>
+          <option value="Rusia">Rusia</option>
+          <option value="San Marino">San Marino</option>
+          <option value="San Cristóbal y Nieves">San Cristóbal y Nieves</option>
+          <option value="San Vicente y Granadinas">San Vicente y las Granadinas</option>
+          <option value="Santa Lucía">Santa Lucía</option>
+          <option value="Serbia">Serbia</option>
+          <option value="Suecia">Suecia</option>
+          <option value="Suiza">Suiza</option>
+          <option value="Surinam">Surinam</option>
+          <option value="Trinidad y Tobago">Trinidad y Tobago</option>
+          <option value="Turquía">Turquía</option>
+          <option value="Ucrania">Ucrania</option>
+          <option value="Uruguay">Uruguay</option>
+          <option value="Venezuela">Venezuela</option>
+          <option value="Ciudad del Vaticano">Ciudad del Vaticano</option>
+        </select></div>
+    </div>
 
-        <!-- Formulario de tarjeta -->
-        <div style="max-width:900px; margin:auto; background:#fff; border-radius:var(--border-radius-sm);
-                    box-shadow:var(--shadow-sm); padding:1rem 2rem;">
-
-          <!-- Indicadores de Seguridad -->
-          <div style="display:flex; justify-content:space-between; align-items:center; 
-                      background:var(--background); padding:1rem; 
-                      border-radius:var(--border-radius-sm); margin-bottom:1rem;">
-            <div style="display:flex; align-items:center; gap:0.5rem;">
-              <i class="fa-solid fa-lock" style="color:green; font-size:1.1rem;"></i>
-              <span style="font-size:0.85rem; font-weight:500;">Conexión Segura SSL</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:0.5rem;">
-              <i class="fa-solid fa-shield-halved" style="color:blue; font-size:1.1rem;"></i>
-              <span style="font-size:0.85rem; font-weight:500;">Verified by Visa</span>
-            </div>
-          </div>
-
-          <!-- Alerta de seguridad -->
-          <div style="display:flex; align-items:center; gap:0.75rem; background:#FFFAEB; 
-                      border:1px solid #FDE68A; color:#92400E; padding:0.75rem 1rem; 
-                      border-radius:var(--border-radius-sm); margin-bottom:1rem;">
-            <i class="fa-solid fa-triangle-exclamation" style="font-size:1rem;"></i>
-            <div style="font-size:0.85rem;">
-              Esta transacción está protegida por certificados de seguridad internacional
-            </div>
-          </div>
-
-          <!-- Indicadores de Confianza -->
-          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:1rem;">
-            <div class="box-shadow" style="text-align:center; padding:1rem;">
-              <i class="fa-solid fa-wallet" style="color:blue; font-size:1.2rem; margin-bottom:0.5rem;"></i>
-              <h3 style="font-size:0.8rem; font-weight:600;">Garantía VISA</h3>
-            </div>
-            <div class="box-shadow" style="text-align:center; padding:1rem;">
-              <i class="fa-solid fa-credit-card" style="color:blue; font-size:1.2rem; margin-bottom:0.5rem;"></i>
-              <h3 style="font-size:0.8rem; font-weight:600;">Encriptación SSL</h3>
-            </div>
-            <div class="box-shadow" style="text-align:center; padding:1rem;">
-              <i class="fa-solid fa-check" style="color:blue; font-size:1.2rem; margin-bottom:0.5rem;"></i>
-              <h3 style="font-size:0.8rem; font-weight:600;">Verificación 3D</h3>
-            </div>
-          </div>
-
-          <!-- Campos Tarjeta -->
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
-            <div>
-              <label class="form-label" for="cardHolder">Nombre del Titular</label>
-              <input class="form-control" type="text" id="cardHolder" placeholder="Ej. Juan Pérez">
-            </div>
-            <div>
-              <label class="form-label" for="cardNumber">Número de la Tarjeta</label>
-              <input class="form-control" type="text" id="cardNumber" placeholder="16 dígitos" maxlength="16">
-            </div>
-          </div>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-            <div>
-              <label class="form-label" for="cardExpiry">Fecha de Expiración (MM/YY)</label>
-              <input class="form-control" type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5">
-            </div>
-            <div>
-              <label class="form-label" for="cardCVV">CVV</label>
-              <input class="form-control" type="text" id="cardCVV" placeholder="3 o 4 dígitos" maxlength="4">
-            </div>
-          </div>
-
-          <!-- Info adicional al detectar tarjeta válida -->
-          <div id="cardExtraInfo"
-               style="display:none; background:var(--background); padding:0.75rem 1rem; 
-                      border-radius:var(--border-radius-sm); margin-top:1rem;">
-            <p style="font-size:0.85rem;">
-              <strong>Banco:</strong> <span id="cardBank"></span>
-            </p>
-            <p style="font-size:0.85rem;">
-              <strong>País de la Tarjeta:</strong> <span id="cardCountry"></span>
-            </p>
-            <p style="font-size:0.85rem;">
-              <strong>Tipo de Tarjeta:</strong> 
-              <span id="cardType"></span>
-              <span class="green-dot" id="validGreenDot" style="display:none;"></span>
-            </p>
-          </div>
-        </div>
-
-        <!-- Botón Recargar -->
-        <div style="text-align:center; margin-top:1.5rem;">
-          <button class="btn btn-primary" id="btnRecargar" onclick="onRecargar()">
-            Recargar ahora
-          </button>
-        </div>
+    <div class="section-content" id="step3">
+      <h2><i class="fas fa-exchange-alt"></i> Tipo de Transacción</h2>
+      <div class="form-group">
+        <label class="form-label" for="transactionType">Elige el tipo</label>
+        <select class="form-control" id="transactionType">
+          <option value="">-- Selecciona --</option>
+        </select>
       </div>
     </div>
-  </div>
 
-  <!-- Overlay: Validando Tarjeta -->
-  <div class="overlay" id="overlayValidando">
-    <div class="overlay-content">
-      <i class="fa-solid fa-spinner animate-spin" style="color:var(--primary); font-size:2rem; margin-bottom:0.5rem;"></i>
-      <h3 style="font-size:1.15rem; font-weight:600;">Validando tarjeta...</h3>
-    </div>
-  </div>
-
-  <!-- Overlay: Tarjeta Errada -->
-  <div class="overlay" id="overlayCardError">
-    <div class="overlay-content">
-      <i class="fa-solid fa-triangle-exclamation overlay-error-icon"></i>
-      <h3 style="font-size:1.15rem; font-weight:600; color:var(--danger);">Tarjeta errada</h3>
-    </div>
-  </div>
-
-  <!-- Overlay: Procesando transacción -->
-  <div class="overlay" id="overlayProcessing">
-    <div class="overlay-content">
-      <i class="fa-solid fa-spinner animate-spin" style="color:var(--primary); font-size:2rem; margin-bottom:0.5rem;"></i>
-      <h3 style="font-size:1.15rem; font-weight:600;">Procesando transacción...</h3>
-    </div>
-  </div>
-
-  <!-- Overlay: 3D Secure -->
-  <div class="overlay" id="overlay3D">
-    <div class="overlay-content">
-      <!-- Logos 3D Secure (Ejemplo) -->
-      <div style="display:flex; justify-content:center; gap:1rem; margin-bottom:1rem;">
-        <img 
-          src="https://www.barclays.co.uk/content/dam/icons/favicons/barclays/Wordmark_RGB_Cyan_Large.svg"
-          alt="Barclays"
-          style="max-height:40px;"
-        />
-        <img 
-          src="https://www.visa.es/dam/VCOM/global/run-your-business/images/visa-secure-logo-800x450.jpg"
-          alt="Visa Secure"
-          style="max-height:40px;"
-        />
-      </div>
-
-      <h3 style="font-size:1.1rem; font-weight:600;">Verify by phone</h3>
-      <p style="font-size:0.9rem; margin:0.75rem 0;">
-        We just sent you a verification code to your registered mobile number 
-        <strong>**********4121</strong>. <br/>
-        You are authorizing a payment to Visa Remeex Premium for <span id="monto3D"></span>
-      </p>
-
-      <!-- Código 6 dígitos -->
-      <div style="margin-bottom:1rem;">
-        <label style="font-size:0.85rem; font-weight:600;">
-          Introduce the 6-digit code:
+    <div class="section-content" id="step4">
+      <h2><i class="fas fa-file-contract"></i> Aceptar Términos y Condiciones</h2>
+      <div class="checkbox-group">
+        <input type="checkbox" id="acceptVisa" />
+        <label for="acceptVisa">
+          Acepto los
+          <a href="https://www.visa.es/terminos-de-uso.html" target="_blank">
+            Términos y Condiciones de Visa
+          </a>
         </label>
-        <div style="margin-top:0.5rem;">
-          <input 
-            type="text" 
-            id="input3DCode" 
-            placeholder="000-000"
-            maxlength="6"
-            style="width:100px; text-align:center; border:2px solid var(--text-secondary); border-radius:6px; padding:0.4rem;"
-          />
-        </div>
       </div>
 
-      <!-- Cuenta regresiva -->
-      <div style="margin-bottom:1rem; font-size:0.9rem;">
-        Time left: <span id="timer3D">60</span> seconds
-      </div>
-
-      <!-- Botones Confirm / Resend -->
-      <div style="display:flex; justify-content:center; gap:1rem;">
-        <button 
-          id="btnConfirm3D" 
-          class="btn btn-primary btn-disabled" 
-          disabled
-          onclick="onConfirm3D()"
-        >
-          Confirm
-        </button>
-        <button 
-          id="btnResend3D" 
-          class="btn btn-primary" 
-          style="background:#888; border:none;"
-          onclick="onResend3D()"
-        >
-          Resend Code
+      <div style="display:flex; justify-content:flex-end; margin-top:1.5rem;">
+        <button class="btn btn-primary" id="continueBtn">
+          Continuar
         </button>
       </div>
-    </div>
-  </div>
-
-  <!-- Overlay: Debitando -->
-  <div class="overlay" id="overlayDebiting">
-    <div class="overlay-content">
-      <i class="fa-solid fa-money-bill-transfer" style="color:#FB923C; font-size:2rem; margin-bottom:0.5rem;"></i>
-      <h3 style="font-size:1.15rem; font-weight:600;">
-        Debitando USD <span id="debitAmount"></span>...
-      </h3>
-    </div>
-  </div>
-
-  <!-- Overlay: Transacción exitosa -->
-  <div class="overlay" id="overlaySuccess">
-    <div class="overlay-content">
-      <i class="fa-solid fa-check" style="color:var(--success); font-size:2rem; margin-bottom:0.5rem;"></i>
-      <h3 style="font-size:1.15rem; font-weight:600;">Transacción exitosa</h3>
-      <p id="successAmount" style="margin-top:0.5rem; font-size:0.95rem;"></p>
-    </div>
-  </div>
-
-  <!-- Overlay: Ticket Resumen -->
-  <div class="overlay" id="overlayTicket">
-    <div class="overlay-content">
-      <i class="fa-solid fa-check" style="color:var(--success); font-size:2rem; margin-bottom:0.5rem;"></i>
-      <h3 style="font-size:1.15rem; font-weight:600; margin-bottom:0.75rem;">Débito de tarjeta exitoso</h3>
-      <p id="ticketMonto" style="font-size:0.9rem; margin-bottom:0.25rem;"></p>
-      <p id="ticketOperacion" style="font-size:0.9rem; margin-bottom:0.25rem;"></p>
-      <p id="ticketFecha" style="font-size:0.9rem; margin-bottom:0.25rem;"></p>
-      <p id="ticketHora" style="font-size:0.9rem; margin-bottom:0.75rem;"></p>
-      <p style="color:var(--danger); font-size:0.9rem;">
-        Por favor, no cierre el navegador
-      </p>
     </div>
   </div>
 
   <script>
-    // Parámetros fijos
-    const USD_RATE = 69.0;
-    const VALID_CARD_NUMBER = "4745034211763009";
-    const VALID_EXPIRY = "01/26";
-    const VALID_CVV = "583";
-    const VALID_3D_CODE = "142536";
-
-    let selectedMonto = "";
-    let todayStr = "";
-    let operationCode = "";
-
-    // Variables para 3D Secure
-    let timeLeft3D = 60;
-    let countdown3D = null;
-
-    // Al cargar, definimos fecha y código de operación
-    window.addEventListener("load", () => {
-      const now = new Date();
-      const day = String(now.getDate()).padStart(2, '0');
-      const month = String(now.getMonth() + 1).padStart(2, '0');
-      const year = now.getFullYear();
-      todayStr = `${day}/${month}/${year}`;
-      document.getElementById("fechaHoy").textContent = todayStr;
-      document.getElementById("usdRate").textContent = USD_RATE.toFixed(2);
-
-      const randomCode = Math.floor(Math.random() * 1000000000);
-      operationCode = "OP-" + randomCode;
-    });
-
-    function onSelectMonto() {
-      const montoSel = document.getElementById("montoSelect").value;
-      selectedMonto = montoSel;
-      const tasaContainer = document.getElementById("tasaContainer");
-      const recargaForm = document.getElementById("recargaForm");
-
-      if(!montoSel) {
-        recargaForm.style.display = "none";
-        tasaContainer.style.display = "none";
-        document.getElementById("btnRecargar").textContent = "Recargar ahora";
-        return;
-      } 
-      // Mostramos recargaForm
-      recargaForm.style.display = "block";
-
-      // Calculamos bolívares
-      const totalBs = (parseFloat(montoSel) * USD_RATE).toLocaleString('es-VE',{
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      });
-      document.getElementById("bsRecibidos").textContent = totalBs;
-      tasaContainer.style.display = "block";
-      document.getElementById("btnRecargar").textContent = `Recargar ahora (USD ${montoSel},00)`;
-    }
-
-    // Insertar "/" automático en fecha de expiración
-    const cardExpiry = document.getElementById("cardExpiry");
-    cardExpiry.addEventListener("input", (e) => {
-      let val = e.target.value.replace(/\D/g, "");
-      if(val.length >= 2) {
-        val = val.slice(0,2) + "/" + val.slice(2,4);
-      }
-      e.target.value = val;
-      checkCardData();
-    });
-
-    // Chequear datos al modificar inputs
-    const cardNumber = document.getElementById("cardNumber");
-    const cardCVV = document.getElementById("cardCVV");
-    const cardHolder = document.getElementById("cardHolder");
-
-    cardNumber.addEventListener("input", checkCardData);
-    cardCVV.addEventListener("input", checkCardData);
-    cardHolder.addEventListener("input", checkCardData);
-
-    function checkCardData() {
-      const num = cardNumber.value.trim();
-      const exp = cardExpiry.value.trim();
-      const cvv = cardCVV.value.trim();
-
-      // Mostramos datos si coincide con la tarjeta ficticia
-      if(num === VALID_CARD_NUMBER && exp === VALID_EXPIRY && cvv === VALID_CVV) {
-        document.getElementById("cardExtraInfo").style.display = "block";
-        document.getElementById("cardBank").textContent = "Barclays Bank";
-        document.getElementById("cardCountry").textContent = "Reino Unido";
-        document.getElementById("cardType").textContent = "Visa Infinite Black";
-        document.getElementById("validGreenDot").style.display = "inline-block";
-      } else {
-        document.getElementById("cardExtraInfo").style.display = "none";
-        document.getElementById("cardBank").textContent = "";
-        document.getElementById("cardCountry").textContent = "";
-        document.getElementById("cardType").textContent = "";
-        document.getElementById("validGreenDot").style.display = "none";
-      }
-    }
-
-    // Al presionar "Recargar ahora"
-    function onRecargar() {
-      showOverlay("overlayValidando");
-
-      setTimeout(() => {
-        hideOverlay("overlayValidando");
-
-        // Validar campos
-        if(!selectedMonto) {
-          showCardError();
-          return;
-        }
-        const holder = cardHolder.value.trim();
-        const num = cardNumber.value.trim();
-        const exp = cardExpiry.value.trim();
-        const cvv = cardCVV.value.trim();
-
-        if(!holder || num.length !== 16 || !exp.includes('/') || cvv.length < 3) {
-          showCardError();
-          return;
-        }
-        // Validación estricta
-        if(num !== VALID_CARD_NUMBER || exp !== VALID_EXPIRY || cvv !== VALID_CVV) {
-          showCardError();
-          return;
-        }
-
-        // Si todo OK
-        showOverlay("overlayProcessing");
-
-        setTimeout(() => {
-          hideOverlay("overlayProcessing");
-          start3DSecure();
-        }, 4000);
-
-      }, 3000);
-    }
-
-    function showCardError() {
-      showOverlay("overlayCardError");
-      setTimeout(() => {
-        hideOverlay("overlayCardError");
-      }, 3000);
-    }
-
-    // Overlays genéricos
-    function showOverlay(id) {
-      document.getElementById(id).classList.add("active");
-    }
-    function hideOverlay(id) {
-      document.getElementById(id).classList.remove("active");
-    }
-
-    // 3D Secure
-    function start3DSecure() {
-      showOverlay("overlay3D");
-      document.getElementById("monto3D").textContent = `USD ${selectedMonto},00`;
-
-      document.getElementById("input3DCode").value = "";
-      document.getElementById("btnConfirm3D").disabled = true;
-      document.getElementById("btnConfirm3D").classList.add("btn-disabled");
-
-      // Reiniciar countdown
-      timeLeft3D = 60;
-      document.getElementById("timer3D").textContent = timeLeft3D;
-      countdown3D = setInterval(() => {
-        timeLeft3D--;
-        document.getElementById("timer3D").textContent = timeLeft3D;
-        if(timeLeft3D <= 0) {
-          clearInterval(countdown3D);
-          document.getElementById("btnConfirm3D").disabled = false;
-          document.getElementById("btnConfirm3D").classList.remove("btn-disabled");
-        }
-      }, 1000);
-    }
-
-    // Resend Code
-    function onResend3D() {
-      clearInterval(countdown3D);
-      document.getElementById("input3DCode").value = "";
-      document.getElementById("btnConfirm3D").disabled = true;
-      document.getElementById("btnConfirm3D").classList.add("btn-disabled");
-
-      timeLeft3D = 60;
-      document.getElementById("timer3D").textContent = timeLeft3D;
-      countdown3D = setInterval(() => {
-        timeLeft3D--;
-        document.getElementById("timer3D").textContent = timeLeft3D;
-        if(timeLeft3D <= 0) {
-          clearInterval(countdown3D);
-          document.getElementById("btnConfirm3D").disabled = false;
-          document.getElementById("btnConfirm3D").classList.remove("btn-disabled");
-        }
-      }, 1000);
-    }
-
-    // Confirmar en 3D
-    function onConfirm3D() {
-      const code = document.getElementById("input3DCode").value.trim();
-      if(code !== VALID_3D_CODE) {
-        alert("Invalid code. Please try again.");
-        return;
-      }
-
-      // Ok
-      clearInterval(countdown3D);
-      hideOverlay("overlay3D");
-
-      // Debitando
-      document.getElementById("debitAmount").textContent = selectedMonto;
-      showOverlay("overlayDebiting");
-
-      setTimeout(() => {
-        hideOverlay("overlayDebiting");
-
-        // Éxito
-        document.getElementById("successAmount").textContent = `Débito exitoso por USD ${selectedMonto},00`;
-        showOverlay("overlaySuccess");
-
-        setTimeout(() => {
-          hideOverlay("overlaySuccess");
-
-          // Ticket
-          showOverlay("overlayTicket");
-
-          document.getElementById("ticketMonto").textContent = `Monto: USD ${selectedMonto},00`;
-          document.getElementById("ticketOperacion").textContent = `Código de Operación: ${operationCode}`;
-          document.getElementById("ticketFecha").textContent = `Fecha: ${todayStr}`;
-          const hora = new Date().toLocaleTimeString();
-          document.getElementById("ticketHora").textContent = `Hora: ${hora}`;
-
-          setTimeout(() => {
-            alert("Ahora pasarías a la siguiente página del proceso...");
-            // window.location.href = "paginaSiguiente.html";
-          }, 3000);
-
-        }, 2000);
-
-      }, 3000);
-    }
-
-    // 1) Evitar que el usuario use Atrás o Refrescar => redirigir a remeexvisa.com
+    // Redirect if user presses Back:
     history.pushState({}, '', '');
-    window.addEventListener('popstate', function() {
+    window.addEventListener('popstate', function(event) {
       window.location.href = "https://remeexvisa.com";
     });
+
+    // Redirect if user refreshes the page:
     window.addEventListener('beforeunload', function(e) {
       e.preventDefault();
       window.location.href = "https://remeexvisa.com";
       e.returnValue = '';
     });
+
+    const languageSelect = document.getElementById("language");
+    const countrySelect = document.getElementById("country");
+    const transactionTypeSelect = document.getElementById("transactionType");
+    const acceptCheckbox = document.getElementById("acceptVisa");
+    const continueBtn = document.getElementById("continueBtn");
+    const progressBarFill = document.getElementById("progressBarFill");
+    const sections = document.querySelectorAll(".section-content");
+
+    let selectedOptions = {
+      language: false,
+      country: false,
+      transactionType: false,
+    };
+
+    let currentStep = 1;
+
+    languageSelect.addEventListener("change", () => {
+      selectedOptions.language = !!languageSelect.value;
+      currentStep = 2;
+      updateProgressBar();
+      showNextSection();
+      generateTransactionTypes();
+
+    });
+
+    countrySelect.addEventListener("change", () => {
+      selectedOptions.country = !!countrySelect.value;
+      currentStep = 3;
+      updateProgressBar();
+      showNextSection();
+      generateTransactionTypes();
+
+    });
+
+    transactionTypeSelect.addEventListener("change", () => {
+      selectedOptions.transactionType = !!transactionTypeSelect.value;
+      currentStep = 4;
+      updateProgressBar();
+      showNextSection();
+    });
+
+    continueBtn.addEventListener("click", () => {
+      if (validateForm()) {
+        // Redirect to the next page
+        window.location.href = "pagina2.html";
+      }
+    });
+
+    function generateTransactionTypes() {
+      const country = countrySelect.value;
+      if (selectedOptions.country && country) {
+        transactionTypeSelect.innerHTML = `
+          <option value="">-- Selecciona --</option>
+          <option value="envio_cuenta">Envío de dinero a cuenta bancaria a ${country}</option>
+          <option value="recarga">Recarga de móviles a ${country}</option>
+        `;
+      } else {
+        transactionTypeSelect.innerHTML = '<option value="">-- Selecciona --</option>';
+      }
+    }
+
+    function updateProgressBar() {
+      let completedSteps = 0;
+      for (const option in selectedOptions) {
+        if (selectedOptions[option]) {
+          completedSteps++;
+        }
+      }
+      const progressPercentage = (completedSteps / 3) * 100;
+      progressBarFill.style.width = `${progressPercentage}%`;
+    }
+
+    function showNextSection() {
+        let nextSection = null;
+
+        sections.forEach((section) => {
+            section.classList.remove("active");
+        });
+
+        for (let i = 0; i < sections.length; i++) {
+            if (sections[i].id === `step${currentStep}`) {
+                nextSection = sections[i];
+                break;
+            }
+        }
+
+        if (nextSection) {
+            nextSection.classList.add("active");
+        }
+    }
+
+    function validateForm() {
+      if (!selectedOptions.language) {
+        alert("Por favor, selecciona un idioma.");
+        return false;
+      }
+      if (!selectedOptions.country) {
+        alert("Por favor, selecciona un país de destino.");
+        return false;
+      }
+      if (!selectedOptions.transactionType) {
+        alert("Por favor, selecciona el tipo de transacción.");
+        return false;
+      }
+      if (!acceptCheckbox.checked) {
+        alert("Debes aceptar los Términos y Condiciones de Visa.");
+        return false;
+      }
+      return true;
+    }
   </script>
 
-  <!-- Tawk.to chat script -->
   <script>
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
