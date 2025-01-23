@@ -2,34 +2,28 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>VISA REMEEX Premium - Configuración Inicial</title>
+  <title>Visa Remeex - Experiencia Premium</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Selección de Idioma, País, Tipo de Transacción y Términos." />
+  <meta name="description" content="Visa Remeex: La nueva era de las finanzas digitales"/>
 
-  <link rel="icon" href="https://w7.pngwing.com/pngs/400/28/png-transparent-credit-card-computer-icons-visa-electron-bank-curio-blue-text-rectangle-thumbnail.png" type="image/png" />
-
+  <!-- Fuentes e íconos -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 
   <style>
     :root {
-      /* Paleta de colores y variables globales */
       --primary: #1434CB;
+      --primary-light: #2347E2;
       --secondary: #142C8E;
       --accent: #00A3FF;
       --success: #10B981;
       --danger: #EF4444;
       --warning: #F59E0B;
-
-      --background: #F0F4FF;      /* Fondo principal */
+      --background: #F0F4FF;
       --card-bg: rgba(255, 255, 255, 0.95);
-      --text-primary: #1E293B;      /* Texto principal */
-      --text-secondary: #64748B;    /* Texto secundario */
-
+      --text-primary: #1E293B;
+      --text-secondary: #64748B;
       --border-radius-lg: 24px;
       --border-radius: 16px;
       --border-radius-sm: 12px;
@@ -46,490 +40,641 @@
     }
 
     body {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
       font-family: 'Plus Jakarta Sans', sans-serif;
+      background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
       color: var(--text-primary);
       line-height: 1.6;
+      min-height: 100vh;
     }
 
-    /* Contenedor principal */
+    /* Contenedor principal para centrar y controlar el ancho en pantallas grandes */
     .container {
       max-width: 600px;
-      margin: 2rem auto;
+      margin: 0 auto;
       padding: 1rem;
+    }
+
+    /* Barra superior con el logo y el nombre de usuario */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .top-bar img {
+      height: 36px;
+      object-fit: contain;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .user-profile img {
+      border-radius: 50%;
+    }
+
+    /* Barra de búsqueda (opcional) */
+    .search-bar {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 1rem 1rem 1rem 3rem;
+      border: none;
+      border-radius: var(--border-radius);
+      background: var(--card-bg);
+      box-shadow: var(--shadow-sm);
+      outline: none;
+    }
+
+    .search-bar i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+    }
+
+    /* Contenido principal (tarjetas, etc.) */
+    .main-content {
+      margin-bottom: 80px; /* Espacio para el panel inferior fijo */
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* Estilos de las tarjetas */
+    .card {
       background: var(--card-bg);
       border-radius: var(--border-radius-lg);
+      padding: 2rem;
       box-shadow: var(--shadow);
       backdrop-filter: blur(10px);
-      overflow: hidden;
       transition: var(--transition);
     }
 
-    .container:hover {
-      transform: translateY(-1px);
+    .card:hover {
+      transform: translateY(-3px);
       box-shadow: var(--shadow-lg);
     }
 
-    /* HEADER (titulo y descripción) */
-    .header {
-      text-align: center;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #fff;
-      padding: 2rem 1rem;
-      border-bottom-left-radius: var(--border-radius-lg);
-      border-bottom-right-radius: var(--border-radius-lg);
-      margin-bottom: 1rem;
-      position: relative;
-    }
-    .header h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    .header p {
-      font-size: 1rem;
-      line-height: 1.4;
-      max-width: 500px;
-      margin: 0 auto;
+    /* Tarjeta de saldo disponible (balance-card) */
+    .balance-card {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
     }
 
-    /* Logo Bar */
-    .logo-bar {
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      padding: 1rem 0.5rem;
+    .balance-header {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      gap: 2rem;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-      margin-bottom: 1rem;
-    }
-    .logo-bar img {
-      height: 32px;
-      filter: grayscale(30%);
-      opacity: 0.8;
-      transition: var(--transition);
-    }
-    .logo-bar img:hover {
-      filter: none;
-      opacity: 1;
-      transform: scale(1.05);
-    }
-
-    /* Barra de progreso */
-    .progress-bar {
-      height: 8px;
-      background-color: #e0e0e0;
-      border-radius: var(--border-radius);
-      margin-bottom: 2rem;
-      overflow: hidden;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      background-color: var(--primary);
-      width: 0%;
-      transition: width 0.5s ease-in-out;
-    }
-
-    /* Secciones */
-    .section-content {
-      padding: 1rem;
-      display: none; /* Inicialmente ocultas */
-    }
-
-    .section-content.active {
-      display: block;
-    }
-
-    .section-content h2 {
-      margin-bottom: 1rem;
-      font-size: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--primary);
-    }
-    .section-content h2 i {
-      color: var(--primary);
-      font-size: 1.2rem;
-    }
-
-    /* Formulario */
-    .form-group {
       margin-bottom: 1.5rem;
     }
-    .form-label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-    }
-    .form-control {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 2px solid rgba(0,0,0,0.05);
-      border-radius: var(--border-radius-sm);
-      font-size: 0.95rem;
-      background: #fff;
-      transition: var(--transition);
-    }
-    .form-control:hover {
-      border-color: rgba(0,0,0,0.1);
-    }
-    .form-control:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(20,52,203,0.1);
+
+    .balance-amount {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0.5rem 0 1rem 0;
+      letter-spacing: -1px;
     }
 
-    /* Checkbox */
-    .checkbox-group {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 1rem;
-    }
-    .checkbox-group a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    .checkbox-group a:hover {
-      text-decoration: underline;
+    .card-number {
+      font-size: 1rem;
+      letter-spacing: 2px;
+      opacity: 0.9;
     }
 
-    /* Botones */
+    /* Botones de acción en la tarjeta principal */
+    .action-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
     .btn {
-      display: inline-flex;
+      padding: 0.75rem;
+      border-radius: var(--border-radius);
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: var(--border-radius-sm);
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: var(--transition);
-      border: none;
-      cursor: pointer;
+      font-size: 0.9rem;
     }
+
     .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #fff;
-      box-shadow: var(--shadow-sm);
+      background: white;
+      color: var(--primary);
     }
-    .btn-primary:hover {
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      backdrop-filter: blur(10px);
+    }
+
+    .btn:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow);
     }
 
-    /* Ajustes responsive */
+    /* Tarjetas de ingresos y gastos */
+    .stats-card {
+      background: white;
+      border-radius: var(--border-radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .stats-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .stats-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.2rem;
+    }
+
+    .stats-label {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    /* Tarjeta de Últimas Transacciones */
+    .transactions-card {
+      background: white;
+      border-radius: var(--border-radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .transactions-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .transaction-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .transaction-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: var(--background);
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+    }
+
+    .transaction-item:hover {
+      background: white;
+      transform: translateX(5px);
+    }
+
+    .transaction-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .transaction-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: white;
+    }
+
+    .icon-transfer {
+      background: var(--success);
+    }
+
+    .transaction-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .transaction-title {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .transaction-date {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .transaction-amount {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .amount-positive {
+      color: var(--success);
+    }
+
+    .amount-negative {
+      color: var(--danger);
+    }
+
+    /* Navegación inferior (panel de botones) */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0.5rem 0;
+      z-index: 10;
+    }
+
+    .bottom-nav .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .bottom-nav .nav-item i {
+      font-size: 1.2rem;
+      margin-bottom: 2px;
+    }
+
+    .bottom-nav .nav-item.active {
+      color: var(--primary);
+    }
+
+    /* Estilos para el modal de recarga */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .modal {
+      background: white;
+      border-radius: var(--border-radius-lg);
+      padding: 1.5rem;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .modal h3 {
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .modal select, .modal button {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      outline: none;
+      border: 1px solid var(--text-secondary);
+    }
+
+    .modal button {
+      border: none;
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .modal button:hover {
+      background: var(--primary-light);
+    }
+
+    .close-modal {
+      background: transparent;
+      border: none;
+      color: var(--danger);
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+
     @media (max-width: 768px) {
-      .header {
-        padding: 1.5rem 1rem;
+      .card {
+        padding: 1.5rem;
       }
-      .header h1 {
-        font-size: 1.6rem;
+      .balance-amount {
+        font-size: 2rem;
+      }
+      .transactions-header h2 {
+        font-size: 1.2rem;
       }
     }
   </style>
 </head>
-
 <body>
   <div class="container">
 
-    <div class="header">
-      <h1>VISA REMEEX Premium</h1>
-      <p>
-        Gracias a la tecnología VISA, puedes enviar dinero
-        de forma instantánea a una cuenta bancaria sin comisiones,
-        con la mejor tasa de cambio y la rapidez que necesitas.
-      </p>
-    </div>
-
-    <div class="logo-bar">
-      <img src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="Visa Logo">
-      <img src="https://www.mastercard.es/content/dam/public/mastercardcom/es/favicon/mc-logo-52.svg" alt="MasterCard Logo">
-      <img src="https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg" alt="American Express Logo">
-    </div>
-
-    <div class="progress-bar">
-      <div class="progress-bar-fill" id="progressBarFill"></div>
-    </div>
-
-    <div class="section-content active" id="step1">
-      <h2><i class="fas fa-language"></i> Selecciona tu idioma</h2>
-      <div class="form-group">
-        <label class="form-label" for="language">Idioma</label>
-        <select class="form-control" id="language">
-          <option value="">-- Elige un idioma --</option>
-          <option value="es">Español</option>
-          <option value="en">English</option>
-          <option value="fr">Français</option>
-          <option value="de">Deutsch</option>
-          <option value="pt">Português</option>
-          <option value="zh">中文</option>
-        </select>
+    <!-- Barra superior con logo y nombre de usuario -->
+    <div class="top-bar">
+      <img 
+        src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" 
+        alt="Visa Logo"
+      />
+      <div class="user-profile">
+        <!-- Eliminamos "Usuario" y dejamos solo el nombre -->
+        <img src="/api/placeholder/40/40" alt="Foto de perfil">
+        <span>Juan Carlos Crespo</span>
       </div>
     </div>
 
-    <div class="section-content" id="step2">
-      <h2><i class="fas fa-globe-americas"></i> Selecciona el país donde enviarás tu dinero</h2>
-      <div class="form-group">
-        <label class="form-label" for="country">País Destino</label>
-        <select class="form-control" id="country">
-          <option value="">-- Selecciona un país --</option>
-          <option value="Alemania">Alemania</option>
-          <option value="Andorra">Andorra</option>
-          <option value="Antigua y Barbuda">Antigua y Barbuda</option>
-          <option value="Argentina">Argentina</option>
-          <option value="Austria">Austria</option>
-          <option value="Bahamas">Bahamas</option>
-          <option value="Barbados">Barbados</option>
-          <option value="Bélgica">Bélgica</option>
-          <option value="Belice">Belice</option>
-          <option value="Bielorrusia">Bielorrusia</option>
-          <option value="Bolivia">Bolivia</option>
-          <option value="Bosnia y Herzegovina">Bosnia y Herzegovina</option>
-          <option value="Brasil">Brasil</option>
-          <option value="Bulgaria">Bulgaria</option>
-          <option value="Canadá">Canadá</option>
-          <option value="Chile">Chile</option>
-          <option value="Chipre">Chipre</option>
-          <option value="Colombia">Colombia</option>
-          <option value="Costa Rica">Costa Rica</option>
-          <option value="Croacia">Croacia</option>
-          <option value="Cuba">Cuba</option>
-          <option value="Dinamarca">Dinamarca</option>
-          <option value="Dominica">Dominica</option>
-          <option value="Ecuador">Ecuador</option>
-          <option value="El Salvador">El Salvador</option>
-          <option value="Eslovaquia">Eslovaquia</option>
-          <option value="Eslovenia">Eslovenia</option>
-          <option value="España">España</option>
-          <option value="Estados Unidos">Estados Unidos</option>
-          <option value="Estonia">Estonia</option>
-          <option value="Finlandia">Finlandia</option>
-          <option value="Francia">Francia</option>
-          <option value="Granada">Granada</option>
-          <option value="Grecia">Grecia</option>
-          <option value="Guatemala">Guatemala</option>
-          <option value="Guyana">Guyana</option>
-          <option value="Haití">Haití</option>
-          <option value="Honduras">Honduras</option>
-          <option value="Hungría">Hungría</option>
-          <option value="Irlanda">Irlanda</option>
-          <option value="Islandia">Islandia</option>
-          <option value="Italia">Italia</option>
-          <option value="Jamaica">Jamaica</option>
-          <option value="Letonia">Letonia</option>
-          <option value="Liechtenstein">Liechtenstein</option>
-          <option value="Lituania">Lituania</option>
-          <option value="Luxemburgo">Luxemburgo</option>
-          <option value="Malta">Malta</option>
-          <option value="México">México</option>
-          <option value="Moldavia">Moldavia</option>
-          <option value="Mónaco">Mónaco</option>
-          <option value="Montenegro">Montenegro</option>
-          <option value="Nicaragua">Nicaragua</option>
-          <option value="Noruega">Noruega</option>
-          <option value="Panamá">Panamá</option>
-          <option value="Paraguay">Paraguay</option>
-          <option value="Países Bajos">Países Bajos</option>
-          <option value="Perú">Perú</option>
-          <option value="Polonia">Polonia</option>
-          <option value="Portugal">Portugal</option>
-          <option value="Reino Unido">Reino Unido</option>
-          <option value="República Checa">República Checa</option>
-          <option value="República Dominicana">República Dominicana</option>
-          <option value="Rumanía">Rumanía</option>
-          <option value="Rusia">Rusia</option>
-          <option value="San Marino">San Marino</option>
-          <option value="San Cristóbal y Nieves">San Cristóbal y Nieves</option>
-          <option value="San Vicente y Granadinas">San Vicente y las Granadinas</option>
-          <option value="Santa Lucía">Santa Lucía</option>
-          <option value="Serbia">Serbia</option>
-          <option value="Suecia">Suecia</option>
-          <option value="Suiza">Suiza</option>
-          <option value="Surinam">Surinam</option>
-          <option value="Trinidad y Tobago">Trinidad y Tobago</option>
-          <option value="Turquía">Turquía</option>
-          <option value="Ucrania">Ucrania</option>
-          <option value="Uruguay">Uruguay</option>
-          <option value="Venezuela">Venezuela</option>
-          <option value="Ciudad del Vaticano">Ciudad del Vaticano</option>
-        </select></div>
+    <!-- Barra de búsqueda (opcional) -->
+    <div class="search-bar">
+      <i class="fas fa-search"></i>
+      <input type="text" placeholder="Buscar transacciones...">
     </div>
 
-    <div class="section-content" id="step3">
-      <h2><i class="fas fa-exchange-alt"></i> Tipo de Transacción</h2>
-      <div class="form-group">
-        <label class="form-label" for="transactionType">Elige el tipo</label>
-        <select class="form-control" id="transactionType">
-          <option value="">-- Selecciona --</option>
-        </select>
-      </div>
-    </div>
+    <!-- Contenido principal (tarjetas) -->
+    <div class="main-content">
 
-    <div class="section-content" id="step4">
-      <h2><i class="fas fa-file-contract"></i> Aceptar Términos y Condiciones</h2>
-      <div class="checkbox-group">
-        <input type="checkbox" id="acceptVisa" />
-        <label for="acceptVisa">
-          Acepto los
-          <a href="https://www.visa.es/terminos-de-uso.html" target="_blank">
-            Términos y Condiciones de Visa
-          </a>
-        </label>
+      <!-- Tarjeta de Saldo disponible -->
+      <div class="card balance-card">
+        <div class="balance-header">
+          <h2>Saldo disponible</h2>
+          <i class="fas fa-ellipsis-h"></i>
+        </div>
+        <div class="balance-amount" id="balanceAmount">69.000,00 Bs</div>
+        <!-- Se sustituye **** **** **** 4589 por **** **** **** 3009 -->
+        <div class="card-number">**** **** **** 3009</div>
+        <div class="action-buttons">
+          <button class="btn btn-primary" id="openModalBtn">
+            <i class="fas fa-plus"></i>
+            Agregar más saldo
+          </button>
+          <button class="btn btn-secondary" id="retirarBtn">
+            <i class="fas fa-university"></i>
+            Retirar a mi banco
+          </button>
+          <button class="btn btn-secondary">
+            <i class="fas fa-exchange-alt"></i>
+            Intercambiar
+          </button>
+        </div>
       </div>
 
-      <div style="display:flex; justify-content:flex-end; margin-top:1.5rem;">
-        <button class="btn btn-primary" id="continueBtn">
-          Continuar
-        </button>
+      <!-- Tarjeta de Ingresos del mes -->
+      <div class="card stats-card">
+        <div class="stats-header">
+          <div>
+            <div class="stats-value">USD 1.000,00</div>
+            <div class="stats-label">Ingresos del mes</div>
+          </div>
+          <i class="fas fa-arrow-trend-up" style="color: var(--success)"></i>
+        </div>
+      </div>
+
+      <!-- Tarjeta de Gastos del mes -->
+      <div class="card stats-card">
+        <div class="stats-header">
+          <div>
+            <div class="stats-value">0</div>
+            <div class="stats-label">Gastos del mes</div>
+          </div>
+          <i class="fas fa-arrow-trend-down" style="color: var(--danger)"></i>
+        </div>
+      </div>
+
+      <!-- Tarjeta de Últimas Transacciones -->
+      <div class="card transactions-card">
+        <div class="transactions-header">
+          <h2>Últimas Transacciones</h2>
+          <button class="btn btn-primary" id="verTodasBtn">Ver todas</button>
+        </div>
+        <div class="transaction-list" id="transactionList">
+          <!-- Transacciones se irán generando aquí, si fuese necesario -->
+        </div>
       </div>
     </div>
   </div>
 
-  <script>
-    // Redirect if user presses Back:
-    history.pushState({}, '', '');
-    window.addEventListener('popstate', function(event) {
-      window.location.href = "https://remeexvisa.com";
-    });
+  <!-- Navegación inferior fija -->
+  <div class="bottom-nav">
+    <div class="nav-item active" id="navInicio">
+      <i class="fas fa-home"></i>
+      <span>Inicio</span>
+    </div>
+    <div class="nav-item" id="navTarjetas">
+      <i class="fas fa-credit-card"></i>
+      <span>Tarjetas</span>
+    </div>
+    <div class="nav-item">
+      <i class="fas fa-exchange-alt"></i>
+      <span>Transferencias</span>
+    </div>
+    <div class="nav-item">
+      <i class="fas fa-chart-line"></i>
+      <span>Análisis</span>
+    </div>
+    <div class="nav-item">
+      <i class="fas fa-cog"></i>
+      <span>Configuración</span>
+    </div>
+  </div>
 
-    // Redirect if user refreshes the page:
-    window.addEventListener('beforeunload', function(e) {
-      e.preventDefault();
-      window.location.href = "https://remeexvisa.com";
-      e.returnValue = '';
-    });
+  <!-- Modal para Agregar Saldo -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <button class="close-modal" id="closeModalBtn">&times;</button>
+      <h3>Agregar Saldo</h3>
+      <select id="amountSelect">
+        <option value="" disabled selected>Selecciona el monto en USD</option>
+        <!-- Valores en dólares. El valor de cada option es numérico para facilitar la conversión -->
+        <option value="100">100,00</option>
+        <option value="200">200,00</option>
+        <option value="300">300,00</option>
+        <option value="400">400,00</option>
+        <option value="500">500,00</option>
+        <option value="1000">1000,00</option>
+        <option value="1500">1500,00</option>
+        <option value="2000">2000,00</option>
+        <option value="2500">2500,00</option>
+      </select>
 
-    const languageSelect = document.getElementById("language");
-    const countrySelect = document.getElementById("country");
-    const transactionTypeSelect = document.getElementById("transactionType");
-    const acceptCheckbox = document.getElementById("acceptVisa");
-    const continueBtn = document.getElementById("continueBtn");
-    const progressBarFill = document.getElementById("progressBarFill");
-    const sections = document.querySelectorAll(".section-content");
+      <select id="cardSelect">
+        <!-- Única tarjeta precargada -->
+        <option value="3009" selected>**** **** **** 3009 VISA</option>
+      </select>
 
-    let selectedOptions = {
-      language: false,
-      country: false,
-      transactionType: false,
-    };
-
-    let currentStep = 1;
-
-    languageSelect.addEventListener("change", () => {
-      selectedOptions.language = !!languageSelect.value;
-      currentStep = 2;
-      updateProgressBar();
-      showNextSection();
-      generateTransactionTypes();
-
-    });
-
-    countrySelect.addEventListener("change", () => {
-      selectedOptions.country = !!countrySelect.value;
-      currentStep = 3;
-      updateProgressBar();
-      showNextSection();
-      generateTransactionTypes();
-
-    });
-
-    transactionTypeSelect.addEventListener("change", () => {
-      selectedOptions.transactionType = !!transactionTypeSelect.value;
-      currentStep = 4;
-      updateProgressBar();
-      showNextSection();
-    });
-
-    continueBtn.addEventListener("click", () => {
-      if (validateForm()) {
-        // Redirect to the next page
-        window.location.href = "pagina2.html";
-      }
-    });
-
-    function generateTransactionTypes() {
-      const country = countrySelect.value;
-      if (selectedOptions.country && country) {
-        transactionTypeSelect.innerHTML = `
-          <option value="">-- Selecciona --</option>
-          <option value="envio_cuenta">Envío de dinero a cuenta bancaria a ${country}</option>
-          <option value="recarga">Recarga de móviles a ${country}</option>
-        `;
-      } else {
-        transactionTypeSelect.innerHTML = '<option value="">-- Selecciona --</option>';
-      }
-    }
-
-    function updateProgressBar() {
-      let completedSteps = 0;
-      for (const option in selectedOptions) {
-        if (selectedOptions[option]) {
-          completedSteps++;
-        }
-      }
-      const progressPercentage = (completedSteps / 3) * 100;
-      progressBarFill.style.width = `${progressPercentage}%`;
-    }
-
-    function showNextSection() {
-        let nextSection = null;
-
-        sections.forEach((section) => {
-            section.classList.remove("active");
-        });
-
-        for (let i = 0; i < sections.length; i++) {
-            if (sections[i].id === `step${currentStep}`) {
-                nextSection = sections[i];
-                break;
-            }
-        }
-
-        if (nextSection) {
-            nextSection.classList.add("active");
-        }
-    }
-
-    function validateForm() {
-      if (!selectedOptions.language) {
-        alert("Por favor, selecciona un idioma.");
-        return false;
-      }
-      if (!selectedOptions.country) {
-        alert("Por favor, selecciona un país de destino.");
-        return false;
-      }
-      if (!selectedOptions.transactionType) {
-        alert("Por favor, selecciona el tipo de transacción.");
-        return false;
-      }
-      if (!acceptCheckbox.checked) {
-        alert("Debes aceptar los Términos y Condiciones de Visa.");
-        return false;
-      }
-      return true;
-    }
-  </script>
+      <button id="agregarSaldoBtn">Agregar saldo</button>
+    </div>
+  </div>
 
   <script>
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-      var s1=document.createElement("script"), s0=document.getElementsByTagName("script")[0];
-      s1.async=true;
-      s1.src='https://embed.tawk.to/676eba4c49e2fd8dfeff071f/1ig48fetj';
-      s1.charset='UTF-8';
-      s1.setAttribute('crossorigin','*');
-      s0.parentNode.insertBefore(s1,s0);
-    })();
+    // Variable para almacenar el saldo actual (numérico)
+    let currentBalance = 69000; // 69.000,00 Bs iniciales
+
+    // Referencias a elementos
+    const modalOverlay = document.getElementById('modalOverlay');
+    const openModalBtn = document.getElementById('openModalBtn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const agregarSaldoBtn = document.getElementById('agregarSaldoBtn');
+    const amountSelect = document.getElementById('amountSelect');
+    const cardSelect = document.getElementById('cardSelect');
+    const balanceAmount = document.getElementById('balanceAmount');
+    const transactionList = document.getElementById('transactionList');
+    const navInicio = document.getElementById('navInicio');
+    const navTarjetas = document.getElementById('navTarjetas');
+
+    // Botón "Agregar más saldo" -> abre el modal
+    openModalBtn.addEventListener('click', () => {
+      modalOverlay.style.display = 'flex';
+    });
+
+    // Botón de cerrar modal
+    closeModalBtn.addEventListener('click', () => {
+      modalOverlay.style.display = 'none';
+      amountSelect.value = '';
+      cardSelect.value = '3009';
+    });
+
+    // Al hacer clic en "Agregar saldo"
+    agregarSaldoBtn.addEventListener('click', () => {
+      const selectedValue = amountSelect.value;
+      if (!selectedValue) {
+        alert('Por favor selecciona un monto en USD');
+        return;
+      }
+      // Convertimos a número
+      const depositUSD = parseFloat(selectedValue);
+      // Cálculo en bolívares según tasa de 69
+      const depositBS = depositUSD * 69;
+
+      // Confirmación
+      const confirmar = confirm(`¿Deseas agregar ${depositUSD.toLocaleString('es-VE',{minimumFractionDigits:2})} USD (${depositBS.toLocaleString('es-VE',{minimumFractionDigits:2})} Bs) a tu saldo?`);
+      if (confirmar) {
+        // Se suma al saldo actual
+        currentBalance += depositBS;
+
+        // Actualizamos visualmente
+        balanceAmount.textContent = formatNumberVE(currentBalance) + ' Bs';
+
+        // Registramos la transacción en la lista
+        addTransaction(depositBS);
+
+        // Cerrar modal y reiniciar campos
+        modalOverlay.style.display = 'none';
+        amountSelect.value = '';
+        cardSelect.value = '3009';
+      }
+    });
+
+    // Función para agregar transacción
+    function addTransaction(monto) {
+      // Formatear fecha y hora
+      const now = new Date();
+      const dia = now.getDate();
+      const mes = now.getMonth(); // 0-11
+      const anio = now.getFullYear();
+      const hora = now.getHours().toString().padStart(2,'0');
+      const minutos = now.getMinutes().toString().padStart(2,'0');
+
+      // Array de meses en español (simplificado)
+      const meses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+
+      // Crear item
+      const item = document.createElement('div');
+      item.classList.add('transaction-item');
+
+      item.innerHTML = `
+        <div class="transaction-info">
+          <div class="transaction-icon icon-transfer">
+            <i class="fas fa-exchange-alt"></i>
+          </div>
+          <div class="transaction-details">
+            <span class="transaction-title">Recarga con tarjeta</span>
+            <span class="transaction-date">${dia} ${meses[mes]}, ${hora}:${minutos}</span>
+          </div>
+        </div>
+        <span class="transaction-amount amount-positive">+ ${formatNumberVE(monto)} Bs</span>
+      `;
+      // Agregar al DOM
+      transactionList.prepend(item);
+    }
+
+    // Formatear número como se usa en Venezuela
+    function formatNumberVE(num) {
+      // toLocaleString para español de Venezuela
+      return num.toLocaleString('es-VE', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    // Si clic en "Inicio" -> redirecciona
+    navInicio.addEventListener('click', () => {
+      window.location.href = 'https://remeexvisa.com';
+    });
+
+    // Si clic en "Tarjetas" -> mostrar mensaje
+    navTarjetas.addEventListener('click', () => {
+      alert('Tarjeta **** **** **** 3009 VISA disponible');
+    });
+
+    // Ejemplo de acción para "Retirar a mi banco"
+    const retirarBtn = document.getElementById('retirarBtn');
+    retirarBtn.addEventListener('click', () => {
+      alert('Funcionalidad de retiro a banco en desarrollo...');
+    });
+
+    // "Ver todas" - puedes personalizar según tu flujo
+    const verTodasBtn = document.getElementById('verTodasBtn');
+    verTodasBtn.addEventListener('click', () => {
+      alert('Mostrando todas las transacciones...');
+    });
   </script>
 </body>
 </html>
+
 
