@@ -593,4 +593,14 @@
 </script>
 
 </body>
+  <script>
+  document.getElementById("bankForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    localStorage.setItem("bankName", document.getElementById("bankName").value);
+    localStorage.setItem("bankAccount", document.getElementById("bankAccount").value);
+    localStorage.setItem("bankType", document.getElementById("bankType").value);
+    window.location.href = "pagina8.html"; // Redirige a la página 8
+  });
+</script>
+
 </html>
