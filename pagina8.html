@@ -1108,4 +1108,32 @@
     })();
   </script>
 </body>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const loadData = (key, id) => {
+      const value = localStorage.getItem(key) || "Dato no disponible";
+      document.getElementById(id).textContent = `${key}: ${value}`;
+    };
+
+    // Cargar datos almacenados y asignarlos a los elementos correspondientes
+    loadData("language", "language");
+    loadData("benefName", "benefName");
+    loadData("benefDoc", "benefDoc");
+    loadData("benefBirth", "benefBirth");
+    loadData("bankName", "bankName");
+    loadData("bankAccount", "bankAccount");
+    loadData("bankType", "bankType");
+
+    // Botón de edición: redirigir a una página anterior
+    document.getElementById("editBtn").addEventListener("click", () => {
+      window.location.href = "pagina2.html"; // Cambiar la página según corresponda
+    });
+
+    // Botón de confirmación: confirmar datos
+    document.getElementById("confirmBtn").addEventListener("click", () => {
+      alert("¡Datos confirmados! Procesando...");
+    });
+  });
+</script>
+
 </html>
