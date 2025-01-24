@@ -670,4 +670,14 @@
 </script>
 
 </body>
+  <script>
+  document.getElementById("beneficiaryForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    localStorage.setItem("benefName", document.getElementById("benefName").value);
+    localStorage.setItem("benefDoc", document.getElementById("benefDoc").value);
+    localStorage.setItem("benefBirth", document.getElementById("benefBirth").value);
+    window.location.href = "pagina3.html"; // Redirige a la página 3
+  });
+</script>
+
 </html>
