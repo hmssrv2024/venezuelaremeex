@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -73,19 +73,30 @@
       border-radius: var(--border-radius-xl);
       box-shadow: var(--shadow);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      border: 4px solid var(--primary); /* Aumenta el grosor del borde */
       overflow: hidden;
       position: relative;
       transition: var(--transition);
-      animation: glow 6s ease infinite;
+      animation: glow 6s ease infinite, border-blink 2s linear infinite; /* Añade la animación del borde */
     }
 
+    /* Animación existente para el glow */
     @keyframes glow {
       0%, 100% {
         box-shadow: 0 0 30px rgba(26, 31, 113, 0.4), 0 0 60px rgba(26, 31, 113, 0.2);
       }
       50% {
         box-shadow: 0 0 50px rgba(26, 31, 113, 0.6), 0 0 80px rgba(26, 31, 113, 0.4);
+      }
+    }
+
+    /* Nueva animación para el borde que parpadea entre azul y blanco */
+    @keyframes border-blink {
+      0%, 100% {
+        border-color: var(--primary);
+      }
+      50% {
+        border-color: white;
       }
     }
 
@@ -127,12 +138,11 @@
       background-size: 400% 400%;
     }
 
-    .header h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
+    .header-logo {
+      width: 80%; /* Ajusta el tamaño según sea necesario */
+      max-width: 400px;
+      height: auto;
       margin-bottom: 1rem;
-      position: relative;
-      z-index: 2;
     }
 
     .header p {
@@ -450,8 +460,9 @@
         padding: 2rem 1rem;
       }
 
-      .header h1 {
-        font-size: 2rem;
+      .header-logo {
+        width: 70%; /* Ajuste para pantallas más pequeñas */
+        max-width: 300px;
       }
 
       .header p {
@@ -478,8 +489,9 @@
     }
 
     @media (max-width: 480px) {
-      .header h1 {
-        font-size: 1.75rem;
+      .header-logo {
+        width: 90%; /* Ajuste para pantallas muy pequeñas */
+        max-width: 250px;
       }
 
       .header p {
@@ -509,11 +521,9 @@
   <div class="container">
 
     <div class="header">
-      <h1>VISA REMEEX Premium</h1>
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwQVwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s320/remeex.png" alt="REMEEX Logo" class="header-logo">
       <p>
-        Gracias a la tecnología VISA, puedes enviar dinero
-        de forma instantánea a una cuenta bancaria sin comisiones,
-        con la mejor tasa de cambio y la rapidez que necesitas.
+        Envía dinero al instante sin comisiones
       </p>
     </div>
 
@@ -815,7 +825,8 @@
     })();
   </script>
 </body>
-</html>
+</html>  
+
 
 
 
