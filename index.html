@@ -1,8 +1,897 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>VISA REMEEX Premium - Configuración Inicial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Selección de Idioma, País, Tipo de Transacción y Términos." />
 
+  <link rel="icon" href="https://w7.pngwing.com/pngs/400/28/png-transparent-credit-card-computer-icons-visa-electron-bank-curio-blue-text-rectangle-thumbnail.png" type="image/png" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+  
+  <style>
+    :root {
+      /* Colores modernos inspirados en Visa */
+      --primary: #1a1f71; /* Azul oscuro de Visa */
+      --primary-dark: #0d153e; /* Azul aún más oscuro */
+      --secondary: #3b82f6;
+      --accent: #60a5fa;
+      --success: #22c55e;
+      --danger: #ef4444;
+      --warning: #f59e0b;
 
+      /* Colores para la animación del borde */
+      --border-white: #ffffff;
+      --border-gray: #d1d5db; /* Gris claro */
+      --border-light-blue: #93c5fd; /* Azul claro */
 
+      /* Fondos y texto */
+      --background: #f8fafc;
+      --card-bg: rgba(255, 255, 255, 0.98);
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
 
+      /* Diseño */
+      --border-radius-xl: 28px;
+      --border-radius-lg: 24px;
+      --border-radius: 16px;
+      --border-radius-sm: 12px;
+      
+      /* Efectos */
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+      --shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 6px 6px rgba(0, 0, 0, 0.2);
+      --shadow-lg: 0 25px 50px rgba(0, 0, 0, 0.3);
+    }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* Alinea el contenido hacia arriba */
+      padding: 1rem;
+      overflow-x: hidden;
+    }
 
+    /* Contenedor principal con diseño de glassmorphism y glow intensificado */
+    .container {
+      max-width: 650px;
+      width: 100%;
+      margin-top: 2rem; /* Ajusta la distancia desde el top */
+      background: var(--card-bg);
+      border-radius: var(--border-radius-xl);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      border: 2px solid var(--border-white); /* Reducir el grosor del borde a 2px */
+      overflow: hidden;
+      position: relative;
+      transition: var(--transition);
+      animation: glow 6s ease infinite, border-blink 6s linear infinite; /* Ajustar la duración de la animación del borde */
+    }
+
+    /* Animación existente para el glow */
+    @keyframes glow {
+      0%, 100% {
+        box-shadow: 0 0 30px rgba(26, 31, 113, 0.4), 0 0 60px rgba(26, 31, 113, 0.2);
+      }
+      50% {
+        box-shadow: 0 0 50px rgba(26, 31, 113, 0.6), 0 0 80px rgba(26, 31, 113, 0.4);
+      }
+    }
+
+    /* Nueva animación para el borde que alterna entre blanco, gris y azul claro */
+    @keyframes border-blink {
+      0% {
+        border-color: var(--border-white);
+      }
+      33% {
+        border-color: var(--border-gray);
+      }
+      66% {
+        border-color: var(--border-light-blue);
+      }
+      100% {
+        border-color: var(--border-white);
+      }
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Header con gradiente moderno y auroras animadas en tonos azules más oscuros */
+    .header {
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary)); /* Fondo azul más oscuro */
+      color: #fff;
+      padding: 3rem 2rem;
+      position: relative;
+      overflow: hidden;
+      border-top-left-radius: var(--border-radius-xl);
+      border-top-right-radius: var(--border-radius-xl);
+      /* Aurora effect */
+      background-image: var(--aurora-gradient);
+      animation: aurora-animation 15s ease infinite;
+    }
+
+    @keyframes aurora-animation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Definición de la aurora con gradientes más oscuros y mayores tonos */
+    :root {
+      --aurora-gradient: linear-gradient(120deg, rgba(26, 31, 113, 0.4), rgba(25, 35, 102, 0.3), rgba(30, 40, 120, 0.3), rgba(26, 31, 113, 0.2));
+      background-size: 400% 400%;
+    }
+
+    .header-logo {
+      width: 80%; /* Ajusta el tamaño según sea necesario */
+      max-width: 400px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0.95;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* --- Nuevo: Destello de luz en la cabecera --- */
+    .header::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+      transform: skewX(-20deg);
+      opacity: 0;
+      z-index: 1;
+      pointer-events: none;
+      animation: flash 3s infinite;
+    }
+
+    @keyframes flash {
+      0% {
+        left: -100%;
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      50% {
+        left: 100%;
+        opacity: 1;
+      }
+      60% {
+        opacity: 0;
+      }
+      100% {
+        left: 100%;
+        opacity: 0;
+      }
+    }
+    /* --- Fin del destello de luz --- */
+
+    /* Logo Bar con animaciones suaves */
+    .logo-bar {
+      background: var(--card-bg);
+      padding: 1.5rem 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-bar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+      animation: shimmer 3s linear infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-50%);
+      }
+      100% {
+        transform: translateX(50%);
+      }
+    }
+
+    .logo-bar img {
+      height: 36px;
+      filter: grayscale(20%);
+      opacity: 0.9;
+      transition: var(--transition);
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo-bar img:hover {
+      filter: none;
+      opacity: 1;
+      transform: scale(1.08);
+    }
+
+    /* Barra de progreso moderna con animación y mayor grosor */
+    .progress-bar {
+      height: 16px; /* Aumentar la altura de la barra */
+      background-color: #e2e8f0;
+      border-radius: var(--border-radius);
+      margin: 2rem;
+      overflow: hidden;
+      position: relative;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      width: 0%;
+      transition: width 0.6s ease-in-out;
+      border-radius: var(--border-radius);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: skewX(-45deg);
+      animation: move 2s linear infinite;
+    }
+
+    @keyframes move {
+      0% {
+        left: -50%;
+      }
+      100% {
+        left: 100%;
+      }
+    }
+
+    /* Secciones con transiciones suaves */
+    .section-content {
+      padding: 2rem;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s ease-out;
+      display: none;
+    }
+
+    .section-content.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-content h2 {
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--primary);
+    }
+
+    .section-content h2 i {
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* Campos de formulario modernos */
+    .form-group {
+      margin-bottom: 1.75rem;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.875rem 1.25rem;
+      border: 2px solid #e2e8f0;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      background: #fff;
+      transition: var(--transition);
+      color: var(--text-primary);
+    }
+
+    .form-control:hover {
+      border-color: #cbd5e1;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(26, 31, 113, 0.2);
+    }
+
+    /* Checkbox moderno */
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: #f8fafc;
+      border-radius: var(--border-radius);
+      border: 1px solid #e2e8f0;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      width: 1.2rem;
+      height: 1.2rem;
+      border-radius: 4px;
+      border: 2px solid var(--primary);
+      transition: var(--transition);
+    }
+
+    .checkbox-group a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .checkbox-group a:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+
+    /* Botón moderno con efecto glow */
+    .btn-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1.5rem;
+      position: relative;
+      width: 250px;
+      height: 60px;
+    }
+
+    .btn-glow-effect {
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(
+        90deg, 
+        transparent, 
+        var(--primary), 
+        var(--secondary), 
+        transparent
+      );
+      background-size: 200% 100%;
+      border-radius: 30px;
+      animation: border-glow 3s ease infinite;
+      filter: blur(10px);
+      opacity: 0.7;
+      z-index: 0;
+    }
+
+    @keyframes border-glow {
+      0% {
+        background-position: -100% 0;
+      }
+      50% {
+        background-position: 100% 0;
+      }
+      100% {
+        background-position: -100% 0;
+      }
+    }
+
+    .btn-glow {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      overflow: hidden;
+      box-shadow: 
+          0 15px 25px rgba(0,0,0,0.3), 
+          inset 0 -4px 8px rgba(255,255,255,0.3);
+      transition: all 0.3s ease;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .btn-glow-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .btn-glow-initial {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .btn-glow:hover .btn-glow-initial {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+
+    .btn-glow-hover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateX(-100%);
+      color: white;
+    }
+
+    .btn-glow:hover .btn-glow-hover {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .btn-glow-icon {
+      margin-left: 10px;
+    }
+
+    /* Media queries para responsive */
+    @media (max-width: 768px) {
+      .container {
+        margin-top: 1.5rem;
+      }
+
+      .header {
+        padding: 2rem 1rem;
+      }
+
+      .header-logo {
+        width: 70%; /* Ajuste para pantallas más pequeñas */
+        max-width: 300px;
+      }
+
+      .header p {
+        font-size: 1rem;
+      }
+
+      .logo-bar {
+        gap: 2rem;
+        padding: 1rem;
+      }
+
+      .logo-bar img {
+        height: 28px;
+      }
+
+      .section-content {
+        padding: 1.5rem;
+      }
+
+      .btn-container {
+        width: 200px;
+        height: 50px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-logo {
+        width: 90%; /* Ajuste para pantallas muy pequeñas */
+        max-width: 250px;
+      }
+
+      .header p {
+        font-size: 0.95rem;
+      }
+
+      .logo-bar {
+        gap: 1.5rem;
+      }
+
+      .logo-bar img {
+        height: 24px;
+      }
+
+      .btn-container {
+        width: 150px;
+        height: 45px;
+      }
+
+      .btn-glow {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="header">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwQVwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s320/remeex.png" alt="REMEEX Logo" class="header-logo">
+      <p>
+        Envía dinero al instante sin comisiones
+      </p>
+    </div>
+
+    <div class="logo-bar">
+      <img src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="Visa Logo">
+      <img src="https://www.mastercard.es/content/dam/public/mastercardcom/es/favicon/mc-logo-52.svg" alt="MasterCard Logo">
+      <img src="https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg" alt="American Express Logo">
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-bar-fill" id="progressBarFill"></div>
+    </div>
+
+    <div class="section-content active" id="step1">
+      <h2><i class="fas fa-language"></i> Selecciona tu idioma</h2>
+      <div class="form-group">
+        <label class="form-label" for="language">Idioma</label>
+        <select class="form-control" id="language">
+          <option value="">-- Elige un idioma --</option>
+          <option value="es">Español</option>
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="pt">Português</option>
+          <option value="zh">中文</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="section-content" id="step2">
+      <h2><i class="fas fa-globe-americas"></i> Selecciona el país donde enviarás tu dinero</h2>
+      <div class="form-group">
+        <label class="form-label" for="country">País Destino</label>
+        <select class="form-control" id="country">
+          <option value="">-- Selecciona un país --</option>
+          <!-- Opciones de países -->
+          <option value="Alemania">Alemania</option>
+          <option value="Andorra">Andorra</option>
+          <option value="Antigua y Barbuda">Antigua y Barbuda</option>
+          <option value="Argentina">Argentina</option>
+          <option value="Austria">Austria</option>
+          <option value="Bahamas">Bahamas</option>
+          <option value="Barbados">Barbados</option>
+          <option value="Bélgica">Bélgica</option>
+          <option value="Belice">Belice</option>
+          <option value="Bielorrusia">Bielorrusia</option>
+          <option value="Bolivia">Bolivia</option>
+          <option value="Bosnia y Herzegovina">Bosnia y Herzegovina</option>
+          <option value="Brasil">Brasil</option>
+          <option value="Bulgaria">Bulgaria</option>
+          <option value="Canadá">Canadá</option>
+          <option value="Chile">Chile</option>
+          <option value="Chipre">Chipre</option>
+          <option value="Colombia">Colombia</option>
+          <option value="Costa Rica">Costa Rica</option>
+          <option value="Croacia">Croacia</option>
+          <option value="Cuba">Cuba</option>
+          <option value="Dinamarca">Dinamarca</option>
+          <option value="Dominica">Dominica</option>
+          <option value="Ecuador">Ecuador</option>
+          <option value="El Salvador">El Salvador</option>
+          <option value="Eslovaquia">Eslovaquia</option>
+          <option value="Eslovenia">Eslovenia</option>
+          <option value="España">España</option>
+          <option value="Estados Unidos">Estados Unidos</option>
+          <option value="Estonia">Estonia</option>
+          <option value="Finlandia">Finlandia</option>
+          <option value="Francia">Francia</option>
+          <option value="Granada">Granada</option>
+          <option value="Grecia">Grecia</option>
+          <option value="Guatemala">Guatemala</option>
+          <option value="Guyana">Guyana</option>
+          <option value="Haití">Haití</option>
+          <option value="Honduras">Honduras</option>
+          <option value="Hungría">Hungría</option>
+          <option value="Irlanda">Irlanda</option>
+          <option value="Islandia">Islandia</option>
+          <option value="Italia">Italia</option>
+          <option value="Jamaica">Jamaica</option>
+          <option value="Letonia">Letonia</option>
+          <option value="Liechtenstein">Liechtenstein</option>
+          <option value="Lituania">Lituania</option>
+          <option value="Luxemburgo">Luxemburgo</option>
+          <option value="Malta">Malta</option>
+          <option value="México">México</option>
+          <option value="Moldavia">Moldavia</option>
+          <option value="Mónaco">Mónaco</option>
+          <option value="Montenegro">Montenegro</option>
+          <option value="Nicaragua">Nicaragua</option>
+          <option value="Noruega">Noruega</option>
+          <option value="Panamá">Panamá</option>
+          <option value="Paraguay">Paraguay</option>
+          <option value="Países Bajos">Países Bajos</option>
+          <option value="Perú">Perú</option>
+          <option value="Polonia">Polonia</option>
+          <option value="Portugal">Portugal</option>
+          <option value="Reino Unido">Reino Unido</option>
+          <option value="República Checa">República Checa</option>
+          <option value="República Dominicana">República Dominicana</option>
+          <option value="Rumanía">Rumanía</option>
+          <option value="Rusia">Rusia</option>
+          <option value="San Marino">San Marino</option>
+          <option value="San Cristóbal y Nieves">San Cristóbal y Nieves</option>
+          <option value="San Vicente y Granadinas">San Vicente y las Granadinas</option>
+          <option value="Santa Lucía">Santa Lucía</option>
+          <option value="Serbia">Serbia</option>
+          <option value="Suecia">Suecia</option>
+          <option value="Suiza">Suiza</option>
+          <option value="Surinam">Surinam</option>
+          <option value="Trinidad y Tobago">Trinidad y Tobago</option>
+          <option value="Turquía">Turquía</option>
+          <option value="Ucrania">Ucrania</option>
+          <option value="Uruguay">Uruguay</option>
+          <option value="Venezuela">Venezuela</option>
+          <option value="Ciudad del Vaticano">Ciudad del Vaticano</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="section-content" id="step3">
+      <h2><i class="fas fa-exchange-alt"></i> Tipo de Transacción</h2>
+      <div class="form-group">
+        <label class="form-label" for="transactionType">Elige el tipo</label>
+        <select class="form-control" id="transactionType">
+          <option value="">-- Selecciona --</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="section-content" id="step4">
+      <h2><i class="fas fa-file-contract"></i> Aceptar Términos y Condiciones</h2>
+      <div class="checkbox-group">
+        <input type="checkbox" id="acceptVisa" />
+        <label for="acceptVisa">
+          Acepto los
+          <a href="https://www.visa.es/terminos-de-uso.html" target="_blank">
+            Términos y Condiciones de Visa
+          </a>
+        </label>
+      </div>
+
+      <div class="btn-container">
+        <div class="btn-glow-effect"></div>
+        <button class="btn-glow" id="continueBtn">
+          <div class="btn-glow-content btn-glow-initial">
+            Continuar
+          </div>
+          <div class="btn-glow-content btn-glow-hover">
+            Continuar
+            <svg class="btn-glow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let isRedirecting = false; // Bandera para indicar redirección
+
+    // Redirigir si el usuario presiona Atrás:
+    history.pushState({}, '', '');
+    window.addEventListener('popstate', function(event) {
+      window.location.href = "https://remeexvisa.com";
+    });
+
+    // Redirigir si el usuario recarga la página:
+    window.addEventListener('beforeunload', function(e) {
+      if (!isRedirecting) { // Solo redirigir si no es una redirección intencional
+        e.preventDefault();
+        window.location.href = "https://remeexvisa.com";
+        e.returnValue = '';
+      }
+    });
+
+    const languageSelect = document.getElementById("language");
+    const countrySelect = document.getElementById("country");
+    const transactionTypeSelect = document.getElementById("transactionType");
+    const acceptCheckbox = document.getElementById("acceptVisa");
+    const continueBtn = document.getElementById("continueBtn");
+    const progressBarFill = document.getElementById("progressBarFill");
+    const sections = document.querySelectorAll(".section-content");
+
+    let selectedOptions = {
+      language: false,
+      country: false,
+      transactionType: false,
+    };
+
+    let currentStep = 1;
+
+    languageSelect.addEventListener("change", () => {
+      selectedOptions.language = !!languageSelect.value;
+      currentStep = 2;
+      updateProgressBar();
+      showNextSection();
+      generateTransactionTypes();
+    });
+
+    countrySelect.addEventListener("change", () => {
+      selectedOptions.country = !!countrySelect.value;
+      currentStep = 3;
+      updateProgressBar();
+      showNextSection();
+      generateTransactionTypes();
+    });
+
+    transactionTypeSelect.addEventListener("change", () => {
+      selectedOptions.transactionType = !!transactionTypeSelect.value;
+      currentStep = 4;
+      updateProgressBar();
+      showNextSection();
+    });
+
+    continueBtn.addEventListener("click", () => {
+      if (validateForm()) {
+        isRedirecting = true; // Establecer la bandera antes de redirigir
+        continueIndex();
+      }
+    });
+
+    function generateTransactionTypes() {
+      const country = countrySelect.value;
+      if (selectedOptions.country && country) {
+        transactionTypeSelect.innerHTML = `
+          <option value="">-- Selecciona --</option>
+          <option value="envio_cuenta">Envío de dinero a cuenta bancaria a ${country}</option>
+          <option value="recarga">Recarga de móviles a ${country}</option>
+        `;
+      } else {
+        transactionTypeSelect.innerHTML = '<option value="">-- Selecciona --</option>';
+      }
+    }
+
+    function updateProgressBar() {
+      let completedSteps = 0;
+      for (const option in selectedOptions) {
+        if (selectedOptions[option]) {
+          completedSteps++;
+        }
+      }
+      const progressPercentage = (completedSteps / 3) * 100;
+      progressBarFill.style.width = `${progressPercentage}%`;
+    }
+
+    function showNextSection() {
+      let nextSection = null;
+
+      sections.forEach((section) => {
+        section.classList.remove("active");
+      });
+
+      for (let i = 0; i < sections.length; i++) {
+        if (sections[i].id === `step${currentStep}`) {
+          nextSection = sections[i];
+          break;
+        }
+      }
+
+      if (nextSection) {
+        nextSection.classList.add("active");
+      }
+    }
+
+    function validateForm() {
+      if (!selectedOptions.language) {
+        alert("Por favor, selecciona un idioma.");
+        return false;
+      }
+      if (!selectedOptions.country) {
+        alert("Por favor, selecciona un país de destino.");
+        return false;
+      }
+      if (!selectedOptions.transactionType) {
+        alert("Por favor, selecciona el tipo de transacción.");
+        return false;
+      }
+      if (!acceptCheckbox.checked) {
+        alert("Debes aceptar los Términos y Condiciones de Visa.");
+        return false;
+      }
+      return true;
+    }
+
+    // Función para continuar, almacenar los datos en sessionStorage y redirigir a remeex.html
+    function continueIndex() {
+      let lang    = document.getElementById("language").value;
+      let country = document.getElementById("country").value;
+      let txType  = document.getElementById("transactionType").value;
+
+      // Armar el objeto con la información del formulario
+      const formData = {
+        language: lang,
+        country: country,
+        transactionType: txType
+      };
+
+      // Almacenar los datos en sessionStorage bajo las claves "datosRemeex" y "datosIndex"
+      sessionStorage.setItem("datosRemeex", JSON.stringify(formData));
+      sessionStorage.setItem("datosIndex", JSON.stringify(formData));
+
+      // Redirigir a remeex.html (la información ya estará disponible en sessionStorage)
+      window.location.href = "remeex.html";
+    }
+  </script>
+  
+  <!-- Integración de Tawk.to para soporte en vivo -->
+  <script>
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+      var s1=document.createElement("script"), s0=document.getElementsByTagName("script")[0];
+      s1.async=true;
+      s1.src='https://embed.tawk.to/676eba4c49e2fd8dfeff071f/1ig48fetj';
+      s1.charset='UTF-8';
+      s1.setAttribute('crossorigin','*');
+      s0.parentNode.insertBefore(s1,s0);
+    })();
+  </script>
+</body>
+</html>

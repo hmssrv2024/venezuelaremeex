@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>REMEEX - Resumen de Datos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Fuente moderna -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-blue: #1a73e8;
+      --secondary-blue: #4285f4;
+      --white: #ffffff;
+      --light-gray: #f4f6f8;
+      --medium-gray: #e0e5eb;
+      --dark-gray: #15294B;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    /* Estilos originales de la tarjeta */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--light-gray);
+      color: var(--dark-gray);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1rem;
+      position: relative;
+    }
+    .card {
+      background-color: var(--white);
+      border-radius: 20px;
+      box-shadow: 0 12px 30px var(--shadow);
+      width: 100%;
+      max-width: 600px;
+      overflow: hidden;
+      border: 1px solid var(--medium-gray);
+      position: relative;
+      z-index: 1; /* Debajo del overlay */
+    }
+    .header {
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      color: var(--white);
+      padding: 2rem;
+      text-align: center;
+    }
+    .header-logo {
+      width: 80px;
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+    }
+    .header-logo:hover {
+      transform: scale(1.1);
+    }
+    .header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .header p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+    .content {
+      padding: 2rem;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 1rem;
+    }
+    .data-table thead tr th {
+      background-color: var(--light-gray);
+      color: var(--dark-gray);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+    }
+    .data-table tbody tr {
+      background-color: var(--white);
+      border-radius: 10px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      border: 1px solid var(--medium-gray);
+    }
+    .data-table tbody tr:hover {
+      background-color: #f0f4f8;
+      transform: translateX(5px);
+    }
+    .data-table tbody tr td {
+      padding: 0.75rem 1rem;
+    }
+    @media (max-width: 480px) {
+      .header h1 {
+        font-size: 1.5rem;
+      }
+      .header p {
+        font-size: 0.9rem;
+      }
+    }
+    .user-info {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-top: 1px solid var(--medium-gray);
+    }
+    .user-info p {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+    /* Estilos para el overlay de animación (Vortex) */
+    #animationOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999; /* Encima de todo */
+      background-color: #000; /* Fondo negro */
+      overflow: hidden;
+    }
+    #canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <!-- Overlay con animación que oculta el contenido -->
+  <div id="animationOverlay">
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <!-- Contenido original (tarjeta con datos) -->
+  <div class="card">
+    <div class="header">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s320/remeex.png"
+           alt="REMEEX Logo"
+           class="header-logo" />
+      <h1>Resumen de Datos</h1>
+      <p>Redirigiendo a Saldo REMEEX en 1 minuto...</p>
+    </div>
+    <div class="content">
+      <!-- Sección para mostrar información adicional -->
+      <div class="user-info">
+        <p><strong>Nombre de Usuario:</strong> <span id="nombreUsuario">No especificado</span></p>
+        <p><strong>Número de Documento:</strong> <span id="numeroDocumento">No especificado</span></p>
+        <p><strong>Fecha de Nacimiento:</strong> <span id="fechaNacimiento">No especificado</span></p>
+        <p><strong>Tipo de Tarjeta:</strong> <span id="tipoTarjeta">No especificado</span></p>
+        <p><strong>Marca de Tarjeta:</strong> <span id="marcaTarjeta">No especificado</span></p>
+        <p><strong>Teléfono:</strong> <span id="telefonoUsuario">No especificado</span></p>
+        <p><strong>Banco:</strong> <span id="nombreBanco">No especificado</span></p>
+        <p><strong>N° de Cuenta:</strong> <span id="numeroCuenta">No especificado</span></p>
+        <p><strong>Tipo de Cuenta:</strong> <span id="tipoCuenta">No especificado</span></p>
+      </div>
+
+      <!-- Contenedor para el logo del banco -->
+      <div id="bankLogoContainer" style="text-align: center; margin: 20px 0;">
+        <img id="bankLogoImage" src="" alt="Logo del Banco" style="max-width: 150px; display: none;">
+      </div>
+
+      <!-- Tabla que muestra los datos almacenados en sessionStorage -->
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Campo</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody id="data-table">
+          <!-- Se agregarán dinámicamente las filas -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Script de la animación Vortex -->
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Configuración de la animación
+    const config = {
+      particleCount: 700,
+      baseHue: 220,
+      rangeHue: 100,
+      baseSpeed: 0.0,
+      rangeSpeed: 1.5,
+      baseRadius: 1,
+      rangeRadius: 2,
+      rangeY: 100,
+      backgroundColor: '#000000'
+    };
+
+    let width, height, center;
+    let particles = [];
+    let frame = 0;
+
+    // Clase Partícula
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = center.y + (Math.random() * config.rangeY * 2 - config.rangeY);
+        this.vx = 0;
+        this.vy = 0;
+        this.life = 0;
+        this.ttl = 50 + Math.random() * 150;
+        this.speed = config.baseSpeed + Math.random() * config.rangeSpeed;
+        this.radius = config.baseRadius + Math.random() * config.rangeRadius;
+        this.hue = config.baseHue + Math.random() * config.rangeHue;
+      }
+      update() {
+        // Aproximación sencilla de “ruido”
+        const angle = (frame + this.x * 0.01 + this.y * 0.01) * 0.02;
+        this.vx = Math.lerp(this.vx, Math.cos(angle), 0.5);
+        this.vy = Math.lerp(this.vy, Math.sin(angle), 0.5);
+        this.x += this.vx * this.speed;
+        this.y += this.vy * this.speed;
+        this.life++;
+        if (this.isOutOfBounds() || this.life > this.ttl) {
+          this.reset();
+        }
+      }
+      draw() {
+        const opacity = this.fadeInOut();
+        ctx.save();
+        ctx.strokeStyle = `hsla(${this.hue},100%,60%,${opacity})`;
+        ctx.lineWidth = this.radius;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(this.x + this.vx * this.speed, this.y + this.vy * this.speed);
+        ctx.stroke();
+        ctx.restore();
+      }
+      fadeInOut() {
+        const half = this.ttl * 0.5;
+        const pos = Math.abs(this.life - half);
+        return 1 - (pos / half);
+      }
+      isOutOfBounds() {
+        return this.x < 0 || this.x > width || this.y < 0 || this.y > height;
+      }
+    }
+
+    // Función auxiliar para interpolar
+    Math.lerp = (start, end, amt) => (1 - amt) * start + amt * end;
+
+    // Configuración y lanzamiento de la animación
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      center = { x: width * 0.5, y: height * 0.5 };
+    }
+    function init() {
+      resize();
+      particles = Array.from({ length: config.particleCount }, () => new Particle());
+    }
+    function render() {
+      frame++;
+      // Limpiar el canvas
+      ctx.fillStyle = config.backgroundColor;
+      ctx.fillRect(0, 0, width, height);
+      // Actualizar y dibujar partículas
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      // Efectos de resplandor
+      ctx.save();
+      ctx.filter = 'blur(8px) brightness(200%)';
+      ctx.globalCompositeOperation = 'lighter';
+      ctx.drawImage(canvas, 0, 0);
+      ctx.restore();
+      ctx.save();
+      ctx.filter = 'blur(4px) brightness(200%)';
+      ctx.globalCompositeOperation = 'lighter';
+      ctx.drawImage(canvas, 0, 0);
+      ctx.restore();
+      requestAnimationFrame(render);
+    }
+    window.addEventListener('resize', resize);
+    init();
+    render();
+  </script>
+
+  <!-- Script con la lógica y redirección (se conserva toda la funcionalidad original) -->
+  <script>
+    function unificarTodosDatos() {
+      let datos = JSON.parse(sessionStorage.getItem("datosRemeex") || "{}");
+      let datosVisa = JSON.parse(sessionStorage.getItem("datosRemeexVisa") || "{}");
+      if (!datos.bankName && datosVisa.bank) {
+        datos.bankName = datosVisa.bank;
+      }
+      if (!datos.bankAccount && datosVisa.accountNumberCompleto) {
+        datos.bankAccount = datosVisa.accountNumberCompleto;
+      }
+      if (!datos.bankType && datosVisa.accountType) {
+        datos.bankType = datosVisa.accountType;
+      }
+      sessionStorage.setItem("datosRemeex", JSON.stringify(datos));
+    }
+    unificarTodosDatos();
+
+    function unificarDatosBanco() {
+      const datos = JSON.parse(sessionStorage.getItem("datosRemeex") || "{}");
+      if (datos.bankName && !datos.nombreBanco) {
+        datos.nombreBanco = datos.bankName;
+      } else if (datos.nombreBanco && !datos.bankName) {
+        datos.bankName = datos.nombreBanco;
+      }
+      if (datos.bankAccount && !datos.numeroCuenta) {
+        datos.numeroCuenta = datos.bankAccount;
+      } else if (datos.numeroCuenta && !datos.bankAccount) {
+        datos.bankAccount = datos.numeroCuenta;
+      }
+      if (datos.bankType && !datos.tipoCuenta) {
+        datos.tipoCuenta = datos.bankType;
+      } else if (datos.tipoCuenta && !datos.bankType) {
+        datos.bankType = datos.tipoCuenta;
+      }
+      sessionStorage.setItem("datosRemeex", JSON.stringify(datos));
+    }
+    unificarDatosBanco();
+
+    function normalizar(nombre) {
+      return nombre.toLowerCase().replace(/[^\w\s]/gi, '').trim();
+    }
+
+    function asignarLogoBanco() {
+      let datos = JSON.parse(sessionStorage.getItem("datosRemeex") || "{}");
+      const bankLogos = {
+        "Banco de Venezuela, SA": "https://www.bancodevenezuela.com/wp-content/uploads/2023/03/logonuevo.png",
+        "Banco Central de Venezuela": "https://www.bcv.org.ve/sites/default/files/default_images/logo_bcv-04_2.png",
+        "Banco Venezolano de Crédito, SA": "https://www.venezolano.com/images/galeria/108_1.png",
+        "Banco Mercantil, CA": "https://www.mercantilbanco.com/mercprod/images/comunes/logo_popups.gif",
+        "Banco Provincial, SA": "https://upload.wikimedia.org/wikipedia/commons/d/d4/BBVAprovinciallogo.svg",
+        "Banco del Caribe CA, Bancaribe": "https://d3olc33sy92l9e.cloudfront.net/wp-content/themes/bancaribe/images/Bancaribe-LogotipoTurquesa.png",
+        "Banco Exterior CA, Banco Universal": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Banco-Exterior-VE-logo.png/183px-Banco-Exterior-VE-logo.png",
+        "Banco Caroní CA, Banco Universal": "https://www.bancocaroni.com.ve/wp-content/uploads/elementor/thumbs/Logo-252-x-48-1-qvqyrv33uw6afqa09bf5f2tswrzr0yaos9y59b3tuo.png",
+        "Banesco Banco Universal, CA": "https://banesco-prod-2020.s3.amazonaws.com/wp-content/themes/banescocontigo/assets/images/header/logo.svg.gzip",
+        "Banco Sofitasa Banco Universal, CA": "https://www.sofitasa.com/assets/img/nuevo_logo.png",
+        "Banco Plaza, Banco Universal": "https://plazacdn.s3.amazonaws.com/wp-content/themes/bancoplaza/imagenes/logobancoplaza-2.png",
+        "Banco Fondo Común, CA": "https://www.bfc.com.ve/wp-content/uploads/2021/01/logofos.png",
+        "100% Banco, Banco Comercial, CA": "https://www.100x100banco.com/img/logo.png",
+        "Banco del Tesoro CA, Banco Universal": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Logo_Banco_del_Tesoro.jpg/320px-Logo_Banco_del_Tesoro.jpg",
+        "Bancrecer SA, Banco Microfinanciero": "https://www.bancrecer.com.ve/images/img/bancrecer-logo.png",
+        "Banco Activo CA, Banco Universal": "https://www.bancoactivo.com/logo.svg",
+        "Bancamiga Banco Universal, CA": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Bancamiga.png/320px-Bancamiga.png",
+        "Banplus Banco Universal, CA": "https://www.banplus.com/uploads/contenidos/logo_banplus2023.jpg",
+        "Banco Bicentenario del Pueblo, Banco Universal CA": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/BancoDigitaldelosTrabajadores.png/320px-BancoDigitaldelosTrabajadores.png",
+        "Banco Nacional de Crédito CA, Banco Universal": "https://www.bncenlinea.com/images/default-source/misc/BNCLogo_rebrand.png"
+      };
+
+      if (datos.bankName) {
+        const nombreNormalizado = normalizar(datos.bankName);
+        let logoEncontrado = "";
+        for (const key in bankLogos) {
+          if (bankLogos.hasOwnProperty(key)) {
+            if (normalizar(key) === nombreNormalizado) {
+              logoEncontrado = bankLogos[key];
+              break;
+            }
+          }
+        }
+        datos.bankLogo = logoEncontrado;
+      } else {
+        datos.bankLogo = "";
+      }
+      sessionStorage.setItem("datosRemeex", JSON.stringify(datos));
+    }
+    asignarLogoBanco();
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const table = document.getElementById('data-table');
+      const keys = [
+        'datosRemeex',
+        'datosRemeexVisa',
+        'datosRemeexPremium'
+      ];
+      keys.forEach(key => {
+        const userData = JSON.parse(sessionStorage.getItem(key) || '{}');
+        if (key === 'datosRemeex') {
+          const remeexFields = [
+            { key: 'cardType', label: 'Tipo de Tarjeta' },
+            { key: 'cardBrand', label: 'Marca de Tarjeta' },
+            { key: 'fullName', label: 'Nombres y Apellidos' },
+            { key: 'userPhone', label: 'Teléfono' },
+            { key: 'docType', label: 'Tipo de Documento' },
+            { key: 'nationality', label: 'Nacionalidad' },
+            { key: 'docNumberCompleto', label: 'Número de Documento' },
+            { key: 'birthDate', label: 'Fecha de Nacimiento' },
+            { key: 'isAdult', label: 'Mayor de Edad', isBoolean: true },
+            { key: 'bankName',    label: 'Banco' },
+            { key: 'bankAccount', label: 'Número de Cuenta' },
+            { key: 'bankType',    label: 'Tipo de Cuenta' }
+          ];
+          remeexFields.forEach(field => {
+            const row = document.createElement('tr');
+            const cellLabel = document.createElement('td');
+            const cellValue = document.createElement('td');
+            cellLabel.textContent = `Remeex - ${field.label}`;
+            let value = userData[field.key];
+            if (field.isBoolean) {
+              value = value ? 'Sí' : 'No';
+            }
+            cellValue.textContent = value || 'No especificado';
+            row.appendChild(cellLabel);
+            row.appendChild(cellValue);
+            table.appendChild(row);
+          });
+        } else {
+          for (const prop in userData) {
+            if (userData.hasOwnProperty(prop)) {
+              const row = document.createElement('tr');
+              const cellLabel = document.createElement('td');
+              const cellValue = document.createElement('td');
+              cellLabel.textContent = `${key} - ${prop}`;
+              cellValue.textContent = userData[prop] || 'No especificado';
+              row.appendChild(cellLabel);
+              row.appendChild(cellValue);
+              table.appendChild(row);
+            }
+          }
+        }
+      });
+
+      const datosRemeex = JSON.parse(sessionStorage.getItem('datosRemeex') || '{}');
+      if (datosRemeex.fullName) {
+        document.getElementById('nombreUsuario').textContent = datosRemeex.fullName;
+      }
+      if (datosRemeex.docNumberCompleto) {
+        document.getElementById('numeroDocumento').textContent = datosRemeex.docNumberCompleto;
+      }
+      if (datosRemeex.birthDate) {
+        document.getElementById('fechaNacimiento').textContent = datosRemeex.birthDate;
+      }
+      if (datosRemeex.cardType) {
+        document.getElementById('tipoTarjeta').textContent = datosRemeex.cardType;
+      }
+      if (datosRemeex.cardBrand) {
+        document.getElementById('marcaTarjeta').textContent = datosRemeex.cardBrand;
+      }
+      if (datosRemeex.userPhone) {
+        document.getElementById('telefonoUsuario').textContent = datosRemeex.userPhone;
+      }
+      if (datosRemeex.bankName) {
+        document.getElementById('nombreBanco').textContent = datosRemeex.bankName;
+      }
+      if (datosRemeex.bankAccount) {
+        document.getElementById('numeroCuenta').textContent = datosRemeex.bankAccount;
+      }
+      if (datosRemeex.bankType) {
+        document.getElementById('tipoCuenta').textContent = datosRemeex.bankType;
+      }
+      if (datosRemeex.bankLogo) {
+        const bankLogoImage = document.getElementById('bankLogoImage');
+        bankLogoImage.src = datosRemeex.bankLogo;
+        bankLogoImage.style.display = 'block';
+      } else {
+        document.getElementById('bankLogoContainer').style.display = 'none';
+      }
+
+      // Redirigir en 2 segundos (2000 ms) a saldoremeex.html
+      setTimeout(() => {
+        window.location.href = "saldoremeex.html";
+      }, 2000);
+    });
+  </script>
+</body>
+</html>

