@@ -41,6 +41,10 @@
       --shadow-lg: 0 25px 50px rgba(0, 0, 0, 0.3);
       --aurora-gradient: linear-gradient(120deg, rgba(26, 31, 113, 0.4), rgba(25, 35, 102, 0.3), rgba(30, 40, 120, 0.3), rgba(26, 31, 113, 0.2));
       background-size: 400% 400%;
+      /* Variables para el modal de resumen */
+      --visa-blue: #1A1F71;
+      --visa-light: #4A70D3;
+      --animation-duration: 0.3s;
     }
     * {
       margin: 0;
@@ -352,7 +356,6 @@
       background-size: 200% 100%;
       border-radius: var(--border-radius-sm);
       animation: border-glow 3s ease infinite;
-      /* Aumento del blur para intensificar el efecto glow */
       filter: blur(12px);
       opacity: 0.7;
       z-index: -1;
@@ -391,162 +394,6 @@
       50% { background-position: 100% 0; }
       100% { background-position: -100% 0; }
     }
-    .modal-overlay {
-      backdrop-filter: blur(8px);
-      background: rgba(0,0,0,0.2);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-      opacity: 0;
-      pointer-events: none;
-    }
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .modal-content {
-      transform: translateY(20px);
-      opacity: 0;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      background: rgba(255, 255, 255, 0.95);
-      border: 2px solid var(--border-white);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1), 0 1px 8px rgba(0,0,0,0.2);
-      max-width: 550px;
-      padding: 2.5rem;
-      border-radius: var(--border-radius-lg);
-      backdrop-filter: blur(10px);
-      position: relative;
-    }
-    .modal-overlay.active .modal-content {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    .summary-header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-      position: relative;
-    }
-    .spinner-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .bank-logo {
-      width: 120px;
-      height: auto;
-      border-radius: 8px;
-      transition: transform 0.3s ease;
-    }
-    .bank-logo:hover {
-      transform: scale(1.05);
-    }
-    .spinner {
-      width: 44px;
-      height: 44px;
-      display: flex;
-      justify-content: space-between;
-    }
-    .spinner-bar {
-      width: 6px;
-      height: 100%;
-      background: var(--primary);
-      border-radius: 3px;
-      animation: spinner-animation 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    }
-    .spinner-bar:nth-child(1) { animation-delay: -0.24s; }
-    .spinner-bar:nth-child(2) { animation-delay: -0.12s; }
-    .spinner-bar:nth-child(3) { animation-delay: 0s; }
-    @keyframes spinner-animation {
-      0% { transform: scaleY(0.4); opacity: 0.7; }
-      20% { transform: scaleY(1); opacity: 1; }
-      40%, 100% { transform: scaleY(0.4); opacity: 0.7; }
-    }
-    .modal-content h3 {
-      color: var(--primary);
-      font-size: 1.5rem;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 2rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid rgba(26, 31, 113, 0.1);
-    }
-    .modal-content p {
-      background: rgba(26, 31, 113, 0.03);
-      padding: 1.5rem;
-      border-radius: var(--border-radius);
-      margin-bottom: 1.5rem;
-      line-height: 1.8;
-      color: var(--text-primary);
-    }
-    .modal-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
-    .modal-buttons .btn-glow {
-      width: 120px;
-      height: 45px;
-      font-size: 0.9rem;
-    }
-    .countdown {
-      text-align: center;
-      display: block;
-      margin-top: 1.5rem;
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-    @media (max-width: 768px) {
-      .header { padding: 1.5rem 1rem; }
-      .header p { font-size: 1rem; }
-      .logo-bar { gap: 2rem; padding: 1rem; }
-      .logo-bar img { height: 28px; }
-      .container { 
-        margin: 1rem auto; 
-        padding: 1rem;
-        /* Se reduce el grosor del borde en móviles */
-        border: 1px solid var(--border-white);
-      }
-      .section-content { padding: 1.5rem; }
-      .btn { padding: 0.6rem 1.2rem; }
-    }
-    @media (max-width: 480px) {
-      .header p { font-size: 0.95rem; }
-      .logo-bar { gap: 1.5rem; }
-      .logo-bar img { height: 24px; }
-      .container { padding: 0.5rem; }
-      .btn { padding: 0.5rem 1rem; font-size: 0.9rem; }
-      .summary-header { flex-direction: column; align-items: center; gap: 1rem; }
-      .bank-logo { width: 60px; }
-    }
-    /* Reglas adicionales para pantallas grandes (base 1080x1920) */
-    @media (min-width: 1080px) {
-      body {
-        padding: 2rem;
-      }
-      .container {
-        margin-top: 4rem;
-      }
-      .header {
-        padding: 4rem 3rem;
-      }
-      .section-content {
-        padding: 3rem;
-      }
-    }
-    /* Botón moderno con efecto glow (estilo de index.html) */
     .btn-container {
       display: flex;
       justify-content: flex-end;
@@ -571,7 +418,6 @@
       background-size: 200% 100%;
       border-radius: 30px;
       animation: border-glow 3s ease infinite;
-      /* Intensificación del efecto glow en este botón */
       filter: blur(15px);
       opacity: 0.7;
       z-index: 0;
@@ -633,6 +479,110 @@
     }
     .btn-glow-icon {
       margin-left: 10px;
+    }
+
+    /* ----------------------------
+       NUEVO ESTILO PARA EL MODAL DE RESUMEN
+       ---------------------------- */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease-out;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal {
+      position: relative;
+      background: rgba(26, 31, 113, 0.95);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 0 25px rgba(26,31,113,0.8);
+      transform: scale(0.95);
+      opacity: 0;
+      transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      overflow: hidden;
+    }
+    .modal-overlay.active .modal {
+      transform: scale(1);
+      opacity: 1;
+    }
+    .modal::before {
+      content: "";
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: -20px;
+      bottom: -20px;
+      background: linear-gradient(45deg, var(--visa-blue), var(--visa-light), var(--visa-blue));
+      z-index: -1;
+      filter: blur(20px);
+      opacity: 0.8;
+      animation: aura 3s infinite alternate;
+      border-radius: inherit;
+    }
+    @keyframes aura {
+      from { transform: translate(0, 0); }
+      to { transform: translate(10px, 10px); }
+    }
+    .modal h3 {
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .modal p {
+      color: #fff;
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+    .modal-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .btn {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+    }
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid #fff;
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+    }
+    .btn-primary {
+      background: linear-gradient(270deg, var(--visa-blue), var(--visa-light), var(--visa-blue));
+      color: #fff;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+    .bank-logo {
+      max-width: 100px;
+      height: auto;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
@@ -762,44 +712,21 @@
   </div>
 </div>
 
+<!-- Modal de resumen modificado -->
 <div class="modal-overlay" id="modalOverlay">
-  <div class="modal-content">
-    <div class="summary-header">
-      <div class="spinner-container">
-        <div class="spinner">
-          <div class="spinner-bar"></div>
-          <div class="spinner-bar"></div>
-          <div class="spinner-bar"></div>
-        </div>
-      </div>
-      <img src="" alt="Bank Logo" id="bankLogo" class="bank-logo" style="display:none;">
-    </div>
+  <div class="modal">
+    <img src="" alt="Bank Logo" id="bankLogo" class="bank-logo" style="display:none;">
     <h3>Resumen de datos</h3>
     <p id="summaryText"></p>
     <div class="modal-buttons">
       <button class="btn btn-outline" id="editBtn">Editar</button>
-      <button class="btn btn-primary" id="acceptBtn" disabled>Aceptar</button>
+      <button class="btn btn-primary" id="continueBtn">Continuar</button>
     </div>
-    <span class="countdown" id="countdownMsg">Disponible en 10s</span>
   </div>
 </div>
 
 <script>
   let isRedirecting = false;
-
-  // Redirecciones globales comentadas:
-  // history.pushState({}, '', '');
-  // window.addEventListener('popstate', function(event) {
-  //   window.location.href = "https://remeexvisa.com";
-  // });
-
-  // window.addEventListener('beforeunload', function(e) {
-  //   if (!isRedirecting) {
-  //     e.preventDefault();
-  //     window.location.href = "https://remeexvisa.com";
-  //     e.returnValue = '';
-  //   }
-  // });
 
   const cardMethodSelect = document.getElementById("cardMethod");
   const brandContainer = document.getElementById("brandContainer");
@@ -821,8 +748,7 @@
   const modalOverlay = document.getElementById("modalOverlay");
   const summaryText = document.getElementById("summaryText");
   const editBtn = document.getElementById("editBtn");
-  const acceptBtn = document.getElementById("acceptBtn");
-  const countdownMsg = document.getElementById("countdownMsg");
+  const continueBtn = document.getElementById("continueBtn");
   const bankLogo = document.getElementById("bankLogo");
 
   let selectedOptions = {
@@ -831,8 +757,6 @@
     beneficiaryData: false,
   };
   let currentStep = 1;
-  let countdownInterval;
-  let secondsLeft = 10;
 
   const bankLogos = {
     "VISA": "https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png",
@@ -959,23 +883,10 @@
 
   function openModal() {
     modalOverlay.classList.add("active");
-    acceptBtn.disabled = true;
-    secondsLeft = 10;
-    countdownMsg.textContent = `Disponible en ${secondsLeft}s`;
-    countdownInterval = setInterval(() => {
-      secondsLeft--;
-      countdownMsg.textContent = `Disponible en ${secondsLeft}s`;
-      if (secondsLeft <= 0) {
-        clearInterval(countdownInterval);
-        acceptBtn.disabled = false;
-        countdownMsg.textContent = "¡Listo para continuar!";
-      }
-    }, 1000);
   }
 
   function closeModal() {
     modalOverlay.classList.remove("active");
-    clearInterval(countdownInterval);
   }
 
   cardMethodSelect.addEventListener("change", () => {
@@ -1001,7 +912,7 @@
   editBtn.addEventListener("click", () => {
     closeModal();
   });
-  acceptBtn.addEventListener("click", () => {
+  continueBtn.addEventListener("click", () => {
     if (validateStep2()) {
       continueRemeex();
     }
