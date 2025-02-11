@@ -513,7 +513,12 @@
       .header p { font-size: 1rem; }
       .logo-bar { gap: 2rem; padding: 1rem; }
       .logo-bar img { height: 28px; }
-      .container { margin: 1rem auto; padding: 1rem; }
+      .container { 
+        margin: 1rem auto; 
+        padding: 1rem;
+        /* Se reduce el grosor del borde en móviles */
+        border: 1px solid var(--border-white);
+      }
       .section-content { padding: 1.5rem; }
       .btn { padding: 0.6rem 1.2rem; }
     }
@@ -1123,4 +1128,5 @@
 
 </body>
 </html>
+
 
