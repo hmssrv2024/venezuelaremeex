@@ -4,10 +4,172 @@
   <meta charset="UTF-8">
   <title>REMEEX - Resumen de Datos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Fuente moderna -->
+  <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <!-- CSS Combinado -->
   <style>
+    /* ============================ */
+    /*     ESTILOS DEL EFECTO      */
+    /* ============================ */
+    :root {
+      --primary: #1434CB;
+      --secondary: #142C8E;
+      --success: #10B981;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --text-primary: #1E293B;
+      --background: #EEF2FF;
+      --background-dark: #E0E7FF;
+      --border-radius-xl: 28px;
+      --transition: all 0.3s ease;
+      --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body, html {
+      width: 100%;
+      height: 100%;
+    }
+    /* CANVAS de efectos */
+    #explosion-canvas,
+    #vortex-canvas,
+    #confetti-canvas,
+    #flash-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    #explosion-canvas { z-index: 1; }
+    #vortex-canvas   { z-index: 2; }
+    #confetti-canvas { z-index: 20; }
+    #flash-canvas    { z-index: 25; }
+    
+    /* CONTENEDOR DEL MENSAJE */
+    .message-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      transition: transform 0.5s ease-out, background-color 3s ease;
+      text-align: center;
+      z-index: 30;
+      background-color: rgba(255,255,255,0);
+      padding: 1.5rem;
+      border-radius: var(--border-radius-xl);
+      border: 2px solid #ffffff;
+      animation: cardGlow 3s linear infinite, borderBlink 6s linear infinite;
+    }
+    .message-container.card-white {
+      background-color: rgba(255,255,255,0.95);
+    }
+    @keyframes cardGlow {
+      0%   { box-shadow: 0 0 30px #ff0000, 0 0 60px #ff7f00, 0 0 90px #ffff00; }
+      50%  { box-shadow: 0 0 30px #00ff00, 0 0 60px #00ffff, 0 0 90px #0000ff; }
+      100% { box-shadow: 0 0 30px #ff0000, 0 0 60px #ff7f00, 0 0 90px #ffff00; }
+    }
+    @keyframes borderBlink {
+      0%   { border-color: #ffffff; }
+      33%  { border-color: #d1d5db; }
+      66%  { border-color: #60a5fa; }
+      100% { border-color: #ffffff; }
+    }
+    .checkmark {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: var(--success);
+      margin: 0 auto 1.25rem;
+      position: relative;
+      opacity: 0;
+      transition: opacity 0.5s;
+      overflow: visible;
+    }
+    .checkmark::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: radial-gradient(circle, 
+        rgba(255, 0, 0, 0.5), 
+        rgba(255, 165, 0, 0.5), 
+        rgba(255, 255, 0, 0.5), 
+        rgba(0, 255, 0, 0.5), 
+        rgba(0, 255, 255, 0.5), 
+        rgba(0, 0, 255, 0.5), 
+        rgba(128, 0, 128, 0.5)
+      );
+      z-index: -1;
+      animation: pulseGlow 2s infinite ease-in-out;
+    }
+    @keyframes pulseGlow {
+      0%   { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+      50%  { transform: translate(-50%, -50%) scale(1.5); opacity: 0.3; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+    }
+    .checkmark::after {
+      content: "\2713";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 60px;
+      font-weight: 700;
+      color: #fff;
+    }
+    @keyframes circleExpand {
+      0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(50); opacity: 0; }
+    }
+    .checkmark.expand {
+      animation: circleExpand 1.5s forwards;
+    }
+    /* El estilo para #amount se mantiene en CSS, pero no se utiliza */
+    #amount {
+      font-size: 2.8rem;
+      font-weight: 700;
+      opacity: 0;
+      transition: opacity 1s;
+      margin: 1.25rem 0;
+      color: var(--text-primary);
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    #message {
+      font-size: 2rem;
+      opacity: 0;
+      transition: opacity 1s;
+      margin: 1.25rem 0;
+      color: var(--text-primary);
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      font-weight: 600;
+    }
+    .success-text {
+      font-size: 1.25rem;
+      color: var(--success);
+      margin-top: 0.625rem;
+      opacity: 0;
+      transition: opacity 1s;
+      text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+    }
+    .visa-logo {
+      margin-top: 1.25rem;
+      opacity: 0;
+      transition: opacity 1s;
+      height: 40px;
+    }
+    
+    /* ============================ */
+    /*     ESTILOS DE DATOSREMEEX   */
+    /* ============================ */
     :root {
       --primary-blue: #1a73e8;
       --secondary-blue: #4285f4;
@@ -15,14 +177,8 @@
       --light-gray: #f4f6f8;
       --medium-gray: #e0e5eb;
       --dark-gray: #15294B;
-      --shadow: rgba(0, 0, 0, 0.1);
+      --shadow-d: rgba(0, 0, 0, 0.1);
     }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    /* Estilos originales de la tarjeta */
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--light-gray);
@@ -37,13 +193,13 @@
     .card {
       background-color: var(--white);
       border-radius: 20px;
-      box-shadow: 0 12px 30px var(--shadow);
+      box-shadow: 0 12px 30px var(--shadow-d);
       width: 100%;
       max-width: 600px;
       overflow: hidden;
       border: 1px solid var(--medium-gray);
       position: relative;
-      z-index: 1; /* Debajo del overlay */
+      z-index: 1;
     }
     .header {
       background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
@@ -105,6 +261,31 @@
       .header p {
         font-size: 0.9rem;
       }
+      .data-table thead tr th {
+        font-size: 0.75rem;
+        padding: 0.5rem;
+      }
+      .data-table tbody tr td {
+        font-size: 0.75rem;
+        padding: 0.5rem;
+      }
+      .content {
+        padding: 1rem;
+      }
+      .message-container {
+        width: 90%;
+        padding: 1rem;
+      }
+      .checkmark {
+        width: 80px;
+        height: 80px;
+      }
+      #amount {
+        font-size: 2rem;
+      }
+      #message {
+        font-size: 1.5rem;
+      }
     }
     .user-info {
       margin-top: 1rem;
@@ -115,41 +296,53 @@
       margin-bottom: 0.5rem;
       font-size: 0.95rem;
     }
-    /* Estilos para el overlay de animación (Vortex) */
+    /* Overlay del efecto (cubrirá toda la pantalla) */
     #animationOverlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 9999; /* Encima de todo */
-      background-color: #000; /* Fondo negro */
+      z-index: 9999;
+      background-color: #000;
       overflow: hidden;
-    }
-    #canvas {
-      display: block;
-      width: 100%;
-      height: 100%;
     }
   </style>
 </head>
 <body>
-  <!-- Overlay con animación que oculta el contenido -->
+  <!-- =============================== -->
+  <!--     OVERLAY CON ANIMACIÓN       -->
+  <!-- =============================== -->
   <div id="animationOverlay">
-    <canvas id="canvas"></canvas>
+    <!-- Canvases para efectos -->
+    <canvas id="explosion-canvas"></canvas>
+    <canvas id="vortex-canvas"></canvas>
+    <canvas id="confetti-canvas"></canvas>
+    <canvas id="flash-canvas"></canvas>
+    <!-- Contenedor del mensaje -->
+    <div class="message-container">
+      <div class="checkmark"></div>
+      <!-- Se ha eliminado el elemento del monto -->
+      <div id="message">¡Recarga Exitosa!</div>
+      <div class="success-text">Transacción Completada</div>
+      <img class="visa-logo" src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="Visa Logo">
+    </div>
+    <!-- Audio para sonido de éxito -->
+    <audio id="success-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-positive-interface-beep-221.wav" preload="auto"></audio>
   </div>
 
-  <!-- Contenido original (tarjeta con datos) -->
+  <!-- =============================== -->
+  <!--     CONTENIDO ORIGINAL         -->
+  <!-- =============================== -->
   <div class="card">
     <div class="header">
       <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s320/remeex.png"
            alt="REMEEX Logo"
            class="header-logo" />
       <h1>Resumen de Datos</h1>
-      <p>Redirigiendo a Saldo REMEEX en 1 minuto...</p>
+      <p>Redirigiendo a Saldo REMEEX después del efecto...</p>
     </div>
     <div class="content">
-      <!-- Sección para mostrar información adicional -->
       <div class="user-info">
         <p><strong>Nombre de Usuario:</strong> <span id="nombreUsuario">No especificado</span></p>
         <p><strong>Número de Documento:</strong> <span id="numeroDocumento">No especificado</span></p>
@@ -161,13 +354,9 @@
         <p><strong>N° de Cuenta:</strong> <span id="numeroCuenta">No especificado</span></p>
         <p><strong>Tipo de Cuenta:</strong> <span id="tipoCuenta">No especificado</span></p>
       </div>
-
-      <!-- Contenedor para el logo del banco -->
       <div id="bankLogoContainer" style="text-align: center; margin: 20px 0;">
         <img id="bankLogoImage" src="" alt="Logo del Banco" style="max-width: 150px; display: none;">
       </div>
-
-      <!-- Tabla que muestra los datos almacenados en sessionStorage -->
       <table class="data-table">
         <thead>
           <tr>
@@ -176,55 +365,80 @@
           </tr>
         </thead>
         <tbody id="data-table">
-          <!-- Se agregarán dinámicamente las filas -->
+          <!-- Se completará dinámicamente -->
         </tbody>
       </table>
     </div>
   </div>
 
-  <!-- Script de la animación Vortex -->
+  <!-- =============================== -->
+  <!--     SCRIPTS DEL EFECTO         -->
+  <!-- =============================== -->
   <script>
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-
-    // Configuración de la animación
-    const config = {
-      particleCount: 700,
-      baseHue: 220,
-      rangeHue: 100,
-      baseSpeed: 0.0,
-      rangeSpeed: 1.5,
-      baseRadius: 1,
-      rangeRadius: 2,
-      rangeY: 100,
-      backgroundColor: '#000000'
-    };
-
-    let width, height, center;
-    let particles = [];
-    let frame = 0;
-
-    // Clase Partícula
-    class Particle {
+    // Variables globales para el efecto
+    let width, height, center, frame = 0;
+    const explosionCanvas = document.getElementById('explosion-canvas');
+    const explosionCtx = explosionCanvas.getContext('2d');
+    const vortexCanvas = document.getElementById('vortex-canvas');
+    const vortexCtx = vortexCanvas.getContext('2d');
+    const confettiCanvas = document.getElementById('confetti-canvas');
+    const confettiCtx = confettiCanvas.getContext('2d');
+    const flashCanvas = document.getElementById('flash-canvas');
+    const flashCtx = flashCanvas.getContext('2d');
+    
+    let explosionParticles = [];
+    let vortexParticles = [];
+    let confettiParticles = [];
+    let flashEffects = [];
+    let sparkles = [];
+    
+    let isExploding = true;
+    let isVortexActive = false;
+    
+    // CLASES DE ANIMACIÓN
+    class ExplosionParticle {
+      constructor(x, y, color, vx, vy, radius) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.vx = vx;
+        this.vy = vy;
+        this.radius = radius;
+        this.life = 100;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.vy += 0.2;
+        this.life--;
+      }
+      draw() {
+        explosionCtx.beginPath();
+        explosionCtx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        explosionCtx.fillStyle = `rgba(${this.color}, ${this.life / 100})`;
+        explosionCtx.fill();
+      }
+    }
+    
+    class VortexParticle {
       constructor() {
         this.reset();
       }
       reset() {
         this.x = Math.random() * width;
-        this.y = center.y + (Math.random() * config.rangeY * 2 - config.rangeY);
+        this.y = center.y + (Math.random() * 200 - 100);
         this.vx = 0;
         this.vy = 0;
         this.life = 0;
         this.ttl = 50 + Math.random() * 150;
-        this.speed = config.baseSpeed + Math.random() * config.rangeSpeed;
-        this.radius = config.baseRadius + Math.random() * config.rangeRadius;
-        this.hue = config.baseHue + Math.random() * config.rangeHue;
+        this.speed = Math.random() * 2;
+        this.radius = 1 + Math.random() * 3;
+        this.hue = Math.random() * 360;
       }
       update() {
-        // Aproximación sencilla de “ruido”
         const angle = (frame + this.x * 0.01 + this.y * 0.01) * 0.02;
-        this.vx = Math.lerp(this.vx, Math.cos(angle), 0.5);
-        this.vy = Math.lerp(this.vy, Math.sin(angle), 0.5);
+        this.vx = this.lerp(this.vx, Math.cos(angle), 0.5);
+        this.vy = this.lerp(this.vy, Math.sin(angle), 0.5);
         this.x += this.vx * this.speed;
         this.y += this.vy * this.speed;
         this.life++;
@@ -234,15 +448,18 @@
       }
       draw() {
         const opacity = this.fadeInOut();
-        ctx.save();
-        ctx.strokeStyle = `hsla(${this.hue},100%,60%,${opacity})`;
-        ctx.lineWidth = this.radius;
-        ctx.lineCap = 'round';
-        ctx.beginPath();
-        ctx.moveTo(this.x, this.y);
-        ctx.lineTo(this.x + this.vx * this.speed, this.y + this.vy * this.speed);
-        ctx.stroke();
-        ctx.restore();
+        vortexCtx.save();
+        vortexCtx.strokeStyle = `hsla(${this.hue},100%,70%,${opacity})`;
+        vortexCtx.lineWidth = this.radius;
+        vortexCtx.lineCap = 'round';
+        vortexCtx.beginPath();
+        vortexCtx.moveTo(this.x, this.y);
+        vortexCtx.lineTo(this.x + this.vx * this.speed, this.y + this.vy * this.speed);
+        vortexCtx.stroke();
+        vortexCtx.restore();
+      }
+      lerp(start, end, amt) {
+        return (1 - amt) * start + amt * end;
       }
       fadeInOut() {
         const half = this.ttl * 0.5;
@@ -253,51 +470,251 @@
         return this.x < 0 || this.x > width || this.y < 0 || this.y > height;
       }
     }
-
-    // Función auxiliar para interpolar
-    Math.lerp = (start, end, amt) => (1 - amt) * start + amt * end;
-
-    // Configuración y lanzamiento de la animación
+    
+    // Clase para confetti
+    class ConfettiParticle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = center.y + (Math.random() * 20 - 10);
+        this.vx = Math.random() * 2 - 1;
+        this.vy = - (Math.random() * 20 + 10);
+        this.size = Math.random() * 8 + 4;
+        this.rotation = Math.random() * 360;
+        this.rotationSpeed = Math.random() * 10 - 5;
+        this.color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.vy += 0.5;
+        this.rotation += this.rotationSpeed;
+      }
+      draw(ctx) {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation * Math.PI / 180);
+        ctx.fillStyle = this.color;
+        ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+        ctx.restore();
+      }
+    }
+    
+    const confettiColors = ['#FF1461', '#18FF92', '#5A87FF', '#FBF38C', '#FF7F50', '#40E0D0'];
+    
+    // Clases para flash y destellos
+    class FlashEffect {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.radius = Math.random() * 20 + 20;
+        this.alpha = 0.8;
+        this.decay = 0.03 + Math.random() * 0.02;
+      }
+      update() {
+        this.alpha -= this.decay;
+      }
+      draw(ctx) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+    
+    class Sparkle {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 3 + 2;
+        this.life = 20 + Math.random() * 20;
+        this.decay = 1;
+      }
+      update() {
+        this.life -= this.decay;
+      }
+      draw(ctx) {
+        ctx.save();
+        ctx.fillStyle = `rgba(255,255,255, ${this.life / 40})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+    
+    // Ajusta el tamaño de los canvas
     function resize() {
       width = window.innerWidth;
       height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
+      explosionCanvas.width = width;
+      explosionCanvas.height = height;
+      vortexCanvas.width = width;
+      vortexCanvas.height = height;
+      confettiCanvas.width = width;
+      confettiCanvas.height = height;
+      flashCanvas.width = width;
+      flashCanvas.height = height;
       center = { x: width * 0.5, y: height * 0.5 };
     }
-    function init() {
-      resize();
-      particles = Array.from({ length: config.particleCount }, () => new Particle());
+    
+    // Crea la explosión inicial
+    function createExplosion() {
+      for (let i = 0; i < 300; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 15;
+        const colors = [
+          '0, 255, 0',
+          '255, 255, 255',
+          '0, 255, 255',
+          '0, 150, 255'
+        ];
+        explosionParticles.push(new ExplosionParticle(
+          center.x,
+          center.y,
+          colors[Math.floor(Math.random() * colors.length)],
+          Math.cos(angle) * speed,
+          Math.sin(angle) * speed,
+          Math.random() * 4 + 2
+        ));
+      }
     }
+    
+    function initVortex() {
+      vortexParticles = Array.from({ length: 1000 }, () => new VortexParticle());
+    }
+    
+    // Dispara un burst de confetti
+    function confettiBurst() {
+      const burstCount = 150;
+      for (let i = 0; i < burstCount; i++) {
+        confettiParticles.push(new ConfettiParticle());
+      }
+      for (let i = 0; i < 5; i++) {
+        flashEffects.push(new FlashEffect(Math.random() * width, center.y + (Math.random() * 50 - 25)));
+      }
+      for (let i = 0; i < 20; i++) {
+        sparkles.push(new Sparkle(Math.random() * width, center.y + (Math.random() * 50 - 25)));
+      }
+    }
+    
+    // Muestra progresivamente los elementos y al final redirige
+    function showElements() {
+      // Reproduce sonido de éxito
+      document.getElementById('success-sound').play().catch(() => {});
+      const container = document.querySelector('.message-container');
+      container.classList.add('card-white');
+      container.style.transform = 'translate(-50%, -50%) scale(1)';
+      
+      setTimeout(() => {
+        document.querySelector('.checkmark').style.opacity = '1';
+      }, 1000);
+      setTimeout(() => {
+        document.getElementById('message').style.opacity = '1';
+      }, 2000);
+      setTimeout(() => {
+        document.querySelector('.success-text').style.opacity = '1';
+      }, 2500);
+      setTimeout(() => {
+        document.querySelector('.visa-logo').style.opacity = '1';
+      }, 3000);
+      
+      setTimeout(() => {
+        confettiBurst();
+      }, 3500);
+      
+      setTimeout(() => {
+        const checkmark = document.querySelector('.checkmark');
+        checkmark.classList.add('expand');
+      }, 5000);
+      
+      // Redirige a saldoremeex.html cuando finaliza el efecto (8 segundos)
+      setTimeout(() => {
+        window.location.href = "saldoremeex.html";
+      }, 8000);
+      
+      setTimeout(() => { isVortexActive = true; }, 1000);
+    }
+    
+    function updateFlashEffects() {
+      flashCtx.clearRect(0, 0, width, height);
+      flashCtx.globalCompositeOperation = 'lighter';
+      for (let i = flashEffects.length - 1; i >= 0; i--) {
+        flashEffects[i].update();
+        flashEffects[i].draw(flashCtx);
+        if (flashEffects[i].alpha <= 0) {
+          flashEffects.splice(i, 1);
+        }
+      }
+      for (let i = sparkles.length - 1; i >= 0; i--) {
+        sparkles[i].update();
+        sparkles[i].draw(flashCtx);
+        if (sparkles[i].life <= 0) {
+          sparkles.splice(i, 1);
+        }
+      }
+      flashCtx.globalCompositeOperation = 'source-over';
+    }
+    
     function render() {
       frame++;
-      // Limpiar el canvas
-      ctx.fillStyle = config.backgroundColor;
-      ctx.fillRect(0, 0, width, height);
-      // Actualizar y dibujar partículas
-      particles.forEach(particle => {
+      if (isExploding) {
+        explosionCtx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+        explosionCtx.fillRect(0, 0, width, height);
+        for (let i = explosionParticles.length - 1; i >= 0; i--) {
+          explosionParticles[i].update();
+          explosionParticles[i].draw();
+          if (explosionParticles[i].life <= 0) {
+            explosionParticles.splice(i, 1);
+          }
+        }
+        if (explosionParticles.length === 0) {
+          isExploding = false;
+          showElements();
+        }
+      }
+      if (isVortexActive) {
+        vortexCtx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+        vortexCtx.fillRect(0, 0, width, height);
+        vortexParticles.forEach(particle => {
+          particle.update();
+          particle.draw();
+        });
+        vortexCtx.save();
+        vortexCtx.filter = 'blur(8px) brightness(300%)';
+        vortexCtx.globalCompositeOperation = 'lighter';
+        vortexCtx.drawImage(vortexCanvas, 0, 0);
+        vortexCtx.restore();
+        vortexCtx.save();
+        vortexCtx.filter = 'blur(4px) brightness(200%)';
+        vortexCtx.globalCompositeOperation = 'lighter';
+        vortexCtx.drawImage(vortexCanvas, 0, 0);
+        vortexCtx.restore();
+      }
+      confettiCtx.clearRect(0, 0, width, height);
+      for (let i = confettiParticles.length - 1; i >= 0; i--) {
+        const particle = confettiParticles[i];
         particle.update();
-        particle.draw();
-      });
-      // Efectos de resplandor
-      ctx.save();
-      ctx.filter = 'blur(8px) brightness(200%)';
-      ctx.globalCompositeOperation = 'lighter';
-      ctx.drawImage(canvas, 0, 0);
-      ctx.restore();
-      ctx.save();
-      ctx.filter = 'blur(4px) brightness(200%)';
-      ctx.globalCompositeOperation = 'lighter';
-      ctx.drawImage(canvas, 0, 0);
-      ctx.restore();
+        particle.draw(confettiCtx);
+        if (particle.y > height + particle.size) {
+          confettiParticles.splice(i, 1);
+        }
+      }
+      updateFlashEffects();
       requestAnimationFrame(render);
     }
+    
     window.addEventListener('resize', resize);
-    init();
+    resize();
+    createExplosion();
+    initVortex();
     render();
   </script>
-
-  <!-- Script con la lógica y redirección (se conserva toda la funcionalidad original) -->
+  
+  <!-- =============================== -->
+  <!--    SCRIPTS DE DATOSREMEEX       -->
+  <!-- =============================== -->
   <script>
     function unificarTodosDatos() {
       let datos = JSON.parse(sessionStorage.getItem("datosRemeex") || "{}");
@@ -314,7 +731,7 @@
       sessionStorage.setItem("datosRemeex", JSON.stringify(datos));
     }
     unificarTodosDatos();
-
+    
     function unificarDatosBanco() {
       const datos = JSON.parse(sessionStorage.getItem("datosRemeex") || "{}");
       if (datos.bankName && !datos.nombreBanco) {
@@ -335,11 +752,11 @@
       sessionStorage.setItem("datosRemeex", JSON.stringify(datos));
     }
     unificarDatosBanco();
-
+    
     function normalizar(nombre) {
       return nombre.toLowerCase().replace(/[^\w\s]/gi, '').trim();
     }
-
+    
     function asignarLogoBanco() {
       let datos = JSON.parse(sessionStorage.getItem("datosRemeex") || "{}");
       const bankLogos = {
@@ -364,7 +781,7 @@
         "Banco Bicentenario del Pueblo, Banco Universal CA": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/BancoDigitaldelosTrabajadores.png/320px-BancoDigitaldelosTrabajadores.png",
         "Banco Nacional de Crédito CA, Banco Universal": "https://www.bncenlinea.com/images/default-source/misc/BNCLogo_rebrand.png"
       };
-
+      
       if (datos.bankName) {
         const nombreNormalizado = normalizar(datos.bankName);
         let logoEncontrado = "";
@@ -383,7 +800,7 @@
       sessionStorage.setItem("datosRemeex", JSON.stringify(datos));
     }
     asignarLogoBanco();
-
+    
     document.addEventListener('DOMContentLoaded', function () {
       const table = document.getElementById('data-table');
       const keys = [
@@ -437,7 +854,7 @@
           }
         }
       });
-
+    
       const datosRemeex = JSON.parse(sessionStorage.getItem('datosRemeex') || '{}');
       if (datosRemeex.fullName) {
         document.getElementById('nombreUsuario').textContent = datosRemeex.fullName;
@@ -473,11 +890,8 @@
       } else {
         document.getElementById('bankLogoContainer').style.display = 'none';
       }
-
-      // Redirigir en 2 segundos (2000 ms) a saldoremeex.html
-      setTimeout(() => {
-        window.location.href = "saldoremeex.html";
-      }, 2000);
+      
+      // La redirección se realiza al finalizar el efecto
     });
   </script>
 </body>
