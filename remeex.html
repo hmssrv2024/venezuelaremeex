@@ -389,11 +389,6 @@
     .btn-outline:hover {
       background: rgba(20, 52, 203, 0.05);
     }
-    @keyframes border-glow {
-      0% { background-position: -100% 0; }
-      50% { background-position: 100% 0; }
-      100% { background-position: -100% 0; }
-    }
     .btn-container {
       display: flex;
       justify-content: flex-end;
@@ -498,6 +493,8 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease-out;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
     }
     .modal-overlay.active {
       opacity: 1;
@@ -551,6 +548,10 @@
       line-height: 1.5;
       margin-bottom: 1.5rem;
     }
+    /* El texto del resumen se mostrará justificado */
+    #summaryText {
+      text-align: justify;
+    }
     .modal-buttons {
       display: flex;
       justify-content: center;
@@ -564,10 +565,11 @@
       border-radius: 50px;
       cursor: pointer;
     }
+    /* Se elimina el borde del botón editar en el modal */
     .btn-outline {
       background: transparent;
       color: #fff;
-      border: 2px solid #fff;
+      border: none;
     }
     .btn-outline:hover {
       background: rgba(255,255,255,0.1);
@@ -579,10 +581,12 @@
     .btn-primary:hover {
       transform: translateY(-2px);
     }
+    /* Se centra el logo del banco en el modal */
     .bank-logo {
       max-width: 100px;
       height: auto;
-      margin-bottom: 1rem;
+      margin: 0 auto 1rem auto;
+      display: block;
     }
   </style>
 </head>
@@ -1039,5 +1043,6 @@
 
 </body>
 </html>
+
 
 
