@@ -514,6 +514,28 @@
       }
     }
     
+    /* Regla para centrar imágenes dentro de los modales */
+    .modal img {
+      display: block;
+      margin: 0.5rem auto;
+    }
+    
+    /* Ajustes para móviles: mayor aprovechamiento del ancho disponible */
+    @media (max-width: 600px) {
+      .container {
+        margin: 1rem auto;
+        max-width: 100%;
+      }
+      .container-content {
+        padding: 1rem;
+      }
+      .card, .visa-card {
+        padding: 1rem;
+      }
+      .modal {
+        padding: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1324,7 +1346,7 @@
       continueSecurityBtn1.addEventListener("click", () => {
         hideVisaCard("securityVerification1");
         showVisaCard("securityVerification2");
-        startSecurity2Countdown();
+        startSecurity1Countdown();
       });
 
       // 5) Verificación 2
@@ -1840,5 +1862,6 @@
   </script>
 </body>
 </html>
+
 
 
