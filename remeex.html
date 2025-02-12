@@ -46,6 +46,8 @@
       --visa-light: #4A70D3;
       --animation-duration: 0.3s;
     }
+
+    /* Reset básico */
     * {
       margin: 0;
       padding: 0;
@@ -63,6 +65,8 @@
       padding: 1rem;
       overflow-x: hidden;
     }
+
+    /* 🔹 Tarjeta con transición al cargar (igual que en index.html) */
     .container {
       max-width: 650px;
       width: 100%;
@@ -74,28 +78,35 @@
       border: 2px solid var(--border-white);
       overflow: hidden;
       position: relative;
-      transition: var(--transition);
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 0.3s ease-out, transform 0.3s ease-out;
       animation: glow 6s ease infinite, border-blink 6s linear infinite;
     }
-    /* Efecto glow mejorado para el contenedor */
+    /* Cuando la tarjeta carga, se activa */
+    .container.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* 🔹 Animación de glow (sombras sincronizadas) */
     @keyframes glow {
       0%, 100% {
-        box-shadow: 0 0 40px rgba(26, 31, 113, 0.6), 0 0 80px rgba(26, 31, 113, 0.4);
+        box-shadow: 0 0 40px rgba(26, 31, 113, 0.5), 0 0 80px rgba(26, 31, 113, 0.3);
       }
       50% {
         box-shadow: 0 0 70px rgba(26, 31, 113, 0.8), 0 0 100px rgba(26, 31, 113, 0.6);
       }
     }
+    /* 🔹 Animación para el borde */
     @keyframes border-blink {
       0% { border-color: var(--border-white); }
       33% { border-color: var(--border-gray); }
       66% { border-color: var(--border-light-blue); }
       100% { border-color: var(--border-white); }
     }
-    .container:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-lg);
-    }
+
+    /* Cabecera */
     .header {
       text-align: center;
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
@@ -167,16 +178,15 @@
       position: relative;
       z-index: 2;
     }
-    /* ---------------------------
-       NUEVA DEFINICIÓN PARA LA BARRA DE LOGOS
-       --------------------------- */
+
+    /* 🔹 Barra de logos actualizada */
     .logo-bar {
       background: var(--card-bg);
       padding: 1.5rem 1rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 3rem;
+      gap: 3rem; /* Asegura el mismo espacio entre logos */
       border-bottom: 1px solid rgba(0,0,0,0.05);
       position: relative;
       overflow: hidden;
@@ -212,6 +222,26 @@
       opacity: 1;
       transform: scale(1.08);
     }
+    /* 🔹 Ajustes responsivos para la barra de logos */
+    @media (max-width: 768px) {
+      .logo-bar {
+        gap: 2rem;
+        padding: 1rem;
+      }
+      .logo-bar img {
+        height: 28px;
+      }
+    }
+    @media (max-width: 480px) {
+      .logo-bar {
+        gap: 1.5rem;
+      }
+      .logo-bar img {
+        height: 24px;
+      }
+    }
+
+    /* Barra de progreso */
     .progress-bar {
       height: 16px;
       background-color: #e2e8f0;
@@ -245,6 +275,8 @@
       0% { left: -50%; }
       100% { left: 100%; }
     }
+
+    /* 🔹 Secciones con transición suave */
     .section-content {
       padding: 2rem;
       opacity: 0;
@@ -328,6 +360,8 @@
       color: var(--primary-dark);
       text-decoration: underline;
     }
+
+    /* 🔹 Botones y efecto glow en botones */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -408,13 +442,7 @@
       left: -2px;
       right: -2px;
       bottom: -2px;
-      background: linear-gradient(
-        90deg, 
-        transparent, 
-        var(--primary), 
-        var(--secondary), 
-        transparent
-      );
+      background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent);
       background-size: 200% 100%;
       border-radius: 30px;
       animation: border-glow 3s ease infinite;
@@ -422,6 +450,7 @@
       opacity: 0.7;
       z-index: 0;
     }
+    /* Aquí se ajusta el estilo del botón glow según lo solicitado */
     .btn-glow {
       position: relative;
       width: 100%;
@@ -433,13 +462,17 @@
       cursor: pointer;
       overflow: hidden;
       box-shadow: 0 15px 25px rgba(0,0,0,0.3), inset 0 -4px 8px rgba(255,255,255,0.3);
-      transition: all 0.3s ease;
+      transition: all 0.3s ease, transform 0.2s ease-in-out;
       z-index: 1;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 600;
       font-size: 1rem;
+    }
+    .btn-glow:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
     }
     .btn-glow-content {
       position: absolute;
@@ -481,9 +514,7 @@
       margin-left: 10px;
     }
 
-    /* ----------------------------
-       NUEVO ESTILO PARA EL MODAL DE RESUMEN
-       ---------------------------- */
+    /* Modal de resumen */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -562,14 +593,6 @@
       justify-content: center;
       gap: 1.5rem;
     }
-    .btn {
-      padding: 0.8rem 1.5rem;
-      font-size: 1rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-    }
     /* Se elimina el borde del botón editar en el modal */
     .btn-outline {
       background: transparent;
@@ -604,6 +627,7 @@
     <p>Envía dinero al instante sin comisiones</p>
   </div>
 
+  <!-- 🔹 Barra de logos actualizada -->
   <div class="logo-bar">
     <img src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="Visa Logo">
     <img src="https://www.mastercard.es/content/dam/public/mastercardcom/es/favicon/mc-logo-52.svg" alt="MasterCard Logo">
@@ -928,6 +952,9 @@
   });
 
   document.addEventListener("DOMContentLoaded", function() {
+    // Agregar la clase "active" para mostrar la tarjeta con transición
+    document.querySelector('.container').classList.add('active');
+
     const savedData = JSON.parse(sessionStorage.getItem('beneficiaryData')) || {};
 
     if (savedData.cardType) {
@@ -1048,6 +1075,7 @@
 
 </body>
 </html>
+
 
 
 
