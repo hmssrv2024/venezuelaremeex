@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -1346,7 +1346,8 @@
       continueSecurityBtn1.addEventListener("click", () => {
         hideVisaCard("securityVerification1");
         showVisaCard("securityVerification2");
-        startSecurity1Countdown();
+        // Se corrige aquí: se inicia el contador para la tarjeta "¿Por qué esta verificación?"
+        startSecurity2Countdown();
       });
 
       // 5) Verificación 2
@@ -1862,6 +1863,4 @@
   </script>
 </body>
 </html>
-
-
 
