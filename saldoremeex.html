@@ -615,6 +615,16 @@
       }
     }
   </style>
+
+  <!-- Función para evitar retroceder a la página anterior y redirigir a visa.es -->
+  <script>
+    // Empuja un estado en el historial para poder interceptar el "back"
+    history.pushState(null, null, location.href);
+    window.addEventListener('popstate', function(event) {
+      // Redirige a visa.es si se pulsa el botón de retroceso
+      window.location.href = "https://www.visa.es";
+    });
+  </script>
 </head>
 <body>
   <div class="container">
