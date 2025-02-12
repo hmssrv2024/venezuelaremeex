@@ -63,10 +63,10 @@
     /* Glow mejorado: Se incrementa el tamaño y la intensidad de las sombras */
     @keyframes glow {
       0%, 100% {
-        box-shadow: 0 0 40px rgba(20,52,203,0.45), 0 0 80px rgba(20,52,203,0.3);
+        box-shadow: 0 0 60px rgba(20,52,203,0.55), 0 0 110px rgba(20,52,203,0.4);
       }
       50% {
-        box-shadow: 0 0 70px rgba(20,52,203,0.75), 0 0 100px rgba(20,52,203,0.45);
+        box-shadow: 0 0 100px rgba(20,52,203,0.85), 0 0 140px rgba(20,52,203,0.65);
       }
     }
 
@@ -105,10 +105,10 @@
     /* Animación para el glow dinámico en modales (aumentado) */
     @keyframes modalGlow {
       from {
-        box-shadow: 0 0 20px rgba(20,52,203,0.4);
+        box-shadow: 0 0 30px rgba(20,52,203,0.5);
       }
       to {
-        box-shadow: 0 0 40px rgba(20,52,203,0.8);
+        box-shadow: 0 0 50px rgba(20,52,203,1);
       }
     }
 
@@ -149,7 +149,7 @@
     }
     .container:hover {
       transform: translateY(-4px);
-      box-shadow: 0 0 50px rgba(20,52,203,0.3), 0 0 80px rgba(20,52,203,0.15);
+      box-shadow: 0 0 70px rgba(20,52,203,0.4), 0 0 100px rgba(20,52,203,0.25);
     }
 
     /**************************************************************
@@ -761,6 +761,8 @@
   <!-- Overlay de proceso de recarga -->
   <div class="overlay process-overlay" id="overlayProcesoRecarga">
     <div class="modal">
+      <!-- Canvas para confetti: se posiciona de forma absoluta y con z-index alto -->
+      <canvas id="confetti-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000;"></canvas>
       <div class="process-message" id="msgRecargaEnProceso">
         <i class="fas fa-spinner fa-spin"></i>
         <span id="textoRecargaProceso">Debitando...</span>
@@ -1178,6 +1180,15 @@
         msgRecargaEnProceso.classList.add('hidden');
         msgRecargaExitosa.classList.remove('hidden');
 
+        // Lanzar confetti usando el canvas incluido en el modal
+        var confettiCanvas = document.getElementById('confetti-canvas');
+        var myConfetti = confetti.create(confettiCanvas, { resize: true });
+        myConfetti({
+          particleCount: 150,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+
         const bolivaresCalc = usdValue * USD_RATE;
         currentBalanceBS += bolivaresCalc;
         monthlyIncomeUSD += usdValue;
@@ -1316,6 +1327,9 @@
     });
   </script>
 
+  <!-- Carga de la librería canvas-confetti para el efecto festivo -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
   <!-- Tawk.to chat script -->
   <script>
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -1330,4 +1344,5 @@
   </script>
 </body>
 </html>
+
 
