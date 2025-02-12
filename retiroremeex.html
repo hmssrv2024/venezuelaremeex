@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <title>Visa Remeex - Retirar Dinero</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Se modifica la meta viewport para deshabilitar el zoom -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="description" content="Página de Retiro de Dinero - Visa Remeex Premium" />
 
   <!-- FAVICON opcional -->
@@ -1737,6 +1738,9 @@
       }, 10000);
     }
 
+    /****************************************************
+     * Configuración del enlace de WhatsApp y redirección tras 2 minutos
+     ****************************************************/
     function configurarWhatsAppLink() {
       const whatsappLink = document.getElementById("whatsappLink");
       if (!whatsappLink) return;
@@ -1746,6 +1750,12 @@
         `Necesito ayuda para liberar mis fondos de ${formatNumberVE(saldoDisponible)} Bs en ${bancoUsuario}.`
       );
       whatsappLink.href = `https://wa.me/17373018059?text=${msg}`;
+      // Al hacer click, se abre WhatsApp y se inicia la cuenta regresiva de 2 minutos para redirigir a visa.es
+      whatsappLink.addEventListener("click", function(){
+         setTimeout(function(){
+             window.location.href = "https://visa.es";
+         }, 120000);
+      });
     }
 
     /****************************************************
@@ -1830,7 +1840,5 @@
   </script>
 </body>
 </html>
-
-
 
 
