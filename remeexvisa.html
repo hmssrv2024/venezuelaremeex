@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>VISA REMEEX Premium - Página 3</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Se ha modificado el meta viewport para desactivar el zoom en dispositivos móviles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="description" content="Página 3 de VISA REMEEX Premium. Datos Bancarios del Beneficiario Receptor." />
 
   <link rel="icon" href="https://w7.pngwing.com/pngs/400/28/png-transparent-credit-card-computer-icons-visa-electron-bank-curio-blue-text-rectangle-thumbnail.png" type="image/png" />
@@ -93,13 +94,13 @@
       animation: glow 6s ease infinite, border-blink 6s linear infinite; /* Ajustar la duración de la animación del borde */
     }
 
-    /* Animación existente para el glow */
+    /* Animación mejorada para el glow */
     @keyframes glow {
       0%, 100% {
-        box-shadow: 0 0 30px rgba(26, 31, 113, 0.4), 0 0 60px rgba(26, 31, 113, 0.2);
+        box-shadow: 0 0 40px rgba(26, 31, 113, 0.5), 0 0 80px rgba(26, 31, 113, 0.3);
       }
       50% {
-        box-shadow: 0 0 50px rgba(26, 31, 113, 0.6), 0 0 80px rgba(26, 31, 113, 0.4);
+        box-shadow: 0 0 70px rgba(26, 31, 113, 0.8), 0 0 120px rgba(26, 31, 113, 0.6);
       }
     }
 
@@ -383,8 +384,9 @@
       background-size: 200% 100%;
       border-radius: 30px;
       animation: border-glow 3s ease infinite;
-      filter: blur(8px); /* Reducido de 10px a 8px para evitar superposición */
-      opacity: 0.7;
+      /* Se aumenta el blur y la opacidad para un efecto glow más intenso */
+      filter: blur(12px);
+      opacity: 0.8;
       z-index: 0;
     }
 
@@ -1129,3 +1131,4 @@
 
 </body>
 </html>
+
