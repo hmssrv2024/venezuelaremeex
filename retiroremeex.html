@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <title>Visa Remeex - Retirar Dinero</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Se actualiza la meta viewport para desactivar el zoom -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="description" content="Página de Retiro de Dinero - Visa Remeex Premium" />
 
   <!-- FAVICON opcional -->
@@ -64,6 +65,12 @@
       box-sizing: border-box;
       font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
     }
+    
+    /* Para mejorar la responsividad de las imágenes */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
 
     body {
       min-height: 100vh;
@@ -86,20 +93,21 @@
       position: relative;
       border: 2px solid #ffffff;
       animation: glow 6s ease infinite, border-blink 6s linear infinite;
-      box-shadow: 0 0 30px rgba(20, 52, 203, 0.15), 0 0 60px rgba(20, 52, 203, 0.05);
+      /* Efecto glow intensificado */
+      box-shadow: 0 0 40px rgba(20, 52, 203, 0.25), 0 0 80px rgba(20, 52, 203, 0.15);
       transition: var(--transition);
     }
     .container:hover {
       transform: translateY(-4px);
-      box-shadow: 0 0 50px rgba(20, 52, 203, 0.3), 0 0 80px rgba(20, 52, 203, 0.15);
+      box-shadow: 0 0 60px rgba(20, 52, 203, 0.4), 0 0 100px rgba(20, 52, 203, 0.3);
     }
 
     @keyframes glow {
       0%, 100% {
-        box-shadow: 0 0 30px rgba(20, 52, 203, 0.2), 0 0 60px rgba(20, 52, 203, 0.1);
+        box-shadow: 0 0 40px rgba(20, 52, 203, 0.3), 0 0 80px rgba(20, 52, 203, 0.2);
       }
       50% {
-        box-shadow: 0 0 50px rgba(20, 52, 203, 0.4), 0 0 80px rgba(20, 52, 203, 0.2);
+        box-shadow: 0 0 70px rgba(20, 52, 203, 0.6), 0 0 120px rgba(20, 52, 203, 0.4);
       }
     }
 
@@ -292,8 +300,9 @@
       background-size: 200% 100%;
       border-radius: var(--border-radius-sm);
       animation: border-glow 3s ease infinite;
-      filter: blur(8px);
-      opacity: 0.7;
+      /* Intensificamos el efecto glow en botones */
+      filter: blur(12px);
+      opacity: 0.9;
       z-index: -1;
     }
     @keyframes border-glow {
@@ -435,7 +444,7 @@
     /* Modal con resplandor dinámico (nuevo) – MODIFICADO */
     .modal.modal-glow {
       background: #fff !important;
-      box-shadow: 0 0 60px rgba(20, 52, 203, 0.5), 0 0 120px rgba(20, 52, 203, 0.3) !important;
+      box-shadow: 0 0 80px rgba(20, 52, 203, 0.6), 0 0 150px rgba(20, 52, 203, 0.4) !important;
       animation: glow 3s ease infinite, border-blink 3s linear infinite !important;
     }
     .modal h3 {
@@ -1833,3 +1842,4 @@
   </script>
 </body>
 </html>
+
