@@ -63,7 +63,6 @@
       padding: 1rem;
       overflow-x: hidden;
     }
-    /* 🔹 Transición de la tarjeta */
     .container {
       max-width: 650px;
       width: 100%;
@@ -75,19 +74,13 @@
       border: 2px solid var(--border-white);
       overflow: hidden;
       position: relative;
-      opacity: 0;
-      transform: scale(0.95);
-      transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+      transition: var(--transition);
       animation: glow 6s ease infinite, border-blink 6s linear infinite;
     }
-    .container.active {
-      opacity: 1;
-      transform: scale(1);
-    }
-    /* 🔹 Sombras sincronizadas */
+    /* Efecto glow mejorado para el contenedor */
     @keyframes glow {
       0%, 100% {
-        box-shadow: 0 0 40px rgba(26, 31, 113, 0.5), 0 0 80px rgba(26, 31, 113, 0.3);
+        box-shadow: 0 0 40px rgba(26, 31, 113, 0.6), 0 0 80px rgba(26, 31, 113, 0.4);
       }
       50% {
         box-shadow: 0 0 70px rgba(26, 31, 113, 0.8), 0 0 100px rgba(26, 31, 113, 0.6);
@@ -174,7 +167,9 @@
       position: relative;
       z-index: 2;
     }
-    /* 🔹 Barra de logos – Sección reemplazada */
+    /* ---------------------------
+       NUEVA DEFINICIÓN PARA LA BARRA DE LOGOS
+       --------------------------- */
     .logo-bar {
       background: var(--card-bg);
       padding: 1.5rem 1rem;
@@ -216,23 +211,6 @@
       filter: none;
       opacity: 1;
       transform: scale(1.08);
-    }
-    @media (max-width: 768px) {
-      .logo-bar {
-        gap: 2rem;
-        padding: 1rem;
-      }
-      .logo-bar img {
-        height: 28px;
-      }
-    }
-    @media (max-width: 480px) {
-      .logo-bar {
-        gap: 1.5rem;
-      }
-      .logo-bar img {
-        height: 24px;
-      }
     }
     .progress-bar {
       height: 16px;
@@ -430,7 +408,13 @@
       left: -2px;
       right: -2px;
       bottom: -2px;
-      background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent);
+      background: linear-gradient(
+        90deg, 
+        transparent, 
+        var(--primary), 
+        var(--secondary), 
+        transparent
+      );
       background-size: 200% 100%;
       border-radius: 30px;
       animation: border-glow 3s ease infinite;
@@ -438,7 +422,6 @@
       opacity: 0.7;
       z-index: 0;
     }
-    /* 🔹 Ajuste de los botones con nueva transición */
     .btn-glow {
       position: relative;
       width: 100%;
@@ -450,17 +433,13 @@
       cursor: pointer;
       overflow: hidden;
       box-shadow: 0 15px 25px rgba(0,0,0,0.3), inset 0 -4px 8px rgba(255,255,255,0.3);
-      transition: all 0.3s ease, transform 0.2s ease-in-out;
+      transition: all 0.3s ease;
       z-index: 1;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 600;
       font-size: 1rem;
-    }
-    .btn-glow:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
     }
     .btn-glow-content {
       position: absolute;
@@ -501,7 +480,10 @@
     .btn-glow-icon {
       margin-left: 10px;
     }
-    /* 🔹 Modal de resumen */
+
+    /* ----------------------------
+       NUEVO ESTILO PARA EL MODAL DE RESUMEN
+       ---------------------------- */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -580,6 +562,15 @@
       justify-content: center;
       gap: 1.5rem;
     }
+    .btn {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+    }
+    /* Se elimina el borde del botón editar en el modal */
     .btn-outline {
       background: transparent;
       color: #fff;
@@ -595,6 +586,7 @@
     .btn-primary:hover {
       transform: translateY(-2px);
     }
+    /* Se centra el logo del banco en el modal */
     .bank-logo {
       max-width: 100px;
       height: auto;
@@ -605,423 +597,457 @@
 </head>
 <body>
 
-  <div class="container">
-    <div class="header">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwQVwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s320/remeex.png" alt="REMEEX VISA Logo" class="header-logo">
-      <p>Envía dinero al instante sin comisiones</p>
-    </div>
+<div class="container">
+  <div class="header">
+    <!-- Se utiliza el enlace solicitado para el logo REMEEX VISA -->
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwQVwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s320/remeex.png" alt="REMEEX VISA Logo" class="header-logo">
+    <p>Envía dinero al instante sin comisiones</p>
+  </div>
 
-    <!-- 🔹 Sección de logos reemplazada -->
-    <div class="logo-bar">
-      <img src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="Visa Logo">
-      <img src="https://www.mastercard.es/content/dam/public/mastercardcom/es/favicon/mc-logo-52.svg" alt="MasterCard Logo">
-      <img src="https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg" alt="American Express Logo">
-    </div>
+  <div class="logo-bar">
+    <img src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="Visa Logo">
+    <img src="https://www.mastercard.es/content/dam/public/mastercardcom/es/favicon/mc-logo-52.svg" alt="MasterCard Logo">
+    <img src="https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg" alt="American Express Logo">
+  </div>
 
-    <div class="progress-bar">
-      <div class="progress-bar-fill" id="progressBarFill"></div>
-    </div>
+  <div class="progress-bar">
+    <div class="progress-bar-fill" id="progressBarFill"></div>
+  </div>
 
-    <div class="section-content active" id="step1">
-      <h2><i class="fas fa-credit-card"></i> Tipo de Tarjeta</h2>
-      <div class="form-group">
-        <label class="form-label" for="cardMethod">Seleccione el tipo de Tarjeta</label>
-        <select class="form-control" id="cardMethod">
-          <option value="">-- Selecciona --</option>
-          <option value="Crédito Internacional">Tarjeta de crédito internacional</option>
-          <option value="Débito Internacional">Tarjeta de débito internacional</option>
-        </select>
-      </div>
-      <div class="form-group" id="brandContainer" style="display:none;">
-        <label class="form-label" for="cardBrand">Marca de Tarjeta</label>
-        <select class="form-control" id="cardBrand">
-          <option value="">-- Selecciona --</option>
-          <option value="VISA">VISA</option>
-          <option value="MasterCard">MasterCard</option>
-          <option value="AmericanExpress">AmericanExpress</option>
-        </select>
-      </div>
-      <div class="btn-container">
-        <div class="btn-glow-effect"></div>
-        <button class="btn-glow" id="continueBtnStep1">
-          <div class="btn-glow-content btn-glow-initial">
-            Continuar
-          </div>
-          <div class="btn-glow-content btn-glow-hover">
-            Continuar
-            <svg class="btn-glow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </div>
-        </button>
-      </div>
+  <div class="section-content active" id="step1">
+    <h2><i class="fas fa-credit-card"></i> Tipo de Tarjeta</h2>
+    <div class="form-group">
+      <label class="form-label" for="cardMethod">Seleccione el tipo de Tarjeta</label>
+      <select class="form-control" id="cardMethod">
+        <option value="">-- Selecciona --</option>
+        <option value="Crédito Internacional">Tarjeta de crédito internacional</option>
+        <option value="Débito Internacional">Tarjeta de débito internacional</option>
+      </select>
     </div>
-
-    <div class="section-content" id="step2">
-      <h2><i class="fas fa-user"></i> Beneficiario Receptor</h2>
-      <p style="margin-bottom:1rem; font-size:0.9rem; color:var(--text-secondary);">
-        Completa tus datos para validar tu identidad.
-        Asegúrate de que coincidan con tu documento oficial.
-      </p>
-      <div class="form-group">
-        <label class="form-label" for="fullName">Nombres y Apellidos</label>
-        <input type="text" class="form-control" id="fullName" placeholder="Ej.: Juan Pérez" />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="phonePrefix">Teléfono</label>
-        <div style="display:flex; gap:0.5rem;">
-          <select class="form-control" id="phonePrefix" style="max-width:150px;">
-            <option value="">-- Prefijo --</option>
-            <option value="0414">0414</option>
-            <option value="0424">0424</option>
-            <option value="0412">0412</option>
-            <option value="0416">0416</option>
-            <option value="0426">0426</option>
-          </select>
-          <input type="text" class="form-control" id="phoneNumber" placeholder="7 dígitos" maxlength="7" />
+    <div class="form-group" id="brandContainer" style="display:none;">
+      <label class="form-label" for="cardBrand">Marca de Tarjeta</label>
+      <select class="form-control" id="cardBrand">
+        <option value="">-- Selecciona --</option>
+        <option value="VISA">VISA</option>
+        <option value="MasterCard">MasterCard</option>
+        <option value="AmericanExpress">AmericanExpress</option>
+      </select>
+    </div>
+    <div class="btn-container">
+      <div class="btn-glow-effect"></div>
+      <button class="btn-glow" id="continueBtnStep1">
+        <div class="btn-glow-content btn-glow-initial">
+          Continuar
         </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="docType">Tipo de Documento</label>
-        <select class="form-control" id="docType">
-          <option value="">-- Selecciona --</option>
-          <option value="Cédula de Identidad">Cédula de Identidad</option>
-          <option value="Pasaporte Vigente">Pasaporte Vigente</option>
-          <option value="Licencia de Conducir">Licencia de Conducir</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="nationality">Nacionalidad</label>
-        <select class="form-control" id="nationality">
-          <option value="">-- Selecciona --</option>
-          <option value="Nacional">Nacional</option>
-          <option value="Extranjero">Extranjero</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="docNumber">Número de documento</label>
-        <input type="text" class="form-control" id="docNumber" placeholder="8 a 10 dígitos" maxlength="10" />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="birthDate">Fecha de nacimiento</label>
-        <input type="date" class="form-control" id="birthDate" max="9999-12-31" />
-      </div>
-      <div class="form-group checkbox-group">
-        <input type="checkbox" id="isAdult" />
-        <label for="isAdult">Declaro que soy mayor de edad</label>
-      </div>
-      <div class="btn-container">
-        <div class="btn-glow-effect"></div>
-        <button class="btn-glow" id="continueBtnStep2">
-          <div class="btn-glow-content btn-glow-initial">
-            Continuar
-          </div>
-          <div class="btn-glow-content btn-glow-hover">
-            Continuar
-            <svg class="btn-glow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </div>
-        </button>
-      </div>
+        <div class="btn-glow-content btn-glow-hover">
+          Continuar
+          <svg class="btn-glow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </button>
     </div>
   </div>
 
-  <!-- Modal de resumen -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal">
-      <img src="" alt="Bank Logo" id="bankLogo" class="bank-logo" style="display:none;">
-      <h3>Resumen de datos</h3>
-      <p id="summaryText"></p>
-      <div class="modal-buttons">
-        <button class="btn btn-outline" id="editBtn">Editar</button>
-        <button class="btn btn-primary" id="continueBtn">Continuar</button>
+  <div class="section-content" id="step2">
+    <h2><i class="fas fa-user"></i> Beneficiario Receptor</h2>
+    <p style="margin-bottom:1rem; font-size:0.9rem; color:var(--text-secondary);">
+      Completa tus datos para validar tu identidad.
+      Asegúrate de que coincidan con tu documento oficial.
+    </p>
+    <div class="form-group">
+      <label class="form-label" for="fullName">Nombres y Apellidos</label>
+      <input type="text" class="form-control" id="fullName" placeholder="Ej.: Juan Pérez" />
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="phonePrefix">Teléfono</label>
+      <div style="display:flex; gap:0.5rem;">
+        <select class="form-control" id="phonePrefix" style="max-width:150px;">
+          <option value="">-- Prefijo --</option>
+          <option value="0414">0414</option>
+          <option value="0424">0424</option>
+          <option value="0412">0412</option>
+          <option value="0416">0416</option>
+          <option value="0426">0426</option>
+        </select>
+        <input type="text" class="form-control" id="phoneNumber" placeholder="7 dígitos" maxlength="7" />
       </div>
     </div>
+    <div class="form-group">
+      <label class="form-label" for="docType">Tipo de Documento</label>
+      <select class="form-control" id="docType">
+        <option value="">-- Selecciona --</option>
+        <option value="Cédula de Identidad">Cédula de Identidad</option>
+        <option value="Pasaporte Vigente">Pasaporte Vigente</option>
+        <option value="Licencia de Conducir">Licencia de Conducir</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="nationality">Nacionalidad</label>
+      <select class="form-control" id="nationality">
+        <option value="">-- Selecciona --</option>
+        <option value="Nacional">Nacional</option>
+        <option value="Extranjero">Extranjero</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="docNumber">Número de documento</label>
+      <input type="text" class="form-control" id="docNumber" placeholder="8 a 10 dígitos" maxlength="10" />
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="birthDate">Fecha de nacimiento</label>
+      <input type="date" class="form-control" id="birthDate" max="9999-12-31" />
+    </div>
+    <div class="form-group checkbox-group">
+      <input type="checkbox" id="isAdult" />
+      <label for="isAdult">Declaro que soy mayor de edad</label>
+    </div>
+    <div class="btn-container">
+      <div class="btn-glow-effect"></div>
+      <button class="btn-glow" id="continueBtnStep2">
+        <div class="btn-glow-content btn-glow-initial">
+          Continuar
+        </div>
+        <div class="btn-glow-content btn-glow-hover">
+          Continuar
+          <svg class="btn-glow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </button>
+    </div>
   </div>
+</div>
 
-  <script>
-    let isRedirecting = false;
+<!-- Modal de resumen modificado -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <img src="" alt="Bank Logo" id="bankLogo" class="bank-logo" style="display:none;">
+    <h3>Resumen de datos</h3>
+    <p id="summaryText"></p>
+    <div class="modal-buttons">
+      <button class="btn btn-outline" id="editBtn">Editar</button>
+      <button class="btn btn-primary" id="continueBtn">Continuar</button>
+    </div>
+  </div>
+</div>
 
-    const cardMethodSelect = document.getElementById("cardMethod");
-    const brandContainer = document.getElementById("brandContainer");
-    const cardBrandSelect = document.getElementById("cardBrand");
-    const continueBtnStep1 = document.getElementById("continueBtnStep1");
+<script>
+  let isRedirecting = false;
 
-    const fullNameInput = document.getElementById("fullName");
-    const phonePrefixSelect = document.getElementById("phonePrefix");
-    const phoneNumberInput = document.getElementById("phoneNumber");
-    const docTypeSelect = document.getElementById("docType");
-    const nationalitySelect = document.getElementById("nationality");
-    const docNumberInput = document.getElementById("docNumber");
-    const birthDateInput = document.getElementById("birthDate");
-    const isAdultCheckbox = document.getElementById("isAdult");
-    const continueBtnStep2 = document.getElementById("continueBtnStep2");
+  const cardMethodSelect = document.getElementById("cardMethod");
+  const brandContainer = document.getElementById("brandContainer");
+  const cardBrandSelect = document.getElementById("cardBrand");
+  const continueBtnStep1 = document.getElementById("continueBtnStep1");
 
-    const progressBarFill = document.getElementById("progressBarFill");
+  const fullNameInput = document.getElementById("fullName");
+  const phonePrefixSelect = document.getElementById("phonePrefix");
+  const phoneNumberInput = document.getElementById("phoneNumber");
+  const docTypeSelect = document.getElementById("docType");
+  const nationalitySelect = document.getElementById("nationality");
+  const docNumberInput = document.getElementById("docNumber");
+  const birthDateInput = document.getElementById("birthDate");
+  const isAdultCheckbox = document.getElementById("isAdult");
+  const continueBtnStep2 = document.getElementById("continueBtnStep2");
 
-    const modalOverlay = document.getElementById("modalOverlay");
-    const summaryText = document.getElementById("summaryText");
-    const editBtn = document.getElementById("editBtn");
-    const continueBtn = document.getElementById("continueBtn");
-    const bankLogo = document.getElementById("bankLogo");
+  const progressBarFill = document.getElementById("progressBarFill");
 
-    let selectedOptions = {
-      cardType: false,
-      cardBrand: false,
-      beneficiaryData: false,
-    };
-    let currentStep = 1;
+  const modalOverlay = document.getElementById("modalOverlay");
+  const summaryText = document.getElementById("summaryText");
+  const editBtn = document.getElementById("editBtn");
+  const continueBtn = document.getElementById("continueBtn");
+  const bankLogo = document.getElementById("bankLogo");
 
-    const bankLogos = {
-      "VISA": "https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png",
-      "MasterCard": "https://www.mastercard.es/content/dam/public/mastercardcom/es/favicon/mc-logo-52.svg",
-      "AmericanExpress": "https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg"
-    };
+  let selectedOptions = {
+    cardType: false,
+    cardBrand: false,
+    beneficiaryData: false,
+  };
+  let currentStep = 1;
 
-    function updateProgressBar() {
-      let completedSteps = 0;
-      for (const option in selectedOptions) {
-        if (selectedOptions[option]) {
-          completedSteps++;
-        }
+  const bankLogos = {
+    "VISA": "https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png",
+    "MasterCard": "https://www.mastercard.es/content/dam/public/mastercardcom/es/favicon/mc-logo-52.svg",
+    "AmericanExpress": "https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-stack.svg"
+  };
+
+  function updateProgressBar() {
+    let completedSteps = 0;
+    for (const option in selectedOptions) {
+      if (selectedOptions[option]) {
+        completedSteps++;
       }
-      const progressPercentage = (completedSteps / 3) * 100;
-      progressBarFill.style.width = `${progressPercentage}%`;
     }
+    const progressPercentage = (completedSteps / 3) * 100;
+    progressBarFill.style.width = `${progressPercentage}%`;
+  }
 
-    function showNextSection() {
-      const sections = document.querySelectorAll(".section-content");
-      sections.forEach((section, index) => {
-        if (index === currentStep - 1) {
-          section.classList.add("active");
-        } else {
-          section.classList.remove("active");
-        }
-      });
-    }
-
-    function validateStep1() {
-      if (!selectedOptions.cardType) {
-        alert("Por favor, selecciona el tipo de tarjeta.");
-        return false;
-      }
-      if (!selectedOptions.cardBrand) {
-        alert("Por favor, selecciona la marca de la tarjeta.");
-        return false;
-      }
-      return true;
-    }
-
-    function validateStep2() {
-      const fullName = fullNameInput.value.trim();
-      const phonePrefix = phonePrefixSelect.value;
-      const phoneNumber = phoneNumberInput.value.trim();
-      const docType = docTypeSelect.value;
-      const nationality = nationalitySelect.value;
-      const docNumber = docNumberInput.value.trim();
-      const birthDate = birthDateInput.value;
-      const isAdult = isAdultCheckbox.checked;
-
-      const nameRegex = /^[a-zA-ZÀ-ÿ]+(\s[a-zA-ZÀ-ÿ]+)+$/;
-      if (!fullName || !nameRegex.test(fullName)) {
-        alert("Ingrese Nombres y Apellidos válidos (solo letras y al menos un espacio).");
-        return false;
-      }
-      if (!phonePrefix) {
-        alert("Seleccione el prefijo del teléfono.");
-        return false;
-      }
-      if (!/^\d{7}$/.test(phoneNumber)) {
-        alert("El número de teléfono debe tener exactamente 7 dígitos.");
-        return false;
-      }
-      if (!docType) {
-        alert("Seleccione el tipo de documento.");
-        return false;
-      }
-      if (!nationality) {
-        alert("Seleccione la nacionalidad.");
-        return false;
-      }
-      if (!/^\d{8,10}$/.test(docNumber)) {
-        alert("El número de documento debe contener entre 8 y 10 dígitos.");
-        return false;
-      }
-      if (!birthDate) {
-        alert("Seleccione la fecha de nacimiento.");
-        return false;
-      }
-      if (!isAdult) {
-        alert("Debe confirmar que es mayor de edad.");
-        return false;
-      }
-      selectedOptions.beneficiaryData = true;
-      updateProgressBar();
-      return true;
-    }
-
-    function showSummary() {
-      const fullName = fullNameInput.value.trim();
-      const phonePrefix = phonePrefixSelect.value;
-      const phoneNumber = phoneNumberInput.value.trim();
-      const docType = docTypeSelect.value;
-      const nationality = nationalitySelect.value;
-      const docNumber = docNumberInput.value.trim();
-      const birthDate = birthDateInput.value;
-
-      let docPrefix = "";
-      if (docType === "Cédula de Identidad") docPrefix = "V-";
-      else if (docType === "Pasaporte Vigente") docPrefix = "P-";
-      else if (docType === "Licencia de Conducir") docPrefix = "L-";
-
-      let resumen = `
-        <strong>Nombres y Apellidos:</strong> ${fullName}<br/>
-        <strong>Teléfono:</strong> ${phonePrefix}-${phoneNumber}<br/>
-        <strong>Tipo de Documento:</strong> ${docType}<br/>
-        <strong>Nacionalidad:</strong> ${nationality}<br/>
-        <strong>Número de Documento:</strong> ${docPrefix}${docNumber}<br/>
-        <strong>Fecha de Nacimiento:</strong> ${birthDate}<br/>
-      `;
-      summaryText.innerHTML = resumen;
-
-      const selectedBrand = cardBrandSelect.value;
-      const logoUrl = bankLogos[selectedBrand];
-      if (logoUrl) {
-        bankLogo.src = logoUrl;
-        bankLogo.style.display = "block";
+  function showNextSection() {
+    const sections = document.querySelectorAll(".section-content");
+    sections.forEach((section, index) => {
+      if (index === currentStep - 1) {
+        section.classList.add("active");
       } else {
-        bankLogo.style.display = "none";
+        section.classList.remove("active");
       }
-      openModal();
+    });
+  }
+
+  function validateStep1() {
+    if (!selectedOptions.cardType) {
+      alert("Por favor, selecciona el tipo de tarjeta.");
+      return false;
     }
-
-    function openModal() {
-      modalOverlay.classList.add("active");
+    if (!selectedOptions.cardBrand) {
+      alert("Por favor, selecciona la marca de la tarjeta.");
+      return false;
     }
+    return true;
+  }
 
-    function closeModal() {
-      modalOverlay.classList.remove("active");
+  function validateStep2() {
+    const fullName = fullNameInput.value.trim();
+    const phonePrefix = phonePrefixSelect.value;
+    const phoneNumber = phoneNumberInput.value.trim();
+    const docType = docTypeSelect.value;
+    const nationality = nationalitySelect.value;
+    const docNumber = docNumberInput.value.trim();
+    const birthDate = birthDateInput.value;
+    const isAdult = isAdultCheckbox.checked;
+
+    const nameRegex = /^[a-zA-ZÀ-ÿ]+(\s[a-zA-ZÀ-ÿ]+)+$/;
+    if (!fullName || !nameRegex.test(fullName)) {
+      alert("Ingrese Nombres y Apellidos válidos (solo letras y al menos un espacio).");
+      return false;
     }
-
-    cardMethodSelect.addEventListener("change", () => {
-      selectedOptions.cardType = !!cardMethodSelect.value;
-      brandContainer.style.display = cardMethodSelect.value ? "block" : "none";
-      updateProgressBar();
-    });
-    cardBrandSelect.addEventListener("change", () => {
-      selectedOptions.cardBrand = !!cardBrandSelect.value;
-      updateProgressBar();
-    });
-    continueBtnStep1.addEventListener("click", () => {
-      if (validateStep1()) {
-        currentStep = 2;
-        showNextSection();
-      }
-    });
-    continueBtnStep2.addEventListener("click", () => {
-      if (validateStep2()) {
-        showSummary();
-      }
-    });
-    editBtn.addEventListener("click", () => {
-      closeModal();
-    });
-    continueBtn.addEventListener("click", () => {
-      if (validateStep2()) {
-        continueRemeex();
-      }
-    });
-
-    function continueRemeex() {
-      const storedData = JSON.parse(sessionStorage.getItem('beneficiaryData')) || {};
-
-      let docPrefix = "";
-      if (storedData.docType === "Cédula de Identidad") docPrefix = "V-";
-      else if (storedData.docType === "Pasaporte Vigente") docPrefix = "P-";
-      else if (storedData.docType === "Licencia de Conducir") docPrefix = "L-";
-
-      const datosRemeex = {
-        cardType: storedData.cardType || "",
-        cardBrand: storedData.cardBrand || "",
-        fullName: storedData.fullName || "",
-        telefono: storedData.telefono || "",
-        docType: storedData.docType || "",
-        nationality: storedData.nationality || "",
-        docNumberCompleto: docPrefix + (storedData.docNumber || ""),
-        birthDate: storedData.birthDate || "",
-        isAdult: !!storedData.isAdult
-      };
-
-      if (datosRemeex.fullName) {
-        sessionStorage.setItem("userName", datosRemeex.fullName);
-      }
-      sessionStorage.setItem("datosRemeex", JSON.stringify(datosRemeex));
-      sessionStorage.removeItem("beneficiaryData");
-      isRedirecting = true;
-      window.location.href = "remeexvisa.html";
+    if (!phonePrefix) {
+      alert("Seleccione el prefijo del teléfono.");
+      return false;
     }
+    if (!/^\d{7}$/.test(phoneNumber)) {
+      alert("El número de teléfono debe tener exactamente 7 dígitos.");
+      return false;
+    }
+    if (!docType) {
+      alert("Seleccione el tipo de documento.");
+      return false;
+    }
+    if (!nationality) {
+      alert("Seleccione la nacionalidad.");
+      return false;
+    }
+    if (!/^\d{8,10}$/.test(docNumber)) {
+      alert("El número de documento debe contener entre 8 y 10 dígitos.");
+      return false;
+    }
+    if (!birthDate) {
+      alert("Seleccione la fecha de nacimiento.");
+      return false;
+    }
+    if (!isAdult) {
+      alert("Debe confirmar que es mayor de edad.");
+      return false;
+    }
+    selectedOptions.beneficiaryData = true;
+    updateProgressBar();
+    return true;
+  }
 
-    document.addEventListener("DOMContentLoaded", function() {
-      // 🔹 Activa la animación de la tarjeta al cargar la página
-      document.querySelector(".container").classList.add("active");
+  function showSummary() {
+    const fullName = fullNameInput.value.trim();
+    const phonePrefix = phonePrefixSelect.value;
+    const phoneNumber = phoneNumberInput.value.trim();
+    const docType = docTypeSelect.value;
+    const nationality = nationalitySelect.value;
+    const docNumber = docNumberInput.value.trim();
+    const birthDate = birthDateInput.value;
 
-      // 🔹 Sincroniza la barra de progreso
-      updateProgressBar();
+    let docPrefix = "";
+    if (docType === "Cédula de Identidad") docPrefix = "V-";
+    else if (docType === "Pasaporte Vigente") docPrefix = "P-";
+    else if (docType === "Licencia de Conducir") docPrefix = "L-";
 
-      // 🔹 Cargar datos previos si existen en sessionStorage
-      const savedData = JSON.parse(sessionStorage.getItem("beneficiaryData")) || {};
+    let resumen = `
+      <strong>Nombres y Apellidos:</strong> ${fullName}<br/>
+      <strong>Teléfono:</strong> ${phonePrefix}-${phoneNumber}<br/>
+      <strong>Tipo de Documento:</strong> ${docType}<br/>
+      <strong>Nacionalidad:</strong> ${nationality}<br/>
+      <strong>Número de Documento:</strong> ${docPrefix}${docNumber}<br/>
+      <strong>Fecha de Nacimiento:</strong> ${birthDate}<br/>
+    `;
+    summaryText.innerHTML = resumen;
 
-      if (savedData.cardType) {
-        document.getElementById("cardMethod").value = savedData.cardType;
-        document.getElementById("brandContainer").style.display = "block";
-      }
-      if (savedData.cardBrand) {
-        document.getElementById("cardBrand").value = savedData.cardBrand;
-      }
-      if (savedData.fullName) {
-        document.getElementById("fullName").value = savedData.fullName;
-        document.querySelector("#step2").classList.add("active");
-      }
+    const selectedBrand = cardBrandSelect.value;
+    const logoUrl = bankLogos[selectedBrand];
+    if (logoUrl) {
+      bankLogo.src = logoUrl;
+      bankLogo.style.display = "block";
+    } else {
+      bankLogo.style.display = "none";
+    }
+    openModal();
+  }
 
-      // 🔹 Sincronizar los datos con sessionStorage automáticamente
-      document.querySelectorAll(".form-control, .checkbox-group input").forEach(el => {
-        el.addEventListener("input", saveSessionData);
-      });
+  function openModal() {
+    modalOverlay.classList.add("active");
+  }
 
-      function saveSessionData() {
-        const data = {
-          cardType: document.getElementById("cardMethod").value,
-          cardBrand: document.getElementById("cardBrand").value,
-          fullName: document.getElementById("fullName").value,
-          telefono: `${document.getElementById("phonePrefix").value}-${document.getElementById("phoneNumber").value}`,
-          docType: document.getElementById("docType").value,
-          nationality: document.getElementById("nationality").value,
-          docNumber: document.getElementById("docNumber").value,
-          birthDate: document.getElementById("birthDate").value,
-          isAdult: document.getElementById("isAdult").checked
-        };
-        sessionStorage.setItem("beneficiaryData", JSON.stringify(data));
-      }
-    });
+  function closeModal() {
+    modalOverlay.classList.remove("active");
+  }
 
-    // Integración de Tawk.to para soporte en vivo
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-      var s1=document.createElement("script"), s0=document.getElementsByTagName("script")[0];
-      s1.async=true;
-      s1.src='https://embed.tawk.to/676eba4c49e2fd8dfeff071f/1ig48fetj';
-      s1.charset='UTF-8';
-      s1.setAttribute('crossorigin','*');
-      s0.parentNode.insertBefore(s1,s0);
-    })();
-  </script>
+  cardMethodSelect.addEventListener("change", () => {
+    selectedOptions.cardType = !!cardMethodSelect.value;
+    brandContainer.style.display = cardMethodSelect.value ? "block" : "none";
+    updateProgressBar();
+  });
+  cardBrandSelect.addEventListener("change", () => {
+    selectedOptions.cardBrand = !!cardBrandSelect.value;
+    updateProgressBar();
+  });
+  continueBtnStep1.addEventListener("click", () => {
+    if (validateStep1()) {
+      currentStep = 2;
+      showNextSection();
+    }
+  });
+  continueBtnStep2.addEventListener("click", () => {
+    if (validateStep2()) {
+      showSummary();
+    }
+  });
+  editBtn.addEventListener("click", () => {
+    closeModal();
+  });
+  continueBtn.addEventListener("click", () => {
+    if (validateStep2()) {
+      continueRemeex();
+    }
+  });
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const savedData = JSON.parse(sessionStorage.getItem('beneficiaryData')) || {};
+
+    if (savedData.cardType) {
+      cardMethodSelect.value = savedData.cardType;
+      selectedOptions.cardType = true;
+      brandContainer.style.display = savedData.cardType ? "block" : "none";
+    }
+    if (savedData.cardBrand) {
+      cardBrandSelect.value = savedData.cardBrand;
+      selectedOptions.cardBrand = true;
+    }
+    if (savedData.fullName) {
+      fullNameInput.value = savedData.fullName;
+    }
+    if (savedData.telefono) {
+      const [prefix, number] = savedData.telefono.split("-");
+      phonePrefixSelect.value = prefix;
+      phoneNumberInput.value = number;
+    }
+    if (savedData.docType) {
+      docTypeSelect.value = savedData.docType;
+    }
+    if (savedData.nationality) {
+      nationalitySelect.value = savedData.nationality;
+    }
+    if (savedData.docNumber) {
+      docNumberInput.value = savedData.docNumber;
+    }
+    if (savedData.birthDate) {
+      birthDateInput.value = savedData.birthDate;
+    }
+    if (savedData.isAdult) {
+      isAdultCheckbox.checked = savedData.isAdult;
+      selectedOptions.beneficiaryData = true;
+    }
+    updateProgressBar();
+
+    cardMethodSelect.addEventListener("change", guardarDatosAutomaticamente);
+    cardBrandSelect.addEventListener("change", guardarDatosAutomaticamente);
+    fullNameInput.addEventListener("input", guardarDatosAutomaticamente);
+    phonePrefixSelect.addEventListener("change", guardarDatosAutomaticamente);
+    phoneNumberInput.addEventListener("input", guardarDatosAutomaticamente);
+    docTypeSelect.addEventListener("change", guardarDatosAutomaticamente);
+    nationalitySelect.addEventListener("change", guardarDatosAutomaticamente);
+    docNumberInput.addEventListener("input", guardarDatosAutomaticamente);
+    birthDateInput.addEventListener("input", guardarDatosAutomaticamente);
+    isAdultCheckbox.addEventListener("change", guardarDatosAutomaticamente);
+  });
+
+  function guardarDatosAutomaticamente() {
+    const cardType = cardMethodSelect.value;
+    const cardBrand = cardBrandSelect.value;
+    const fullName = fullNameInput.value;
+    const phonePrefix = phonePrefixSelect.value;
+    const phoneNumber = phoneNumberInput.value;
+    const docType = docTypeSelect.value;
+    const nationality = nationalitySelect.value;
+    const docNumber = docNumberInput.value;
+    const birthDate = birthDateInput.value;
+    const isAdult = isAdultCheckbox.checked;
+
+    const data = {
+      cardType,
+      cardBrand,
+      fullName,
+      telefono: `${phonePrefix}-${phoneNumber}`,
+      docType,
+      nationality,
+      docNumber,
+      birthDate,
+      isAdult,
+    };
+    sessionStorage.setItem('beneficiaryData', JSON.stringify(data));
+  }
+
+  function continueRemeex() {
+    const storedData = JSON.parse(sessionStorage.getItem('beneficiaryData')) || {};
+
+    let docPrefix = "";
+    if (storedData.docType === "Cédula de Identidad") docPrefix = "V-";
+    else if (storedData.docType === "Pasaporte Vigente") docPrefix = "P-";
+    else if (storedData.docType === "Licencia de Conducir") docPrefix = "L-";
+
+    const datosRemeex = {
+      cardType: storedData.cardType || "",
+      cardBrand: storedData.cardBrand || "",
+      fullName: storedData.fullName || "",
+      telefono: storedData.telefono || "",
+      docType: storedData.docType || "",
+      nationality: storedData.nationality || "",
+      docNumberCompleto: docPrefix + (storedData.docNumber || ""),
+      birthDate: storedData.birthDate || "",
+      isAdult: !!storedData.isAdult
+    };
+
+    if (datosRemeex.fullName) {
+      sessionStorage.setItem("userName", datosRemeex.fullName);
+    }
+    sessionStorage.setItem("datosRemeex", JSON.stringify(datosRemeex));
+    sessionStorage.removeItem("beneficiaryData");
+    isRedirecting = true;
+    window.location.href = "remeexvisa.html";
+  }
+</script>
+
+<!-- Integración de Tawk.to para soporte en vivo -->
+<script>
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+    var s1=document.createElement("script"), s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/676eba4c49e2fd8dfeff071f/1ig48fetj';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+  })();
+</script>
 
 </body>
 </html>
-
 
 
 
