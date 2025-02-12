@@ -149,7 +149,15 @@
         opacity: 0;
       }
     }
-    /* Se ha eliminado el logo de REMEEX VISA de la cabecera, ahora se agrega el logo de Remeex */
+    .header-logo {
+      display: block;
+      margin: 0 auto 1rem auto;
+      width: 80%;
+      max-width: 400px;
+      height: auto;
+      position: relative;
+      z-index: 2;
+    }
     .header p {
       font-size: 1.2rem;
       line-height: 1.6;
@@ -159,7 +167,9 @@
       position: relative;
       z-index: 2;
     }
-    /* ---------- Bloque de la logo-bar “estandarizado” ---------- */
+    /* ---------------------------
+       NUEVA DEFINICIÓN PARA LA BARRA DE LOGOS
+       --------------------------- */
     .logo-bar {
       background: var(--card-bg);
       padding: 1.5rem 1rem;
@@ -182,8 +192,12 @@
       animation: shimmer 3s linear infinite;
     }
     @keyframes shimmer {
-      0% { transform: translateX(-50%); }
-      100% { transform: translateX(50%); }
+      0% {
+        transform: translateX(-50%);
+      }
+      100% {
+        transform: translateX(50%);
+      }
     }
     .logo-bar img {
       height: 36px;
@@ -198,7 +212,6 @@
       opacity: 1;
       transform: scale(1.08);
     }
-    /* ---------------------------------------------------------------------- */
     .progress-bar {
       height: 16px;
       background-color: #e2e8f0;
@@ -467,6 +480,7 @@
     .btn-glow-icon {
       margin-left: 10px;
     }
+
     /* ----------------------------
        NUEVO ESTILO PARA EL MODAL DE RESUMEN
        ---------------------------- */
@@ -585,8 +599,8 @@
 
 <div class="container">
   <div class="header">
-    <!-- Se agrega el logo de Remeex en la parte superior -->
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwQVwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s320/remeex.png" alt="Remeex Logo" style="display: block; margin: 0 auto 1rem auto; max-width: 200px;">
+    <!-- Se utiliza el enlace solicitado para el logo REMEEX VISA -->
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwQVwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s320/remeex.png" alt="REMEEX VISA Logo" class="header-logo">
     <p>Envía dinero al instante sin comisiones</p>
   </div>
 
@@ -1034,6 +1048,7 @@
 
 </body>
 </html>
+
 
 
 
