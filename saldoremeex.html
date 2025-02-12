@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Visa Remeex - Saldo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Se desactiva el zoom en móviles agregando maximum-scale y user-scalable -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="description" content="Visa Remeex: Tu saldo y transacciones"/>
   
   <!-- Fuentes e íconos -->
@@ -59,12 +60,13 @@
       );
     }
 
+    /* Glow mejorado: Se incrementa el tamaño y la intensidad de las sombras */
     @keyframes glow {
       0%, 100% {
-        box-shadow: 0 0 30px rgba(20,52,203,0.35), 0 0 60px rgba(20,52,203,0.2);
+        box-shadow: 0 0 40px rgba(20,52,203,0.45), 0 0 80px rgba(20,52,203,0.3);
       }
       50% {
-        box-shadow: 0 0 50px rgba(20,52,203,0.55), 0 0 80px rgba(20,52,203,0.3);
+        box-shadow: 0 0 70px rgba(20,52,203,0.75), 0 0 100px rgba(20,52,203,0.45);
       }
     }
 
@@ -100,13 +102,13 @@
       }
     }
 
-    /* Animación para el glow dinámico en modales */
+    /* Animación para el glow dinámico en modales (aumentado) */
     @keyframes modalGlow {
       from {
-        box-shadow: 0 0 10px rgba(20,52,203,0.3);
+        box-shadow: 0 0 20px rgba(20,52,203,0.4);
       }
       to {
-        box-shadow: 0 0 30px rgba(20,52,203,0.6);
+        box-shadow: 0 0 40px rgba(20,52,203,0.8);
       }
     }
 
@@ -134,13 +136,13 @@
     .container {
       max-width: 600px;
       width: 100%;
-      margin: 2rem auto;  /* Aumentamos el margen superior/inferior */
+      margin: 2rem auto;
       padding: 1rem;
       background: var(--card-bg);
-      border-radius: var(--border-radius-xl);  /* Usamos la nueva variable para contenedores */
+      border-radius: var(--border-radius-xl);
       backdrop-filter: blur(10px);
       position: relative;
-      border: 2px solid #ffffff;  /* Borde blanco similar al otro código */
+      border: 2px solid #ffffff;
       animation: glow 6s ease infinite, border-blink 6s linear infinite;
       box-shadow: 0 0 30px rgba(20, 52, 203, 0.15), 0 0 60px rgba(20, 52, 203, 0.05);
       transition: var(--transition);
@@ -230,9 +232,8 @@
     .balance-card {
       background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
       color: #fff;
-      position: relative; /* Para posicionar el pseudo-elemento */
+      position: relative;
       overflow: hidden;
-      /* (Puedes conservar el resto de estilos propios de esta tarjeta) */
     }
     /* Destello de luz en la tarjeta de saldo */
     .balance-card::after {
@@ -306,7 +307,7 @@
         transparent
       );
       border-radius: var(--border-radius);
-      filter: blur(8px);
+      filter: blur(12px);
       opacity: 0;
       transition: var(--transition);
       z-index: -1;
@@ -498,7 +499,6 @@
       width: 90%;
       max-width: 400px;
       border: 2px solid rgba(20,52,203,0.3);
-      /* Se combinan dos animaciones: la de slideDown y la de glow en el borde */
       animation: slideDown 0.4s ease forwards, modalGlow 2s ease-in-out infinite alternate;
       display: flex;
       flex-direction: column;
@@ -579,12 +579,39 @@
       font-weight: 600;
     }
 
+    /**************************************************************
+      MEDIA QUERIES PARA MOVILES (Diseño completamente responsivo)
+    **************************************************************/
     @media (max-width: 768px) {
       .balance-amount {
         font-size: 1.7rem;
       }
       .btn {
         font-size: 0.8rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .container {
+        margin: 1rem;
+        padding: 0.5rem;
+      }
+      .top-bar img {
+        height: 30px;
+      }
+      .user-profile {
+        font-size: 0.9rem;
+      }
+      .balance-amount {
+        font-size: 1.5rem;
+      }
+      .card {
+        padding: 1.5rem;
+      }
+      .action-buttons {
+        grid-template-columns: 1fr 1fr;
+      }
+      .bottom-nav .nav-item {
+        font-size: 0.75rem;
       }
     }
   </style>
@@ -799,7 +826,6 @@
   <div class="overlay" id="overlaySaldoInsuficiente">
     <div class="modal">
       <h3>Saldo Insuficiente</h3>
-      <!-- Se ha eliminado el logo del banco -->
       <p style="text-align:center; color:var(--danger); font-weight:600;">
         Para retirar fondos a <strong id="insufficientBankName"></strong>, necesitas un saldo mínimo de <strong>69,000.00 Bs</strong>.
       </p>
@@ -1304,3 +1330,4 @@
   </script>
 </body>
 </html>
+
