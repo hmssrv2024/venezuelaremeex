@@ -149,15 +149,7 @@
         opacity: 0;
       }
     }
-    .header-logo {
-      display: block;
-      margin: 0 auto 1rem auto;
-      width: 80%;
-      max-width: 400px;
-      height: auto;
-      position: relative;
-      z-index: 2;
-    }
+    /* Se ha eliminado el logo de REMEEX VISA de la cabecera, ahora se agrega el logo de Remeex */
     .header p {
       font-size: 1.2rem;
       line-height: 1.6;
@@ -167,16 +159,15 @@
       position: relative;
       z-index: 2;
     }
+    /* ---------- Bloque de la logo-bar “estandarizado” ---------- */
     .logo-bar {
       background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      padding: 1rem 0.5rem;
+      padding: 1.5rem 1rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 2rem;
+      gap: 3rem;
       border-bottom: 1px solid rgba(0,0,0,0.05);
-      margin-bottom: 1rem;
       position: relative;
       overflow: hidden;
     }
@@ -207,6 +198,7 @@
       opacity: 1;
       transform: scale(1.08);
     }
+    /* ---------------------------------------------------------------------- */
     .progress-bar {
       height: 16px;
       background-color: #e2e8f0;
@@ -475,7 +467,6 @@
     .btn-glow-icon {
       margin-left: 10px;
     }
-
     /* ----------------------------
        NUEVO ESTILO PARA EL MODAL DE RESUMEN
        ---------------------------- */
@@ -594,8 +585,8 @@
 
 <div class="container">
   <div class="header">
-    <!-- Se utiliza el enlace solicitado para el logo REMEEX VISA -->
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwQVwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s320/remeex.png" alt="REMEEX VISA Logo" class="header-logo">
+    <!-- Se agrega el logo de Remeex en la parte superior -->
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwQVwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s320/remeex.png" alt="Remeex Logo" style="display: block; margin: 0 auto 1rem auto; max-width: 200px;">
     <p>Envía dinero al instante sin comisiones</p>
   </div>
 
