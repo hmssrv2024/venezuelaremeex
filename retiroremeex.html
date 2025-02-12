@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Visa Remeex - Retirar Dinero</title>
-  <!-- Se ha actualizado el meta viewport para desactivar el zoom en dispositivos móviles -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Página de Retiro de Dinero - Visa Remeex Premium" />
 
   <!-- FAVICON opcional -->
@@ -87,21 +86,20 @@
       position: relative;
       border: 2px solid #ffffff;
       animation: glow 6s ease infinite, border-blink 6s linear infinite;
-      /* Glow mejorado */
-      box-shadow: 0 0 40px rgba(20, 52, 203, 0.25), 0 0 80px rgba(20, 52, 203, 0.15);
+      box-shadow: 0 0 30px rgba(20, 52, 203, 0.15), 0 0 60px rgba(20, 52, 203, 0.05);
       transition: var(--transition);
     }
     .container:hover {
       transform: translateY(-4px);
-      box-shadow: 0 0 60px rgba(20, 52, 203, 0.4), 0 0 100px rgba(20, 52, 203, 0.25);
+      box-shadow: 0 0 50px rgba(20, 52, 203, 0.3), 0 0 80px rgba(20, 52, 203, 0.15);
     }
 
     @keyframes glow {
       0%, 100% {
-        box-shadow: 0 0 40px rgba(20, 52, 203, 0.3), 0 0 80px rgba(20, 52, 203, 0.2);
+        box-shadow: 0 0 30px rgba(20, 52, 203, 0.2), 0 0 60px rgba(20, 52, 203, 0.1);
       }
       50% {
-        box-shadow: 0 0 70px rgba(20, 52, 203, 0.6), 0 0 100px rgba(20, 52, 203, 0.4);
+        box-shadow: 0 0 50px rgba(20, 52, 203, 0.4), 0 0 80px rgba(20, 52, 203, 0.2);
       }
     }
 
@@ -294,8 +292,8 @@
       background-size: 200% 100%;
       border-radius: var(--border-radius-sm);
       animation: border-glow 3s ease infinite;
-      filter: blur(12px);
-      opacity: 0.9;
+      filter: blur(8px);
+      opacity: 0.7;
       z-index: -1;
     }
     @keyframes border-glow {
@@ -512,25 +510,6 @@
       }
       .modal h3 {
         font-size: 1.05rem;
-      }
-    }
-    
-    /* Ajustes adicionales para móviles */
-    @media (max-width: 480px) {
-      .container {
-        margin: 1rem;
-        padding: 1rem;
-        border-radius: var(--border-radius-lg);
-      }
-      .btn {
-        padding: 0.65rem 1rem;
-        font-size: 0.9rem;
-      }
-      .top-bar img {
-        height: 30px;
-      }
-      .balance-amount {
-        font-size: 1.4rem;
       }
     }
     
@@ -1851,6 +1830,7 @@
   </script>
 </body>
 </html>
+
 
 
 
