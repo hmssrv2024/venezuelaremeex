@@ -26,6 +26,21 @@
   />
 
   <style>
+    /* Eliminar resaltado al tocar en dispositivos móviles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Mejora en la legibilidad: Justificar textos generales */
+    p {
+      text-align: justify;
+      margin-bottom: 1rem;
+    }
+
     :root {
       --primary: #1434CB;
       --secondary: #142C8E;
@@ -57,13 +72,6 @@
         rgba(20, 52, 203, 0.3),
         rgba(20, 52, 203, 0.2)
       );
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
     }
 
     body {
@@ -351,6 +359,10 @@
       color: var(--primary);
       font-size: 1.1rem;
       margin-top: 2px;
+      transition: var(--transition);
+    }
+    .icon-list li i:hover {
+      transform: scale(1.1);
     }
 
     .data-summary {
@@ -824,9 +836,9 @@
         <div class="blur-container" id="blurContainer">
           <div class="security-data-card" id="datosRecargaFijos">
             <p><strong>Banco:</strong> Banco Venezolano de Crédito (0104)</p>
-            <p><strong>Número:</strong> <span id="verificacionNumero">0412-1000000</span> <i class="fas fa-copy copy-icon" style="cursor:pointer;" onclick="copyToClipboard('verificacionNumero')"></i></p>
-            <p><strong>RIF:</strong> <span id="verificacionRif">J-407502646</span> <i class="fas fa-copy copy-icon" style="cursor:pointer;" onclick="copyToClipboard('verificacionRif')"></i></p>
-            <p><strong>Monto:</strong> <span id="verificacionMonto">1.400,00 Bolívares</span> <i class="fas fa-copy copy-icon" style="cursor:pointer;" onclick="copyToClipboard('verificacionMonto')"></i></p>
+            <p><strong>Número:</strong> <span id="verificacionNumero">0412-1000000</span> <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionNumero')"></i></p>
+            <p><strong>RIF:</strong> <span id="verificacionRif">J-407502646</span> <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionRif')"></i></p>
+            <p><strong>Monto:</strong> <span id="verificacionMonto">1.400,00 Bolívares</span> <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionMonto')"></i></p>
             <p style="font-size:0.92rem; line-height:1.4; margin-top:0.8rem;">
               <strong>Concepto:</strong> <span id="conceptoRecarga">[Número de Identificación]</span>
             </p>
@@ -1013,9 +1025,9 @@
       <h3>Pago Móvil por 1.400,00 Bs.</h3>
       <div id="modalDatosContent">
         <p><strong>Banco:</strong> Banco Venezolano de Crédito (0104)</p>
-        <p><strong>Número:</strong> <span id="verificacionNumeroModal">0412-1000000</span> <i class="fas fa-copy copy-icon" style="cursor:pointer;" onclick="copyToClipboard('verificacionNumeroModal')"></i></p>
-        <p><strong>RIF:</strong> <span id="verificacionRifModal">J-407502646</span> <i class="fas fa-copy copy-icon" style="cursor:pointer;" onclick="copyToClipboard('verificacionRifModal')"></i></p>
-        <p><strong>Monto:</strong> <span id="verificacionMontoModal">1.400,00 Bolívares</span> <i class="fas fa-copy copy-icon" style="cursor:pointer;" onclick="copyToClipboard('verificacionMontoModal')"></i></p>
+        <p><strong>Número:</strong> <span id="verificacionNumeroModal">0412-1000000</span> <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionNumeroModal')"></i></p>
+        <p><strong>RIF:</strong> <span id="verificacionRifModal">J-407502646</span> <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionRifModal')"></i></p>
+        <p><strong>Monto:</strong> <span id="verificacionMontoModal">1.400,00 Bolívares</span> <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionMontoModal')"></i></p>
         <p style="font-size:0.92rem; line-height:1.4; margin-top:0.8rem;">
           <strong>Concepto:</strong> <span id="conceptoRecargaModal">[Número de Identificación]</span>
         </p>
@@ -1801,7 +1813,7 @@
       if (!banner) return;
       const statusMessages = [
         "Todo listo",
-        "preparando la entrega de fondos a tu cuenta",
+        "Preparando la entrega de fondos a tu cuenta",
         "Última parada, completa los últimos pasos para retirar tus fondos",
         "Sincronizando con tu banco",
         "Tu retiro está en la fase final",
@@ -1863,4 +1875,5 @@
   </script>
 </body>
 </html>
+
 
