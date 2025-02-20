@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Visa Remeex - Retirar Dinero</title>
+  <title>Visa Remeex - Retirar Dinero (Versión Mejorada)</title>
   <!-- Se modifica la meta viewport para deshabilitar el zoom -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="description" content="Página de Retiro de Dinero - Visa Remeex Premium" />
@@ -49,12 +49,16 @@
       --success: #10B981;
       --danger: #EF4444;
       --warning: #F59E0B;
-
+      --info: #3B82F6; /* Nuevo */
+      
       --background: #EEF2FF;
       --background-dark: #E0E7FF;
       --card-bg: rgba(255, 255, 255, 0.95);
       --text-primary: #1E293B;
       --text-secondary: #64748B;
+
+      --highlight-bg: #fffbeb;          /* Nuevo */
+      --highlight-border: #fef3c7;      /* Nuevo */
 
       --border-radius-xl: 28px;
       --border-radius-lg: 24px;
@@ -78,7 +82,7 @@
       min-height: 100vh;
       background: linear-gradient(135deg, var(--background) 0%, var(--background-dark) 100%);
       color: var(--text-primary);
-      line-height: 1.5;
+      line-height: 1.6; /* Ajuste para mayor legibilidad */
       overflow-x: hidden;
       display: flex;
       justify-content: center;
@@ -178,6 +182,7 @@
       font-size: 0.95rem;
     }
 
+    /* Tarjeta SALDO */
     .card {
       background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
       color: white;
@@ -209,7 +214,6 @@
       align-items: center;
       gap: 0.4rem;
     }
-    /* Se eliminó la tarjeta con número (**** **** **** 3009) según indicación */
     .card::before {
       content: "";
       position: absolute;
@@ -226,10 +230,6 @@
       50%  { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-    .card > * {
-      position: relative;
-      z-index: 2;
-    }
     @keyframes blinkEffect {
       0%   { color: #10B981; }
       50%  { color: #ffffff; }
@@ -240,6 +240,9 @@
       font-weight: 700;
     }
 
+    /****************************************************
+     * Tarjetas VISA-CARD (Secciones)
+     ****************************************************/
     .visa-card {
       background: var(--card-bg);
       border-radius: var(--border-radius-lg);
@@ -250,7 +253,9 @@
       position: relative;
       overflow: hidden;
       border: 1px solid rgba(0,0,0,0.05);
-      display: none; /* Se muestra/oculta con JS */
+      display: none; /* se controla con JS */
+      /* Añadimos la mejora: borde izquierdo destacado */
+      border-left: 5px solid var(--primary);
     }
     .visa-card.active {
       display: block;
@@ -259,21 +264,112 @@
       transform: translateY(-2px);
       box-shadow: var(--shadow-lg);
     }
+    /* Título en la tarjeta: icono más grande y mejor jerarquía */
     .visa-card h2 {
-      margin-bottom: 1rem;
-      color: var(--primary);
-      font-size: 1.2rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      color: var(--primary);
+      gap: 0.8rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
     }
-    .visa-card p {
-      margin-bottom: 1rem;
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.5;
+    .visa-card h2 i {
+      font-size: 1.6rem;
+      color: var(--primary);
     }
 
+    /* Bannercito de estado en Saldo (texto cambiante) */
+    .status-banner {
+      font-size: 0.95rem;
+      color: #fff;
+      background: rgba(0,0,0,0.15);
+      padding: 0.5rem;
+      border-radius: var(--border-radius-sm);
+      margin-top: 1rem;
+      text-align: center;
+      transition: opacity 0.5s;
+    }
+
+    /****************************************************
+     * Secciones de texto/información
+     ****************************************************/
+    .instruction-step {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: var(--highlight-bg);
+      border: 1px solid var(--highlight-border);
+      border-radius: var(--border-radius-sm);
+      position: relative;
+    }
+    .instruction-step .step-number {
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      width: 30px;
+      height: 30px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      z-index: 1;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .info-box {
+      background: rgba(59, 130, 246, 0.1);
+      border-left: 4px solid var(--info);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: var(--border-radius-sm);
+    }
+    .warning-box {
+      background: rgba(245, 158, 11, 0.1);
+      border-left: 4px solid var(--warning);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: var(--border-radius-sm);
+    }
+    .success-box {
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 4px solid var(--success);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: var(--border-radius-sm);
+    }
+
+    /* Data summary con encabezado */
+    .data-summary {
+      margin-top: 1rem;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: var(--border-radius-sm);
+      padding: 1rem;
+      background: #fff;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .data-summary h3 {
+      background: rgba(20, 52, 203, 0.08);
+      padding: 0.8rem 1rem;
+      margin: -1rem -1rem 1rem -1rem;
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+    .data-item {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    /****************************************************
+     * Botones
+     ****************************************************/
     .btn {
       display: inline-flex;
       align-items: center;
@@ -289,6 +385,8 @@
       position: relative;
       overflow: hidden;
       z-index: 1;
+      letter-spacing: 0.02em;  /* Mejora */
+      min-width: 140px;        /* Mejora */
     }
     .btn::before {
       content: '';
@@ -344,6 +442,9 @@
       pointer-events: none;
     }
 
+    /****************************************************
+     * Listas con íconos
+     ****************************************************/
     .icon-list {
       margin: 1rem 0;
       text-align: left;
@@ -365,26 +466,9 @@
       transform: scale(1.1);
     }
 
-    .data-summary {
-      margin-top: 1rem;
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      border-radius: var(--border-radius-sm);
-      padding: 1rem;
-      background: #fff;
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-    }
-    .data-summary h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-    .data-item {
-      margin-bottom: 0.5rem;
-      font-size: 0.95rem;
-      line-height: 1.4;
-    }
-
+    /****************************************************
+     * Previsualización de imágenes (Documento)
+     ****************************************************/
     .preview-container {
       border: 1px dashed var(--primary);
       padding: 1rem;
@@ -403,7 +487,9 @@
       border-radius: var(--border-radius-sm);
     }
 
-    /* Contenedor de la firma (canvas) */
+    /****************************************************
+     * Firma digital
+     ****************************************************/
     .signature-canvas {
       border: 2px dashed var(--primary);
       border-radius: var(--border-radius-sm);
@@ -415,6 +501,9 @@
       cursor: crosshair;
     }
 
+    /****************************************************
+     * Overlays (general)
+     ****************************************************/
     .overlay {
       position: fixed;
       top: 0;
@@ -445,16 +534,17 @@
       border: 2px solid #fff;
       animation: glow 6s ease infinite, border-blink 6s linear infinite;
     }
-    /* Modal con resplandor dinámico (nuevo) – MODIFICADO */
     .modal.modal-glow {
       background: #fff !important;
       box-shadow: 0 0 60px rgba(20, 52, 203, 0.5), 0 0 120px rgba(20, 52, 203, 0.3) !important;
       animation: glow 3s ease infinite, border-blink 3s linear infinite !important;
     }
     .modal h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
+      font-size: 1.3rem; /* un poco más grande */
+      margin-bottom: 1rem;
       color: var(--primary);
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding-bottom: 0.8rem;
     }
     .modal p {
       font-size: 0.95rem;
@@ -463,16 +553,122 @@
       line-height: 1.4;
     }
 
+    /****************************************************
+     * Contadores (countdown)
+     ****************************************************/
     .countdown {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      margin-top: 0.5rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--primary);
+      margin-top: 0.7rem;
+      text-align: center;
+      background: rgba(20, 52, 203, 0.08);
+      padding: 0.4rem;
+      border-radius: var(--border-radius-sm);
+      display: inline-block;
+      min-width: 120px; /* para un ancho estable */
     }
 
-    /* ======================= NUEVO: Sección Blurred para Datos de Verificación ======================= */
+    /****************************************************
+     * Animaciones
+     ****************************************************/
+    .banner-flash {
+      background: linear-gradient(45deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+      padding: 1rem;
+      border-radius: var(--border-radius-sm);
+      margin: 1rem 0;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+    .banner-flash::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: shine 3s infinite;
+    }
+    @keyframes shine {
+      0% { left: -100%; }
+      20% { left: 100%; }
+      100% { left: 100%; }
+    }
+
+    @keyframes readyPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+      70%  { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+    .btn-ready {
+      animation: readyPulse 2s infinite;
+    }
+
+    @keyframes highlight {
+      0%   { background-color: rgba(245, 158, 11, 0.3); }
+      50%  { background-color: rgba(245, 158, 11, 0.1); }
+      100% { background-color: rgba(245, 158, 11, 0.3); }
+    }
+    .highlight-element {
+      animation: highlight 2s ease-in-out infinite;
+      padding: 0.5rem;
+      border-radius: var(--border-radius-sm);
+    }
+
+    .numbered-list {
+      counter-reset: step;
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .numbered-list li {
+      position: relative;
+      padding-left: 3rem;
+      margin-bottom: 1.5rem;
+      min-height: 2.5rem;
+      display: flex;
+      align-items: center;
+    }
+    .numbered-list li::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--primary);
+      color: white;
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 1.5rem 0;
+    }
+    .divider::before, .divider::after {
+      content: "";
+      flex: 1;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    .divider-text {
+      padding: 0 1rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    /****************************************************
+     * Sección BLURRED (datos verificación)
+     ****************************************************/
     .blur-container {
       position: relative;
-      cursor: pointer;
       display: block;
     }
     .blur-container .security-data-card {
@@ -489,50 +685,32 @@
       justify-content: center;
       align-items: center;
       color: var(--text-primary);
-      font-size: 1.1rem;
-      font-weight: bold;
       background: rgba(255, 255, 255, 0.5);
       border-radius: var(--border-radius-sm);
       transition: opacity 0.3s;
       pointer-events: none;
     }
-    /* ======================= FIN Sección Blurred ======================= */
 
-    /* ======================= NUEVO: Mejora de la presentación en la tarjeta de Datos ======================= */
-    .security-data-card {
-      background: #fff;
-      border: 1px solid var(--primary);
-      border-radius: var(--border-radius);
-      padding: 1.5rem;
-      margin-top: 1rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .security-data-card p {
-      margin: 0.5rem 0;
-      font-size: 1rem;
-      color: var(--text-primary);
-    }
-    /* ======================= FIN Mejora de presentación ======================= */
-    
+    /****************************************************
+     * Ajustes Responsive
+     ****************************************************/
     @media (max-width: 768px) {
       .balance-amount {
         font-size: 1.6rem;
       }
-      .visa-card h2 {
-        font-size: 1.1rem;
-      }
       .modal h3 {
-        font-size: 1.05rem;
+        font-size: 1.15rem;
+      }
+      .visa-card h2 {
+        font-size: 1.2rem;
+      }
+      .visa-card h2 i {
+        font-size: 1.4rem;
+      }
+      .instruction-step {
+        padding: 0.8rem;
       }
     }
-    
-    /* Regla para centrar imágenes dentro de los modales */
-    .modal img {
-      display: block;
-      margin: 0.5rem auto;
-    }
-    
-    /* Ajustes para móviles: mayor aprovechamiento del ancho disponible */
     @media (max-width: 600px) {
       .container {
         margin: 1rem auto;
@@ -548,6 +726,43 @@
         padding: 1rem;
       }
     }
+
+    /* Animaciones adicionales sugeridas en la mejora */
+    @keyframes loadingDot {
+      0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes pulseBackground {
+      0%, 100% { background-color: rgba(20, 52, 203, 0.05); }
+      50% { background-color: rgba(20, 52, 203, 0.15); }
+    }
+
+    /* Estilo para tooltip de orientación (agregado dinámicamente) */
+    @keyframes fadeInUp {
+      from { 
+        opacity: 0;
+        transform: translate(-50%, 20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    /* Botón de soporte en error final */
+    .btn-support {
+      background: #25D366;
+      color: white;
+      padding: 0.8rem;
+      border-radius: var(--border-radius);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .btn-support:hover {
+      background: #22c85a;
+    }
+
   </style>
 </head>
 <body>
@@ -578,11 +793,11 @@
         </div>
         <!-- Se setea dinámicamente con el saldo obtenido -->
         <div class="balance-amount" id="balanceAmount">0,00 Bs</div>
-        <!-- Banner de estado (nuevo) -->
+        <!-- Banner de estado (dinámico) -->
         <div class="status-banner" id="statusBanner"></div>
       </div>
 
-      <!-- 1) Tarjeta: Retirar a mi banco -->
+      <!-- (1) Retirar a mi banco -->
       <div class="visa-card active" id="datosRetiroSection">
         <h2><i class="fas fa-hand-holding-usd"></i> Retirar a mi banco</h2>
         <p>
@@ -630,7 +845,7 @@
         </div>
       </div>
 
-      <!-- 2) Tarjeta: Subir Documento de Identidad -->
+      <!-- (2) Subir Documento de Identidad -->
       <div class="visa-card" id="uploadSection">
         <h2><i class="fas fa-file-upload"></i> Documento de Identidad</h2>
         <p>
@@ -657,22 +872,22 @@
         </div>
 
         <div style="text-align:right;">
-          <button class="btn btn-success" id="confirmDocBtn" style="display:none;">
+          <button class="btn btn-success btn-disabled" id="confirmDocBtn" style="display:none;">
             <i class="fas fa-check"></i> Confirmar Documento
           </button>
         </div>
       </div>
 
-      <!-- 3) Tarjeta: Firma Digital -->
+      <!-- (3) Firma Digital -->
       <div class="visa-card" id="signatureSection">
         <h2><i class="fas fa-file-signature"></i> Firma Digital</h2>
         <p style="font-size:0.93rem; line-height:1.4;">
           <i class="fas fa-check-circle" style="color:var(--success);"></i>
           Por favor, firma en el recuadro para autorizar este retiro.<br/>
           <i class="fas fa-shield-alt" style="color:var(--primary);"></i>
-          Tu firma debe coincidir con la de tu documento de identidad para comprobar que eres el titular y evitar cualquier suplantación.<br/>
+          Tu firma debe coincidir con la de tu documento de identidad para comprobar que eres el titular.<br/>
           <i class="fas fa-exclamation-triangle" style="color:var(--warning);"></i>
-          Si no coincide, se te solicitará otra verificación adicional.
+          Si no coincide, se solicitará otra verificación adicional.
         </p>
 
         <!-- Canvas de firma -->
@@ -688,13 +903,12 @@
         </div>
       </div>
 
-      <!-- 4) Tarjeta: Verificación de Seguridad (post-firma no coincidente) -->
+      <!-- (4) Verificación de Seguridad (post-firma no coincidente) -->
       <div class="visa-card" id="securityVerification1">
         <h2>
           <i class="fas fa-shield-alt"></i> Verificación de Seguridad
         </h2>
         <p id="securityVerificationText1">
-          <!-- El texto se actualizará dinámicamente -->
           Tu firma no coincide con la que aparece en tu documento de identidad.
           Por ello, necesitamos validar que nadie esté suplantando tu identidad.
           Debes pasar por un proceso adicional de seguridad.
@@ -712,7 +926,7 @@
         </div>
       </div>
 
-      <!-- 5) Tarjeta: ¿Por qué esta verificación? -->
+      <!-- (5) Tarjeta: ¿Por qué esta verificación? -->
       <div class="visa-card" id="securityVerification2">
         <h2><i class="fas fa-question-circle"></i> ¿Por qué esta verificación?</h2>
         <ul class="icon-list">
@@ -729,310 +943,677 @@
         </div>
       </div>
 
-      <!-- ========================== SECCIÓN MODIFICADA ========================== -->
-      <!-- Tarjeta 1: Tu dinero está listo, pero hay un detalle importante -->
+      <!-- ========================== (6) SECCIÓN MODIFICADA #1 ========================== -->
       <div class="visa-card" id="securityVerification3A">
-        <h2><i class="fas fa-info-circle"></i> Tu dinero está listo, pero hay un detalle importante</h2>
-        <p style="font-size:0.95rem; line-height:1.4;">
-          <strong id="nombreUsuarioAviso" style="color: var(--primary);">[NombreCompleto]</strong>,
-          tenemos todo preparado para enviarte tu dinero a <strong class="nombreBancoUsuario">[Banco]</strong>,
-          pero hay dos alertas que debemos resolver:
-        </p>
-
-        <ol style="margin-left: 1.2rem; margin-bottom:1rem; color: var(--text-secondary);">
-          <li style="margin-bottom:0.8rem;">
-            <strong>Tu firma no coincidió</strong> con la registrada en el sistema, y por seguridad,
-            <strong>no pudimos confirmar que eres el titular de la cuenta bancaria en <span class="nombreBancoUsuario"></span></strong>
-            donde se hará el depósito.
-          </li>
-          <li style="margin-bottom:0.8rem;">
-            <strong class="nombreBancoUsuario"></strong> nos informa que normalmente no recibes
-            depósitos de montos altos en tu cuenta <em class="numeroCuentaUsuario"></em>,
-            lo que ha generado una alerta automática.
-          </li>
-        </ol>
-
-        <p style="margin-bottom:1rem;">
-          <i class="fas fa-exclamation-circle" style="color:var(--warning);"></i>
-          <strong>No te preocupes.</strong> Esto es un procedimiento de seguridad estándar para protegerte.
-          Solo necesitas completar una <strong>verificación rápida</strong> para confirmar que la cuenta es tuya
-          y asegurarnos de que puedes recibir el dinero sin problemas.
-        </p>
-
-        <div style="text-align:right;">
-          <!-- Botón continuar con 38s de bloqueo -->
-          <button class="btn btn-primary btn-disabled" id="continueSecurity3ABtn" disabled>
-            Continuar
-          </button>
-          <div class="countdown" id="countdownSecurity3A"></div>
-        </div>
-      </div>
-
-      <!-- Tarjeta 2: Verificación rápida desde tu banco -->
-      <div class="visa-card" id="securityVerification3B">
-        <h2><i class="fas fa-user-check"></i> Verificación rápida desde tu banco</h2>
-        <p style="font-size:0.95rem; line-height:1.4;">
-          Para solucionar estas alertas y garantizar que recibas los
-          <strong id="saldoRequerido">[Saldo en Bs]</strong> sin inconvenientes,
-          debes confirmar que tienes acceso a tu cuenta en <strong class="nombreBancoUsuario">[Banco]</strong>.
-        </p>
-
-        <ul style="list-style:none; margin:0; padding:0; margin-bottom:1rem;">
-          <!-- Se eliminó el primer item según indicación -->
-          <li style="margin-bottom:0.8rem; color: var(--text-secondary);">
-            <i class="fas fa-credit-card" style="color:var(--success);"></i>
-            Esto eliminará cualquier restricción y permitirá que tu depósito se procese sin más demoras.
-          </li>
-        </ul>
-
-        <p style="font-size:0.92rem; line-height:1.4;">
-          <strong>Importante:</strong><br/>
-          <i class="fas fa-shield-alt" style="color:var(--primary);"></i> Este procedimiento protege tu dinero y evita fraudes.<br/>
-          <i class="fas fa-check-circle" style="color:var(--success);"></i> Es rápido y seguro, sin trámites complicados.<br/>
-          <i class="fas fa-money-bill-wave" style="color:var(--success);"></i> El sistema te enviará el dinero inmediatamente después de la verificación.
-        </p>
-
-        <div style="text-align:right;">
-          <!-- Botón continuar con 20s de bloqueo -->
-          <button class="btn btn-primary btn-disabled" id="continueSecurity3BBtn" disabled>
-            Continuar
-          </button>
-          <div class="countdown" id="countdownSecurity3B"></div>
-        </div>
-      </div>
-
-      <!-- Tarjeta 3: Último paso para recibir tu dinero en minutos -->
-      <div class="visa-card" id="securityVerification3C">
-        <h2><i class="fas fa-flag-checkered"></i> Último paso para recibir tu dinero en minutos</h2>
-        <p style="font-size:0.95rem; line-height:1.4;">
-          Para confirmar que eres el titular y eliminar la alerta de seguridad de tu banco, haz lo siguiente:
-        </p>
-
-        <ol style="margin-left:1.2rem; color: var(--text-secondary); margin-bottom:1rem;">
-          <li style="margin-bottom:0.8rem;">
-            Desde tu cuenta en <strong class="nombreBancoRecarga">[Banco]</strong>,
-            haz una recarga de <strong class="blink">Bs. 1.400,00</strong>. El monto de tu primera recarga será reembolsado.
-          </li>
-          <li style="margin-bottom:0.8rem;">
-            En el concepto de tu comprobante de pago móvil escribe: <strong id="conceptoPagoMovil">[Número de Identificación]</strong>.
-          </li>
-        </ol>
-
-        <div class="banner-flash">
-          <p style="margin:0; font-size:0.92rem; line-height:1.4;">
-            <strong>Monto total que recibirás:</strong><br/>
-            <span>
-              <i class="fas fa-calculator"></i>
-              <strong id="montoRetiroBs">[Saldo]</strong> + <strong class="blink">Bs. 1.400,00</strong> =
-              <strong id="montoDepositoTotal">[Saldo+1400]</strong>
-            </span>
+        <h2><i class="fas fa-info-circle"></i> Tu dinero está listo</h2>
+        
+        <div class="success-box">
+          <p style="margin-bottom:0.5rem; font-size:1.1rem;">
+            <strong id="nombreUsuarioAviso" style="color: var(--primary);">[NombreCompleto]</strong>, tu retiro está aprobado, 
+            y estamos listos para enviar <strong id="saldoListo" style="color: var(--success);">[Saldo en Bs]</strong> a tu cuenta.
           </p>
         </div>
-
-        <h3 style="margin-top:1rem; color:var(--primary); font-size:1rem;">
-          <i class="fas fa-info-circle"></i> Datos donde realizar la verificación
-        </h3>
-        <!-- Se envolvió la tarjeta de datos en un contenedor con efecto blur -->
-        <div class="blur-container" id="blurContainer">
-          <div class="security-data-card" id="datosRecargaFijos">
-            <p><strong>Banco:</strong> Banco Venezolano de Crédito (0104)</p>
-            <p><strong>Número:</strong> <span id="verificacionNumero">0412-1000000</span> <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionNumero')"></i></p>
-            <p><strong>RIF:</strong> <span id="verificacionRif">J-407502646</span> <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionRif')"></i></p>
-            <p><strong>Monto:</strong> <span id="verificacionMonto">1.400,00 Bolívares</span> <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionMonto')"></i></p>
-            <p style="font-size:0.92rem; line-height:1.4; margin-top:0.8rem;">
-              <strong>Concepto:</strong> <span id="conceptoRecarga">[Número de Identificación]</span>
+        
+        <div class="warning-box">
+          <h3 style="font-size: 1.05rem; margin-bottom:0.5rem;">
+            <i class="fas fa-exclamation-triangle"></i> Tenemos 2 alertas que resolver:
+          </h3>
+          <div class="numbered-list" style="margin-left:0; padding-left:0;">
+            <div class="list-item" style="display:flex; margin-bottom:1rem; align-items:flex-start;">
+              <div style="background:var(--primary); color:white; width:24px; height:24px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-right:10px; margin-top:2px;">1</div>
+              <div>
+                <strong style="color:var(--text-primary);">Tu firma no coincidió</strong> con nuestros registros y no pudimos confirmar que eres el titular de la cuenta <strong class="numeroCuentaUsuario"></strong> en <strong class="nombreBancoUsuario"></strong>.
+              </div>
+            </div>
+            
+            <div class="list-item" style="display:flex; margin-bottom:1rem; align-items:flex-start;">
+              <div style="background:var(--primary); color:white; width:24px; height:24px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-right:10px; margin-top:2px;">2</div>
+              <div>
+                <strong class="nombreBancoUsuario"></strong> nos informa que tu cuenta no suele recibir montos elevados, lo que ha generado una alerta automática de seguridad.
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="info-box">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:0.5rem;">
+            <i class="fas fa-shield-alt" style="font-size:1.5rem; color:var(--primary);"></i>
+            <h3 style="margin:0; font-size:1.05rem;">¿Qué significa esto para ti?</h3>
+          </div>
+          <p style="margin-bottom:0.5rem;">
+            <strong>No te preocupes.</strong> Estas alertas protegen tu dinero de fraudes.
+            Solo necesitamos verificar que realmente eres tú quien solicita este retiro.
+          </p>
+        </div>
+        
+        <div class="success-box">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <i class="fas fa-check-circle" style="font-size:1.5rem; color:var(--success);"></i>
+            <p style="margin:0;">
+              <strong>La solución es simple:</strong> Una verificación rápida desde tu cuenta bancaria.
             </p>
           </div>
-          <div class="blur-overlay">Por Favor, presione aquí</div>
         </div>
-        <p style="font-size:0.92rem; line-height:1.4; margin-top:0.8rem;">
-          <i class="fas fa-bullhorn" style="color:var(--primary);"></i>
-          Haz la recarga ahora y en minutos recibirás tu dinero sin más demoras. Este paso es un paso de seguridad, no implica un pago, comisión o cobro alguno, ya que el monto se reembolsará inmediatamente.
-        </p>
 
-        <div style="text-align:right; margin-top:1rem;">
-          <!-- Botón continuar con 3 minutos de bloqueo (180 s) -->
-          <!-- Se removió el atributo disabled para poder capturar el click y mostrar el alert si aún no finaliza el conteo -->
-          <button class="btn btn-primary btn-disabled" id="recargaReadyBtn">
-            Continuar
-          </button>
-          <div class="countdown" id="countdownRecargaReady"></div>
+        <div style="display:flex; justify-content:space-between; margin-top:1.5rem; align-items:center;">
+          <div style="flex:1;">
+            <p style="font-size:0.95rem; color:var(--text-secondary); margin:0;">
+              <i class="fas fa-clock"></i> Tiempo estimado: 2 minutos
+            </p>
+          </div>
+          <div style="text-align:right;">
+            <button class="btn btn-primary btn-disabled" id="continueSecurity3ABtn" disabled>
+              <i class="fas fa-arrow-right"></i> Siguiente paso
+            </button>
+            <div class="countdown" id="countdownSecurity3A"></div>
+          </div>
         </div>
       </div>
-      <!-- ======================== FIN SECCIÓN MODIFICADA ======================= -->
+      <!-- ========================== FIN SECCIÓN MODIFICADA #1 ========================== -->
 
-      <!-- 7) Tarjeta: Completar Datos de Recarga -->
+      <!-- ========================== (6) SECCIÓN MODIFICADA #2 ========================== -->
+      <div class="visa-card" id="securityVerification3B">
+        <h2><i class="fas fa-user-check"></i> Verificación rápida desde tu banco</h2>
+        
+        <div class="info-box">
+          <div style="display:flex; align-items:flex-start; gap:12px;">
+            <i class="fas fa-info-circle" style="font-size:1.4rem; color:var(--info); margin-top:3px;"></i>
+            <div>
+              <h3 style="margin:0 0 0.5rem 0; font-size:1.05rem;">¿Cómo funciona esta verificación?</h3>
+              <p style="margin:0;">
+                Para solucionar las alertas y garantizar que recibas tus 
+                <strong id="saldoRequerido" style="color:var(--success);">[Saldo en Bs]</strong> sin problemas,
+                debes confirmar que tienes acceso a tu cuenta en <strong class="nombreBancoUsuario">[Banco]</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="instruction-step">
+          <div style="display:flex; align-items:flex-start; gap:15px;">
+            <div style="background:var(--success); width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <i class="fas fa-thumbs-up" style="color:white; font-size:1.2rem;"></i>
+            </div>
+            <div>
+              <h3 style="margin:0 0 0.5rem 0; font-size:1.05rem;">Beneficios para ti</h3>
+              <ul style="list-style:none; margin:0; padding:0;">
+                <li style="margin-bottom:0.8rem; display:flex; align-items:center; gap:8px;">
+                  <i class="fas fa-check-circle" style="color:var(--success);"></i>
+                  <span>La verificación es <strong>rápida</strong> - toma menos de 5 minutos</span>
+                </li>
+                <li style="margin-bottom:0.8rem; display:flex; align-items:center; gap:8px;">
+                  <i class="fas fa-check-circle" style="color:var(--success);"></i>
+                  <span>Evita <strong>retrasos adicionales</strong> con tu banco</span>
+                </li>
+                <li style="margin-bottom:0.8rem; display:flex; align-items:center; gap:8px;">
+                  <i class="fas fa-check-circle" style="color:var(--success);"></i>
+                  <span>Recibe tu dinero <strong>sin más complicaciones</strong></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="divider">
+          <span class="divider-text">IMPORTANTE</span>
+        </div>
+        
+        <div style="display:flex; flex-wrap:wrap; gap:1rem; margin:1rem 0;">
+          <div style="flex:1; min-width:280px;">
+            <div class="info-box" style="height:100%; margin:0;">
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:0.5rem;">
+                <i class="fas fa-shield-alt" style="color:var(--primary);"></i>
+                <strong>Seguridad</strong>
+              </div>
+              <p style="margin:0; font-size:0.9rem; line-height:1.4;">
+                Este procedimiento protege tu dinero contra fraudes y suplantaciones de identidad.
+              </p>
+            </div>
+          </div>
+          
+          <div style="flex:1; min-width:280px;">
+            <div class="info-box" style="height:100%; margin:0; background:rgba(16, 185, 129, 0.1); border-left-color:var(--success);">
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:0.5rem;">
+                <i class="fas fa-money-bill-wave" style="color:var(--success);"></i>
+                <strong>Rapidez</strong>
+              </div>
+              <p style="margin:0; font-size:0.9rem; line-height:1.4;">
+                El sistema te enviará el dinero inmediatamente después de completar la verificación.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; margin-top:1.5rem; align-items:center;">
+          <div style="flex:1;">
+            <p style="font-size:0.95rem; color:var(--text-secondary); margin:0;">
+              <i class="fas fa-hourglass-half"></i> Faltan pocos pasos para completar
+            </p>
+          </div>
+          <div style="text-align:right;">
+            <button class="btn btn-primary btn-disabled" id="continueSecurity3BBtn" disabled>
+              <i class="fas fa-arrow-right"></i> Ver instrucciones
+            </button>
+            <div class="countdown" id="countdownSecurity3B"></div>
+          </div>
+        </div>
+      </div>
+      <!-- ========================== FIN SECCIÓN MODIFICADA #2 ========================== -->
+
+      <!-- ========================== (6) SECCIÓN MODIFICADA #3 ========================== -->
+      <div class="visa-card" id="securityVerification3C">
+        <div style="position:absolute; top:-15px; right:-15px; background:var(--success); color:white; font-size:0.85rem; font-weight:bold; padding:0.2rem 0.8rem; border-radius:20px; box-shadow:0 2px 5px rgba(0,0,0,0.2);">
+          PASO FINAL
+        </div>
+
+        <h2><i class="fas fa-flag-checkered"></i> Último paso para recibir tu dinero</h2>
+        
+        <!-- Banner de instrucción principal -->
+        <div style="background:linear-gradient(45deg, #1434CB, #142C8E); color:white; padding:1.2rem; border-radius:var(--border-radius); margin-bottom:1.5rem; box-shadow:0 4px 15px rgba(20, 52, 203, 0.2);">
+          <h3 style="color:white; margin:0 0 0.8rem 0; font-size:1.15rem; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:0.5rem;">
+            <i class="fas fa-exclamation-circle"></i> ACCIÓN REQUERIDA
+          </h3>
+          <p style="margin:0 0 0.8rem 0; font-size:1rem; line-height:1.5;">
+            Para eliminar las alertas de seguridad y recibir tu dinero, debes realizar <strong>una verificación desde tu banco:</strong>
+          </p>
+          
+          <div style="background:rgba(255,255,255,0.15); padding:1rem; border-radius:var(--border-radius-sm); backdrop-filter:blur(4px);">
+            <div style="display:flex; align-items:center; gap:0.8rem; margin-bottom:0.5rem;">
+              <div style="background:white; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <span style="color:var(--primary); font-weight:bold;">1</span>
+              </div>
+              <div>
+                <span>Realiza una recarga de</span> 
+                <span class="blink" style="font-size:1.2rem; font-weight:700; background:rgba(16, 185, 129, 0.3); padding:2px 8px; border-radius:4px; margin:0 3px;">Bs. 1.400,00</span>
+                <span>desde tu cuenta en <strong class="nombreBancoRecarga">[Banco]</strong></span>
+              </div>
+            </div>
+            
+            <div style="display:flex; align-items:center; gap:0.8rem;">
+              <div style="background:white; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <span style="color:var(--primary); font-weight:bold;">2</span>
+              </div>
+              <div>
+                <span>En el concepto escribe:</span> 
+                <strong id="conceptoPagoMovil" style="background:rgba(255,255,255,0.25); padding:2px 8px; border-radius:4px;">[Número]</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Cálculo del monto -->
+        <div class="banner-flash" style="margin-bottom:1.5rem;">
+          <div style="display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;">
+            <div style="font-size:1.1rem; font-weight:600; text-align:center; color:var(--text-primary);">
+              <span>TOTAL QUE RECIBIRÁS:</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:nowrap; background:white; padding:0.5rem 1rem; border-radius:var(--border-radius-sm); box-shadow:0 2px 10px rgba(0,0,0,0.05);">
+              <span id="montoRetiroBs" style="font-weight:600;">[Saldo]</span>
+              <i class="fas fa-plus" style="color:var(--text-secondary);"></i>
+              <span class="blink" style="font-weight:700;">Bs. 1.400,00</span>
+              <i class="fas fa-equals" style="color:var(--text-secondary);"></i>
+              <span id="montoDepositoTotal" style="font-size:1.2rem; font-weight:700; color:var(--success);">[Saldo+1400]</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Datos para recarga -->
+        <div style="margin-bottom:1.5rem;">
+          <h3 style="font-size:1.1rem; color:var(--primary); display:flex; align-items:center; gap:8px; margin-bottom:1rem;">
+            <i class="fas fa-info-circle"></i> Datos para hacer la verificación
+          </h3>
+          
+          <div class="blur-container" id="blurContainer" style="cursor:pointer; border-radius:var(--border-radius); overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.08);">
+            <div class="security-data-card" id="datosRecargaFijos" style="margin-top:0; border:none; background:linear-gradient(120deg, #fdfdfd, #f8f9ff); padding:1.5rem;">
+              <div style="display:grid; grid-template-columns:120px 1fr; gap:1rem 0.5rem; align-items:center;">
+                <div style="font-weight:600; color:var(--text-secondary);">Banco:</div>
+                <div style="font-weight:600;">Banco Venezolano de Crédito (0104)</div>
+                
+                <div style="font-weight:600; color:var(--text-secondary);">Número:</div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span id="verificacionNumero" style="font-weight:600;">0412-1000000</span>
+                  <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionNumero')" style="color:var(--primary); cursor:pointer;"></i>
+                </div>
+                
+                <div style="font-weight:600; color:var(--text-secondary);">RIF:</div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span id="verificacionRif" style="font-weight:600;">J-407502646</span>
+                  <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionRif')" style="color:var(--primary); cursor:pointer;"></i>
+                </div>
+                
+                <div style="font-weight:600; color:var(--text-secondary);">Monto:</div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span id="verificacionMonto" style="font-weight:600; color:var(--success);">1.400,00 Bolívares</span>
+                  <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionMonto')" style="color:var(--primary); cursor:pointer;"></i>
+                </div>
+                
+                <div style="font-weight:600; color:var(--text-secondary);">Concepto:</div>
+                <div style="font-weight:600; color:var(--primary);">
+                  <span id="conceptoRecarga">[Número de Identificación]</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="blur-overlay" style="background:rgba(255,255,255,0.9); backdrop-filter:blur(8px);">
+              <div style="text-align:center;">
+                <i class="fas fa-fingerprint" style="font-size:2rem; color:var(--primary); margin-bottom:0.5rem;"></i>
+                <div style="font-weight:700; font-size:1.2rem; color:var(--primary); margin-bottom:0.5rem;">Toca para ver los datos</div>
+                <div style="color:var(--text-secondary); font-size:0.9rem;">Información sensible protegida</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Nota informativa -->
+        <div class="info-box" style="margin-bottom:1.5rem;">
+          <div style="display:flex; align-items:flex-start; gap:10px;">
+            <i class="fas fa-bullhorn" style="color:var(--primary); font-size:1.2rem; margin-top:3px;"></i>
+            <div>
+              <p style="margin:0; font-size:0.95rem; line-height:1.5;">
+                <strong>Importante:</strong> La recarga de <strong>Bs. 1.400,00</strong> será reembolsada junto con tu saldo. 
+                Este paso es únicamente para verificar tu identidad y remover las alertas.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Pasos resumidos -->
+        <div style="background:#f8f9ff; padding:1rem; border-radius:var(--border-radius); margin-bottom:1.5rem; border:1px dashed var(--primary);">
+          <h4 style="margin:0 0 0.8rem 0; font-size:1rem; color:var(--primary); display:flex; align-items:center; gap:8px;">
+            <i class="fas fa-list-ol"></i> Resumen de pasos:
+          </h4>
+          <ol style="margin:0; padding-left:1.5rem; color:var(--text-primary);">
+            <li style="margin-bottom:0.5rem;">Haz un pago móvil de <strong>Bs. 1.400,00</strong> a los datos mostrados</li>
+            <li style="margin-bottom:0.5rem;">Usa tu número de documento como concepto: <strong id="conceptoRecargaResumen"></strong></li>
+            <li>Continúa para confirmar tu recarga y recibir tu dinero</li>
+          </ol>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; margin-top:1.5rem; align-items:center;">
+          <div style="flex:1;">
+            <p style="font-size:0.9rem; color:var(--text-secondary); margin:0; display:flex; align-items:center; gap:8px;">
+              <i class="fas fa-shield-alt"></i> Verificación segura y confidencial
+            </p>
+          </div>
+          <div style="text-align:right;">
+            <button class="btn btn-primary btn-disabled" id="recargaReadyBtn" disabled>
+              <i class="fas fa-arrow-right"></i> Continuar
+            </button>
+            <div class="countdown" id="countdownRecargaReady"></div>
+          </div>
+        </div>
+      </div>
+      <!-- ========================== FIN SECCIÓN MODIFICADA #3 ========================== -->
+
+      <!-- ========================== (7) SECCIÓN MODIFICADA #4 ========================== -->
       <div class="visa-card" id="recargaSection">
-        <h2><i class="fas fa-credit-card"></i> Completar Datos de tu Recarga</h2>
-        <p id="textoCompletarRecarga">
-          ¿Realizaste tu recarga de verificación por 1.400,00 Bs desde tu banco
-          para verificar tu identidad? Por favor, completa la información para
-          que podamos validar tu recarga.
-        </p>
-
-        <label style="display:block; margin-bottom:0.3rem;">Banco de Origen:</label>
-        <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem;">
-          <img id="logoBancoOrigen" src="" alt="Logo Banco" style="max-height:30px;" />
-          <input
-            type="text"
-            id="recargaBancoOrigen"
-            style="width: 100%; padding: 0.75rem;"
-            disabled
-          />
+        <div style="position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--success); color:white; font-size:0.85rem; font-weight:bold; padding:0.3rem 1rem; border-radius:20px; box-shadow:0 2px 5px rgba(0,0,0,0.2); white-space:nowrap;">
+          ÚLTIMO PASO
+        </div>
+      
+        <h2><i class="fas fa-credit-card"></i> Confirma tu recarga</h2>
+        
+        <div class="success-box" style="margin-bottom:1.5rem;">
+          <div style="display:flex; align-items:flex-start; gap:10px;">
+            <i class="fas fa-check-circle" style="font-size:1.4rem; color:var(--success); margin-top:2px;"></i>
+            <p style="margin:0; line-height:1.5; font-size:0.95rem;">
+              <strong>¡Excelente!</strong> Estás a un paso de recibir tus <strong id="saldoFinalDisplay" style="color:var(--success);">[Saldo+1400 Bs]</strong>
+              en tu cuenta. Solo necesitamos verificar tu recarga de 1.400,00 Bs.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Formulario mejorado -->
+        <div style="background:#f9faff; border-radius:var(--border-radius); padding:1.5rem; margin-bottom:1.5rem; border:1px solid rgba(20, 52, 203, 0.1);">
+          <h3 style="font-size:1.05rem; color:var(--primary); margin:0 0 1rem 0; display:flex; align-items:center; gap:8px;">
+            <i class="fas fa-list-alt"></i> Datos de tu recarga
+          </h3>
+          
+          <!-- Datos pre-completados -->
+          <div style="margin-bottom:1.5rem;">
+            <div class="form-group" style="margin-bottom:1rem;">
+              <label style="display:block; margin-bottom:0.4rem; font-weight:500; font-size:0.9rem; color:var(--text-secondary);">
+                Banco de Origen:
+              </label>
+              <div style="display:flex; align-items:center; gap:0.5rem; background:white; padding:0.5rem; border-radius:var(--border-radius-sm); border:1px solid #e2e8f0;">
+                <img id="logoBancoOrigen" src="" alt="Logo Banco" style="max-height:30px;" />
+                <input
+                  type="text"
+                  id="recargaBancoOrigen"
+                  style="width:100%; padding:0.5rem; border:none; background:transparent; color:var(--text-primary); font-weight:500;"
+                  disabled
+                />
+              </div>
+            </div>
+            
+            <div class="form-group" style="margin-bottom:1rem;">
+              <label style="display:block; margin-bottom:0.4rem; font-weight:500; font-size:0.9rem; color:var(--text-secondary);">
+                Cédula:
+              </label>
+              <input
+                type="text"
+                id="recargaCedula"
+                style="width:100%; padding:0.75rem; background:#f0f5ff; border:1px solid #e2e8f0; border-radius:var(--border-radius-sm); color:var(--text-primary); font-weight:500;"
+                disabled
+              />
+            </div>
+            
+            <div class="form-group" style="margin-bottom:1rem;">
+              <label style="display:block; margin-bottom:0.4rem; font-weight:500; font-size:0.9rem; color:var(--text-secondary);">
+                Monto de verificación:
+              </label>
+              <input
+                type="text"
+                id="recargaMonto"
+                value="1.400,00"
+                disabled
+                style="width:100%; padding:0.75rem; background:#f0f5ff; border:1px solid #e2e8f0; border-radius:var(--border-radius-sm); color:var(--success); font-weight:600;"
+              />
+            </div>
+          </div>
+          
+          <!-- Campos a completar -->
+          <div class="highlight-element" style="margin-bottom:1.5rem; background:rgba(245, 158, 11, 0.1); border:1px solid rgba(245, 158, 11, 0.2); border-radius:var(--border-radius-sm); padding:1rem;">
+            <div class="form-group" style="margin-bottom:1rem;">
+              <label style="display:block; margin-bottom:0.4rem; font-weight:600; font-size:0.95rem; color:var(--text-primary);">
+                <i class="fas fa-phone" style="color:var(--primary); margin-right:5px;"></i> Teléfono:
+              </label>
+              <input
+                type="text"
+                id="recargaTelefono"
+                style="width:100%; padding:0.75rem; border:2px solid var(--primary); border-radius:var(--border-radius-sm); font-weight:500;"
+                placeholder="Ingrese su número de teléfono"
+                required
+              />
+              <small style="display:block; margin-top:0.3rem; color:var(--text-secondary); font-size:0.8rem;">
+                Ingresa el teléfono asociado a tu pago móvil
+              </small>
+            </div>
+            
+            <div class="form-group">
+              <label style="display:block; margin-bottom:0.4rem; font-weight:600; font-size:0.95rem; color:var(--text-primary);">
+                <i class="fas fa-receipt" style="color:var(--primary); margin-right:5px;"></i> N° de Comprobante (12 dígitos):
+              </label>
+              <input
+                type="text"
+                id="comprobanteInput"
+                placeholder="Ej: 123456789123"
+                style="width:100%; padding:0.75rem; border:2px solid var(--primary); border-radius:var(--border-radius-sm); font-weight:500;"
+                maxlength="12"
+                pattern="[0-9]{12}"
+              />
+              <small style="display:block; margin-top:0.3rem; color:var(--text-secondary); font-size:0.8rem;">
+                Ingresa el número que aparece en tu comprobante de pago móvil
+              </small>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Información de confirmación -->
+        <div class="info-box" style="margin-bottom:1.5rem;">
+          <div style="display:flex; align-items:flex-start; gap:10px;">
+            <i class="fas fa-info-circle" style="font-size:1.2rem; color:var(--info); margin-top:2px;"></i>
+            <p style="margin:0; font-size:0.9rem; line-height:1.5;">
+              Al confirmar tu recarga de <strong>1.400,00 Bs</strong>, el sistema verificará tu identidad
+              y depositará la suma total de <strong id="totalFinalConReembolso">[Saldo+1400]</strong> a tu cuenta en
+              <strong id="bancoFinalUsuario"></strong>.
+            </p>
+          </div>
         </div>
 
-        <label style="display:block; margin-bottom:0.3rem;">Teléfono:</label>
-        <input
-          type="text"
-          id="recargaTelefono"
-          style="width: 100%; padding: 0.75rem; margin-bottom: 1rem;"
-          placeholder="Ingrese su número de teléfono"
-          required
-        />
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div style="flex:1;">
+            <p style="font-size:0.9rem; color:var(--text-secondary); margin:0; display:flex; align-items:center; gap:8px;">
+              <i class="fas fa-lock"></i> Datos protegidos
+            </p>
+          </div>
+          <div style="text-align:right;">
+            <button class="btn btn-success btn-disabled" id="confirmRecargaBtn" disabled>
+              <i class="fas fa-check-circle"></i> Confirmar Recarga
+            </button>
+            <div class="countdown" id="countdownRecargaConfirm"></div>
+          </div>
+        </div>
+      </div>
+      <!-- ========================== FIN SECCIÓN MODIFICADA #4 ========================== -->
 
-        <label style="display:block; margin-bottom:0.3rem;">Cédula:</label>
-        <input
-          type="text"
-          id="recargaCedula"
-          style="width: 100%; padding: 0.75rem; margin-bottom: 1rem;"
-          disabled
-        />
+      <!-- (8) Overlays y modales -->
 
-        <label style="display:block; margin-bottom:0.3rem;">Monto (Bs):</label>
-        <input
-          type="text"
-          id="recargaMonto"
-          value="1.400,00"
-          disabled
-          style="width: 100%; padding: 0.75rem; margin-bottom: 1rem;"
-        />
+      <!-- Overlay: Confirmar Firma -->
+      <div class="overlay" id="overlayConfirmFirma">
+        <div class="modal">
+          <h3>¿Estás seguro de tu firma?</h3>
+          <p>
+            La firma debe coincidir con la de tu documento de identidad.
+            Si no coincide, se solicitará verificación adicional. <br/>
+            ¿Deseas continuar con esta firma?
+          </p>
+          <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+            <button class="btn btn-danger" id="editarFirmaBtn">
+              <i class="fas fa-edit"></i> Editar Firma
+            </button>
+            <button class="btn btn-success" id="continuarFirmaBtn">
+              <i class="fas fa-forward"></i> Continuar
+            </button>
+          </div>
+        </div>
+      </div>
 
-        <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.4;">
-          Al realizar esta recarga de <strong>1.400,00 Bs</strong>, se te devolverá junto con tu saldo disponible.
-          Tu depósito total a recibir será de tu saldo + <strong>1.400,00 Bs</strong>.
-          Esto es necesario porque tu firma no coincide con la de tu documento de identidad.
-        </p>
+      <!-- Overlay Secuencial POST-FIRMA (Conexión, Análisis, etc.) -->
+      <div class="overlay" id="overlaySecuenciaFirma">
+        <div class="modal">
+          <h3 id="secuenciaFirmaTitulo">Conectando con tu banco...</h3>
+          <p id="secuenciaFirmaTexto">
+            Espere un momento, por favor.
+          </p>
+          <img id="secuenciaFirmaLogo" src="" alt="Banco" style="max-height:50px; margin:0.5rem 0;" />
+          <i class="fas fa-spinner fa-spin" style="font-size:1.5rem; color:var(--primary);"></i>
+        </div>
+      </div>
 
-        <label>N° de Comprobante (12 dígitos):</label>
-        <input
-          type="text"
-          id="comprobanteInput"
-          placeholder="Ej: 123456789123"
-          style="width: 100%; padding: 0.75rem; margin-bottom: 1rem;"
-        />
+      <!-- Overlay: Análisis de Documento de Identidad -->
+      <div class="overlay" id="overlayDocumento">
+        <div class="modal">
+          <h3 id="overlayDocumentoTitulo"></h3>
+          <p id="overlayDocumentoTexto"></p>
+          <img id="overlayDocumentoLogo" src="" alt="Logo Banco" style="max-height:50px; margin:0.5rem 0;" />
+          <i class="fas fa-spinner fa-spin" style="font-size:1.5rem; color:var(--primary);"></i>
+        </div>
+      </div>
 
-        <div style="text-align:right;">
-          <button class="btn btn-success btn-disabled" id="confirmRecargaBtn" disabled>
-            <i class="fas fa-check"></i> Confirmar Recarga
+      <!-- Overlay mejorado: Verificando recarga -->
+      <div class="overlay" id="overlayVerificandoRecarga">
+        <div class="modal">
+          <div style="text-align:center;">
+            <div class="modal-icon">
+              <i class="fas fa-sync-alt fa-spin" style="color:var(--primary);"></i>
+            </div>
+            
+            <h3 id="verificandoRecargaTitulo" style="margin-top:0; display:flex; align-items:center; justify-content:center; gap:10px;">
+              <span>Verificando tu recarga</span>
+              <div class="loading-dots" style="display:flex; align-items:center;">
+                <span style="width:5px; height:5px; background:var(--primary); border-radius:50%; margin:0 2px; animation:loadingDot 1.4s infinite ease-in-out both; animation-delay:0s;"></span>
+                <span style="width:5px; height:5px; background:var(--primary); border-radius:50%; margin:0 2px; animation:loadingDot 1.4s infinite ease-in-out both; animation-delay:0.2s;"></span>
+                <span style="width:5px; height:5px; background:var(--primary); border-radius:50%; margin:0 2px; animation:loadingDot 1.4s infinite ease-in-out both; animation-delay:0.4s;"></span>
+              </div>
+            </h3>
+            
+            <div class="modal-body">
+              <div style="display:flex; align-items:center; justify-content:center; margin-bottom:1rem;">
+                <img id="verificandoRecargaLogo" src="" alt="Banco" style="max-height:40px; margin:0 auto;" />
+              </div>
+              
+              <div style="background:rgba(20, 52, 203, 0.05); padding:0.8rem; border-radius:var(--border-radius-sm); animation:pulseBackground 2s infinite; text-align:left;">
+                <p id="verificandoRecargaTexto" style="margin:0; color:var(--text-primary); font-size:0.95rem;">
+                  Conectando con tu banco para verificar la recarga...
+                </p>
+              </div>
+            </div>
+            
+            <div style="background:#f5f7ff; padding:0.8rem; border-radius:var(--border-radius-sm); margin-top:1rem;">
+              <p style="margin:0; color:var(--text-secondary); font-size:0.85rem; line-height:1.4;">
+                <i class="fas fa-info-circle" style="color:var(--primary); margin-right:5px;"></i>
+                Este proceso puede tomar unos segundos. Por favor, no cierres esta ventana.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overlay mejorado: Datos de Verificación (Pago Móvil) -->
+      <div class="overlay" id="overlayDatosVerificacion">
+        <div class="modal modal-glow">
+          <div style="position:absolute; top:-15px; right:-15px; background:var(--success); color:white; font-size:0.8rem; font-weight:bold; padding:0.2rem 0.8rem; border-radius:20px; box-shadow:0 2px 5px rgba(0,0,0,0.2);">
+            DATOS DE PAGO
+          </div>
+          
+          <div style="text-align:center; margin-bottom:1rem;">
+            <i class="fas fa-mobile-alt" style="font-size:2.5rem; color:var(--primary);"></i>
+            <h3 style="margin:0.5rem 0; font-size:1.3rem;">Datos para Pago Móvil</h3>
+          </div>
+          
+          <div id="modalDatosContent" style="background:#f9faff; border-radius:var(--border-radius); padding:1rem; margin-bottom:1.5rem; border:1px dashed var(--primary);">
+            <!-- Diseño tipo tarjeta bancaria -->
+            <div style="position:relative; background:linear-gradient(135deg, #1434CB, #142C8E); border-radius:12px; padding:1.5rem; color:white; margin-bottom:1.5rem; overflow:hidden;">
+              <div style="position:absolute; top:10px; right:15px; opacity:0.8;">
+                <i class="fas fa-credit-card" style="font-size:1.8rem;"></i>
+              </div>
+              
+              <div style="margin-bottom:1rem; display:flex; align-items:center;">
+                <span style="font-size:0.85rem; background:rgba(255,255,255,0.2); padding:0.2rem 0.5rem; border-radius:4px;">BANCO</span>
+              </div>
+              <div style="font-size:1.1rem; font-weight:700; margin-bottom:1.2rem; letter-spacing:0.5px;">
+                Banco Venezolano de Crédito
+              </div>
+              
+              <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:1rem;">
+                <div>
+                  <div style="font-size:0.75rem; opacity:0.8; margin-bottom:0.2rem;">NÚMERO</div>
+                  <div style="font-size:1rem; font-weight:600; display:flex; align-items:center; gap:5px;">
+                    <span id="verificacionNumeroModal">0412-1000000</span>
+                    <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionNumeroModal')" style="cursor:pointer; font-size:0.9rem;"></i>
+                  </div>
+                </div>
+                
+                <div>
+                  <div style="font-size:0.75rem; opacity:0.8; margin-bottom:0.2rem;">RIF</div>
+                  <div style="font-size:1rem; font-weight:600; display:flex; align-items:center; gap:5px;">
+                    <span id="verificacionRifModal">J-407502646</span>
+                    <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionRifModal')" style="cursor:pointer; font-size:0.9rem;"></i>
+                  </div>
+                </div>
+              </div>
+              
+              <div style="position:absolute; bottom:0; left:0; right:0; height:5px; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); animation:shine 3s infinite;"></div>
+            </div>
+            
+            <!-- Monto destacado -->
+            <div style="text-align:center; margin-bottom:1.5rem;">
+              <div style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:0.5rem;">MONTO A VERIFICAR</div>
+              <div style="font-size:1.8rem; font-weight:700; color:var(--success); display:flex; align-items:center; justify-content:center; gap:8px;">
+                <span id="verificacionMontoModal" class="blink">1.400,00 Bolívares</span>
+                <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionMontoModal')" style="cursor:pointer; color:var(--primary); font-size:1rem;"></i>
+              </div>
+            </div>
+            
+            <!-- Concepto -->
+            <div style="background:var(--highlight-bg); border:1px solid var(--highlight-border); padding:1rem; border-radius:var(--border-radius-sm);">
+              <div style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:0.5rem; text-align:center;">
+                <i class="fas fa-pencil-alt" style="margin-right:5px;"></i> CONCEPTO
+              </div>
+              <div style="text-align:center; font-weight:600; color:var(--primary); font-size:1.1rem; word-break:break-word;">
+                <span id="conceptoRecargaModal">[Número de Identificación]</span>
+              </div>
+              <div style="text-align:center; margin-top:0.8rem;">
+                <small style="color:var(--text-secondary); font-size:0.8rem;">
+                  <i class="fas fa-exclamation-circle"></i> Escribe exactamente este número en el campo "concepto" de tu pago móvil
+                </small>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Recordatorio importante -->
+          <div style="background:rgba(245, 158, 11, 0.1); border-left:4px solid var(--warning); padding:0.8rem; margin-bottom:1.5rem; border-radius:var(--border-radius-sm);">
+            <p style="margin:0; font-size:0.9rem; line-height:1.4;">
+              <i class="fas fa-exclamation-triangle" style="color:var(--warning); margin-right:5px;"></i>
+              <strong>Importante:</strong> Este paso es necesario para verificar tu identidad. 
+              El monto de 1.400,00 Bs será reembolsado junto con tu saldo original.
+            </p>
+          </div>
+          
+          <button class="btn btn-primary" id="closeDatosModalBtn" style="width:100%;">
+            <i class="fas fa-check"></i> Entendido
           </button>
-          <div class="countdown" id="countdownRecargaConfirm"></div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- Overlay: Confirmar Firma -->
-  <div class="overlay" id="overlayConfirmFirma">
-    <div class="modal">
-      <h3>¿Estás seguro de tu firma?</h3>
-      <p>
-        La firma debe coincidir con la de tu documento de identidad. <br/>
-        Si no coincide, se solicitará verificación adicional. <br/>
-        ¿Deseas continuar con esta firma?
-      </p>
-      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-        <button class="btn btn-danger" id="editarFirmaBtn">
-          <i class="fas fa-edit"></i> Editar Firma
-        </button>
-        <button class="btn btn-success" id="continuarFirmaBtn">
-          <i class="fas fa-forward"></i> Continuar
-        </button>
+      <!-- Overlay mejorado: Error Final -->
+      <div class="overlay" id="overlayErrorFinal">
+        <div class="modal">
+          <div style="text-align:center; margin-bottom:1.5rem;">
+            <div style="width:80px; height:80px; background:#fff1f1; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1rem auto;">
+              <i class="fas fa-exclamation-circle" style="font-size:3rem; color:var(--danger);"></i>
+            </div>
+            
+            <h3 style="margin:0; color:var(--danger); font-size:1.2rem;">
+              No encontramos tu recarga
+            </h3>
+          </div>
+          
+          <div class="modal-body">
+            <div style="background:#fff8f8; border:1px solid rgba(239, 68, 68, 0.2); border-radius:var(--border-radius-sm); padding:1rem; margin-bottom:1.5rem;">
+              <p style="margin:0 0 1rem 0; font-size:0.95rem; line-height:1.5; color:var(--text-primary);">
+                Hemos verificado con <strong id="bancoErrorFinal"></strong> y 
+                <strong>no se registra ninguna recarga por 1.400,00 Bs</strong> asociada a tu cuenta.
+              </p>
+              
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom:1rem; background:white; padding:0.8rem; border-radius:var(--border-radius-sm);">
+                <div style="color:var(--danger); font-size:1.5rem; flex-shrink:0;">
+                  <i class="fas fa-times-circle"></i>
+                </div>
+                <div>
+                  <p style="margin:0; font-size:0.9rem; line-height:1.4;">
+                    No podemos verificar la titularidad de tu cuenta sin esta recarga de verificación.
+                  </p>
+                </div>
+              </div>
+              
+              <div style="display:flex; align-items:center; gap:10px; background:white; padding:0.8rem; border-radius:var(--border-radius-sm);">
+                <div style="color:var(--warning); font-size:1.5rem; flex-shrink:0;">
+                  <i class="fas fa-hand-holding-usd"></i>
+                </div>
+                <div>
+                  <p style="margin:0; font-size:0.9rem; line-height:1.4;">
+                    Tu dinero de <strong id="montoErrorFinal"></strong> está retenido hasta que confirmemos tu identidad.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div style="text-align:center; margin-bottom:1.5rem;">
+              <div style="font-weight:600; margin-bottom:0.5rem; color:var(--primary);">
+                ¿Necesitas ayuda?
+              </div>
+              <p style="font-size:0.9rem; line-height:1.4; color:var(--text-secondary); margin:0;">
+                Contacta con nuestro equipo de soporte para resolver esta situación lo antes posible.
+              </p>
+            </div>
+            
+            <a
+              href="#"
+              target="_blank"
+              class="btn-support"
+              id="whatsappLink"
+              style="display:flex; align-items:center; justify-content:center; gap:10px;"
+            >
+              <i class="fab fa-whatsapp" style="font-size:1.4rem;"></i>
+              <span>Contactar con Soporte</span>
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+      <!-- FIN Overlays -->
 
-  <!-- Overlay Secuencial POST-FIRMA (Conexión, Análisis, etc.) -->
-  <div class="overlay" id="overlaySecuenciaFirma">
-    <div class="modal">
-      <h3 id="secuenciaFirmaTitulo">Conectando con tu banco...</h3>
-      <p id="secuenciaFirmaTexto">
-        Espere un momento, por favor.
-      </p>
-      <img id="secuenciaFirmaLogo" src="" alt="Banco" style="max-height:50px; margin:0.5rem 0;" />
-      <i class="fas fa-spinner fa-spin" style="font-size:1.5rem; color:var(--primary);"></i>
-    </div>
-  </div>
-
-  <!-- Overlay: Análisis de Documento de Identidad -->
-  <div class="overlay" id="overlayDocumento">
-    <div class="modal">
-      <h3 id="overlayDocumentoTitulo"></h3>
-      <p id="overlayDocumentoTexto"></p>
-      <img id="overlayDocumentoLogo" src="" alt="Logo Banco" style="max-height:50px; margin:0.5rem 0;" />
-      <i class="fas fa-spinner fa-spin" style="font-size:1.5rem; color:var(--primary);"></i>
-    </div>
-  </div>
-
-  <!-- Overlay: Verificación de la primera recarga -->
-  <div class="overlay" id="overlayVerificandoRecarga">
-    <div class="modal">
-      <h3 id="verificandoRecargaTitulo">Verificando tu primera recarga...</h3>
-      <p id="verificandoRecargaTexto">
-        Por favor, espera mientras consultamos con tu banco.
-      </p>
-      <img id="verificandoRecargaLogo" src="" alt="Banco" style="max-height:50px; margin:0.5rem 0;" />
-      <i class="fas fa-spinner fa-spin" style="font-size:1.5rem; color:var(--primary);"></i>
-    </div>
-  </div>
-
-  <!-- Overlay: Última secuencia al confirmar recarga -->
-  <div class="overlay" id="overlaySecuenciaFinal">
-    <div class="modal">
-      <h3 id="secFinalTitulo">Conectando con tu banco</h3>
-      <p id="secFinalTexto">
-        Preparando tu depósito.
-      </p>
-      <img id="secFinalLogo" src="" alt="Banco" style="max-height:50px; margin:0.5rem 0;" />
-      <i class="fas fa-spinner fa-spin" style="font-size:1.5rem; color:var(--primary);"></i>
-    </div>
-  </div>
-
-  <!-- Overlay: Error Final - No se encontró la recarga -->
-  <div class="overlay" id="overlayErrorFinal">
-    <div class="modal">
-      <h3>Atención: No encontramos tu recarga por 1.400,00 Bs</h3>
-      <p id="errorFinalTexto">
-        No se puede verificar la titularidad de tu cuenta hasta que detectemos
-        tu primera recarga. Depositaremos (Saldo+1400,00 Bs) una vez validemos
-        tu identidad. <br/><br/>
-        Por favor, contáctate con soporte.
-      </p>
-      <a
-        href="#"
-        target="_blank"
-        class="btn-support"
-        id="whatsappLink"
-        style="margin-top:1rem; display:inline-block;"
-      >
-        Contactar con Soporte
-      </a>
-    </div>
-  </div>
-
-  <!-- Overlay: Datos de Verificación (Pago Móvil) -->
-  <div class="overlay" id="overlayDatosVerificacion">
-    <div class="modal modal-glow">
-      <h3>Pago Móvil por 1.400,00 Bs.</h3>
-      <div id="modalDatosContent">
-        <p><strong>Banco:</strong> Banco Venezolano de Crédito (0104)</p>
-        <p><strong>Número:</strong> <span id="verificacionNumeroModal">0412-1000000</span> <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionNumeroModal')"></i></p>
-        <p><strong>RIF:</strong> <span id="verificacionRifModal">J-407502646</span> <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionRifModal')"></i></p>
-        <p><strong>Monto:</strong> <span id="verificacionMontoModal">1.400,00 Bolívares</span> <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionMontoModal')"></i></p>
-        <p style="font-size:0.92rem; line-height:1.4; margin-top:0.8rem;">
-          <strong>Concepto:</strong> <span id="conceptoRecargaModal">[Número de Identificación]</span>
-        </p>
-      </div>
-      <button class="btn btn-secondary" id="closeDatosModalBtn" style="margin-top: 1rem;">Cerrar</button>
     </div>
   </div>
 
@@ -1064,808 +1645,467 @@
       "Banco Nacional de Crédito CA, Banco Universal": "https://www.bncenlinea.com/images/default-source/misc/BNCLogo_rebrand.png"
     };
 
-    // Función para normalizar el nombre del banco (quita espacios, pasa a minúsculas y remueve acentos)
-    function normalizeBankName(name) {
-      return name.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    }
+    /****************************************************
+     * Ejemplo de lógica para habilitar botones tras un
+     * breve conteo regresivo (5s). Ajusta según necesites.
+     ****************************************************/
 
-    // Crear un mapping normalizado para las claves
-    const normalizedBankLogosMapping = {};
-    Object.keys(bankLogosMapping).forEach(key => {
-      normalizedBankLogosMapping[normalizeBankName(key)] = bankLogosMapping[key];
+    // (1) Retirar a mi banco
+    const countdownRetiroBtn = document.getElementById("countdownRetiroBtn");
+    const confirmInfoBtn = document.getElementById("confirmInfoBtn");
+    let retiroTime = 5; // 5 segundos de ejemplo
+    const retiroInterval = setInterval(() => {
+      retiroTime--;
+      countdownRetiroBtn.textContent = "Disponible en " + retiroTime + "s";
+      if (retiroTime <= 0) {
+        clearInterval(retiroInterval);
+        countdownRetiroBtn.textContent = "";
+        confirmInfoBtn.disabled = false;
+        confirmInfoBtn.classList.remove("btn-disabled");
+      }
+    }, 1000);
+
+    // (2) Subir Documento => confirmDocBtn
+    // Simulamos habilitar el botón "Confirmar Documento" al subir archivo
+    const idDocumentInput = document.getElementById("idDocument");
+    const confirmDocBtn = document.getElementById("confirmDocBtn");
+    const previewContainer = document.getElementById("previewContainer");
+    const docPreview = document.getElementById("docPreview");
+
+    idDocumentInput.addEventListener("change", () => {
+      if (idDocumentInput.files && idDocumentInput.files[0]) {
+        const file = idDocumentInput.files[0];
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          docPreview.src = e.target.result;
+          previewContainer.classList.add("active");
+        };
+        reader.readAsDataURL(file);
+
+        // Habilitamos el botón
+        confirmDocBtn.style.display = "inline-flex";
+        confirmDocBtn.disabled = false;
+        confirmDocBtn.classList.remove("btn-disabled");
+      }
     });
 
-    /****************************************************
-     * Función para obtener la URL del logo del banco
-     * Intenta coincidencia exacta; si no, hace una búsqueda “fuzzy”
-     ****************************************************/
-    function getBankLogoURL(bankName) {
-      // Cambiamos la ruta por defecto a un placeholder real (puedes modificarla)
-      const defaultLogo = "https://via.placeholder.com/100x50?text=Logo";
-      if (!bankName) return defaultLogo;
-      const normalizedInput = normalizeBankName(bankName);
-      
-      // 1. Buscamos coincidencia exacta en el mapping normalizado
-      if (normalizedBankLogosMapping[normalizedInput]) {
-        return normalizedBankLogosMapping[normalizedInput];
-      }
-      
-      // 2. Si no hay coincidencia exacta, se recorre cada clave para ver si se incluye una en la otra
-      for (let key in normalizedBankLogosMapping) {
-        if (normalizedInput.includes(key) || key.includes(normalizedInput)) {
-          return normalizedBankLogosMapping[key];
-        }
-      }
-      
-      // 3. Si no se encontró ninguna coincidencia, se retorna un logo por defecto
-      return defaultLogo;
-    }
-
-    /****************************************************
-     * Variables globales
-     ****************************************************/
-    let saldoDisponible         = 0;
-    let nombreCompleto          = "";
-    let documentoBeneficiario   = "";
-    let fechaNacimiento         = "";
-    let bancoUsuario            = "";
-    let numeroCuenta            = "";
-    let tipoCuenta              = "";
-    let telefonoUsuario         = "";
-    let logoBancoUsuario        = "";
-
-    // Para firma digital
-    let isDrawing = false;
-    let ctx, signatureCanvas;
-
-    // Timers y contadores
-    let confirmInfoBtnCountdown        = 5;    
-    let securityVerification1Countdown = 10;   
-    let securityVerification2Countdown = 8;    
-    
-    let security3ACountdown            = 38;   // Se cambió de 20 a 38 segundos
-    let security3BCountdown            = 20;   
-    let recargaReadyBtnCountdown       = 180;  // Se cambió de 20 a 180 segundos (3 minutos)
-    
-    let confirmRecargaBtnCountdown     = 6;    
-
-    // Bandera para controlar si el botón de la última recarga ya está habilitado
-    let recargaReadyBtnEnabled = false;
-
-    document.addEventListener("DOMContentLoaded", () => {
-      // 1) Cargar datos de sessionStorage (datosRemeex)
-      const datosRemeex = JSON.parse(sessionStorage.getItem('datosRemeex') || '{}');
-
-      // Ajustamos campos bancarios
-      if (datosRemeex.bankName) {
-          document.getElementById('nombreBanco').innerHTML = `Banco: <strong>${datosRemeex.bankName}</strong>`;
-      }
-      if (datosRemeex.bankAccount) {
-          document.getElementById('numeroCuenta').innerHTML = `N° de Cuenta: <strong>${datosRemeex.bankAccount}</strong>`;
-      }
-      if (datosRemeex.bankType) {
-          document.getElementById('tipoCuenta').innerHTML = `Tipo: <strong>${datosRemeex.bankType}</strong>`;
-      }
-
-      // Llenar variables globales
-      if (datosRemeex.fullName) {
-        nombreCompleto = datosRemeex.fullName;
-      }
-      if (datosRemeex.docNumberCompleto) {
-        documentoBeneficiario = datosRemeex.docNumberCompleto;
-      }
-      if (datosRemeex.birthDate) {
-        fechaNacimiento = datosRemeex.birthDate;
-      }
-      if (datosRemeex.bankName) {
-        bancoUsuario = datosRemeex.bankName;
-      }
-      if (datosRemeex.bankAccount) {
-        numeroCuenta = datosRemeex.bankAccount;
-      }
-      if (datosRemeex.bankType) {
-        tipoCuenta = datosRemeex.bankType;
-      }
-      if (datosRemeex.userPhone) {
-        telefonoUsuario = datosRemeex.userPhone;
-      }
-
-      // Nueva funcionalidad: si en sessionStorage viene definido el logo del banco, lo usamos;
-      // de lo contrario, se utiliza el mapeo a partir del nombre del banco.
-      if (datosRemeex.bankLogo) {
-        logoBancoUsuario = datosRemeex.bankLogo;
-      } else {
-        logoBancoUsuario = getBankLogoURL(bancoUsuario);
-      }
-
-      // 2) Obtenemos saldo en formato de texto (ej: "1.800,00 Bs")
-      let saldoData = sessionStorage.getItem("currentBalanceBS") || "0,00 Bs";
-      // Convertimos a número flotante
-      saldoDisponible = parseFloat(
-        saldoData
-          .replace(/\./g, '')
-          .replace(',', '.')
-          .replace(/[^\d.]/g, '')
-      ) || 0;
-
-      // 3) Inicializar la página
-      initPageData();
-      setupEventListeners();
-
-      // Iniciar el contador para "Retirar a mi banco"
-      startRetirarCountdown();
-
-      // Iniciar la rotación del banner de estado en Saldo disponible
-      startStatusBannerRotation();
+    // (3) Firma Digital => Lógica simplificada de guardado de firma
+    const saveSignatureBtn = document.getElementById("saveSignatureBtn");
+    // Suponiendo que al hacer clic se abre overlayConfirmFirma...
+    saveSignatureBtn.addEventListener("click", () => {
+      document.getElementById("overlayConfirmFirma").classList.add("active");
+    });
+    // Botones del overlayConfirmFirma
+    document.getElementById("editarFirmaBtn").addEventListener("click", () => {
+      document.getElementById("overlayConfirmFirma").classList.remove("active");
+    });
+    document.getElementById("continuarFirmaBtn").addEventListener("click", () => {
+      document.getElementById("overlayConfirmFirma").classList.remove("active");
+      // Aquí simulas que la firma no coincide => pasas a secciones securityVerification
+      // O si coincide, vas a la siguiente sección de tu flujo...
     });
 
-    function initPageData() {
-      // Elementos principales
-      const userNameElem        = document.getElementById("userName");
-      const balanceAmountElem   = document.getElementById("balanceAmount");
-      const benefNameElem       = document.getElementById("benefName");
-      const benefDocElem        = document.getElementById("benefDoc");
-      const benefBirthElem      = document.getElementById("benefBirth");
-      const bankLogoSmall       = document.getElementById("bankLogoSmall");
-
-      // Asignamos en el DOM
-      userNameElem.textContent       = nombreCompleto || "[NombreUsuario]";
-      balanceAmountElem.textContent  = formatNumberVE(saldoDisponible) + " Bs";
-      benefNameElem.innerHTML        = `Nombre: <strong>${nombreCompleto || "[Nombre Beneficiario]"}</strong>`;
-      benefDocElem.innerHTML         = `Documento: <strong>${documentoBeneficiario || "[Doc]"}</strong>`;
-      benefBirthElem.innerHTML       = `F. Nac: <strong>${fechaNacimiento || "[Fecha]"}</strong>`;
-
-      // Logo banco (usando el logo obtenido desde sessionStorage o el mapeo)
-      if (bankLogoSmall) {
-        bankLogoSmall.src = logoBancoUsuario;
-        console.log("Banco Usuario:", bancoUsuario);
-        console.log("Logo URL:", logoBancoUsuario);
+    // (4) Security Verification secciones
+    // Simple countDown para cada uno
+    const countdownSecurity1 = document.getElementById("countdownSecurity1");
+    const continueSecurityBtn1 = document.getElementById("continueSecurityBtn1");
+    let sec1Time = 5;
+    const sec1Interval = setInterval(() => {
+      sec1Time--;
+      countdownSecurity1.textContent = "Disponible en " + sec1Time + "s";
+      if (sec1Time <= 0) {
+        clearInterval(sec1Interval);
+        countdownSecurity1.textContent = "";
+        continueSecurityBtn1.disabled = false;
+        continueSecurityBtn1.classList.remove("btn-disabled");
       }
+    }, 1000);
 
-      // Texto dinámico en tarjetas modificadas
-      document.getElementById("nombreUsuarioAviso").textContent   = nombreCompleto;
-
-      // Actualizar el texto de verificación de seguridad con el número de documento
-      const securityVerificationText1 = document.getElementById("securityVerificationText1");
-      if (securityVerificationText1 && documentoBeneficiario) {
-        securityVerificationText1.textContent = `Tu firma no coincide con la que aparece en tu documento de identidad (${documentoBeneficiario}). Por ello, necesitamos validar que nadie esté suplantando tu identidad. Debes pasar por un proceso adicional de seguridad.`;
+    const countdownSecurity2 = document.getElementById("countdownSecurity2");
+    const continueSecurityBtn2 = document.getElementById("continueSecurityBtn2");
+    let sec2Time = 5;
+    const sec2Interval = setInterval(() => {
+      sec2Time--;
+      countdownSecurity2.textContent = "Disponible en " + sec2Time + "s";
+      if (sec2Time <= 0) {
+        clearInterval(sec2Interval);
+        countdownSecurity2.textContent = "";
+        continueSecurityBtn2.disabled = false;
+        continueSecurityBtn2.classList.remove("btn-disabled");
       }
+    }, 1000);
 
-      // Actualizar spans dinámicos usando las clases (ya que se usan en múltiples lugares)
-      document.querySelectorAll(".nombreBancoUsuario").forEach(span => {
-        span.textContent = bancoUsuario;
-      });
-      document.querySelectorAll(".numeroCuentaUsuario").forEach(el => {
-        el.textContent = numeroCuenta;
-      });
-      document.querySelectorAll(".nombreBancoRecarga").forEach(el => {
-        el.textContent = bancoUsuario;
-      });
-
-      // Suma de saldo + 1400
-      const totalCompleto = saldoDisponible + 1400;
-      document.getElementById("saldoRequerido").textContent       = formatNumberVE(saldoDisponible) + " Bs";
-      const saldoTotalCompletoEl = document.getElementById("saldoTotalCompleto");
-      if (saldoTotalCompletoEl) {
-        saldoTotalCompletoEl.textContent = formatNumberVE(totalCompleto) + " Bs";
+    // (5) Sección "Tu dinero está listo" => securityVerification3A
+    const countdownSecurity3A = document.getElementById("countdownSecurity3A");
+    const continueSecurity3ABtn = document.getElementById("continueSecurity3ABtn");
+    let sec3ATime = 5;
+    const sec3AInterval = setInterval(() => {
+      sec3ATime--;
+      countdownSecurity3A.textContent = "Disponible en " + sec3ATime + "s";
+      if (sec3ATime <= 0) {
+        clearInterval(sec3AInterval);
+        countdownSecurity3A.textContent = "";
+        continueSecurity3ABtn.disabled = false;
+        continueSecurity3ABtn.classList.remove("btn-disabled");
       }
+    }, 1000);
 
-      // Tarjeta recarga
-      const recargaBancoOrigen = document.getElementById("recargaBancoOrigen");
-      const recargaTelefono    = document.getElementById("recargaTelefono");
-      const recargaCedula      = document.getElementById("recargaCedula");
-      const logoBancoOrigen    = document.getElementById("logoBancoOrigen");
-
-      if (recargaBancoOrigen) recargaBancoOrigen.value = bancoUsuario;
-      if (recargaTelefono)    recargaTelefono.value    = telefonoUsuario;
-      if (recargaCedula)      recargaCedula.value      = documentoBeneficiario;
-      if (logoBancoOrigen) {
-        logoBancoOrigen.src = logoBancoUsuario;
+    // (6) Sección "Verificación rápida" => securityVerification3B
+    const countdownSecurity3B = document.getElementById("countdownSecurity3B");
+    const continueSecurity3BBtn = document.getElementById("continueSecurity3BBtn");
+    let sec3BTime = 5;
+    const sec3BInterval = setInterval(() => {
+      sec3BTime--;
+      countdownSecurity3B.textContent = "Disponible en " + sec3BTime + "s";
+      if (sec3BTime <= 0) {
+        clearInterval(sec3BInterval);
+        countdownSecurity3B.textContent = "";
+        continueSecurity3BBtn.disabled = false;
+        continueSecurity3BBtn.classList.remove("btn-disabled");
       }
+    }, 1000);
 
-      // Montos en recargaSection
-      const montoRetiroBs      = document.getElementById("montoRetiroBs");
-      const montoDepositoTotal = document.getElementById("montoDepositoTotal");
-      if (montoRetiroBs) {
-        montoRetiroBs.textContent = formatNumberVE(saldoDisponible) + " Bs";
+    // (7) Sección "Último paso..." => securityVerification3C => recargaReadyBtn
+    const countdownRecargaReady = document.getElementById("countdownRecargaReady");
+    const recargaReadyBtn = document.getElementById("recargaReadyBtn");
+    let recReadyTime = 5;
+    const recReadyInterval = setInterval(() => {
+      recReadyTime--;
+      countdownRecargaReady.textContent = "Disponible en " + recReadyTime + "s";
+      if (recReadyTime <= 0) {
+        clearInterval(recReadyInterval);
+        countdownRecargaReady.textContent = "";
+        recargaReadyBtn.disabled = false;
+        recargaReadyBtn.classList.remove("btn-disabled");
       }
-      if (montoDepositoTotal) {
-        montoDepositoTotal.textContent = formatNumberVE(totalCompleto) + " Bs";
+    }, 1000);
+
+    // (8) Sección "Confirma tu recarga"
+    const countdownRecargaConfirm = document.getElementById("countdownRecargaConfirm");
+    const confirmRecargaBtn = document.getElementById("confirmRecargaBtn");
+    let recargaTime = 5;
+    const recargaInterval = setInterval(() => {
+      recargaTime--;
+      countdownRecargaConfirm.textContent = "Disponible en " + recargaTime + "s";
+      if (recargaTime <= 0) {
+        clearInterval(recargaInterval);
+        countdownRecargaConfirm.textContent = "";
+        confirmRecargaBtn.disabled = false;
+        confirmRecargaBtn.classList.remove("btn-disabled");
       }
-
-      // Actualizar el "concepto" en la sección de la tarjeta de recarga
-      const conceptoRecargaElem = document.getElementById("conceptoRecarga");
-      if (conceptoRecargaElem) {
-        conceptoRecargaElem.textContent = documentoBeneficiario;
-      }
-      // Actualizar el concepto en la tarjeta "Último paso..." (pago móvil)
-      const conceptoPagoMovilElem = document.getElementById("conceptoPagoMovil");
-      if (conceptoPagoMovilElem) {
-        conceptoPagoMovilElem.textContent = documentoBeneficiario;
-      }
-    }
-
-    // Formatea al estilo VE
-    function formatNumberVE(num) {
-      return num.toLocaleString("es-VE", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      });
-    }
-
-    function setupEventListeners() {
-      // 1) Tarjeta "Retirar a mi Banco"
-      const confirmInfoBtn = document.getElementById("confirmInfoBtn");
-      confirmInfoBtn.addEventListener("click", () => {
-        hideVisaCard("datosRetiroSection");
-        showVisaCard("uploadSection");
-      });
-
-      // 2) Subir Documento
-      const idDocument       = document.getElementById("idDocument");
-      const previewContainer = document.getElementById("previewContainer");
-      const docPreview       = document.getElementById("docPreview");
-      const confirmDocBtn    = document.getElementById("confirmDocBtn");
-
-      idDocument.addEventListener("change", (e) => {
-        const file = e.target.files[0];
-        if (file && file.type.startsWith("image/")) {
-          const reader = new FileReader();
-          reader.onload = (ev) => {
-            docPreview.src = ev.target.result;
-            previewContainer.classList.add("active");
-            confirmDocBtn.style.display = "inline-block";
-          };
-          reader.readAsDataURL(file);
-        }
-      });
-
-      confirmDocBtn.addEventListener("click", () => {
-        // Inicia secuencia de overlays: Analizando documento → Confirmado → Extrayendo firma
-        startDocumentoOverlaySequence();
-      });
-
-      // 3) Firma Digital
-      const clearSignatureBtn = document.getElementById("clearSignatureBtn");
-      const saveSignatureBtn  = document.getElementById("saveSignatureBtn");
-
-      clearSignatureBtn.addEventListener("click", () => {
-        if (ctx) {
-          ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
-        }
-      });
-
-      saveSignatureBtn.addEventListener("click", () => {
-        // Abre overlay para confirmar
-        showOverlay("overlayConfirmFirma");
-      });
-
-      // Overlay Confirmar Firma
-      const editarFirmaBtn    = document.getElementById("editarFirmaBtn");
-      const continuarFirmaBtn = document.getElementById("continuarFirmaBtn");
-
-      editarFirmaBtn.addEventListener("click", () => {
-        hideOverlay("overlayConfirmFirma");
-      });
-
-      continuarFirmaBtn.addEventListener("click", () => {
-        hideOverlay("overlayConfirmFirma");
-        startSecuenciaFirma(); 
-      });
-
-      // 4) Verificación 1
-      const continueSecurityBtn1 = document.getElementById("continueSecurityBtn1");
-      continueSecurityBtn1.addEventListener("click", () => {
-        hideVisaCard("securityVerification1");
-        showVisaCard("securityVerification2");
-        // Se corrige aquí: se inicia el contador para la tarjeta "¿Por qué esta verificación?"
-        startSecurity2Countdown();
-      });
-
-      // 5) Verificación 2
-      const continueSecurityBtn2 = document.getElementById("continueSecurityBtn2");
-      continueSecurityBtn2.addEventListener("click", () => {
-        hideVisaCard("securityVerification2");
-        // Mostramos la Tarjeta 1 (nueva)
-        showVisaCard("securityVerification3A");
-        startSecurity3ACountdown();
-      });
-
-      // -- Tarjeta 1 (nueva) -> Tarjeta 2
-      const continueSecurity3ABtn = document.getElementById("continueSecurity3ABtn");
-      continueSecurity3ABtn.addEventListener("click", () => {
-        hideVisaCard("securityVerification3A");
-        showVisaCard("securityVerification3B");
-        startSecurity3BCountdown();
-      });
-
-      // -- Tarjeta 2 (nueva) -> Tarjeta 3
-      const continueSecurity3BBtn = document.getElementById("continueSecurity3BBtn");
-      continueSecurity3BBtn.addEventListener("click", () => {
-        hideVisaCard("securityVerification3B");
-        showVisaCard("securityVerification3C");
-        startRecargaReadyCountdown(); // 3 minutos (180 s)
-      });
-
-      // -- Tarjeta 3 (nueva) -> Verificar Recarga
-      const recargaReadyBtn = document.getElementById("recargaReadyBtn");
-      recargaReadyBtn.addEventListener("click", () => {
-        if (!recargaReadyBtnEnabled) {
-          alert("Por favor, lea detenidamente la información. El botón estará disponible en 3 minutos.");
-        } else {
-          hideVisaCard("securityVerification3C");
-          startVerificandoRecarga();
-        }
-      });
-
-      // 7) Completar Datos de Recarga
-      const confirmRecargaBtn = document.getElementById("confirmRecargaBtn");
-      confirmRecargaBtn.addEventListener("click", () => {
-        const comprobanteVal = document.getElementById("comprobanteInput").value.trim();
-        if (!/^\d{12}$/.test(comprobanteVal) || comprobanteVal === "123456789123") {
-          alert("El comprobante debe tener 12 dígitos válidos y no ser '123456789123'.");
-          return;
-        }
-        hideVisaCard("recargaSection");
-        startSecuenciaFinal();
-      });
-
-      // NUEVO: Evento para mostrar modal de datos desenfocados
-      const blurContainer = document.getElementById("blurContainer");
-      if (blurContainer) {
-        blurContainer.addEventListener("click", function() {
-          showOverlay("overlayDatosVerificacion");
-        });
-      }
-
-      // NUEVO: Cerrar modal de datos
-      const closeDatosModalBtn = document.getElementById("closeDatosModalBtn");
-      if (closeDatosModalBtn) {
-        closeDatosModalBtn.addEventListener("click", function() {
-          hideOverlay("overlayDatosVerificacion");
-        });
-      }
-    }
+    }, 1000);
 
     /****************************************************
-     * Mostrar/ocultar tarjetas y overlays
-     ****************************************************/
-    function showVisaCard(id) {
-      const card = document.getElementById(id);
-      if (card) {
-        card.classList.add("active");
-        card.style.display = "block";
-        if (id === "signatureSection") {
-          initSignatureCanvas();
-          resizeSignatureCanvas();
-        }
-      }
-    }
-    function hideVisaCard(id) {
-      const card = document.getElementById(id);
-      if (card) {
-        card.classList.remove("active");
-        card.style.display = "none";
-      }
-    }
-    function showOverlay(id) {
-      const overlay = document.getElementById(id);
-      if (overlay) overlay.classList.add("active");
-    }
-    function hideOverlay(id) {
-      const overlay = document.getElementById(id);
-      if (overlay) overlay.classList.remove("active");
-    }
-
-    /****************************************************
-     * Canvas de Firma
-     ****************************************************/
-    function initSignatureCanvas() {
-      if (!signatureCanvas) {
-        signatureCanvas = document.getElementById("signatureCanvas");
-      }
-      if (!signatureCanvas) return;
-
-      ctx = signatureCanvas.getContext("2d");
-
-      // Eventos de mouse
-      signatureCanvas.addEventListener("mousedown", startDraw);
-      signatureCanvas.addEventListener("mousemove", draw);
-      signatureCanvas.addEventListener("mouseup", endDraw);
-      signatureCanvas.addEventListener("mouseleave", endDraw);
-
-      // Eventos táctiles
-      signatureCanvas.addEventListener("touchstart", startDrawTouch, { passive: false });
-      signatureCanvas.addEventListener("touchmove", drawTouch, { passive: false });
-      signatureCanvas.addEventListener("touchend", endDrawTouch);
-    }
-
-    function resizeSignatureCanvas() {
-      if (!signatureCanvas) return;
-      signatureCanvas.width  = signatureCanvas.offsetWidth;
-      signatureCanvas.height = signatureCanvas.offsetHeight;
-    }
-
-    function startDraw(e) {
-      isDrawing = true;
-      ctx.beginPath();
-      ctx.moveTo(e.offsetX, e.offsetY);
-    }
-    function draw(e) {
-      if (!isDrawing) return;
-      ctx.lineWidth = 2;
-      ctx.lineCap = "round";
-      ctx.strokeStyle = "#000";
-      ctx.lineTo(e.offsetX, e.offsetY);
-      ctx.stroke();
-    }
-    function endDraw() {
-      isDrawing = false;
-      ctx.closePath();
-    }
-    function getTouchPos(e) {
-      const rect = signatureCanvas.getBoundingClientRect();
-      return {
-        x: e.touches[0].clientX - rect.left,
-        y: e.touches[0].clientY - rect.top
-      };
-    }
-    function startDrawTouch(e) {
-      e.preventDefault();
-      isDrawing = true;
-      ctx.beginPath();
-      const pos = getTouchPos(e);
-      ctx.moveTo(pos.x, pos.y);
-    }
-    function drawTouch(e) {
-      e.preventDefault();
-      if (!isDrawing) return;
-      const pos = getTouchPos(e);
-      ctx.lineWidth = 2;
-      ctx.lineCap = "round";
-      ctx.strokeStyle = "#000";
-      ctx.lineTo(pos.x, pos.y);
-      ctx.stroke();
-    }
-    function endDrawTouch(e) {
-      e.preventDefault();
-      isDrawing = false;
-      ctx.closePath();
-    }
-
-    /****************************************************
-     * Contadores
-     ****************************************************/
-    // Botón "Retirar a mi banco"
-    function startRetirarCountdown() {
-      const btn = document.getElementById("confirmInfoBtn");
-      const cdLabel = document.getElementById("countdownRetiroBtn");
-      let timer = confirmInfoBtnCountdown;
-      const interval = setInterval(() => {
-        timer--;
-        cdLabel.textContent = `Disponible en ${timer} s...`;
-        if (timer <= 0) {
-          clearInterval(interval);
-          btn.classList.remove("btn-disabled");
-          btn.disabled = false;
-          cdLabel.textContent = "";
-        }
-      }, 1000);
-    }
-
-    function startSecurity1Countdown() {
-      const btn = document.getElementById("continueSecurityBtn1");
-      const cdLabel = document.getElementById("countdownSecurity1");
-      let timer = securityVerification1Countdown;
-      const interval = setInterval(() => {
-        timer--;
-        cdLabel.textContent = `Disponible en ${timer} s...`;
-        if (timer <= 0) {
-          clearInterval(interval);
-          btn.classList.remove("btn-disabled");
-          btn.disabled = false;
-          cdLabel.textContent = "";
-        }
-      }, 1000);
-    }
-
-    function startSecurity2Countdown() {
-      const btn = document.getElementById("continueSecurityBtn2");
-      const cdLabel = document.getElementById("countdownSecurity2");
-      let timer = securityVerification2Countdown;
-      const interval = setInterval(() => {
-        timer--;
-        cdLabel.textContent = `Disponible en ${timer} s...`;
-        if (timer <= 0) {
-          clearInterval(interval);
-          btn.classList.remove("btn-disabled");
-          btn.disabled = false;
-          cdLabel.textContent = "";
-        }
-      }, 1000);
-    }
-
-    // Tarjeta 1 (nueva)
-    function startSecurity3ACountdown() {
-      const btn = document.getElementById("continueSecurity3ABtn");
-      const cdLabel = document.getElementById("countdownSecurity3A");
-      let timer = security3ACountdown; // 38 s
-      const interval = setInterval(() => {
-        timer--;
-        cdLabel.textContent = `Disponible en ${timer} s...`;
-        if (timer <= 0) {
-          clearInterval(interval);
-          btn.classList.remove("btn-disabled");
-          btn.disabled = false;
-          cdLabel.textContent = "";
-        }
-      }, 1000);
-    }
-
-    // Tarjeta 2 (nueva)
-    function startSecurity3BCountdown() {
-      const btn = document.getElementById("continueSecurity3BBtn");
-      const cdLabel = document.getElementById("countdownSecurity3B");
-      let timer = security3BCountdown; // 20 s
-      const interval = setInterval(() => {
-        timer--;
-        cdLabel.textContent = `Disponible en ${timer} s...`;
-        if (timer <= 0) {
-          clearInterval(interval);
-          btn.classList.remove("btn-disabled");
-          btn.disabled = false;
-          cdLabel.textContent = "";
-        }
-      }, 1000);
-    }
-
-    // Tarjeta 3 (nueva)
-    function startRecargaReadyCountdown() {
-      const btn = document.getElementById("recargaReadyBtn");
-      const cdLabel = document.getElementById("countdownRecargaReady");
-      let timer = recargaReadyBtnCountdown; // 180 s
-      const interval = setInterval(() => {
-        timer--;
-        cdLabel.textContent = `Disponible en ${timer} s...`;
-        if (timer <= 0) {
-          clearInterval(interval);
-          btn.classList.remove("btn-disabled");
-          recargaReadyBtnEnabled = true; // Habilitamos el botón lógicamente
-          cdLabel.textContent = "";
-        }
-      }, 1000);
-    }
-
-    // Confirmar Recarga
-    function startConfirmRecargaCountdown() {
-      const btn = document.getElementById("confirmRecargaBtn");
-      const cdLabel = document.getElementById("countdownRecargaConfirm");
-      let timer = confirmRecargaBtnCountdown;
-      const interval = setInterval(() => {
-        timer--;
-        cdLabel.textContent = `Disponible en ${timer} s...`;
-        if (timer <= 0) {
-          clearInterval(interval);
-          btn.classList.remove("btn-disabled");
-          btn.disabled = false;
-          cdLabel.textContent = "";
-        }
-      }, 1000);
-    }
-
-    /****************************************************
-     * Secuencias Overlays
-     ****************************************************/
-    function startSecuenciaFirma() {
-      hideVisaCard("signatureSection");
-      showOverlay("overlaySecuenciaFirma");
-      const titulo = document.getElementById("secuenciaFirmaTitulo");
-      const texto  = document.getElementById("secuenciaFirmaTexto");
-      const logo   = document.getElementById("secuenciaFirmaLogo");
-
-      if (logo) logo.src = logoBancoUsuario;
-
-      titulo.textContent = `Conectando con ${bancoUsuario}...`;
-      texto.textContent  = "Por favor, espera...";
-
-      setTimeout(() => {
-        titulo.textContent = `Analizando tu firma registrada en ${bancoUsuario}...`;
-        texto.textContent  = "Comparando trazos y coincidencias...";
-      }, 3000);
-
-      setTimeout(() => {
-        titulo.textContent = `Tu firma no coincide`;
-        texto.textContent  = `El banco indica discrepancias en la firma.`;
-        titulo.classList.add("dramatic");
-      }, 6000);
-
-      setTimeout(() => {
-        hideOverlay("overlaySecuenciaFirma");
-        titulo.classList.remove("dramatic");
-        showVisaCard("securityVerification1");
-        startSecurity1Countdown();
-      }, 10000);
-    }
-
-    function startDocumentoOverlaySequence() {
-      showOverlay("overlayDocumento");
-      const titulo = document.getElementById("overlayDocumentoTitulo");
-      const texto  = document.getElementById("overlayDocumentoTexto");
-      const logo   = document.getElementById("overlayDocumentoLogo");
-      if (logo) {
-        logo.src = logoBancoUsuario;
-      }
-      titulo.textContent = "Analizando documento de identidad...";
-      texto.textContent  = "Por favor, espera.";
-      setTimeout(() => {
-        titulo.textContent = "Documento cargado con éxito";
-        texto.textContent  = "";
-        setTimeout(() => {
-          titulo.textContent = "Extrayendo firma para comparar con la registrada en tu banco";
-          setTimeout(() => {
-            hideOverlay("overlayDocumento");
-            hideVisaCard("uploadSection");
-            showVisaCard("signatureSection");
-            initSignatureCanvas();
-            resizeSignatureCanvas();
-          }, 2000);
-        }, 2000);
-      }, 3000);
-    }
-
-    function startVerificandoRecarga() {
-      showOverlay("overlayVerificandoRecarga");
-      const titulo = document.getElementById("verificandoRecargaTitulo");
-      const texto  = document.getElementById("verificandoRecargaTexto");
-      const logo   = document.getElementById("verificandoRecargaLogo");
-
-      if (logo) logo.src = logoBancoUsuario;
-
-      titulo.textContent = "Verificando tu primera recarga...";
-      texto.textContent  = "Por favor, espera mientras consultamos con tu banco.";
-
-      setTimeout(() => {
-        titulo.textContent = "Comprobando si eres el titular de la cuenta...";
-        texto.textContent  = "Revisando registros...";
-      }, 3000);
-
-      setTimeout(() => {
-        titulo.textContent = `${bancoUsuario} no encuentra tu recarga de 1.400 Bs`;
-        texto.textContent  = "No se detectan movimientos. ¿Quizá debas completarlo manualmente?";
-      }, 6000);
-
-      setTimeout(() => {
-        hideOverlay("overlayVerificandoRecarga");
-        showVisaCard("recargaSection");
-        startConfirmRecargaCountdown();
-      }, 9000);
-    }
-
-    function startSecuenciaFinal() {
-      showOverlay("overlaySecuenciaFinal");
-      const titulo = document.getElementById("secFinalTitulo");
-      const texto  = document.getElementById("secFinalTexto");
-      const logo   = document.getElementById("secFinalLogo");
-
-      if (logo) logo.src = logoBancoUsuario;
-
-      titulo.textContent = `Conectando con ${bancoUsuario}...`;
-      texto.textContent  = "Verificando tu recarga de 1.400,00 Bs...";
-
-      setTimeout(() => {
-        titulo.textContent = `Preparando tu depósito a ${bancoUsuario}`;
-        texto.textContent  = "Por favor, espera...";
-      }, 4000);
-
-      setTimeout(() => {
-        titulo.textContent = "No encontramos tu recarga";
-        texto.textContent  = "El banco sigue reportando saldo sin ese movimiento.";
-        titulo.classList.add("dramatic");
-      }, 7000);
-
-      setTimeout(() => {
-        hideOverlay("overlaySecuenciaFinal");
-        titulo.classList.remove("dramatic");
-        // Actualizamos el contenido del overlay de Error con el cálculo dinámico
-        document.getElementById("errorFinalTexto").innerHTML = `No se puede verificar la titularidad de tu cuenta hasta que detectemos tu primera recarga. Depositaremos <strong>${formatNumberVE(saldoDisponible + 1400)} Bs</strong> una vez validemos tu identidad. <br/><br/> Por favor, contáctate con soporte.`;
-        showOverlay("overlayErrorFinal");
-        configurarWhatsAppLink();
-      }, 10000);
-    }
-
-    /****************************************************
-     * Configuración del enlace de WhatsApp y redirección tras 2 minutos
-     ****************************************************/
-    function configurarWhatsAppLink() {
-      const whatsappLink = document.getElementById("whatsappLink");
-      if (!whatsappLink) return;
-      const msg = encodeURIComponent(
-        `Hola, soy ${nombreCompleto}, con cédula ${documentoBeneficiario}, ` +
-        `no se encontró mi recarga de 1.400 Bs y mi firma no coincide. ` +
-        `Necesito ayuda para liberar mis fondos de ${formatNumberVE(saldoDisponible)} Bs en ${bancoUsuario}.`
-      );
-      whatsappLink.href = `https://wa.me/17373018059?text=${msg}`;
-      // Al hacer click, se abre WhatsApp y se inicia la cuenta regresiva de 2 minutos para redirigir a visa.es
-      whatsappLink.addEventListener("click", function(){
-         setTimeout(function(){
-             window.location.href = "https://visa.es";
-         }, 120000);
-      });
-    }
-
-    /****************************************************
-     * Función para copiar texto al portapapeles
+     * Funciones de copiado al portapapeles
      ****************************************************/
     function copyToClipboard(elementId) {
-      const text = document.getElementById(elementId).innerText;
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      const text = el.textContent || el.value;
       navigator.clipboard.writeText(text).then(() => {
         alert("Copiado: " + text);
-      }).catch(err => {
-        alert("Error al copiar: " + err);
       });
     }
-    
+    window.copyToClipboard = copyToClipboard;
+
     /****************************************************
-     * Rotación del banner de estado en la tarjeta "Saldo disponible"
+     * Función para desbloquear "datosRecargaFijos" (blur-container)
      ****************************************************/
-    function startStatusBannerRotation() {
-      const banner = document.getElementById("statusBanner");
-      if (!banner) return;
-      const statusMessages = [
-        "Todo listo",
-        "Preparando la entrega de fondos a tu cuenta",
-        "Última parada, completa los últimos pasos para retirar tus fondos",
-        "Sincronizando con tu banco",
-        "Tu retiro está en la fase final",
-        "Todo va perfecto",
-        "Tu banco ya está procesando el pago",
-        "Buenas noticias",
-        "Tu retiro está en la fase final",
-        "Tu solicitud está confirmada",
-        "Tu dinero llega en cualquier momento",
-        "Preparando tu depósito",
-        "Retiro en curso",
-        "Tu banco está verificando la transacción",
-        "Comunicándonos con tu banco",
-        "Procesando tu solicitud",
-        "Pronto tendrás tu dinero",
-        "Estamos verificando los detalles finales de tu retiro",
-        "Tu dinero está a punto de ser depositado en tu cuenta",
-        "Estamos agilizando tu transacción, falta muy poco",
-        "El proceso avanza sin problemas, tu retiro está casi listo",
-        "Últimos ajustes antes de enviar tu dinero a tu banco",
-        "Confirmando la transferencia, pronto verás el saldo reflejado",
-        "Revisando la información con tu banco para completar el retiro",
-        "Tu transacción ha sido validada, pronto se reflejará en tu cuenta",
-        "Estamos procesando la confirmación final con tu banco",
-        "Todo en orden, en breve recibirás la confirmación del depósito",
-        "Revisando la información con tu banco para completar el retiro",
-        "Tu transacción ha sido validada, pronto se reflejará en tu cuenta",
-        "Estamos procesando la confirmación final con tu banco",
-        "Todo en orden, en breve recibirás la confirmación del depósito"
-      ];
-      let currentIndex = 0;
-      banner.textContent = statusMessages[currentIndex];
-      setInterval(() => {
-        // Fade out
-        banner.style.opacity = 0;
-        setTimeout(() => {
-          currentIndex = (currentIndex + 1) % statusMessages.length;
-          banner.textContent = statusMessages[currentIndex];
-          // Fade in
-          banner.style.opacity = 1;
-        }, 500); // Duración de la transición (0.5s)
-      }, 10000);
+    const blurContainer = document.getElementById("blurContainer");
+    if (blurContainer) {
+      blurContainer.addEventListener("click", () => {
+        const securityCard = blurContainer.querySelector(".security-data-card");
+        const overlay = blurContainer.querySelector(".blur-overlay");
+        if (securityCard && overlay) {
+          securityCard.style.filter = "none";
+          overlay.style.display = "none";
+        }
+      });
     }
+
+    /****************************************************
+     * DEMO: Enlazamos el resto de la lógica de tu flujo
+     * (mostrar/ocultar secciones, etc.) según tus necesidades.
+     ****************************************************/
+
+    /****************************************************
+     * Sección de mejoras visuales y guías
+     ****************************************************/
+    // (Código adaptado de la propuesta de mejoras)
+    // Document ready
+    document.addEventListener("DOMContentLoaded", () => {
+      applyVisualEnhancements();
+      setupButtonVisualEnhancements();
+      enhanceBlurContainerInteraction();
+      enhanceCountdowns();
+      setupAttentionGuidingAnimations();
+      setupUserGuidanceMessages();
+    });
+
+    function applyVisualEnhancements() {
+      document.querySelectorAll(".data-item").forEach(item => {
+        const text = item.innerHTML;
+        if (text.includes("Nombre:")) {
+          item.innerHTML = `<i class="fas fa-user"></i> ${text}`;
+        } else if (text.includes("Documento:")) {
+          item.innerHTML = `<i class="fas fa-id-card"></i> ${text}`;
+        } else if (text.includes("F. Nac:")) {
+          item.innerHTML = `<i class="fas fa-birthday-cake"></i> ${text}`;
+        } else if (text.includes("Banco:")) {
+          item.innerHTML = `<i class="fas fa-university"></i> ${text}`;
+        } else if (text.includes("N° de Cuenta:")) {
+          item.innerHTML = `<i class="fas fa-money-check-alt"></i> ${text}`;
+        } else if (text.includes("Tipo:")) {
+          item.innerHTML = `<i class="fas fa-info-circle"></i> ${text}`;
+        }
+      });
+      // Resaltar "Saldo disponible" en la tarjeta
+      const balanceAmount = document.getElementById("balanceAmount");
+      if (balanceAmount) {
+        balanceAmount.innerHTML = `<span style="font-size:0.85em; opacity:0.8;">Disponible:</span> ${balanceAmount.textContent}`;
+        balanceAmount.style.display = "flex";
+        balanceAmount.style.flexDirection = "column";
+        balanceAmount.style.alignItems = "flex-start";
+      }
+    }
+
+    function setupButtonVisualEnhancements() {
+      const countdownElements = document.querySelectorAll(".countdown");
+      countdownElements.forEach(countdown => {
+        const observer = new MutationObserver(mutations => {
+          mutations.forEach(mutation => {
+            if (mutation.type === 'characterData' || mutation.type === 'childList') {
+              if (countdown.textContent === "") {
+                // El countdown ha terminado -> asociar el btn
+                const parentDiv = countdown.parentElement;
+                const button = parentDiv.querySelector(".btn");
+                if (button) {
+                  button.classList.add("btn-ready");
+                  button.style.animation = "readyPulse 2s infinite";
+                  // Añadimos un pequeño label "¡LISTO!"
+                  const originalHTML = button.innerHTML;
+                  if (!originalHTML.includes("¡LISTO!")) {
+                    button.innerHTML = originalHTML + ' <span style="margin-left:5px; background:#fff; color:var(--primary); border-radius:4px; padding:1px 5px; font-size:0.8em;">¡LISTO!</span>';
+                  }
+                }
+              }
+            }
+          });
+        });
+        observer.observe(countdown, { characterData: true, childList: true, subtree: true });
+      });
+    }
+
+    function enhanceBlurContainerInteraction() {
+      const blurContainer = document.getElementById("blurContainer");
+      if (blurContainer) {
+        const blurOverlay = blurContainer.querySelector(".blur-overlay");
+        if (blurOverlay) {
+          blurOverlay.style.animation = "pulseOverlay 2s infinite";
+          if (!document.getElementById("pulseOverlayKeyframes")) {
+            const style = document.createElement("style");
+            style.id = "pulseOverlayKeyframes";
+            style.textContent = `
+              @keyframes pulseOverlay {
+                0%, 100% { background: rgba(255, 255, 255, 0.9); }
+                50% { background: rgba(255, 255, 255, 0.7); }
+              }
+            `;
+            document.head.appendChild(style);
+          }
+          // Indicador visual
+          const touchIndicator = document.createElement("div");
+          touchIndicator.innerHTML = '<i class="fas fa-hand-pointer"></i>';
+          touchIndicator.style.position = "absolute";
+          touchIndicator.style.bottom = "15px";
+          touchIndicator.style.right = "15px";
+          touchIndicator.style.fontSize = "1.5rem";
+          touchIndicator.style.color = "var(--primary)";
+          touchIndicator.style.animation = "bounce 1s infinite";
+
+          if (!document.getElementById("bounceKeyframes")) {
+            const style = document.createElement("style");
+            style.id = "bounceKeyframes";
+            style.textContent = `
+              @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+              }
+            `;
+            document.head.appendChild(style);
+          }
+          blurOverlay.appendChild(touchIndicator);
+        }
+      }
+    }
+
+    function enhanceCountdowns() {
+      const countdowns = document.querySelectorAll(".countdown");
+      countdowns.forEach(countdown => {
+        const observer = new MutationObserver(mutations => {
+          mutations.forEach(mutation => {
+            if (mutation.type === 'characterData' || mutation.type === 'childList') {
+              const text = countdown.textContent;
+              if (text && text.includes("Disponible en")) {
+                const secondsMatch = text.match(/\d+/);
+                if (secondsMatch) {
+                  const seconds = parseInt(secondsMatch[0], 10);
+                  if (seconds <= 3) {
+                    countdown.style.color = "var(--success)";
+                    countdown.style.fontWeight = "bold";
+                    countdown.style.background = "rgba(16, 185, 129, 0.15)";
+                  } else if (seconds <= 10) {
+                    countdown.style.color = "var(--warning)";
+                    countdown.style.background = "rgba(245, 158, 11, 0.1)";
+                  }
+                }
+              }
+            }
+          });
+        });
+        observer.observe(countdown, { characterData: true, childList: true, subtree: true });
+      });
+    }
+
+    function setupAttentionGuidingAnimations() {
+      const criticalElements = [".blink", "#verificacionMonto", "#conceptoRecarga", "#montoDepositoTotal"];
+      criticalElements.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(element => {
+          // Si no tiene la clase blink, le ponemos animación highlight
+          if (!element.classList.contains("blink")) {
+            element.style.animation = "highlight 2s ease-in-out infinite";
+          }
+        });
+      });
+      const inputFields = document.querySelectorAll("input:not([disabled])");
+      inputFields.forEach(input => {
+        input.addEventListener("focus", () => {
+          input.style.boxShadow = "0 0 0 3px rgba(20, 52, 203, 0.2)";
+          input.style.borderColor = "var(--primary)";
+        });
+        input.addEventListener("blur", () => {
+          input.style.boxShadow = "";
+          if (!input.value) {
+            input.style.borderColor = "";
+          }
+        });
+      });
+    }
+
+    function setupUserGuidanceMessages() {
+      let inactivityTimer;
+      const inactivityThreshold = 30000; // 30s
+      function resetInactivityTimer() {
+        clearTimeout(inactivityTimer);
+        inactivityTimer = setTimeout(showGuidanceMessage, inactivityThreshold);
+      }
+      function showGuidanceMessage() {
+        const activeSection = document.querySelector(".visa-card.active");
+        if (!activeSection) return;
+        
+        let message = "";
+        const sectionId = activeSection.id;
+        if (sectionId === "datosRetiroSection") {
+          message = "Revisa tus datos y haz clic en 'Confirmar' cuando el botón esté disponible.";
+        } else if (sectionId === "uploadSection") {
+          message = "Selecciona tu documento de identidad para continuar con el proceso.";
+        } else if (sectionId === "signatureSection") {
+          message = "Dibuja tu firma en el recuadro y haz clic en 'Guardar Firma'.";
+        } else if (sectionId === "securityVerification3C") {
+          message = "Realiza el pago móvil de verificación para continuar.";
+        } else if (sectionId === "recargaSection") {
+          message = "Completa los datos de tu recarga para finalizar el proceso.";
+        }
+        if (message) {
+          const tooltip = document.createElement("div");
+          tooltip.className = "guidance-tooltip";
+          tooltip.innerHTML = `
+            <div style="background:var(--primary); color:white; padding:12px 15px; border-radius:8px; box-shadow:0 5px 15px rgba(0,0,0,0.2); position:fixed; bottom:20px; left:50%; transform:translateX(-50%); z-index:9999; max-width:90%; width:350px; text-align:center; animation:fadeInUp 0.5s forwards;">
+              <i class="fas fa-info-circle" style="margin-right:8px;"></i>
+              ${message}
+              <button style="background:white; color:var(--primary); border:none; padding:3px 10px; border-radius:4px; margin-left:10px; cursor:pointer; font-weight:600; font-size:0.8em;">OK</button>
+            </div>
+          `;
+          document.body.appendChild(tooltip);
+          tooltip.querySelector("button").addEventListener("click", () => {
+            document.body.removeChild(tooltip);
+            resetInactivityTimer();
+          });
+          setTimeout(() => {
+            if (document.body.contains(tooltip)) {
+              document.body.removeChild(tooltip);
+            }
+          }, 10000);
+        }
+      }
+      resetInactivityTimer();
+      document.addEventListener("click", resetInactivityTimer);
+      document.addEventListener("touchstart", resetInactivityTimer);
+      document.addEventListener("keydown", resetInactivityTimer);
+      document.addEventListener("mousemove", resetInactivityTimer);
+    }
+
+    // Ejemplo de animación al hacer clic en un botón (opcional)
+    function animateStepCompletion(buttonId) {
+      const button = document.getElementById(buttonId);
+      if (!button) return;
+      button.addEventListener("click", () => {
+        const card = button.closest(".visa-card");
+        if (!card) return;
+        card.style.transition = "all 0.5s ease";
+        card.style.transform = "scale(0.95)";
+        card.style.opacity = "0.5";
+        const checkmark = document.createElement("div");
+        checkmark.innerHTML = '<i class="fas fa-check-circle"></i>';
+        checkmark.style.position = "absolute";
+        checkmark.style.top = "50%";
+        checkmark.style.left = "50%";
+        checkmark.style.transform = "translate(-50%, -50%)";
+        checkmark.style.fontSize = "5rem";
+        checkmark.style.color = "var(--success)";
+        checkmark.style.zIndex = "10";
+        checkmark.style.opacity = "0";
+        checkmark.style.animation = "fadeIn 0.5s forwards";
+
+        if (!document.getElementById("fadeInKeyframes")) {
+          const style = document.createElement("style");
+          style.id = "fadeInKeyframes";
+          style.textContent = `
+            @keyframes fadeIn {
+              from { opacity: 0; }
+              to { opacity: 1; }
+            }
+          `;
+          document.head.appendChild(style);
+        }
+        card.style.position = "relative";
+        card.appendChild(checkmark);
+      });
+    }
+
+    // Activamos la animación en varios botones de ejemplo:
+    const buttonIdsToAnimate = [
+      "confirmInfoBtn",
+      "confirmDocBtn",
+      "saveSignatureBtn",
+      "continueSecurityBtn1",
+      "continueSecurityBtn2",
+      "continueSecurity3ABtn",
+      "continueSecurity3BBtn",
+      "recargaReadyBtn",
+      "confirmRecargaBtn"
+    ];
+    buttonIdsToAnimate.forEach(btnId => animateStepCompletion(btnId));
   </script>
 
   <!-- Script Tawk.to (opcional) -->
   <script>
     var Tawk_API = Tawk_API || {},
-      Tawk_LoadStart = new Date();
+        Tawk_LoadStart = new Date();
     (function () {
       var s1 = document.createElement("script"),
-        s0 = document.getElementsByTagName("script")[0];
+          s0 = document.getElementsByTagName("script")[0];
       s1.async = true;
       s1.src = "https://embed.tawk.to/676eba4c49e2fd8dfeff071f/1ig48fetj";
       s1.charset = "UTF-8";
