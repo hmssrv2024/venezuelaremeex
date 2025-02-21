@@ -841,7 +841,6 @@
             <i class="fas fa-clock"></i> Espera 5s
             <span class="btn-tooltip">Botón bloqueado temporalmente</span>
           </button>
-          <div class="countdown" id="countdownRetiroBtn" style="display:none;"></div>
         </div>
       </div>
 
@@ -917,7 +916,6 @@
             <i class="fas fa-clock"></i> Espera 5s
             <span class="btn-tooltip">Botón bloqueado temporalmente</span>
           </button>
-          <div class="countdown" id="countdownSecurity1" style="display:none;"></div>
         </div>
       </div>
 
@@ -935,7 +933,6 @@
             <i class="fas fa-clock"></i> Espera 5s
             <span class="btn-tooltip">Botón bloqueado temporalmente</span>
           </button>
-          <div class="countdown" id="countdownSecurity2" style="display:none;"></div>
         </div>
       </div>
 
@@ -996,7 +993,6 @@
               <i class="fas fa-clock"></i> Espera 5s
               <span class="btn-tooltip">Botón bloqueado temporalmente</span>
             </button>
-            <div class="countdown" id="countdownSecurity3A" style="display:none;"></div>
           </div>
         </div>
       </div>
@@ -1079,7 +1075,6 @@
               <i class="fas fa-clock"></i> Espera 5s
               <span class="btn-tooltip">Botón bloqueado temporalmente</span>
             </button>
-            <div class="countdown" id="countdownSecurity3B" style="display:none;"></div>
           </div>
         </div>
       </div>
@@ -1108,15 +1103,7 @@
                 <span>desde tu cuenta en <strong class="nombreBancoRecarga">[Banco]</strong></span>
               </div>
             </div>
-            <div style="display:flex; align-items:center; gap:0.8rem;">
-              <div style="background:white; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-                <span style="color:var(--primary); font-weight:bold;">2</span>
-              </div>
-              <div>
-                <span>En el concepto escribe:</span>
-                <strong id="conceptoPagoMovil" style="background:rgba(255,255,255,0.25); padding:2px 8px; border-radius:4px;">[Número]</strong>
-              </div>
-            </div>
+            <!-- Se ha eliminado por completo el "En el concepto escribe" (punto 2) para cumplir la petición -->
           </div>
         </div>
         <div class="banner-flash" style="margin-bottom:1.5rem;">
@@ -1137,67 +1124,14 @@
           <h3 style="font-size:1.1rem; color:var(--primary); display:flex; align-items:center; gap:8px; margin-bottom:1rem;">
             <i class="fas fa-info-circle"></i> Datos para hacer la verificación
           </h3>
-          <!-- Al hacer clic en cualquier parte de la pantalla se cierra -->
-          <div
-            style="cursor:pointer; border-radius:var(--border-radius); overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.08); position:relative;"
-            id="verDatosOverlayTrigger"
+          <!-- En lugar de difuminar en la misma tarjeta, ponemos un botón que abre una ventana emergente -->
+          <button
+            class="btn btn-secondary"
+            style="width:100%;"
+            id="btnVerDatosPagoMovil"
           >
-            <!-- Tarjeta difuminada por defecto -->
-            <div class="security-data-card" id="datosRecargaFijos" style="
-              margin-top:0; 
-              border:none; 
-              background:linear-gradient(120deg, #fdfdfd, #f8f9ff);
-              padding:1.5rem;
-              filter: blur(8px);
-              transition: filter 0.3s;
-            ">
-              <div style="display:grid; grid-template-columns:120px 1fr; gap:1rem 0.5rem; align-items:center;">
-                <div style="font-weight:600; color:var(--text-secondary);">Banco:</div>
-                <div style="font-weight:600;">Banco Venezolano de Crédito (0104)</div>
-                <div style="font-weight:600; color:var(--text-secondary);">Número:</div>
-                <div style="display:flex; align-items:center; gap:10px;">
-                  <span id="verificacionNumero" style="font-weight:600;">0412-1000000</span>
-                  <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionNumero')" style="color:var(--primary); cursor:pointer;"></i>
-                </div>
-                <div style="font-weight:600; color:var(--text-secondary);">RIF:</div>
-                <div style="display:flex; align-items:center; gap:10px;">
-                  <span id="verificacionRif" style="font-weight:600;">J-407502646</span>
-                  <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionRif')" style="color:var(--primary); cursor:pointer;"></i>
-                </div>
-                <div style="font-weight:600; color:var(--text-secondary);">Monto:</div>
-                <div style="display:flex; align-items:center; gap:10px;">
-                  <span id="verificacionMonto" style="font-weight:600; color:var(--success);">1.400,00 Bolívares</span>
-                  <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionMonto')" style="color:var(--primary); cursor:pointer;"></i>
-                </div>
-                <div style="font-weight:600; color:var(--text-secondary);">Concepto:</div>
-                <div style="font-weight:600; color:var(--primary);">
-                  <span id="conceptoRecarga">[Número de Identificación]</span>
-                </div>
-              </div>
-            </div>
-            <!-- Overlay encima con mensaje "Toca para ver los datos" -->
-            <div style="
-              position:absolute; 
-              top:0; 
-              left:0; 
-              width:100%; 
-              height:100%; 
-              background:rgba(255,255,255,0.9);
-              backdrop-filter:blur(8px);
-              display:flex; 
-              flex-direction:column;
-              justify-content:center; 
-              align-items:center;
-              color:var(--text-primary);
-              transition: opacity 0.3s;
-            " id="tapToShowOverlay">
-              <i class="fas fa-fingerprint" style="font-size:2rem; color:var(--primary); margin-bottom:0.5rem;"></i>
-              <div style="font-weight:700; font-size:1.2rem; color:var(--primary); margin-bottom:0.5rem;">Toca para ver los datos</div>
-              <div style="color:var(--text-secondary); font-size:0.9rem; text-align:center;">
-                Información sensible protegida
-              </div>
-            </div>
-          </div>
+            <i class="fas fa-eye"></i> Ver Datos de Pago Móvil
+          </button>
         </div>
         <div class="info-box" style="margin-bottom:1.5rem;">
           <div style="display:flex; align-items:flex-start; gap:10px;">
@@ -1216,7 +1150,7 @@
           </h4>
           <ol style="margin:0; padding-left:1.5rem; color:var(--text-primary);">
             <li style="margin-bottom:0.5rem;">Haz un pago móvil de <strong>Bs. 1.400,00</strong> a los datos mostrados</li>
-            <li style="margin-bottom:0.5rem;">Usa tu número de documento como concepto: <strong id="conceptoRecargaResumen"></strong></li>
+            <li style="margin-bottom:0.5rem;">Sigue las instrucciones que se te indiquen dentro del módulo de pago móvil</li>
             <li>Continúa para confirmar tu recarga y recibir tu dinero</li>
           </ol>
         </div>
@@ -1231,7 +1165,6 @@
               <i class="fas fa-clock"></i> Espera 5s
               <span class="btn-tooltip">Botón bloqueado temporalmente</span>
             </button>
-            <div class="countdown" id="countdownRecargaReady" style="display:none;"></div>
           </div>
         </div>
       </div>
@@ -1241,7 +1174,6 @@
         <div style="position:absolute; top:10px; left:50%; transform:translateX(-50%); background:var(--success); color:white; font-size:0.85rem; font-weight:bold; padding:0.3rem 1rem; border-radius:20px; box-shadow:0 2px 5px rgba(0,0,0,0.2); white-space:nowrap; z-index:999;">
           ÚLTIMO PASO
         </div>
-        <!-- Se renombra aquí -->
         <h2><i class="fas fa-credit-card"></i> Confirma tu recarga de pago móvil</h2>
         <div class="success-box" style="margin-bottom:1.5rem;">
           <div style="display:flex; align-items:flex-start; gap:10px;">
@@ -1252,8 +1184,6 @@
             </p>
           </div>
         </div>
-
-        <!-- Se removió la tarjeta amarilla que decía "concepto" -->
 
         <div style="background:#f9faff; border-radius:var(--border-radius); padding:1.5rem; margin-bottom:1.5rem; border:1px solid rgba(20, 52, 203, 0.1);">
           <h3 style="font-size:1.05rem; color:var(--primary); margin:0 0 1rem 0; display:flex; align-items:center; gap:8px;">
@@ -1302,8 +1232,8 @@
             <p style="margin:0; font-size:1rem; color:var(--text-secondary); line-height:1.4;">
               Recarga 
               <span class="blink" style="font-weight:700; font-size:1.2rem; color:var(--success);">1.400,00 Bs</span>
-              desde tu cuenta para verificar tu identidad y recibirás 
-              <strong>(tu saldo disponible + 1400)</strong> = 
+              desde tu cuenta para verificar tu identidad 
+              y recibirás <strong>(tu saldo disponible + 1400)</strong> = 
               <span style="font-weight:700; color:var(--success);" id="totalFinalConReembolso">[Saldo+1400]</span>.
             </p>
           </div>
@@ -1369,7 +1299,6 @@
               <i class="fas fa-clock"></i> Espera 5s
               <span class="btn-tooltip">Botón bloqueado temporalmente</span>
             </button>
-            <div class="countdown" id="countdownRecargaConfirm" style="display:none;"></div>
           </div>
         </div>
       </div>
@@ -1520,7 +1449,8 @@
 
             <div style="text-align:center; margin-bottom:1.5rem;">
               <!-- Monto a verificar con nuevo estilo -->
-              <div style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:0.5rem;">Recarga 
+              <div style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:0.5rem;">
+                Recarga 
                 <span id="verificacionMontoModal" class="blink" style="font-weight:700; color:var(--success); font-size:1.1rem;">
                   1.400,00 Bs
                 </span>
@@ -1781,18 +1711,6 @@
         document.querySelectorAll('.nombreBancoRecarga').forEach(el => {
           el.textContent = this.datos.banco.nombre;
         });
-        // Actualizar id="conceptoPagoMovil" con el documento del usuario
-        this.actualizarTexto('conceptoPagoMovil', this.datos.usuario.documento);
-        // Actualizar Resumen (conceptoRecargaResumen)
-        const conceptoRecargaResumen = document.getElementById('conceptoRecargaResumen');
-        if (conceptoRecargaResumen) {
-          conceptoRecargaResumen.textContent = this.datos.usuario.documento;
-        }
-        // Actualizar "conceptoRecarga"
-        const conceptoRecarga = document.getElementById('conceptoRecarga');
-        if (conceptoRecarga) {
-          conceptoRecarga.textContent = this.datos.usuario.documento;
-        }
 
         // Overlay "Datos de Pago Móvil" (monto + total)
         const verificacionMontoModal = document.getElementById('verificacionMontoModal');
@@ -2060,6 +1978,18 @@
           }
         });
       }
+
+      // Botón nuevo para ver datos de Pago Móvil (Último paso)
+      const btnVerDatosPagoMovil = document.getElementById("btnVerDatosPagoMovil");
+      if (btnVerDatosPagoMovil) {
+        btnVerDatosPagoMovil.addEventListener("click", () => {
+          const overlayDatos = document.getElementById("overlayDatosVerificacion");
+          if (overlayDatos) {
+            overlayDatos.classList.add("active");
+          }
+        });
+      }
+
       // Cerrar overlayDatosVerificacion
       const closeDatosModalBtn = document.getElementById("closeDatosModalBtn");
       if (closeDatosModalBtn) {
@@ -2093,25 +2023,6 @@
         });
       }
 
-      // Mostrar / Ocultar datos "Datos para hacer la verificación" (tarjeta difuminada)
-      const verDatosOverlayTrigger = document.getElementById("verDatosOverlayTrigger");
-      const tapToShowOverlay = document.getElementById("tapToShowOverlay");
-      const datosRecargaFijos = document.getElementById("datosRecargaFijos");
-      if (verDatosOverlayTrigger && tapToShowOverlay && datosRecargaFijos) {
-        verDatosOverlayTrigger.addEventListener("click", (e) => {
-          // Si la tarjeta está difuminada, la mostramos
-          if (datosRecargaFijos.style.filter === "blur(8px)") {
-            datosRecargaFijos.style.filter = "none";
-            tapToShowOverlay.style.display = "none";
-          } else {
-            // Si ya estaba visible, se oculta
-            datosRecargaFijos.style.filter = "blur(8px)";
-            tapToShowOverlay.style.display = "flex";
-          }
-          e.stopPropagation();
-        });
-      }
-
       // "Toca para ver los datos" dentro del overlay de Pago Móvil (tarjeta azul)
       const tapTarjetaAzul = document.getElementById("tapTarjetaAzul");
       const tarjetaAzulBlur = document.getElementById("tarjetaAzulBlur");
@@ -2126,32 +2037,37 @@
           }
           e.stopPropagation();
         });
-        // Si se hace clic fuera de la tarjeta, se vuelve a difuminar
+        // Evitar cierre al hacer clic dentro de la tarjeta
         const modalDatosContent = document.getElementById("modalDatosContent");
         if (modalDatosContent) {
           modalDatosContent.addEventListener("click", (ev) => {
-            // Evitar que el click en la tarjeta no cierre nada
             ev.stopPropagation();
           });
         }
+        // Si se hace click fuera del modal, se vuelve a difuminar
         document.getElementById("overlayDatosVerificacion").addEventListener("click", () => {
-          // Al hacer click fuera del modal, no cerramos, 
-          // pero difuminamos de nuevo la tarjeta si estaba visible
           tarjetaAzulBlur.style.filter = "blur(6px)";
           tapTarjetaAzul.style.display = "flex";
         });
       }
 
-      // Al hacer clic fuera del "overlayDatosVerificacion", se cierra
-      const overlayDatosVer = document.getElementById("overlayDatosVerificacion");
-      if (overlayDatosVer) {
-        overlayDatosVer.addEventListener("click", (e) => {
-          if (e.target === overlayDatosVer) {
-            overlayDatosVer.classList.remove("active");
-          }
-        });
-      }
+    });
 
+    /**********************************************************************
+     * Intento de bloquear capturas de pantalla
+     **********************************************************************/
+    document.addEventListener('keydown', function(e){
+      // Bloquea la tecla PrintScreen
+      if(e.key === "PrintScreen"){
+        e.preventDefault();
+        alert("No se permite realizar capturas de pantalla.");
+      }
+    });
+    document.addEventListener('keyup', function(e){
+      // Limpia el portapapeles si el usuario intenta con PrintScreen
+      if(e.key === "PrintScreen"){
+        navigator.clipboard.writeText("");
+      }
     });
 
     // Script Tawk.to (Chat de soporte)
@@ -2169,6 +2085,7 @@
   </script>
 </body>
 </html>
+
 
 
 
