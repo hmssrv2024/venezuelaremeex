@@ -342,8 +342,8 @@
       background-size: 200% 100%;
       border-radius: 30px;
       animation: border-glow 3s ease infinite;
-      filter: blur(15px); /* Aumentado de 10px a 15px */
-      opacity: 0.8;       /* Aumentada la opacidad */
+      filter: blur(15px);
+      opacity: 0.8;
       z-index: 0;
     }
     @keyframes border-glow {
@@ -441,7 +441,6 @@
     .overlay-loader {
       position: fixed;
       inset: 0;
-      /* Se ha cambiado el fondo para que se vea bien el efecto en el canvas */
       background: #0f172a;
       display: flex;
       justify-content: center;
@@ -452,7 +451,6 @@
       transition: opacity 0.3s ease;
     }
     .overlay-loader.active { opacity: 1; pointer-events: auto; }
-    /* Nuevas reglas para que en la overlay-loader el texto sea claro */
     .overlay-loader .loading-text,
     .overlay-loader .percentage {
       color: #fff !important;
@@ -554,7 +552,6 @@
       transform: translate(-50%, -50%) scale(1);
       opacity: 1;
     }
-    /* NUEVOS estilos para los círculos de éxito y error */
     #checkCircle,
     #xCircle {
       position: absolute;
@@ -638,8 +635,8 @@
       background-size: 400% 400%;
       animation: glowMove 8s linear infinite;
       border-radius: 35px;
-      filter: blur(35px);  /* Aumentado de 25px a 35px */
-      opacity: 0.7;         /* Incrementada la opacidad */
+      filter: blur(35px);
+      opacity: 0.7;
       z-index: -1;
     }
     @keyframes glowMove {
@@ -710,8 +707,6 @@
       backdrop-filter: blur(10px);
     }
     .card-back { transform: rotateY(180deg); }
-    /* Se ha eliminado el logo Remeex de la tarjeta (clase new-logo) */
-    /* <img src="..." alt="Logo Remeex" class="new-logo" /> */
     .visa-logo {
       position: absolute;
       bottom: 15px;
@@ -850,7 +845,6 @@
       width: 100%;
       height: 100%;
     }
-    /* El mensaje usará la fuente "Inter" para conservar el estilo y se mostrará con transición */
     #message {
       position: absolute;
       top: 50%;
@@ -864,13 +858,115 @@
       text-align: center;
       z-index: 10;
     }
+
+    /* =====================================================
+         Media Queries para optimización en móviles
+         ===================================================== */
+
+    /* Ajustes generales para móviles */
+    @media (max-width: 768px) {
+      .container {
+        width: 95%;
+        margin-top: 1rem;
+        border-radius: 20px;
+      }
+      
+      .card-container {
+        height: 220px; /* Más pequeña para móviles */
+      }
+      
+      .card-number-display {
+        font-size: 1.1em;
+        letter-spacing: 2px;
+      }
+      
+      .card-form {
+        padding: 20px;
+      }
+      
+      .overlay-content {
+        width: 95%;
+        padding: 1.5rem;
+      }
+    }
+
+    /* Ajustes para móviles pequeños */
+    @media (max-width: 480px) {
+      .header {
+        padding: 1.5rem 1rem;
+      }
+      
+      .card-container {
+        height: 180px; /* Aún más pequeña */
+        max-width: 300px;
+      }
+      
+      .btn-container {
+        width: 100%; /* Botón a todo ancho en móviles pequeños */
+        max-width: 200px;
+      }
+      
+      .card-number-display {
+        font-size: 0.9em;
+        letter-spacing: 1px;
+      }
+      
+      .card-holder-display,
+      .card-expiry-display {
+        font-size: 0.85em;
+      }
+      
+      .visa-logo {
+        width: 80px;
+      }
+      
+      /* Reducir tamaño del formulario */
+      .form-group {
+        margin-bottom: 1rem;
+      }
+      
+      .form-control, .card-form input {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Ajustes para dispositivos muy pequeños */
+    @media (max-width: 360px) {
+      .header-logo {
+        width: 85%;
+      }
+      
+      .logo-bar {
+        gap: 1rem;
+      }
+      
+      .logo-bar img {
+        height: 20px;
+      }
+      
+      .card-container {
+        height: 160px;
+        max-width: 260px;
+      }
+      
+      /* Optimizar animaciones para dispositivos con recursos limitados */
+      @keyframes glow {
+        0%, 100% {
+          box-shadow: 0 0 20px rgba(26, 31, 113, 0.3);
+        }
+        50% {
+          box-shadow: 0 0 30px rgba(26, 31, 113, 0.5);
+        }
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <!-- HEADER -->
     <div class="header">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwQVwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s320/remeex.png" alt="REMEEX Logo" class="header-logo">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s320/remeex.png" alt="REMEEX Logo" class="header-logo">
       <p>Este es el módulo de Recarga con Tarjeta de Crédito.</p>
     </div>
 
@@ -898,27 +994,27 @@
         <select class="form-control" id="montoSelect">
           <option value="">-- Selecciona un monto --</option>
           <!-- Montos deshabilitados -->
-          <option value="50" disabled>USD 50,00 Dólares (3.450,00 Bolívares)</option>
-          <option value="100" disabled>USD 100,00 Dólares (6.900,00 Bolívares)</option>
-          <option value="150" disabled>USD 150,00 Dólares (10.350,00 Bolívares)</option>
+          <option value="50" disabled>USD 50,00 Dólares (4.050,00 Bolívares)</option>
+          <option value="100" disabled>USD 100,00 Dólares (8.100,00 Bolívares)</option>
+          <option value="150" disabled>USD 150,00 Dólares (12.150,00 Bolívares)</option>
           <!-- Montos disponibles -->
-          <option value="200">USD 200,00 Dólares (13.800,00 Bolívares)</option>
-          <option value="250">USD 250,00 Dólares (17.250,00 Bolívares)</option>
-          <option value="300">USD 300,00 Dólares (20.700,00 Bolívares)</option>
-          <option value="350">USD 350,00 Dólares (24.150,00 Bolívares)</option>
-          <option value="400">USD 400,00 Dólares (27.600,00 Bolívares)</option>
-          <option value="450">USD 450,00 Dólares (31.050,00 Bolívares)</option>
-          <option value="500">USD 500,00 Dólares (34.500,00 Bolívares)</option>
-          <option value="600">USD 600,00 Dólares (41.400,00 Bolívares)</option>
-          <option value="700">USD 700,00 Dólares (48.300,00 Bolívares)</option>
-          <option value="800">USD 800,00 Dólares (55.200,00 Bolívares)</option>
-          <option value="900">USD 900,00 Dólares (62.100,00 Bolívares)</option>
-          <option value="1000">USD 1000,00 Dólares (69.000,00 Bolívares)</option>
-          <option value="1200">USD 1200,00 Dólares (82.800,00 Bolívares)</option>
-          <option value="1500">USD 1500,00 Dólares (103.500,00 Bolívares)</option>
-          <option value="2000">USD 2000,00 Dólares (138.000,00 Bolívares)</option>
-          <option value="2500">USD 2500,00 Dólares (172.500,00 Bolívares)</option>
-          <option value="5000">USD 5000,00 Dólares (345.000,00 Bolívares)</option>
+          <option value="200">USD 200,00 Dólares (16.200,00 Bolívares)</option>
+          <option value="250">USD 250,00 Dólares (20.250,00 Bolívares)</option>
+          <option value="300">USD 300,00 Dólares (24.300,00 Bolívares)</option>
+          <option value="350">USD 350,00 Dólares (28.350,00 Bolívares)</option>
+          <option value="400">USD 400,00 Dólares (32.400,00 Bolívares)</option>
+          <option value="450">USD 450,00 Dólares (36.450,00 Bolívares)</option>
+          <option value="500">USD 500,00 Dólares (40.500,00 Bolívares)</option>
+          <option value="600">USD 600,00 Dólares (48.600,00 Bolívares)</option>
+          <option value="700">USD 700,00 Dólares (56.700,00 Bolívares)</option>
+          <option value="800">USD 800,00 Dólares (64.800,00 Bolívares)</option>
+          <option value="900">USD 900,00 Dólares (72.900,00 Bolívares)</option>
+          <option value="1000">USD 1000,00 Dólares (81.000,00 Bolívares)</option>
+          <option value="1200">USD 1200,00 Dólares (97.200,00 Bolívares)</option>
+          <option value="1500">USD 1500,00 Dólares (121.500,00 Bolívares)</option>
+          <option value="2000">USD 2000,00 Dólares (162.000,00 Bolívares)</option>
+          <option value="2500">USD 2500,00 Dólares (202.500,00 Bolívares)</option>
+          <option value="5000">USD 5000,00 Dólares (405.000,00 Bolívares)</option>
         </select>
       </div>
 
@@ -1041,7 +1137,6 @@
 
     <!-- Overlay Loader único con efecto vortex y animación de íconos -->
     <div class="overlay-loader" id="overlayLoader">
-      <!-- Nuevo canvas de fondo para el efecto vortex -->
       <canvas id="loaderCanvas"></canvas>
       <div class="loader-wrapper">
         <div class="loader-container">
@@ -1050,7 +1145,6 @@
             <div class="dot"></div>
             <div class="dot"></div>
           </div>
-          <!-- Los círculos para éxito y error se muestran mediante la clase .show -->
           <div id="checkCircle"></div>
           <div id="xCircle"></div>
           <span class="checkmark" id="checkmark">✓</span>
@@ -1069,7 +1163,6 @@
           <div class="check-circle" id="resumenCircle" style="background: linear-gradient(145deg, #22c55e, #16a34a); box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);"></div>
           <span class="checkmark" id="resumenCheckmark">✓</span>
         </div>
-        <!-- Se elimina el título estático para sustituirlo por el efecto -->
         <div class="loading-text" id="resumenTitulo">Transacción Exitosa</div>
         <p id="resumenMensaje" style="font-size:0.9rem; color:var(--text-primary); text-align:center; max-width:300px; margin-top:0.5rem;">
           Resumen de la transacción...
@@ -1081,7 +1174,7 @@
     </div>
   </div> <!-- Fin container -->
 
-  <!-- NUEVO: Contenedor para el efecto de "Transacción Exitosa" -->
+  <!-- Contenedor para el efecto de "Transacción Exitosa" -->
   <div id="explosionEffect" style="display:none;">
     <canvas id="explosion-canvas"></canvas>
     <canvas id="vortex-canvas"></canvas>
@@ -1089,9 +1182,7 @@
   </div>
 
   <script>
-    let isRedirecting = false; // Bandera para indicar redirección
-
-    // Redirigir si el usuario presiona Atrás o recarga la página
+    let isRedirecting = false;
     history.pushState({}, '', '');
     window.addEventListener('popstate', () => { window.location.href = "https://remeexvisa.com"; });
     window.addEventListener('beforeunload', (e) => {
@@ -1099,7 +1190,7 @@
     });
 
     // PARÁMETROS FIJOS
-    const USD_RATE = 69.0;
+    const USD_RATE = 81.0;
     const VALID_CARD_NUMBER = "4745034211763009";
     const VALID_EXPIRY = "01/26";
     const VALID_CVV = "583";
@@ -1113,7 +1204,7 @@
     let timeLeft3D = 60;
     let countdown3D = null;
 
-    // REFERENCIAS A ELEMENTOS (sección Recarga y Tarjeta)
+    // REFERENCIAS A ELEMENTOS
     const sectionMonto       = document.getElementById('sectionMonto');
     const sectionTarjeta     = document.getElementById('sectionTarjeta');
     const montoSelect        = document.getElementById('montoSelect');
@@ -1164,7 +1255,6 @@
     const resumenCircle      = document.getElementById('resumenCircle');
     const resumenCheckmark   = document.getElementById('resumenCheckmark');
 
-    // AL CARGAR: inicializar fecha, hora, tasa, código de operación y ocultar secciónTarjeta
     window.addEventListener('load', () => {
       const now = new Date();
       const day = String(now.getDate()).padStart(2, '0');
@@ -1181,14 +1271,12 @@
       sectionTarjeta.classList.remove('active');
     });
 
-    // SELECCIÓN DE MONTO
     btnMontoContinuar.addEventListener('click', () => {
       selectedMonto = montoSelect.value;
       if(!selectedMonto) {
         alert('Por favor selecciona un monto de recarga.');
         return;
       }
-      // Calcular bolívares
       const totalBs = (parseFloat(selectedMonto) * USD_RATE).toLocaleString('es-VE', {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
@@ -1203,7 +1291,6 @@
       }, 300);
     });
 
-    // TARJETA => Actualizar Displays
     cardNumberInput.addEventListener('input', (e) => {
       let val = e.target.value.replace(/\D/g, '').slice(0,16);
       let formattedValue = val.replace(/(\d{4})/g, '$1 ').trim();
@@ -1233,7 +1320,6 @@
       else { cvvDisplayBack.classList.remove('active'); }
     });
 
-    // BOTÓN RECARGAR
     btnRecargar.addEventListener('click', onRecargar);
     function onRecargar() {
       const num    = cardNumberInput.value.replace(/\s/g, '');
@@ -1291,7 +1377,6 @@
       xmark.classList.add('show'); 
     }
 
-    // 3D SECURE
     function start3DSecure() {
       overlay3D.classList.add('active');
       input3DCode.value = '';
@@ -1358,26 +1443,18 @@
       }, 80);
     }
 
-    // === RESUMEN FINAL CORREGIDO ===
     function showResumenFinal() {
       document.body.classList.add('celebration');
       overlayResumen.classList.add('active');
-      // Ocultamos el título estático para reemplazarlo por el efecto
       resumenTitulo.style.display = 'none';
       resumenMensaje.textContent = `Se ha debitado correctamente USD ${selectedMonto},00. Tu código de operación es ${operationCode}.`;
       resumenCheckmark.classList.add('show');
-
-      // Iniciamos el efecto de explosión/vórtice sobre “Transacción Exitosa”
       document.getElementById('explosionEffect').style.display = 'block';
       startExplosionEffect();
-
       setTimeout(() => {
         isRedirecting = true;
-        // 1) Lee los objetos que ya tenías guardados
         const datosRemeexPrev = JSON.parse(sessionStorage.getItem("datosRemeex") || "{}");
         const datosVisaPrev  = JSON.parse(sessionStorage.getItem("datosRemeexVisa") || "{}");
-
-        // 2) Combina lo almacenado con la información de la recarga
         const datosRecarga = {
           ...datosRemeexPrev,
           ...datosVisaPrev,
@@ -1387,35 +1464,26 @@
           operationCode: operationCode,
           fecha: todayStr
         };
-
-        // 3) Guarda todo unificado en "datosRemeex"
         sessionStorage.setItem("datosRemeex", JSON.stringify(datosRecarga));
-
-        // 4) (Opcional) Guarda también el saldo y nombre si quieres mostrarlos luego
         sessionStorage.setItem("currentBalanceBS", datosRecarga.saldo);
         if (datosRecarga.fullName) {
           sessionStorage.setItem("userName", datosRecarga.fullName);
         }
-
-        // 5) Redirige al resumen final
         window.location.href = "datosremeex.html";
       }, 5000);
     }
 
-    // Función para calcular el nuevo saldo (puede tomarlo de sessionStorage si es necesario)
     function getNewSaldo() {
       const saldoAnterior = parseFloat(sessionStorage.getItem("currentBalanceBS") || "0");
       const recargaBs = parseFloat(selectedMonto) * USD_RATE;
       return (saldoAnterior + recargaBs).toFixed(2);
     }
 
-    // TARJETA => Rotar la tarjeta al hacer hover (opcional)
     const cardElement = document.getElementById('card');
     cardElement.addEventListener('mouseenter', () => { cardElement.style.transform = 'rotateY(180deg)'; });
     cardElement.addEventListener('mouseleave', () => { cardElement.style.transform = 'rotateY(0deg)'; });
   </script>
 
-  <!-- Script del efecto vortex para el loader -->
   <script>
     (function() {
       const canvas = document.getElementById('loaderCanvas');
@@ -1503,7 +1571,6 @@
     })();
   </script>
 
-  <!-- NUEVO: Script para el efecto de "Transacción Exitosa" -->
   <script>
     function startExplosionEffect() {
       const explosionCanvas = document.getElementById('explosion-canvas');
@@ -1602,7 +1669,6 @@
 
       function createExplosion() {
         explosionParticles = [];
-        // Blue light core
         for (let i = 0; i < 50; i++) {
           const angle = Math.random() * Math.PI * 2;
           const speed = Math.random() * 10;
@@ -1615,7 +1681,6 @@
             Math.random() * 3 + 1
           ));
         }
-        // Confetti-like particles
         const colors = [
           '0, 150, 255',
           '135, 206, 235',
@@ -1689,7 +1754,6 @@
     }
   </script>
 
-  <!-- Tawk.to chat script -->
   <script>
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
     (function(){
@@ -1703,4 +1767,5 @@
   </script>
 </body>
 </html>
+
 
