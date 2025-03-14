@@ -1,0 +1,4023 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Remeex VISA - Transferencias internacionales y remesas sin fronteras. Envía dinero a cualquier parte del mundo de forma rápida, segura y económica. Ahora con recarga bancaria instantánea.">
+    <meta name="keywords" content="transferencias internacionales, enviar dinero, pagos internacionales, remesas, Visa, transferencias globales, recarga bancaria, envío de dinero">
+    <meta name="theme-color" content="#1A1F71">
+    <title>Remeex VISA | Transferencias y Remesas Internacionales Sin Fronteras</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://remeexvisa.com/">
+    <meta property="og:title" content="Remeex VISA | Transferencias Internacionales Sin Fronteras">
+    <meta property="og:description" content="Envía dinero a tu familia en cualquier parte del mundo de forma rápida, segura y económica con Remeex VISA. Recarga bancaria instantánea disponible.">
+    <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwQVwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s16000/remeex.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://remeexvisa.com/">
+    <meta property="twitter:title" content="Remeex VISA | Transferencias Internacionales Sin Fronteras">
+    <meta property="twitter:description" content="Envía dinero a tu familia en cualquier parte del mundo de forma rápida, segura y económica con Remeex VISA. Recarga bancaria instantánea disponible.">
+    <meta property="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwQVwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s16000/remeex.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png">
+    
+    <!-- Precargar fuentes críticas -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Preconectar con CDNs -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Carga diferida para fuentes -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"></noscript>
+    
+    <!-- Precargar CSS crítico -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    
+    <style>
+        /* Variables y estilos base */
+        :root {
+            --visa-blue: #1A1F71;
+            --visa-blue-light: #293ca3;
+            --visa-blue-dark: #141850;
+            --visa-blue-transparent: rgba(26, 31, 113, 0.95);
+            --visa-blue-ghost: rgba(26, 31, 113, 0.07);
+            --visa-gold: #F7B600;
+            --visa-gold-light: #FFD700;
+            --accent-color: #00A1DF;
+            --success-color: #00C389;
+            --light-blue: #E9EEFF;
+            --light-blue-alt: #f0f4ff;
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-blue: 0 5px 15px rgba(26, 31, 113, 0.15);
+            --shadow-gold: 0 5px 15px rgba(247, 182, 0, 0.15);
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        /* Reset y base */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 62.5%;
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            font-size: 1.6rem;
+            line-height: 1.7;
+            color: var(--gray-700);
+            background-color: var(--white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden;
+        }
+        
+        img, picture, video, canvas, svg {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        input, button, textarea, select {
+            font: inherit;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.2s var(--ease);
+        }
+        
+        ul, ol {
+            list-style: none;
+        }
+        
+        /* Componentes base */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .flex {
+            display: flex;
+        }
+        
+        .flex-col {
+            flex-direction: column;
+        }
+        
+        .items-center {
+            align-items: center;
+        }
+        
+        .justify-between {
+            justify-content: space-between;
+        }
+        
+        .justify-center {
+            justify-content: center;
+        }
+        
+        .grid {
+            display: grid;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .relative {
+            position: relative;
+        }
+        
+        .absolute {
+            position: absolute;
+        }
+        
+        .z-10 {
+            z-index: 10;
+        }
+        
+        .overflow-hidden {
+            overflow: hidden;
+        }
+        
+        .bg-white {
+            background-color: var(--white);
+        }
+        
+        .bg-gray-50 {
+            background-color: var(--gray-50);
+        }
+        
+        .bg-visa-blue {
+            background-color: var(--visa-blue);
+        }
+        
+        .text-white {
+            color: var(--white);
+        }
+        
+        .text-visa-blue {
+            color: var(--visa-blue);
+        }
+        
+        .text-gray-500 {
+            color: var(--gray-500);
+        }
+        
+        .text-gray-600 {
+            color: var(--gray-600);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .rounded-full {
+            border-radius: 9999px;
+        }
+        
+        .rounded-lg {
+            border-radius: 0.8rem;
+        }
+        
+        .rounded-xl {
+            border-radius: 1.2rem;
+        }
+        
+        .rounded-2xl {
+            border-radius: 1.6rem;
+        }
+        
+        .shadow-sm {
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .shadow {
+            box-shadow: var(--shadow);
+        }
+        
+        .shadow-md {
+            box-shadow: var(--shadow-md);
+        }
+        
+        .shadow-lg {
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Loader y animaciones */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes shine {
+            0% {
+                background-position: -100% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        .spin {
+            animation: spin 1s linear infinite;
+        }
+        
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s var(--ease) forwards;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.3s;
+        }
+        
+        .delay-4 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-5 {
+            animation-delay: 0.5s;
+        }
+        
+        /* Loader */
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        
+        .loader-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .loader-spinner {
+            width: 48px;
+            height: 48px;
+            border: 3px solid rgba(26, 31, 113, 0.15);
+            border-radius: 50%;
+            border-top-color: var(--visa-blue);
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 2rem;
+        }
+        
+        .loader-logo {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+        
+        .loader-progress {
+            width: 200px;
+            height: 4px;
+            background-color: var(--gray-200);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        
+        .loader-bar {
+            height: 100%;
+            width: 0;
+            background-color: var(--visa-blue);
+            transition: width 0.3s ease-out;
+        }
+        
+        .loader-text {
+            font-size: 1.4rem;
+            color: var(--gray-600);
+        }
+        
+        /* Tipografía */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+        }
+        
+        h1 {
+            font-size: 3.6rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+        
+        h2 {
+            font-size: 3rem;
+            letter-spacing: -0.01em;
+        }
+        
+        h3 {
+            font-size: 2.4rem;
+            letter-spacing: -0.01em;
+        }
+        
+        h4 {
+            font-size: 2rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .large-text {
+            font-size: 1.8rem;
+        }
+        
+        .small-text {
+            font-size: 1.4rem;
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 0;
+            width: 6rem;
+            height: 0.4rem;
+            background-color: var(--visa-blue);
+            border-radius: 9999px;
+        }
+        
+        .section-title.center {
+            text-align: center;
+        }
+        
+        .section-title.center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Etiquetas especiales */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1.2rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            border-radius: 10rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .badge-primary {
+            background-color: var(--visa-blue-ghost);
+            color: var(--visa-blue);
+        }
+        
+        .badge-success {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #10B981;
+        }
+        
+        .badge-new {
+            background: linear-gradient(135deg, #1A1F71, #3949AB);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 10rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            margin-left: 1rem;
+            box-shadow: 0 4px 10px rgba(26, 31, 113, 0.3);
+        }
+        
+        .badge-new i {
+            margin-right: 0.5rem;
+        }
+        
+        .badge-reward {
+            background: linear-gradient(135deg, var(--visa-gold), #FFA040);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 10rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(247, 182, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .badge-reward::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shine 3s infinite linear;
+        }
+        
+        .badge-reward i {
+            margin-right: 0.5rem;
+        }
+        
+        /* Botones */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem 2.4rem;
+            font-weight: 600;
+            font-size: 1.6rem;
+            border-radius: 10rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s var(--ease);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .btn i {
+            margin-right: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--visa-blue);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--visa-blue-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        
+        .btn-secondary {
+            background-color: var(--white);
+            color: var(--visa-blue);
+            border: 1px solid var(--gray-200);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--visa-blue);
+            background-color: var(--light-blue-alt);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-secondary:active {
+            transform: translateY(0);
+        }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, var(--visa-gold), #FFA040);
+            color: var(--white);
+            box-shadow: var(--shadow-gold);
+        }
+        
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px rgba(247, 182, 0, 0.2);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--visa-blue);
+            border: 2px solid var(--visa-blue);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--visa-blue);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-outline:active {
+            transform: translateY(0);
+        }
+        
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--visa-blue);
+            font-weight: 600;
+            padding: 0;
+            background: transparent;
+            box-shadow: none;
+        }
+        
+        .btn-link:hover {
+            text-decoration: underline;
+        }
+        
+        .btn-lg {
+            padding: 1.4rem 3rem;
+            font-size: 1.8rem;
+        }
+        
+        .btn-sm {
+            padding: 0.8rem 1.6rem;
+            font-size: 1.4rem;
+        }
+        
+        .btn-icon {
+            width: 4.8rem;
+            height: 4.8rem;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .btn-icon i {
+            margin-right: 0;
+            font-size: 1.8rem;
+        }
+        
+        /* Header y Navegación */
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: transparent;
+            box-shadow: none;
+            z-index: 100;
+            transition: all 0.3s var(--ease);
+        }
+        
+        #header.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 8rem;
+        }
+        
+        .header.scrolled .header-container {
+            height: 7rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            width: auto;
+            transition: transform 0.3s var(--ease-bounce);
+        }
+        
+        .header.scrolled .logo img {
+            transform: scale(0.9);
+        }
+        
+        #nav {
+            display: none;
+        }
+        
+        #nav ul {
+            display: flex;
+            gap: 2.5rem;
+        }
+        
+        #nav ul li a {
+            font-weight: 500;
+            color: var(--white);
+            position: relative;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        #nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--white);
+            transition: width 0.2s var(--ease);
+        }
+        
+        #nav ul li a:hover, 
+        #nav ul li a.active {
+            color: var(--white);
+        }
+        
+        #nav ul li a:hover::after,
+        #nav ul li a.active::after {
+            width: 100%;
+        }
+        
+        /* Cambio de color al hacer scroll */
+        #header.scrolled #nav ul li a {
+            color: var(--gray-700);
+            text-shadow: none;
+        }
+        
+        #header.scrolled #nav ul li a::after {
+            background-color: var(--visa-blue);
+        }
+        
+        #header.scrolled #nav ul li a:hover, 
+        #header.scrolled #nav ul li a.active {
+            color: var(--visa-blue);
+        }
+        
+        .header-actions {
+            display: none;
+        }
+        
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 2.4rem;
+            cursor: pointer;
+            width: 4.2rem;
+            height: 4.2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s var(--ease);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .menu-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        #header.scrolled .menu-toggle {
+            color: var(--visa-blue);
+            text-shadow: none;
+        }
+        
+        #header.scrolled .menu-toggle:hover {
+            background-color: var(--light-blue-alt);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 36rem;
+            height: 100%;
+            background-color: var(--white);
+            z-index: 200;
+            transition: right 0.3s var(--ease);
+            box-shadow: var(--shadow-xl);
+            overflow: auto;
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-menu-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2rem;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        
+        .mobile-menu-body {
+            padding: 3rem 2rem;
+        }
+        
+        .mobile-menu-footer {
+            padding: 2rem;
+            border-top: 1px solid var(--gray-100);
+        }
+        
+        .mobile-nav ul li {
+            margin-bottom: 1rem;
+        }
+        
+        .mobile-nav ul li a {
+            display: block;
+            padding: 1.2rem 0;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            transition: all 0.2s var(--ease);
+            border-left: 3px solid transparent;
+        }
+        
+        .mobile-nav ul li a:hover,
+        .mobile-nav ul li a.active {
+            color: var(--visa-blue);
+            transform: translateX(5px);
+            padding-left: 1rem;
+            border-left-color: var(--visa-blue);
+        }
+        
+        .mobile-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .mobile-actions .btn {
+            width: 100%;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 199;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s var(--ease), visibility 0.3s var(--ease);
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Hero Section */
+        #hero {
+            position: relative;
+            padding-top: 0;
+            padding-bottom: 0;
+            overflow: hidden;
+        }
+        
+        .hero-image-container {
+            position: relative;
+            width: 100%;
+            height: 85vh;
+            min-height: 600px;
+            overflow: hidden;
+        }
+        
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.2), rgba(26, 31, 113, 0.6));
+            z-index: -1;
+        }
+        
+        .hero-content-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 2rem;
+            color: var(--white);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        
+        .hero-badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--white);
+            padding: 0.8rem 1.6rem;
+            border-radius: 10rem;
+            font-weight: 600;
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+        
+        .hero-title {
+            font-size: 4.8rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: var(--white);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .hero-cta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+        
+        /* Comparativa Remeex vs. Remesas */
+        .comparison-container {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1.6rem;
+            padding: 2rem;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .comparison-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--white);
+            text-align: center;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        .comparison-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 1.2rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s var(--ease);
+        }
+        
+        .comparison-item:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .comparison-icon {
+            min-width: 5rem;
+            height: 5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+        
+        .remeex-icon {
+            background: linear-gradient(135deg, var(--visa-blue), var(--accent-color));
+            color: var(--white);
+            box-shadow: var(--shadow-blue);
+        }
+        
+        .remesa-icon {
+            background: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .comparison-text {
+            flex: 1;
+        }
+        
+        .comparison-title-small {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+        
+        .comparison-description {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Content Section */
+        .content-section {
+            background-color: var(--white);
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Features Grid */
+        #features {
+            padding: 8rem 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 1.6rem;
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s var(--ease);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--gray-100);
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--visa-blue), var(--accent-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s var(--ease);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+        
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .feature-card:hover .feature-icon {
+            background-color: var(--visa-blue);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+        
+        .feature-icon {
+            width: 7rem;
+            height: 7rem;
+            background-color: var(--light-blue);
+            color: var(--visa-blue);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin-bottom: 2.5rem;
+            transition: all 0.3s var(--ease-bounce);
+        }
+        
+        .feature-title {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-description {
+            color: var(--gray-600);
+            margin-bottom: 0;
+        }
+        
+        /* How It Works */
+        #how-it-works {
+            padding: 8rem 0;
+            background-color: var(--gray-50);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .how-it-works-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 20% 30%, rgba(26, 31, 113, 0.03) 0%, transparent 400px), 
+                              radial-gradient(circle at 80% 70%, rgba(26, 31, 113, 0.03) 0%, transparent 400px);
+            z-index: -1;
+        }
+        
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            margin-top: 5rem;
+        }
+        
+        .step {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 6rem;
+            height: 6rem;
+            background-color: var(--visa-blue);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 2;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s var(--ease-bounce);
+        }
+        
+        .step-card:hover .step-number {
+            transform: scale(1.1);
+        }
+        
+        .step-card {
+            background-color: var(--white);
+            border-radius: 1.6rem;
+            padding: 3.5rem;
+            box-shadow: var(--shadow-md);
+            width: 100%;
+            transition: all 0.3s var(--ease);
+            min-height: 20rem; /* Altura mínima para evitar saltos */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            border: 1px solid var(--gray-100);
+        }
+        
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+        
+        .step-icon {
+            font-size: 4.5rem;
+            color: var(--visa-blue);
+            margin-bottom: 2rem;
+            transition: transform 0.3s var(--ease-bounce), color 0.3s var(--ease);
+        }
+        
+        .step-card:hover .step-icon {
+            transform: scale(1.1);
+            color: var(--accent-color);
+        }
+        
+        .step-title {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .step-description {
+            color: var(--gray-600);
+        }
+        
+        .step-connector {
+            display: none;
+        }
+        
+        /* Video Section */
+        #video-section {
+            padding: 8rem 0;
+            background-color: var(--white);
+            position: relative;
+        }
+        
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 1.6rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        /* Coverage Section */
+        #global-coverage {
+            padding: 8rem 0;
+            background-color: var(--visa-blue-transparent);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .global-coverage-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .section-title.light {
+            color: var(--white);
+        }
+        
+        .section-title.light::after {
+            background-color: var(--white);
+        }
+        
+        .subtitle.light {
+            color: var(--white);
+        }
+        
+        .map-container {
+            position: relative;
+            margin-top: 4rem;
+            padding: 4rem 2rem;
+            border-radius: 1.6rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(5px);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .map-text {
+            color: var(--white);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.8rem;
+        }
+        
+        .map-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        
+        .stat-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1.6rem;
+            padding: 2.5rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s var(--ease);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #ffffff, #e6e6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .stat-label {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+        
+        /* Testimonials */
+        #testimonials {
+            padding: 8rem 0;
+            background-color: var(--gray-50);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonials-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(26, 31, 113, 0.03) 0%, transparent 300px),
+                radial-gradient(circle at 90% 80%, rgba(26, 31, 113, 0.03) 0%, transparent 300px);
+        }
+        
+        .testimonials-slider {
+            position: relative;
+            padding: 4rem 0;
+        }
+        
+        .testimonial-slide {
+            display: none;
+        }
+        
+        .testimonial-slide.active {
+            display: block;
+        }
+        
+        .testimonial-card {
+            background-color: var(--white);
+            border-radius: 1.6rem;
+            padding: 4rem 3rem;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            margin: 0 auto;
+            max-width: 800px;
+            position: relative;
+            min-height: 30rem; /* Altura mínima fija */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid var(--gray-100);
+            transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            border-color: transparent;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 2rem;
+            left: 3rem;
+            font-size: 12rem;
+            font-family: 'Georgia', serif;
+            color: var(--visa-blue);
+            opacity: 0.1;
+            line-height: 0.5;
+        }
+        
+        .rating {
+            color: var(--visa-gold);
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .quote {
+            font-size: 2rem;
+            font-style: italic;
+            color: var(--gray-700);
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+            line-height: 1.6;
+        }
+        
+        .client-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .client-photo {
+            width: 8rem;
+            height: 8rem;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            border: 3px solid var(--light-blue);
+            box-shadow: var(--shadow-md);
+            object-fit: cover;
+        }
+        
+        .client-name {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--gray-900);
+        }
+        
+        .client-position {
+            font-size: 1.6rem;
+            color: var(--gray-600);
+            margin-bottom: 0;
+        }
+        
+        .testimonial-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+        
+        .testimonial-dot {
+            width: 1.2rem;
+            height: 1.2rem;
+            border-radius: 50%;
+            background-color: rgba(26, 31, 113, 0.3);
+            cursor: pointer;
+            transition: all 0.2s var(--ease);
+        }
+        
+        .testimonial-dot.active {
+            background-color: var(--visa-blue);
+            transform: scale(1.3);
+        }
+        
+        .testimonial-arrows {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        .testimonial-arrow {
+            width: 5rem;
+            height: 5rem;
+            background-color: var(--white);
+            color: var(--visa-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: var(--shadow-md);
+            cursor: pointer;
+            transition: all 0.2s var(--ease);
+            pointer-events: auto;
+            border: none;
+        }
+        
+        .testimonial-arrow:hover {
+            background-color: var(--visa-blue);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+        
+        /* Reviews Section */
+        #reviews {
+            padding: 8rem 0;
+            background-color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+        
+        .review-card {
+            background-color: var(--white);
+            border-radius: 1.6rem;
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s var(--ease);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--gray-100);
+        }
+        
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+        
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .reviewer-avatar {
+            width: 6rem;
+            height: 6rem;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--light-blue);
+        }
+        
+        .reviewer-info {
+            flex: 1;
+        }
+        
+        .reviewer-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .review-date {
+            font-size: 1.4rem;
+            color: var(--gray-500);
+        }
+        
+        .review-rating {
+            display: flex;
+            gap: 0.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--visa-gold);
+            font-size: 1.6rem;
+        }
+        
+        .review-text {
+            font-size: 1.6rem;
+            color: var(--gray-700);
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+        
+        .review-verification {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background-color: var(--light-blue);
+            border-radius: 0.8rem;
+            color: var(--visa-blue);
+            font-size: 1.4rem;
+            font-weight: 500;
+        }
+        
+        .review-verification i {
+            color: var(--success-color);
+            font-size: 1.6rem;
+        }
+        
+        .review-reward {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--visa-gold), #FFA040);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 10rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            box-shadow: var(--shadow-gold);
+        }
+        
+        .review-reward i {
+            margin-right: 0.5rem;
+        }
+        
+        .reviews-cta {
+            text-align: center;
+            margin-top: 5rem;
+        }
+        
+        .reviews-cta-message {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--gray-800);
+        }
+        
+        .reviews-cta-subtext {
+            font-size: 1.6rem;
+            color: var(--gray-600);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* FAQ Section */
+        #faq {
+            padding: 8rem 0;
+            background-color: var(--gray-50);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .faq-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(26, 31, 113, 0.03) 0%, transparent 300px),
+                radial-gradient(circle at 80% 70%, rgba(26, 31, 113, 0.03) 0%, transparent 300px);
+        }
+        
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background-color: var(--white);
+            border-radius: 1.2rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+            transition: all 0.3s var(--ease);
+            border: 1px solid var(--gray-100);
+            overflow: hidden;
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+        
+        .faq-question {
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .faq-question h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0;
+            color: var(--gray-800);
+            transition: color 0.2s var(--ease);
+        }
+        
+        .faq-icon {
+            font-size: 1.8rem;
+            color: var(--visa-blue);
+            transition: transform 0.3s var(--ease);
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        
+        .faq-item.active .faq-question h3 {
+            color: var(--visa-blue);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s var(--ease);
+            padding: 0 2rem;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding-bottom: 2rem;
+        }
+        
+        .faq-answer p {
+            color: var(--gray-600);
+            font-size: 1.6rem;
+        }
+        
+        .faq-more {
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        /* Blog Preview Section */
+        #blog {
+            padding: 8rem 0;
+            background-color: var(--white);
+            position: relative;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+        
+        .blog-card {
+            background-color: var(--white);
+            border-radius: 1.6rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s var(--ease);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--gray-100);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+        
+        .blog-image-container {
+            height: 20rem;
+            overflow: hidden;
+        }
+        
+        .blog-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s var(--ease);
+        }
+        
+        .blog-card:hover .blog-image {
+            transform: scale(1.05);
+        }
+        
+        .blog-content {
+            padding: 2.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            color: var(--gray-500);
+        }
+        
+        .blog-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .blog-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--gray-800);
+            transition: color 0.2s var(--ease);
+        }
+        
+        .blog-card:hover .blog-title {
+            color: var(--visa-blue);
+        }
+        
+        .blog-excerpt {
+            color: var(--gray-600);
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            flex-grow: 1;
+        }
+        
+        .blog-link {
+            align-self: flex-start;
+            color: var(--visa-blue);
+            font-weight: 600;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: gap 0.3s var(--ease);
+        }
+        
+        .blog-card:hover .blog-link {
+            gap: 1.2rem;
+        }
+        
+        .blog-more {
+            text-align: center;
+            margin-top: 5rem;
+        }
+        
+        /* Chat Community Section */
+        #community {
+            padding: 8rem 0;
+            background-color: var(--gray-50);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .community-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 30% 20%, rgba(26, 31, 113, 0.03) 0%, transparent 400px),
+                radial-gradient(circle at 70% 80%, rgba(26, 31, 113, 0.03) 0%, transparent 400px);
+        }
+        
+        .community-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .chat-preview {
+            width: 100%;
+            max-width: 900px;
+            background-color: var(--white);
+            border-radius: 1.6rem;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            border: 1px solid var(--gray-100);
+            margin-top: 4rem;
+        }
+        
+        .chat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 2rem;
+            background-color: var(--visa-blue);
+            color: var(--white);
+        }
+        
+        .chat-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .chat-title i {
+            font-size: 2rem;
+        }
+        
+        .chat-online {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.4rem;
+        }
+        
+        .chat-online-dot {
+            width: 1rem;
+            height: 1rem;
+            background-color: var(--success-color);
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .chat-online-dot::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--success-color);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            opacity: 0.5;
+        }
+        
+        .chat-body {
+            padding: 2rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .chat-message {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .chat-avatar {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .chat-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .chat-bubble {
+            background-color: var(--light-blue);
+            padding: 1.5rem;
+            border-radius: 1.6rem;
+            border-top-left-radius: 0;
+            max-width: 80%;
+        }
+        
+        .chat-message.sent {
+            flex-direction: row-reverse;
+        }
+        
+        .chat-message.sent .chat-bubble {
+            background-color: var(--visa-blue);
+            color: var(--white);
+            border-top-left-radius: 1.6rem;
+            border-top-right-radius: 0;
+        }
+        
+        .chat-user {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+        
+        .chat-text {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .chat-time {
+            text-align: right;
+            font-size: 1.2rem;
+            color: var(--gray-500);
+        }
+        
+        .chat-message.sent .chat-time {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .chat-footer {
+            padding: 1.5rem 2rem;
+            border-top: 1px solid var(--gray-100);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 1.2rem 2rem;
+            border: 1px solid var(--gray-200);
+            border-radius: 10rem;
+            transition: all 0.2s var(--ease);
+        }
+        
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--visa-blue);
+            box-shadow: 0 0 0 3px rgba(26, 31, 113, 0.1);
+        }
+        
+        .chat-send {
+            width: 4.5rem;
+            height: 4.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--visa-blue);
+            color: var(--white);
+            font-size: 1.8rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s var(--ease);
+            flex-shrink: 0;
+        }
+        
+        .chat-send:hover {
+            background-color: var(--visa-blue-light);
+            transform: scale(1.05);
+        }
+        
+        .community-cta {
+            text-align: center;
+            margin-top: 5rem;
+        }
+        
+        /* App Section */
+        #app {
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .app-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(135deg, var(--light-blue) 0%, var(--white) 100%);
+            z-index: -1;
+            clip-path: polygon(0 0, 100% 20%, 100% 100%, 0% 100%);
+        }
+        
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .app-content {
+            text-align: center;
+            width: 100%;
+        }
+        
+        .app-features {
+            max-width: 600px;
+            margin: 3rem auto;
+            text-align: left;
+        }
+        
+        .app-feature {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 1.2rem;
+            transition: all 0.3s var(--ease);
+        }
+        
+        .app-feature:hover {
+            background-color: var(--white);
+            box-shadow: var(--shadow-md);
+            transform: translateX(10px);
+        }
+        
+        .app-feature i {
+            color: var(--visa-blue);
+            font-size: 2rem;
+            margin-right: 1.5rem;
+            margin-top: 0.3rem;
+            transition: transform 0.3s var(--ease);
+        }
+        
+        .app-feature:hover i {
+            transform: scale(1.2);
+        }
+        
+        .app-download {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .app-btn {
+            display: flex;
+            align-items: center;
+            background-color: var(--gray-900);
+            color: var(--white);
+            padding: 1.2rem 2.4rem;
+            border-radius: 1.2rem;
+            transition: all 0.2s var(--ease);
+        }
+        
+        .app-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .app-btn i {
+            font-size: 3rem;
+            margin-right: 1.5rem;
+        }
+        
+        .app-btn-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .app-btn-text {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+        
+        .app-btn-name {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        /* CTA Section */
+        #cta {
+            padding: 10rem 0;
+            background-color: var(--visa-blue);
+            position: relative;
+            overflow: hidden;
+            color: var(--white);
+        }
+        
+        .cta-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 400px),
+                radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 400px);
+            z-index: 0;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-title {
+            color: var(--white);
+            margin-bottom: 2.5rem;
+            font-size: 3.6rem;
+        }
+        
+        .cta-subtitle {
+            font-size: 2rem;
+            margin-bottom: 4rem;
+            opacity: 0.9;
+        }
+        
+        /* Support Section */
+        #support {
+            padding: 8rem 0;
+            background-color: var(--gray-50);
+        }
+        
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+        
+        .support-card {
+            background-color: var(--white);
+            border-radius: 1.6rem;
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s var(--ease);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: 1px solid var(--gray-100);
+        }
+        
+        .support-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+        
+        .support-card:hover .support-icon {
+            background-color: var(--visa-blue);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+        
+        .support-icon {
+            width: 7rem;
+            height: 7rem;
+            background-color: var(--light-blue);
+            color: var(--visa-blue);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin-bottom: 2.5rem;
+            transition: all 0.3s var(--ease);
+        }
+        
+        .support-title {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .support-description {
+            color: var(--gray-600);
+            margin-bottom: 2.5rem;
+            flex-grow: 1;
+        }
+        
+        /* Footer */
+        #footer {
+            background-color: var(--gray-900);
+            color: var(--gray-400);
+            padding: 6rem 0 3rem;
+            position: relative;
+        }
+        
+        .footer-wave {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            fill: var(--gray-900);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            margin-bottom: 5rem;
+        }
+        
+        .footer-logo {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .footer-logo a {
+            display: inline-block;
+        }
+        
+        .footer-logo img {
+            height: 50px;
+            width: auto;
+        }
+        
+        .footer-about {
+            margin-bottom: 2.5rem;
+            opacity: 0.8;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .social-icon {
+            width: 4rem;
+            height: 4rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            transition: all 0.2s var(--ease);
+        }
+        
+        .social-icon:hover {
+            background-color: var(--visa-blue);
+            transform: translateY(-3px);
+        }
+        
+        .footer-title {
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 2.5rem;
+            font-weight: 600;
+        }
+        
+        .footer-links li {
+            margin-bottom: 1.2rem;
+        }
+        
+        .footer-links li a {
+            opacity: 0.8;
+            transition: all 0.2s var(--ease);
+        }
+        
+        .footer-links li a:hover {
+            opacity: 1;
+            color: var(--white);
+            padding-left: 0.5rem;
+        }
+        
+        .footer-divider {
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin-bottom: 3rem;
+        }
+        
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .language-selector {
+            position: relative;
+        }
+        
+        .language-selector select {
+            appearance: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border: none;
+            padding: 1rem 4rem 1rem 1.5rem;
+            border-radius: 0.8rem;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: all 0.2s var(--ease);
+        }
+        
+        .language-selector::after {
+            content: '\f107';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--white);
+        }
+        
+        .language-selector select:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .security-badges {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .security-text {
+            color: var(--white);
+            opacity: 0.7;
+            text-align: center;
+        }
+        
+        .copyright {
+            text-align: center;
+            font-size: 1.4rem;
+            opacity: 0.7;
+        }
+        
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 3rem;
+            right: 3rem;
+            width: 5rem;
+            height: 5rem;
+            background-color: var(--visa-blue);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s var(--ease);
+            z-index: 99;
+            border: none;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        #back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        #back-to-top:hover {
+            background-color: var(--visa-blue-light);
+            transform: translateY(-5px);
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 3rem;
+            left: 3rem;
+            width: 6rem;
+            height: 6rem;
+            background-color: #25D366;
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: all 0.3s var(--ease);
+            z-index: 99;
+            border: none;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        /* Promotional Overlay */
+        .promo-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        
+        .promo-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .promo-content {
+            position: relative;
+            max-width: 500px;
+            width: 90%;
+            background-color: var(--white);
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            animation: fadeIn 0.5s var(--ease) forwards;
+        }
+        
+        .promo-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .promo-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 3rem;
+            height: 3rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: var(--gray-900);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            cursor: pointer;
+            border: none;
+            box-shadow: var(--shadow-md);
+            transition: all 0.2s var(--ease);
+            z-index: 10;
+        }
+        
+        .promo-close:hover {
+            background-color: var(--white);
+            transform: scale(1.1) rotate(90deg);
+        }
+        
+        /* Media Queries */
+        @media (min-width: 768px) {
+            /* Typography */
+            h1 {
+                font-size: 4.8rem;
+            }
+            
+            h2 {
+                font-size: 3.6rem;
+            }
+            
+            h3 {
+                font-size: 2.8rem;
+            }
+            
+            /* Layout */
+            .container {
+                padding: 0 4rem;
+            }
+            
+            /* Hero */
+            .hero-title {
+                font-size: 5.2rem;
+            }
+            
+            /* Comparison */
+            .comparison-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            /* Steps */
+            .steps-container {
+                flex-direction: row;
+                align-items: stretch;
+            }
+            
+            .step {
+                flex: 1;
+            }
+            
+            .step-connector {
+                display: block;
+                height: 3px;
+                background-color: var(--light-blue);
+                flex: 0.1;
+                margin-top: 3rem;
+            }
+            
+            /* Stats */
+            .map-stats {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            
+            .stat-card {
+                flex: 1;
+            }
+            
+            /* App Section */
+            .app-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .app-content {
+                text-align: center;
+            }
+            
+            .app-features {
+                margin: 3rem auto;
+                max-width: 600px;
+            }
+            
+            .app-download {
+                justify-content: center;
+            }
+            
+            /* Footer */
+            .footer-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            /* Header */
+            .header-container {
+                height: 8rem;
+            }
+            
+            .menu-toggle {
+                display: none;
+            }
+            
+            #nav {
+                display: block;
+            }
+            
+            .header-actions {
+                display: flex;
+                gap: 1.5rem;
+            }
+            
+            /* Testimonials */
+            .testimonial-card {
+                padding: 5rem;
+            }
+            
+            /* Blog Grid */
+            .blog-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01s !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01s !important;
+                scroll-behavior: auto !important;
+            }
+            
+            .fade-in {
+                opacity: 1;
+                transform: none;
+                animation: none;
+            }
+            
+            .float {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader-container" id="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-logo">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwQVwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s16000/remeex.png" alt="Remeex VISA Logo" style="height: 50px; width: auto;">
+            </div>
+            <div class="loader-progress">
+                <div class="loader-bar" id="loader-bar"></div>
+            </div>
+            <div class="loader-text" id="loader-text">Cargando recursos...</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">
+                    <a href="#hero">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwQVwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s16000/remeex.png" alt="Remeex VISA Logo">
+                    </a>
+                </div>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="#hero" class="active">Inicio</a></li>
+                        <li><a href="#features">Servicios</a></li>
+                        <li><a href="#how-it-works">Cómo Funciona</a></li>
+                        <li><a href="#global-coverage">Cobertura Global</a></li>
+                        <li><a href="#community">Comunidad</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <a href="index_remeex" class="btn btn-secondary">Acceder</a>
+                    <a href="index_remeex" class="btn btn-primary">Recibir remesa ya!</a>
+                </div>
+                <button class="menu-toggle" id="menu-toggle" aria-label="Menú">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <a href="#hero">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwQVwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s16000/remeex.png" alt="Remeex VISA Logo" style="height: 40px; width: auto;">
+                </a>
+            </div>
+            <button class="menu-toggle" id="close-menu" aria-label="Cerrar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-body">
+            <nav class="mobile-nav">
+                <ul>
+                    <li><a href="#hero" class="active">Inicio</a></li>
+                    <li><a href="#features">Servicios</a></li>
+                    <li><a href="#how-it-works">Cómo Funciona</a></li>
+                    <li><a href="#global-coverage">Cobertura Global</a></li>
+                    <li><a href="#community">Comunidad</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#support">Soporte</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="mobile-menu-footer">
+            <div class="mobile-actions">
+                <a href="home.remeexvisa.com/index_remeex" class="btn btn-secondary">Acceder</a>
+                <a href="home.remeexvisa.com/index_remeex" class="btn btn-primary">Recibir remesa ya!</a>
+            </div>
+        </div>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-image-container">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjPtD8FqtVMZL8Zfjk7jv58EcNiPtEb0Bwy0G_GTeVuileKbzX7ZQK0ewOePWLS61NsgiLDHpW8eosS8j2RRRCz49ZP9WDVUPxjlkfLz8RnTVg03pZj9ETCoxt8AdQz3EASyJTF9Lcvfsz7qIb_S0DdOfozNWGBu8d8RWXA9agsmTMJW95Lyf2HpkOkIKRx/w945-h600-p-k-no-nu/a-professional-photo-of-a-latin-american_JRyaA1s4SbWZAHkcI4u3bA_y6HdECjgSTir5Hi6Mlv26A.jpeg" alt="Transferencias internacionales" class="hero-image">
+            <div class="hero-overlay"></div>
+            <div class="hero-content-wrapper">
+                <div class="hero-content fade-in">
+                    <span class="hero-badge">Transfiere dinero con confianza</span>
+                    <h1 class="hero-title">Transferencias globales sin fronteras</h1>
+                    <p class="hero-subtitle">Envía dinero a tu familia en cualquier parte del mundo de forma rápida, segura y económica</p>
+                    <div class="hero-cta">
+                        <a href="home.remeexvisa.com/index_remeex" class="btn btn-primary btn-lg"><i class="fas fa-paper-plane"></i>Recibir remesa ya!</a>
+                        <a href="#how-it-works" class="btn btn-secondary btn-lg"><i class="fas fa-info-circle"></i>Cómo funciona</a>
+                    </div>
+                    
+                    <div class="comparison-container fade-in delay-2">
+                        <h3 class="comparison-title">La evolución de las remesas ha llegado</h3>
+                        <div class="comparison-grid">
+                            <div class="comparison-item">
+                                <div class="comparison-icon remeex-icon">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <div class="comparison-text">
+                                    <h4 class="comparison-title-small">Remeex</h4>
+                                    <p class="comparison-description">A la velocidad de la luz, envíos instantáneos con confirmación inmediata.</p>
+                                </div>
+                            </div>
+                            <div class="comparison-item">
+                                <div class="comparison-icon remesa-icon">
+                                    <i class="fas fa-walking"></i>
+                                </div>
+                                <div class="comparison-text">
+                                    <h4 class="comparison-title-small">Remesa tradicional</h4>
+                                    <p class="comparison-description">Lenta y con largas esperas. Las remesas tradicionales apenas trotan.</p>
+                                </div>
+                            </div>
+                            <div class="comparison-item">
+                                <div class="comparison-icon remeex-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="comparison-text">
+                                    <h4 class="comparison-title-small">Remeex</h4>
+                                    <p class="comparison-description">Seguridad avanzada respaldada por VISA y tecnología de encriptación.</p>
+                                </div>
+                            </div>
+                            <div class="comparison-item">
+                                <div class="comparison-icon remesa-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="comparison-text">
+                                    <h4 class="comparison-title-small">Remesa tradicional</h4>
+                                    <p class="comparison-description">Procesos vulnerables y menos protegidos frente a fraudes.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="content-section">
+        <div class="container">
+            <div class="section-title center fade-in">
+                <h2>¿Por qué elegir Remeex VISA?</h2>
+                <p class="subtitle">Descubre las ventajas que nos hacen líderes en transferencias internacionales</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in delay-1">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="feature-title">Transferencias inmediatas</h3>
+                    <p class="feature-description">Tu dinero llega en minutos a cualquier parte del mundo, cuando más lo necesitan.</p>
+                </div>
+                <div class="feature-card fade-in delay-2">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Seguridad avanzada</h3>
+                    <p class="feature-description">Con el respaldo de VISA y la más avanzada tecnología de encriptación para proteger cada transacción.</p>
+                </div>
+                <div class="feature-card fade-in delay-3">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3 class="feature-title">Cobertura en 200+ países</h3>
+                    <p class="feature-description">Alcance global para llegar a tus seres queridos sin importar dónde se encuentren.</p>
+                </div>
+                <div class="feature-card fade-in delay-1">
+                    <div class="feature-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <h3 class="feature-title">Tarifas competitivas</h3>
+                    <p class="feature-description">Las mejores tasas de cambio y comisiones más bajas del mercado para que envíes más por menos.</p>
+                </div>
+                <div class="feature-card fade-in delay-2">
+                    <div class="feature-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3 class="feature-title">Recarga con tarjeta <span class="badge-new"><i class="fas fa-star"></i>NUEVO</span></h3>
+                    <p class="feature-description">Recarga tu cuenta bancaria directamente con tu tarjeta de crédito. ¡Servicio express, instantáneo y sin comisiones!</p>
+                </div>
+                <div class="feature-card fade-in delay-3">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="feature-title">Soporte 24/7</h3>
+                    <p class="feature-description">Atención al cliente disponible todos los días del año para resolver cualquier duda o incidencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works">
+        <div class="how-it-works-bg"></div>
+        <div class="container">
+            <div class="section-title center fade-in">
+                <h2>Cómo funciona</h2>
+                <p class="subtitle">Tres simples pasos para conectar con tus seres queridos en cualquier parte del mundo</p>
+            </div>
+            <div class="steps-container">
+                <div class="step fade-in delay-1">
+                    <div class="step-number">1</div>
+                    <div class="step-card">
+                        <div class="step-icon float">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h3 class="step-title">Regístrate y verifica tu identidad</h3>
+                        <p class="step-description">Crea tu cuenta en menos de 2 minutos y verifica tu identidad de forma segura para comenzar a operar de inmediato.</p>
+                    </div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step fade-in delay-2">
+                    <div class="step-number">2</div>
+                    <div class="step-card">
+                        <div class="step-icon float">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <h3 class="step-title">Selecciona destinatario y monto</h3>
+                        <p class="step-description">Elige a quién quieres enviar dinero, indica el monto y revisa nuestras competitivas tarifas en tiempo real. Ahora también puedes recargar con tarjeta.</p>
+                    </div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step fade-in delay-3">
+                    <div class="step-number">3</div>
+                    <div class="step-card">
+                        <div class="step-icon float">
+                            <i class="fas fa-paper-plane"></i>
+                        </div>
+                        <h3 class="step-title">Realiza la transferencia</h3>
+                        <p class="step-description">Confirma los detalles, elige tu método de pago preferido y ¡listo! Tu dinero llegará en minutos, con confirmación instantánea.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video-section" class="content-section">
+        <div class="container">
+            <div class="section-title center fade-in">
+                <h2>Descubre Remeex VISA en acción</h2>
+                <p class="subtitle">Mira cómo funciona nuestra plataforma y lo fácil que es enviar dinero a tus seres queridos</p>
+            </div>
+            <div class="video-container fade-in delay-1">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/JFYZBfvBi-A?si=-uJNEIeRSBvn6RN_" title="Remeex VISA en acción" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Coverage Section -->
+    <section id="global-coverage">
+        <div class="global-coverage-bg"></div>
+        <div class="container">
+            <div class="section-title center light fade-in">
+                <h2>Cobertura Global</h2>
+                <p class="subtitle light">Alcance internacional con presencia en más de 200 países y territorios</p>
+            </div>
+            <div class="map-container fade-in delay-1">
+                <p class="map-text">Contamos con una extensa red de partners y alianzas estratégicas que nos permiten ofrecer servicios de transferencia en prácticamente cualquier lugar del mundo. Ya sea que envíes dinero a las grandes ciudades o a las zonas rurales más remotas, nosotros te conectamos con tus seres queridos.</p>
+            </div>
+            <div class="map-stats">
+                <div class="stat-card fade-in delay-1">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Países</div>
+                </div>
+                <div class="stat-card fade-in delay-2">
+                    <div class="stat-number">20M+</div>
+                    <div class="stat-label">Usuarios</div>
+                </div>
+                <div class="stat-card fade-in delay-3">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Satisfacción</div>
+                </div>
+                <div class="stat-card fade-in delay-4">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Disponibilidad</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <div class="testimonials-bg"></div>
+        <div class="container">
+            <div class="section-title center fade-in">
+                <h2>Lo que dicen nuestros clientes</h2>
+                <p class="subtitle">Miles de personas confían en nosotros para sus transferencias internacionales</p>
+            </div>
+            <div class="testimonials-slider fade-in delay-1">
+                <div class="testimonial-slide active">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="quote">"Puedo enviar dinero a mi familia en Colombia en minutos y con las mejores tasas. La nueva función de recarga con tarjeta es increíble, ¡instantánea y sin comisiones!"</p>
+                        </div>
+                        <div class="client-info">
+                            <img src="https://randomuser.me/api/portraits/women/58.jpg" alt="María Rodríguez" class="client-photo">
+                            <h4 class="client-name">María Rodríguez</h4>
+                            <p class="client-position">Madrid, España</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="quote">"Como estudiante internacional, necesito enviar y recibir dinero regularmente. Remeex VISA ha simplificado todo el proceso y ahora con la recarga desde mi tarjeta todo es aún más rápido."</p>
+                        </div>
+                        <div class="client-info">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Mendoza" class="client-photo">
+                            <h4 class="client-name">Carlos Mendoza</h4>
+                            <p class="client-position">Londres, Reino Unido</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <p class="quote">"Envío remesas a mi familia en Filipinas mensualmente y desde que uso Remeex VISA, el dinero llega más rápido y pago menos comisiones. ¡El servicio express con tarjeta de crédito es un cambio de juego!"</p>
+                        </div>
+                        <div class="client-info">
+                            <img src="https://randomuser.me/api/portraits/women/66.jpg" alt="Anna Lee" class="client-photo">
+                            <h4 class="client-name">Anna Lee</h4>
+                            <p class="client-position">Toronto, Canadá</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-arrows">
+                    <button class="testimonial-arrow" id="testimonial-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="testimonial-arrow" id="testimonial-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="testimonial-controls">
+                    <span class="testimonial-dot active" data-slide="0"></span>
+                    <span class="testimonial-dot" data-slide="1"></span>
+                    <span class="testimonial-dot" data-slide="2"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section (Nuevo) -->
+    <section id="reviews" class="content-section">
+        <div class="container">
+            <div class="section-title center fade-in">
+                <h2>Opiniones de la comunidad</h2>
+                <p class="subtitle">Conoce lo que opinan nuestros usuarios sobre Remeex VISA</p>
+            </div>
+            
+            <div class="reviews-grid">
+                <div class="review-card fade-in delay-1">
+                    <span class="review-reward"><i class="fas fa-award"></i>Recompensado</span>
+                    <div class="review-header">
+                        <img src="https://randomuser.me/api/portraits/men/73.jpg" alt="Usuario" class="reviewer-avatar">
+                        <div class="reviewer-info">
+                            <h4 class="reviewer-name">Javier Morales</h4>
+                            <p class="review-date">15 febrero, 2025</p>
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">Increíble servicio. Envié dinero a mi madre en México y llegó en menos de 5 minutos. Las tarifas son realmente competitivas comparadas con otros servicios. ¡Definitivamente mi primera opción de ahora en adelante!</p>
+                    <div class="review-verification">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Compra verificada</span>
+                    </div>
+                </div>
+                
+                <div class="review-card fade-in delay-2">
+                    <span class="review-reward"><i class="fas fa-award"></i>Recompensado</span>
+                    <div class="review-header">
+                        <img src="https://randomuser.me/api/portraits/women/47.jpg" alt="Usuario" class="reviewer-avatar">
+                        <div class="reviewer-info">
+                            <h4 class="reviewer-name">Sofia Gutiérrez</h4>
+                            <p class="review-date">3 marzo, 2025</p>
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">La app es super intuitiva y fácil de usar. He probado muchos servicios de remesas y este es el más rápido hasta ahora. La función de recarga con tarjeta es brillante, me ahorró mucho tiempo. ¡La atención al cliente es excelente!</p>
+                    <div class="review-verification">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Compra verificada</span>
+                    </div>
+                </div>
+                
+                <div class="review-card fade-in delay-3">
+                    <span class="review-reward"><i class="fas fa-award"></i>Recompensado</span>
+                    <div class="review-header">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Usuario" class="reviewer-avatar">
+                        <div class="reviewer-info">
+                            <h4 class="reviewer-name">Miguel Ángel Pérez</h4>
+                            <p class="review-date">21 febrero, 2025</p>
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="review-text">No tenía Zelle pero necesitaba enviar dinero urgentemente. Remeex VISA me solucionó el problema en minutos. El proceso de verificación fue rápido y el dinero llegó casi instantáneamente. Recomiendo totalmente.</p>
+                    <div class="review-verification">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Compra verificada</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reviews-cta fade-in delay-4">
+                <div class="reviews-cta-message">¡Comparte tu experiencia y gana $5!</div>
+                <p class="reviews-cta-subtext">Comenta sobre tu experiencia con Remeex VISA y recibe $5 de crédito en tu próxima transferencia. Así de fácil.</p>
+                <a href="comentariosremeex.html" class="btn btn-primary btn-lg">
+                    <i class="fas fa-comment-dots"></i>
+                    Dejar mi opinión
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section (Nuevo) -->
+    <section id="faq">
+        <div class="faq-bg"></div>
+        <div class="container">
+            <div class="section-title center fade-in">
+                <h2>Preguntas Frecuentes</h2>
+                <p class="subtitle">Resolvemos tus dudas sobre Remeex VISA</p>
+            </div>
+            
+            <div class="faq-container fade-in delay-1">
+                <div class="faq-item active">
+                    <div class="faq-question">
+                        <h3>¿Cómo funciona Remeex VISA?</h3>
+                        <div class="faq-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Remeex VISA es un servicio que permite realizar transferencias internacionales de forma rápida y segura. Solo necesitas registrarte, verificar tu identidad, seleccionar el destinatario y el monto, y realizar la transferencia. El dinero llega a su destino en cuestión de minutos, con tarifas competitivas y alta seguridad respaldada por VISA.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Cuánto tiempo tarda en llegar el dinero?</h3>
+                        <div class="faq-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La mayoría de las transferencias con Remeex VISA se completan en minutos, no horas ni días como con los servicios tradicionales. Nuestro sistema de procesamiento avanzado permite que el dinero llegue casi instantáneamente al destinatario, dependiendo del método de pago y recepción elegidos.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Qué es la recarga con tarjeta de crédito?</h3>
+                        <div class="faq-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nuestra nueva función permite recargar tu cuenta bancaria directamente desde tu tarjeta de crédito. Es un servicio express e instantáneo sin comisiones adicionales. Esto te brinda mayor flexibilidad y rapidez a la hora de enviar dinero, sin necesidad de esperar transferencias bancarias tradicionales.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Es seguro usar Remeex VISA?</h3>
+                        <div class="faq-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutamente. Contamos con el respaldo de VISA y utilizamos tecnología de encriptación avanzada para proteger todas tus transacciones. Además, cumplimos con todas las regulaciones internacionales contra el lavado de dinero y tenemos un equipo de seguridad dedicado a monitorear cada operación.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Cómo obtengo los $5 por compartir mi opinión?</h3>
+                        <div class="faq-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Es muy sencillo. Solo tienes que dejar una reseña honesta sobre tu experiencia en nuestra sección de comentarios. Una vez verificada, recibirás automáticamente un crédito de $5 en tu cuenta Remeex VISA que podrás utilizar en tu próxima transferencia. Es nuestra forma de agradecerte por compartir tu experiencia con la comunidad.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-more fade-in delay-2">
+                <a href="preguntasremeex.html" class="btn btn-primary">
+                    <i class="fas fa-question-circle"></i>
+                    Ver todas las preguntas
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Preview Section (Nuevo) -->
+    <section id="blog" class="content-section">
+        <div class="container">
+            <div class="section-title center fade-in">
+                <h2>Blog Remeex</h2>
+                <p class="subtitle">Consejos, guías y noticias sobre transferencias internacionales</p>
+            </div>
+            
+            <div class="blog-grid fade-in delay-1">
+                <div class="blog-card">
+                    <div class="blog-image-container">
+                        <img src="https://images.pexels.com/photos/3943716/pexels-photo-3943716.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Mejores prácticas para enviar dinero" class="blog-image">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <div class="blog-meta-item">
+                                <i class="far fa-calendar"></i>
+                                <span>10 Marzo, 2025</span>
+                            </div>
+                            <div class="blog-meta-item">
+                                <i class="far fa-eye"></i>
+                                <span>1.8K</span>
+                            </div>
+                        </div>
+                        <h3 class="blog-title">5 mejores prácticas para enviar dinero al extranjero</h3>
+                        <p class="blog-excerpt">Descubre las mejores estrategias para maximizar tus envíos internacionales y ahorrar en comisiones. Consejos de expertos para principiantes y usuarios frecuentes.</p>
+                        <a href="blogremeex.html" class="blog-link">
+                            Leer más
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="blog-card">
+                    <div class="blog-image-container">
+                        <img src="https://images.pexels.com/photos/6347720/pexels-photo-6347720.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Nuevas tecnologías en remesas" class="blog-image">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <div class="blog-meta-item">
+                                <i class="far fa-calendar"></i>
+                                <span>2 Marzo, 2025</span>
+                            </div>
+                            <div class="blog-meta-item">
+                                <i class="far fa-eye"></i>
+                                <span>2.3K</span>
+                            </div>
+                        </div>
+                        <h3 class="blog-title">Cómo la tecnología está revolucionando las remesas</h3>
+                        <p class="blog-excerpt">El futuro de las transferencias internacionales ya está aquí. Explora cómo la blockchain y otras tecnologías están transformando el envío de dinero global.</p>
+                        <a href="blogremeex.html" class="blog-link">
+                            Leer más
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="blog-card">
+                    <div class="blog-image-container">
+                        <img src="https://images.pexels.com/photos/4386158/pexels-photo-4386158.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Historias de impacto" class="blog-image">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <div class="blog-meta-item">
+                                <i class="far fa-calendar"></i>
+                                <span>25 Febrero, 2025</span>
+                            </div>
+                            <div class="blog-meta-item">
+                                <i class="far fa-eye"></i>
+                                <span>3.5K</span>
+                            </div>
+                        </div>
+                        <h3 class="blog-title">Historias de impacto: Cómo las remesas cambian vidas</h3>
+                        <p class="blog-excerpt">Descubre testimonios reales de cómo el envío de dinero a familiares ha transformado comunidades enteras. Historias inspiradoras de nuestros usuarios.</p>
+                        <a href="blogremeex.html" class="blog-link">
+                            Leer más
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="blog-more fade-in delay-2">
+                <a href="blogremeex.html" class="btn btn-primary">
+                    <i class="fas fa-book"></i>
+                    Ver todos los artículos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Community Section (Nuevo) -->
+    <section id="community">
+        <div class="community-bg"></div>
+        <div class="container">
+            <div class="community-container">
+                <div class="section-title center fade-in">
+                    <h2>Comunidad Remeex</h2>
+                    <p class="subtitle">Conecta con otros usuarios y comparte experiencias en tiempo real</p>
+                </div>
+                
+                <div class="chat-preview fade-in delay-1">
+                    <div class="chat-header">
+                        <div class="chat-title">
+                            <i class="fas fa-comments"></i>
+                            <span>Chat de la comunidad</span>
+                        </div>
+                        <div class="chat-online">
+                            <span class="chat-online-dot"></span>
+                            <span>128 usuarios en línea</span>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-body">
+                        <div class="chat-message">
+                            <div class="chat-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="Usuario">
+                            </div>
+                            <div class="chat-bubble">
+                                <div class="chat-user">Roberto_89</div>
+                                <p class="chat-text">¿Alguien ha enviado dinero a Ecuador recientemente? ¿Cuánto tiempo tardó en llegar?</p>
+                                <div class="chat-time">11:32</div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-message">
+                            <div class="chat-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Usuario">
+                            </div>
+                            <div class="chat-bubble">
+                                <div class="chat-user">Laura_ecuatoriana</div>
+                                <p class="chat-text">Yo envié la semana pasada a Quito. El dinero llegó en 10 minutos aproximadamente. Todo perfecto.</p>
+                                <div class="chat-time">11:35</div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-message sent">
+                            <div class="chat-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/36.jpg" alt="Usuario">
+                            </div>
+                            <div class="chat-bubble">
+                                <div class="chat-user">Admin_Carlos</div>
+                                <p class="chat-text">Las transferencias a todos los países de Latinoamérica suelen completarse en menos de 20 minutos. Si necesitan ayuda específica, estoy para apoyarles.</p>
+                                <div class="chat-time">11:37</div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-message">
+                            <div class="chat-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="Usuario">
+                            </div>
+                            <div class="chat-bubble">
+                                <div class="chat-user">Roberto_89</div>
+                                <p class="chat-text">¡Perfecto! Gracias por la información. Voy a hacer mi primera transferencia esta tarde.</p>
+                                <div class="chat-time">11:39</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-footer">
+                        <input type="text" class="chat-input" placeholder="Escribe un mensaje...">
+                        <button class="chat-send">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="community-cta fade-in delay-2">
+                    <a href="chatremeex.html" class="btn btn-primary btn-lg">
+                        <i class="fas fa-users"></i>
+                        Unirse a la comunidad
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Section -->
+    <section id="app">
+        <div class="app-bg"></div>
+        <div class="container">
+            <div class="app-container">
+                <div class="app-content fade-in">
+                    <span class="badge badge-success">Disponible 24/7</span>
+                    <h2>Lleva Remeex VISA siempre contigo</h2>
+                    <p class="large-text">Descarga nuestra aplicación móvil y gestiona tus transferencias desde cualquier lugar, en cualquier momento.</p>
+                    <div class="app-features">
+                        <div class="app-feature fade-in delay-1">
+                            <i class="fas fa-check-circle"></i>
+                            <div>Interfaz intuitiva y fácil de usar</div>
+                        </div>
+                        <div class="app-feature fade-in delay-2">
+                            <i class="fas fa-check-circle"></i>
+                            <div>Notificaciones en tiempo real</div>
+                        </div>
+                        <div class="app-feature fade-in delay-3">
+                            <i class="fas fa-check-circle"></i>
+                            <div>Acceso rápido con huella digital o Face ID</div>
+                        </div>
+                        <div class="app-feature fade-in delay-4">
+                            <i class="fas fa-check-circle"></i>
+                            <div>Recarga tu cuenta con tarjeta de crédito<span class="badge-new"><i class="fas fa-star"></i>NUEVO</span></div>
+                        </div>
+                        <div class="app-feature fade-in delay-4">
+                            <i class="fas fa-check-circle"></i>
+                            <div>Historial de transferencias detallado</div>
+                        </div>
+                    </div>
+                    <div class="app-download">
+                        <a href="https://play.google.com/store/apps/details?id=com.visa.vdec&hl=es" class="app-btn fade-in delay-1">
+                            <i class="fab fa-apple"></i>
+                            <div class="app-btn-content">
+                                <span class="app-btn-text">Descarga en la</span>
+                                <span class="app-btn-name">App Store</span>
+                            </div>
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.visa.vdec&hl=es" class="app-btn fade-in delay-2">
+                            <i class="fab fa-google-play"></i>
+                            <div class="app-btn-content">
+                                <span class="app-btn-text">Disponible en</span>
+                                <span class="app-btn-name">Google Play</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta">
+        <div class="cta-bg"></div>
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title fade-in">Comienza a conectar sin fronteras</h2>
+                <p class="cta-subtitle fade-in delay-1">Únete a millones de usuarios satisfechos que confían en Remeex VISA para sus transferencias internacionales</p>
+                <a href="home.remeexvisa.com/index_remeex" class="btn btn-secondary btn-lg fade-in delay-2"><i class="fas fa-paper-plane"></i>Recibir remesa ya!</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="support">
+        <div class="container">
+            <div class="section-title center fade-in">
+                <h2>Estamos aquí para ayudarte</h2>
+                <p class="subtitle">Nuestro equipo de soporte está disponible 24/7 para resolver todas tus dudas</p>
+            </div>
+            <div class="support-grid">
+                <div class="support-card fade-in delay-1">
+                    <div class="support-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="support-title">Chat en vivo</h3>
+                    <p class="support-description">Habla con un asesor en tiempo real a través de nuestra web o aplicación móvil.</p>
+                    <a href="#" id="open-chat" class="btn btn-primary">Iniciar chat</a>
+                </div>
+                <div class="support-card fade-in delay-2">
+                    <div class="support-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="support-title">Correo electrónico</h3>
+                    <p class="support-description">Envíanos tus consultas y te responderemos en menos de 24 horas.</p>
+                    <a href="https://wa.me/+17373018059" class="btn btn-primary">Enviar consulta</a>
+                </div>
+                <div class="support-card fade-in delay-3">
+                    <div class="support-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3 class="support-title">Teléfono</h3>
+                    <p class="support-description">Llámanos para hablar directamente con un asesor especializado.</p>
+                    <a href="tel:+17373018059" class="btn btn-primary">Llamar ahora</a>
+                </div>
+                <div class="support-card fade-in delay-4">
+                    <div class="support-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="support-title">Centro de ayuda</h3>
+                    <p class="support-description">Consulta nuestras guías, tutoriales y preguntas frecuentes para resolver dudas comunes.</p>
+                    <a href="https://wa.me/+17373018059" class="btn btn-primary">Visitar centro</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <svg class="footer-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 50">
+            <path d="M0,32L48,37.3C96,43,192,53,288,50.7C384,48,480,32,576,21.3C672,11,768,5,864,10.7C960,16,1056,32,1152,37.3C1248,43,1344,37,1392,34.7L1440,32L1440,50L1392,50C1344,50,1248,50,1152,50C1056,50,960,50,864,50C768,50,672,50,576,50C480,50,384,50,288,50C192,50,96,50,48,50L0,50Z"></path>
+        </svg>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">
+                        <a href="#hero">
+                            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwQVwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s16000/remeex.png" alt="Remeex VISA Logo" style="height: 50px; width: auto;">
+                        </a>
+                    </div>
+                    <p class="footer-about">Conectando familias alrededor del mundo con transferencias rápidas, seguras y económicas. Ahora con recarga instantánea de cuenta bancaria con tarjeta de crédito.</p>
+                    <div class="social-icons">
+                        <a href="https://twitter.com/visa_es" class="social-icon" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.facebook.com/visa_es" class="social-icon" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/visa_es" class="social-icon" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/visa_es" class="social-icon" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.youtube.com/user/visa_es" class="social-icon" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-title">Empresa</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://visa.es">Sobre nosotros</a></li>
+                        <li><a href="https://visa.es">Carreras</a></li>
+                        <li><a href="https://visa.es">Sala de prensa</a></li>
+                        <li><a href="https://visa.es">Responsabilidad social</a></li>
+                        <li><a href="https://visa.es">Inversores</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Servicios</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://visa.es">Transferencias internacionales</a></li>
+                        <li><a href="https://visa.es">Recarga con tarjeta de crédito</a></li>
+                        <li><a href="https://visa.es">Pagos recurrentes</a></li>
+                        <li><a href="https://visa.es">Cambio de divisas</a></li>
+                        <li><a href="https://visa.es">Tarjetas virtuales</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Ayuda</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://visa.es">Centro de ayuda</a></li>
+                        <li><a href="https://visa.es">Contáctanos</a></li>
+                        <li><a href="https://visa.es">Preguntas frecuentes</a></li>
+                        <li><a href="https://visa.es">Seguridad</a></li>
+                        <li><a href="https://visa.es">Reportar un problema</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://visa.es">Términos y condiciones</a></li>
+                        <li><a href="https://visa.es">Política de privacidad</a></li>
+                        <li><a href="https://visa.es">Política de cookies</a></li>
+                        <li><a href="https://visa.es">Cumplimiento normativo</a></li>
+                        <li><a href="https://visa.es">Licencias</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <div class="language-selector">
+                    <select aria-label="Seleccionar idioma">
+                        <option value="es">Español</option>
+                        <option value="en">English</option>
+                        <option value="fr">Français</option>
+                        <option value="pt">Português</option>
+                        <option value="de">Deutsch</option>
+                    </select>
+                </div>
+                <div class="security-text">
+                    Certificaciones de seguridad: SSL Secured | PCI Compliant | VISA Verified
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 Remeex VISA. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Volver arriba">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/+17373018059" class="whatsapp-button" aria-label="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Promo Overlay -->
+    <div class="promo-overlay" id="promo-overlay">
+        <div class="promo-content">
+            <button class="promo-close" id="promo-close" aria-label="Cerrar promoción">
+                <i class="fas fa-times"></i>
+            </button>
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh1ZMu79Yc6wPdwxws5FU46z64Fav7yuDDTdvlubFKa4fCjPyHSuBH5wowS2iX1kkU48ZGp_BEdL0QpVolvHdqgHbs3Gi4o3o382lQdpY9wDzhR8_ZG9FBe-TBa1xD1ZElRrHDMMHMEbeM9psPfSfabol-P82bn5exgu4tjeoGRZU2CcxuaM5YwMLBGjhlq/s16000/FD.png" alt="Promoción especial" class="promo-image">
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Simulador de carga
+        (function() {
+            const loader = document.getElementById('loader');
+            const loaderBar = document.getElementById('loader-bar');
+            const loaderText = document.getElementById('loader-text');
+            
+            // Valores de carga
+            const loadSteps = [
+                { progress: 20, text: "Cargando recursos..." },
+                { progress: 40, text: "Inicializando componentes..." },
+                { progress: 60, text: "Cargando interfaz..." },
+                { progress: 80, text: "Optimizando experiencia..." },
+                { progress: 100, text: "¡Completado!" }
+            ];
+            
+            let currentStep = 0;
+            
+            function updateLoader() {
+                if (currentStep < loadSteps.length) {
+                    loaderBar.style.width = loadSteps[currentStep].progress + '%';
+                    loaderText.textContent = loadSteps[currentStep].text;
+                    currentStep++;
+                    
+                    const delay = currentStep === loadSteps.length - 1 ? 300 : 400;
+                    setTimeout(updateLoader, delay);
+                } else {
+                    setTimeout(() => {
+                        loader.style.opacity = '0';
+                        setTimeout(() => {
+                            loader.style.display = 'none';
+                            document.body.classList.add('loaded');
+                            
+                            // Mostrar la promoción después de 3 segundos
+                            setTimeout(() => {
+                                document.getElementById('promo-overlay').classList.add('active');
+                            }, 3000);
+                        }, 300);
+                    }, 400);
+                }
+            }
+            
+            setTimeout(updateLoader, 500);
+        })();
+        
+        // Funcionalidad principal
+        document.addEventListener('DOMContentLoaded', function() {
+            // Referencias DOM
+            const menuToggle = document.getElementById('menu-toggle');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const overlay = document.getElementById('overlay');
+            const backToTop = document.getElementById('back-to-top');
+            const promoOverlay = document.getElementById('promo-overlay');
+            const promoClose = document.getElementById('promo-close');
+            const openChat = document.getElementById('open-chat');
+            const header = document.getElementById('header');
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            // Cerrar promoción
+            promoClose.addEventListener('click', () => {
+                promoOverlay.classList.remove('active');
+            });
+            
+            // Abrir chat de Tawk.to
+            if (openChat) {
+                openChat.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (typeof Tawk_API !== 'undefined') {
+                        Tawk_API.maximize();
+                    } else {
+                        window.open('https://wa.me/+17373018059', '_blank');
+                    }
+                });
+            }
+            
+            // Menú móvil
+            function toggleMenu() {
+                mobileMenu.classList.toggle('active');
+                overlay.classList.toggle('active');
+                document.body.classList.toggle('menu-open');
+                
+                if (mobileMenu.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            }
+            
+            menuToggle.addEventListener('click', toggleMenu);
+            closeMenu.addEventListener('click', toggleMenu);
+            overlay.addEventListener('click', toggleMenu);
+            
+            // Enlaces del menú móvil
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    toggleMenu();
+                });
+            });
+            
+            // Slider Hero
+            const heroSlides = document.querySelectorAll('.hero-slide');
+            const sliderDots = document.querySelectorAll('.slider-dot');
+            let currentSlide = 0;
+            let slideInterval;
+            
+            function showSlide(index) {
+                heroSlides.forEach(slide => slide.classList.remove('active'));
+                sliderDots.forEach(dot => dot.classList.remove('active'));
+                
+                heroSlides[index].classList.add('active');
+                sliderDots[index].classList.add('active');
+                
+                currentSlide = index;
+            }
+            
+            function nextSlide() {
+                let next = (currentSlide + 1) % heroSlides.length;
+                showSlide(next);
+            }
+            
+            function startSlider() {
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+            
+            sliderDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    clearInterval(slideInterval);
+                    showSlide(index);
+                    startSlider();
+                });
+            });
+            
+            // Iniciar slider automático
+            startSlider();
+            
+            // Slider de testimonios
+            const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+            const testimonialDots = document.querySelectorAll('.testimonial-dot');
+            const prevBtn = document.getElementById('testimonial-prev');
+            const nextBtn = document.getElementById('testimonial-next');
+            let currentTestimonial = 0;
+            let testimonialInterval;
+            
+            function showTestimonial(index) {
+                testimonialSlides.forEach(slide => slide.classList.remove('active'));
+                testimonialDots.forEach(dot => dot.classList.remove('active'));
+                
+                testimonialSlides[index].classList.add('active');
+                testimonialDots[index].classList.add('active');
+                
+                currentTestimonial = index;
+            }
+            
+            function nextTestimonial() {
+                let next = (currentTestimonial + 1) % testimonialSlides.length;
+                showTestimonial(next);
+            }
+            
+            function prevTestimonial() {
+                let prev = (currentTestimonial - 1 + testimonialSlides.length) % testimonialSlides.length;
+                showTestimonial(prev);
+            }
+            
+            function startTestimonialSlider() {
+                testimonialInterval = setInterval(nextTestimonial, 6000);
+            }
+            
+            testimonialDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    clearInterval(testimonialInterval);
+                    showTestimonial(index);
+                    startTestimonialSlider();
+                });
+            });
+            
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', () => {
+                    clearInterval(testimonialInterval);
+                    prevTestimonial();
+                    startTestimonialSlider();
+                });
+                
+                nextBtn.addEventListener('click', () => {
+                    clearInterval(testimonialInterval);
+                    nextTestimonial();
+                    startTestimonialSlider();
+                });
+            }
+            
+            // Iniciar slider de testimonios
+            startTestimonialSlider();
+            
+            // FAQ Accordion
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Cerrar todos los items activos
+                    faqItems.forEach(faq => {
+                        faq.classList.remove('active');
+                    });
+                    
+                    // Si no estaba activo, abrirlo
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+            
+            // Botón de volver arriba
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('active');
+                } else {
+                    backToTop.classList.remove('active');
+                }
+                
+                // Cambiar estilo del header al hacer scroll
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Navegación suave para enlaces de anclaje
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') !== "#") {
+                        e.preventDefault();
+                        
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        
+                        if (targetElement) {
+                            const headerHeight = document.getElementById('header').offsetHeight;
+                            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                            
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                            
+                            // Actualizar clase active en la navegación
+                            document.querySelectorAll('#nav ul li a').forEach(navLink => {
+                                navLink.classList.remove('active');
+                            });
+                            
+                            document.querySelector(`#nav ul li a[href="${targetId}"]`)?.classList.add('active');
+                        }
+                    }
+                });
+            });
+            
+            // Animación de contadores en las estadísticas
+            function animateCounters() {
+                const counters = document.querySelectorAll('.stat-number');
+                
+                const counterObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const counter = entry.target;
+                            
+                            // Obtener el valor numerico
+                            let content = counter.textContent;
+                            let hasPlus = content.includes('+');
+                            let target = parseInt(content.replace(/\D/g, ''));
+                            
+                            if (isNaN(target) || content.includes('/')) return; // Para ignorar formato "24/7"
+                            
+                            let count = 0;
+                            const duration = 2000; // ms
+                            const increment = Math.ceil(target / (duration / 16)); // Para 60fps aproximadamente
+                            
+                            // Reset counter
+                            counter.textContent = '0';
+                            counter.style.visibility = 'visible';
+                            
+                            // Start counting
+                            const updateCount = () => {
+                                count += increment;
+                                if (count < target) {
+                                    counter.textContent = count + (hasPlus ? '+' : '');
+                                    requestAnimationFrame(updateCount);
+                                } else {
+                                    counter.textContent = target + (hasPlus ? '+' : '');
+                                }
+                            };
+                            
+                            requestAnimationFrame(updateCount);
+                            counterObserver.unobserve(counter);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                counters.forEach(counter => {
+                    counterObserver.observe(counter);
+                });
+            }
+            
+            // Ejecutar animación de contadores si Intersection Observer está disponible
+            if ('IntersectionObserver' in window) {
+                animateCounters();
+            }
+            
+            // Detección de soporte táctil
+            const isTouchDevice = () => {
+                return (('ontouchstart' in window) ||
+                        (navigator.maxTouchPoints > 0) ||
+                        (navigator.msMaxTouchPoints > 0));
+            };
+            
+            if (isTouchDevice()) {
+                document.body.classList.add('touch-device');
+                
+                // Funcionalidad de deslizar para sliders
+                const heroSlider = document.querySelector('.hero-slider');
+                const testimonialSlider = document.querySelector('.testimonials-slider');
+                
+                // Función para manejar deslizamientos
+                const handleSwipe = (element, nextFunc, prevFunc) => {
+                    let startX, endX;
+                    const minSwipeDistance = 50;
+                    
+                    element.addEventListener('touchstart', (e) => {
+                        startX = e.touches[0].clientX;
+                    }, { passive: true });
+                    
+                    element.addEventListener('touchend', (e) => {
+                        endX = e.changedTouches[0].clientX;
+                        const distance = endX - startX;
+                        
+                        if (Math.abs(distance) >= minSwipeDistance) {
+                            if (distance > 0) {
+                                // Deslizamiento a la derecha - anterior
+                                prevFunc();
+                            } else {
+                                // Deslizamiento a la izquierda - siguiente
+                                nextFunc();
+                            }
+                        }
+                    }, { passive: true });
+                };
+                
+                // Aplicar funcionalidad de deslizamiento a los sliders
+                if (heroSlider) {
+                    handleSwipe(heroSlider, nextSlide, () => {
+                        clearInterval(slideInterval);
+                        let prev = (currentSlide - 1 + heroSlides.length) % heroSlides.length;
+                        showSlide(prev);
+                        startSlider();
+                    });
+                }
+                
+                if (testimonialSlider) {
+                    handleSwipe(testimonialSlider, nextTestimonial, prevTestimonial);
+                }
+            }
+            
+            // Actualizar navegación activa al hacer scroll
+            function updateActiveNavOnScroll() {
+                const sections = document.querySelectorAll('section[id]');
+                const navLinks = document.querySelectorAll('#nav ul li a');
+                
+                const scrollPosition = window.scrollY + window.innerHeight / 3;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - document.querySelector('#header').offsetHeight;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', updateActiveNavOnScroll);
+            
+            // Inicializar la página con las clases activas correctas
+            updateActiveNavOnScroll();
+        });
+    </script>
+
+    <!-- Tawk.to Script -->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/67cca8c614b1ee191063c36a/default';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+</body>
+</html>
