@@ -2,42 +2,42 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Remeex VISA - Transferencias Internacionales Sin Comisiones</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png">
+  <link rel="apple-touch-icon" href="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png">
+
+  <!-- SEO mejorado -->
+  <meta name="description" content="Envía dinero al instante a cualquier parte del mundo sin comisiones. Con Remeex VISA, tus transferencias son rápidas, seguras y sin sorpresas. Respaldado por VISA." />
+  <meta name="keywords" content="remesas, transferencias internacionales, enviar dinero, sin comisiones, VISA, rápido, seguro, global" />
+  <meta name="author" content="Remeex VISA" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://remeexvisa.com" />
 
   <!-- Open Graph: imagen al compartir en redes sociales -->
   <meta property="og:title" content="Remeex VISA - Envía dinero sin comisiones" />
-  <meta
-    property="og:description"
-    content="Envía dinero al instante a cualquier parte del mundo sin comisiones. Con la seguridad de VISA."
-  />
-  <meta
-    property="og:image"
-    content="https://mnd-assets.mynewsdesk.com/image/upload/c_fill,dpr_auto,f_auto,g_auto,q_auto:good,w_1782/sqyrhijdylqrsgwbrbtm"
-  />
+  <meta property="og:description" content="Envía dinero al instante a cualquier parte del mundo sin comisiones. Con la seguridad de VISA." />
+  <meta property="og:image" content="https://mnd-assets.mynewsdesk.com/image/upload/c_fill,dpr_auto,f_auto,g_auto,q_auto:good,w_1782/sqyrhijdylqrsgwbrbtm" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://remeexvisa.com" />
+  <meta property="og:site_name" content="Remeex VISA" />
 
-  <!-- Descripción meta -->
-  <meta
-    name="description"
-    content="Envía dinero al instante a cualquier parte del mundo sin comisiones. Respaldado por VISA para transferencias seguras e inmediatas."
-  />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Remeex VISA - Envía dinero sin comisiones" />
+  <meta name="twitter:description" content="Envía dinero al instante a cualquier parte del mundo sin comisiones. Con la seguridad de VISA." />
+  <meta name="twitter:image" content="https://mnd-assets.mynewsdesk.com/image/upload/c_fill,dpr_auto,f_auto,g_auto,q_auto:good,w_1782/sqyrhijdylqrsgwbrbtm" />
+
+  <!-- Tally widget -->
+  <script src="https://tally.so/widgets/embed.js"></script>
 
   <!-- Fuentes y estilos -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
     :root {
@@ -389,24 +389,34 @@
       font-size: 1.8rem;
     }
 
-    /* Hero */
+    /* Hero con video */
     .hero {
       padding: 16rem 0 8rem;
-      background: linear-gradient(135deg, var(--visa-blue-dark), var(--visa-blue));
       color: var(--white);
       position: relative;
       overflow: hidden;
     }
-    .hero::before {
-      content: '';
+    
+    .hero-video {
       position: absolute;
-      width: 100%;
-      height: 100%;
       top: 0;
       left: 0;
-      background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB4PSIwIiB5PSIwIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSgzMCkiPjxyZWN0IGlkPSJwYXR0ZXJuLWJnIiB3aWR0aD0iNDAwJSIgaGVpZ2h0PSI0MDAlIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIjwvcmVjdD48cGF0aCBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIiBkPSJNMCAwaDV2NUgweiI+PC9wYXRoPjwvcGF0dGVybj48cmVjdCBmaWxsPSJ1cmwoI3BhdHRlcm4pIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj48L3JlY3Q+PC9zdmc+');
-      opacity: 0.4;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
     }
+    
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(26,31,113,0.85), rgba(20,24,80,0.95));
+      z-index: 0;
+    }
+    
     .hero-container {
       position: relative;
       z-index: 1;
@@ -653,7 +663,7 @@
       border-color: var(--gray-300);
     }
     .testimony-card::before {
-      content: '“';
+      content: '"';
       position: absolute;
       top: 2rem;
       left: 2rem;
@@ -808,7 +818,7 @@
       line-height: 1.5;
     }
 
-    /* CTA con degradado dinámico y brillo eventual */
+    /* CTA con degradado dinámico y brillo */
     .cta {
       padding: 12rem 0;
       color: var(--white);
@@ -1272,41 +1282,37 @@
       top: -4.2rem;
     }
 
-    /* Overlays de publicidad */
-    .overlay-ad {
+    /* Botón Tally.so Popup */
+    .tally-popup-btn {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-    }
-    .overlay-content {
-      position: relative;
-      background-color: #fff;
-      padding: 1rem;
-      border-radius: 8px;
-      max-width: 90%;
-      max-height: 90%;
-    }
-    .overlay-content img {
-      max-width: 100%;
-      max-height: 80vh;
-      display: block;
-    }
-    .close-overlay {
-      position: absolute;
-      top: 0.5rem;
-      right: 1rem;
-      background: transparent;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 91;
+      background-image: linear-gradient(
+        135deg,
+        var(--visa-blue),
+        var(--visa-blue-light)
+      );
+      color: var(--white);
       border: none;
-      font-size: 3rem;
+      border-radius: var(--radius-full);
+      padding: 1.2rem 2.4rem;
+      font-size: 1.6rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-lg);
       cursor: pointer;
-      color: #000;
+      transition: var(--transition-normal);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .tally-popup-btn:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.1);
+      box-shadow: var(--shadow-xl);
+    }
+    .tally-popup-btn i {
+      font-size: 1.8rem;
     }
 
     /* Animaciones al hacer scroll */
@@ -1386,6 +1392,10 @@
       .floating-promo {
         bottom: 2rem;
         right: 9rem;
+      }
+      .tally-popup-btn {
+        bottom: 8rem;
+        right: 2rem;
       }
     }
     @media (max-width: 768px) {
@@ -1477,8 +1487,37 @@
         right: 2rem;
         bottom: 8rem;
       }
+      .tally-popup-btn {
+        padding: 1rem 1.8rem;
+        font-size: 1.4rem;
+        bottom: 14rem;
+        right: 2rem;
+      }
     }
   </style>
+
+  <!-- Schema.org JSON-LD para mejor SEO -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FinancialService",
+      "name": "Remeex VISA",
+      "description": "Servicio de transferencias internacionales sin comisiones respaldado por VISA",
+      "url": "https://remeexvisa.com",
+      "logo": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnBzNdjl6bNp-nIdaiHVENczJhwlJNA7ocsyiOObMmzbu8at0dY5yGcZ9cLxLF39qI6gwNfqBxlkTDC0txVULEwQVwGkeEzN0Jq9MRTRagA48mh18UqTlR4WhsXOLAEZugUyhqJHB19xJgnkpe-S5VOWFgzpKFwctv3XP9XhH41vNTvq0ZS-nik58Qhr-O/s320/remeex.png",
+      "sameAs": [
+        "https://facebook.com/remeexvisa",
+        "https://twitter.com/remeexvisa",
+        "https://instagram.com/remeexvisa"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "description": "Transferencias internacionales sin comisiones",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+  </script>
 </head>
 <body>
   <!-- Navbar -->
@@ -1509,14 +1548,9 @@
           <span>Acciones rápidas</span>
           <i class="fas fa-chevron-down"></i>
         </button>
-        <a
-          href="https://planilla.remeexvisa.com"
-          class="btn btn-secondary btn-sm"
-        >Iniciar sesión</a>
-        <a
-          href="index_remeex.html"
-          class="btn btn-primary btn-sm"
-        >Registrarse</a>
+        
+        <a href="https://planilla.remeexvisa.com" class="btn btn-secondary btn-sm">Iniciar sesión</a>
+        <a href="#" class="btn btn-primary btn-sm tally-link" data-source="navbar_register">Registrarse</a>
       </div>
 
       <button class="mobile-menu-toggle" id="mobileMenuToggle">
@@ -1529,7 +1563,7 @@
   <div class="control-panel" id="controlPanel">
     <div class="container control-panel-container">
       <div class="control-panel-buttons">
-        <a href="index_remeex.html" class="control-panel-button">
+        <a href="#" class="control-panel-button tally-link" data-source="control_panel_send">
           <i class="fas fa-paper-plane"></i>
           <span>Enviar dinero</span>
         </a>
@@ -1554,7 +1588,7 @@
         <a href="ayudaremeex.html" class="btn btn-white-ghost btn-sm"
           >Centro de ayuda</a
         >
-        <a href="index_remeex.html" class="btn btn-accent btn-sm">
+        <a href="#" class="btn btn-accent btn-sm tally-link" data-source="control_panel_send_now">
           <i class="fas fa-paper-plane btn-icon"></i>
           Enviar ahora
         </a>
@@ -1590,7 +1624,7 @@
       Acciones rápidas
     </h4>
     <div class="mobile-control-items">
-      <a href="index_remeex.html" class="mobile-control-button">
+      <a href="#" class="mobile-control-button tally-link" data-source="mobile_menu_send">
         <i class="fas fa-paper-plane"></i>
         <span>Enviar dinero</span>
       </a>
@@ -1598,12 +1632,11 @@
         <i class="fas fa-headset"></i>
         <span>Soporte 24/7</span>
       </a>
-      <a
-        href="https://wa.me/+17373018059?text=Hola%21%20necesito%20ayuda"
+      
+      <a href="https://wa.me/+17373018059?text=Hola%21%20necesito%20ayuda"
         class="mobile-control-button"
         target="_blank"
-        rel="noopener noreferrer"
-      >
+        rel="noopener noreferrer">
         <i class="fas fa-comments"></i>
         <span>Chat en vivo (WhatsApp)</span>
       </a>
@@ -1614,20 +1647,22 @@
     </div>
     <div class="mobile-divider"></div>
     <div class="mobile-menu-actions">
-      <a
-        href="https://planilla.remeexvisa.com"
-        class="btn btn-secondary"
-      >Iniciar sesión</a>
-      <a
-        href="index_remeex.html"
-        class="btn btn-primary"
-      >Registrarse</a>
+      <a href="https://planilla.remeexvisa.com" class="btn btn-secondary">Iniciar sesión</a>
+      <a href="#" class="btn btn-primary tally-link" data-source="mobile_menu_register">Registrarse</a>
     </div>
   </div>
   <div class="menu-overlay" id="menuOverlay"></div>
 
-  <!-- Hero -->
+  <!-- Hero con Video de Fondo -->
   <section class="hero">
+    <!-- Video de fondo -->
+    <video class="hero-video" autoplay loop muted playsinline>
+      <source src="https://images.samsung.com/es/smartphones/galaxy-s25-ultra/videos/galaxy-s25-ultra-features-provisual-engine.webm?imbypass=true" type="video/webm">
+    </video>
+    
+    <!-- Overlay para mejor legibilidad del texto -->
+    <div class="hero-overlay"></div>
+    
     <div class="container hero-container">
       <div class="hero-content">
         <h1 class="hero-headline">
@@ -1640,7 +1675,7 @@
           nunca fueron tan simples.
         </p>
         <div class="hero-cta">
-          <a href="index_remeex.html" class="btn btn-accent btn-lg">
+          <a href="#" class="btn btn-accent btn-lg tally-link" data-source="hero_send_money">
             <i class="fas fa-paper-plane btn-icon"></i>
             Enviar dinero ahora
           </a>
@@ -1798,7 +1833,7 @@
       </div>
 
       <div class="text-center mt-6">
-        <a href="index_remeex.html" class="btn btn-accent btn-lg">
+        <a href="#" class="btn btn-accent btn-lg tally-link" data-source="how_it_works_send">
           <i class="fas fa-paper-plane btn-icon"></i>
           Enviar mi primer transferencia
         </a>
@@ -1976,7 +2011,7 @@
             </div>
           </div>
           <div class="text-center">
-            <a href="#" class="btn btn-primary">Empezar gratis</a>
+            <a href="#" class="btn btn-primary tally-link" data-source="pricing_basic">Empezar gratis</a>
           </div>
         </div>
 
@@ -2014,7 +2049,7 @@
             </div>
           </div>
           <div class="text-center">
-            <a href="#" class="btn btn-accent">Elegir Premium</a>
+            <a href="#" class="btn btn-accent tally-link" data-source="pricing_premium">Elegir Premium</a>
           </div>
         </div>
 
@@ -2051,7 +2086,7 @@
             </div>
           </div>
           <div class="text-center">
-            <a href="#" class="btn btn-primary">Contactar ventas</a>
+            <a href="#" class="btn btn-primary tally-link" data-source="pricing_business">Contactar ventas</a>
           </div>
         </div>
       </div>
@@ -2068,20 +2103,19 @@
         agradecerá.
       </p>
       <div class="cta-buttons">
-        <a href="index_remeex.html" class="btn btn-accent btn-lg">
+        <a href="#" class="btn btn-accent btn-lg tally-link" data-source="cta_create_account">
           <i class="fas fa-user-plus btn-icon"></i>
           Crear cuenta gratis
         </a>
-        <a href="index_remeex.html" class="btn btn-orange btn-lg">
+        <a href="#" class="btn btn-orange btn-lg tally-link" data-source="cta_first_transfer">
           <i class="fas fa-paper-plane btn-icon"></i>
           Enviar mi primer transferencia
         </a>
-        <a
-          href="https://wa.me/+17373018059?text=Hola%21%20necesito%20ayuda"
+        
+        <a href="https://wa.me/+17373018059?text=Hola%21%20necesito%20ayuda"
           target="_blank"
           rel="noopener noreferrer"
-          class="btn btn-secondary btn-lg"
-        >
+          class="btn btn-secondary btn-lg">
           <i class="fas fa-headset btn-icon"></i>
           Hablar con un asesor (WhatsApp)
         </a>
@@ -2097,19 +2131,15 @@
       de transferencias instantáneas, soporte 24/7 y mucho más.
     </p>
     <div class="download-app-buttons">
-      <a
-        href="https://play.google.com/store/apps/details?id=com.visa.vdec&pcampaignid=web_share"
+      <a href="https://play.google.com/store/apps/details?id=com.visa.vdec&pcampaignid=web_share"
         target="_blank"
         rel="noopener noreferrer"
-        class="app-btn"
-      >
+        class="app-btn">
         <i class="fab fa-google-play"></i>
         Descargar en Play Store
       </a>
-      <a
-        href="#"
-        class="app-btn"
-      >
+      <a href="#"
+        class="app-btn">
         <i class="fab fa-apple"></i>
         Descargar en App Store
       </a>
@@ -2156,7 +2186,7 @@
         <div>
           <h4 class="footer-title">Recursos</h4>
           <div class="footer-links">
-            <a href="ayudaremeex.html" class="footer-link">Centro de ayuda</a>
+           <a href="ayudaremeex.html" class="footer-link">Centro de ayuda</a>
             <a href="preguntasremeex.html" class="footer-link">Preguntas frecuentes</a>
             <a href="blogremeex.html" class="footer-link">Blog</a>
             <a href="#" class="footer-link">Calculadora de tasas</a>
@@ -2169,34 +2199,20 @@
           <h4 class="footer-title">Compañía</h4>
           <div class="footer-links">
             <!-- Estos links apuntan a VISA, simulando. -->
-            <a
-              href="https://www.visa.es/asistencia-visa/consumidor/visa-rules.html"
-              class="footer-link"
-            >Sobre nosotros</a>
-            <a
-              href="https://www.visa.es/asistencia-visa/consumidor/visa-rules.html"
-              class="footer-link"
-            >Equipo</a>
-            <a
-              href="https://www.visa.es/asistencia-visa/consumidor/visa-rules.html"
-              class="footer-link"
-            >Carreras</a>
-            <a
-              href="https://www.visa.es/asistencia-visa/consumidor/visa-rules.html"
-              class="footer-link"
-            >Prensa</a>
-            <a
-              href="https://www.visa.es/asistencia-visa/consumidor/visa-rules.html"
-              class="footer-link"
-            >Inversores</a>
-            <a
-              href="https://www.visa.es/asistencia-visa/consumidor/visa-rules.html"
-              class="footer-link"
-            >Contacto</a>
-            <a
-              href="https://www.visa.es/asistencia-visa/consumidor/visa-rules.html"
-              class="footer-link"
-            >Responsabilidad social</a>
+            <a href="https://www.visa.es/asistencia-visa/consumidor/visa-rules.html"
+              class="footer-link">Sobre nosotros</a>
+            <a href="https://www.visa.es/asistencia-visa/consumidor/visa-rules.html"
+              class="footer-link">Equipo</a>
+            <a href="https://www.visa.es/asistencia-visa/consumidor/visa-rules.html"
+              class="footer-link">Carreras</a>
+            <a href="https://www.visa.es/asistencia-visa/consumidor/visa-rules.html"
+              class="footer-link">Prensa</a>
+            <a href="https://www.visa.es/asistencia-visa/consumidor/visa-rules.html"
+              class="footer-link">Inversores</a>
+            <a href="https://www.visa.es/asistencia-visa/consumidor/visa-rules.html"
+              class="footer-link">Contacto</a>
+            <a href="https://www.visa.es/asistencia-visa/consumidor/visa-rules.html"
+              class="footer-link">Responsabilidad social</a>
           </div>
         </div>
       </div>
@@ -2222,13 +2238,11 @@
   </button>
 
   <!-- Botón flotante WhatsApp -->
-  <a
-    class="chat-support"
+  <a class="chat-support"
     id="chatSupport"
     href="https://wa.me/+17373018059?text=Hola%21%20necesito%20ayuda"
     target="_blank"
-    rel="noopener noreferrer"
-  >
+    rel="noopener noreferrer">
     <i class="fas fa-comments"></i>
     <span class="chat-support-tooltip">Chat en vivo (WhatsApp)</span>
   </a>
@@ -2239,37 +2253,11 @@
     <span class="floating-promo-tooltip">Invita a un amigo y gana 10 USD</span>
   </button>
 
-  <!-- Overlays de publicidad -->
-  <!-- Overlay 1 (aparece a los 3s) -->
-  <div class="overlay-ad" id="overlayAd1">
-    <div class="overlay-content">
-      <button class="close-overlay" id="closeOverlay1">&times;</button>
-      <img
-        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcftd7buxUx59XY4L_etRrR0mDjEgDkbjlSZqkD8WeBvYLKvEhKwtAMzE2oQ50lpmWNQDwcFtylCkuDR7ii5V7Ig0ixuIBa7yAXBuTSdkU22jMCP2uUa6yjmrSxn26n-PL4GR5qIQoZJcPmZIUqR30VYgCzB-s4zjf_W_JuHPSNpxjnG8akYKEfD7WM8Ke/s16000/%231%20EN%20VENEZUELA%20(2).png"
-        alt="Publicidad 1"
-      />
-    </div>
-  </div>
-
-  <!-- Overlay 2 (aparece a los 30s) -->
-  <div class="overlay-ad" id="overlayAd2">
-    <div class="overlay-content">
-      <button class="close-overlay" id="closeOverlay2">&times;</button>
-      <img
-        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh1ZMu79Yc6wPdwxws5FU46z64Fav7yuDDTdvlubFKa4fCjPyHSuBH5wowS2iX1kkU48ZGp_BEdL0QpVolvHdqgHbs3Gi4o3o382lQdpY9wDzhR8_ZG9FBe-TBa1xD1ZElRrHDMMHMEbeM9psPfSfabol-P82bn5exgu4tjeoGRZU2CcxuaM5YwMLBGjhlq/s16000/FD.png"
-        alt="Promoción 2"
-      />
-    </div>
-  </div>
-
-  <!-- Iframe oculto para reproducir audio de YouTube al cerrar Overlay 1 -->
-  <iframe
-    id="hiddenAudioPlayer"
-    width="0"
-    height="0"
-    style="display: none;"
-    allow="autoplay; encrypted-media"
-  ></iframe>
+ <!-- Botón para abrir el formulario Tally.so (Cambiado de "Enviar dinero" a "Registrarse") -->
+  <button class="tally-popup-btn" id="tallyPopupBtn">
+    <i class="fas fa-user-plus"></i>
+    Registrarse
+  </button>
 
   <script>
     // Menú móvil
@@ -2340,10 +2328,36 @@
       });
     });
 
+    // Función para abrir el formulario Tally.so en una ventana emergente
+    function openTallyForm(source = 'default') {
+      Tally.openPopup('3NP5Gj', {
+        layout: 'modal',
+        width: 700,
+        hiddenFields: {
+          source: source
+        }
+      });
+    }
+
+    // Asignar eventos de clic a todos los botones con clase tally-link
+    document.querySelectorAll('.tally-link').forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const source = button.getAttribute('data-source') || 'button_click';
+        openTallyForm(source);
+      });
+    });
+
     // Botón flotante "Gana 10 USD"
     const floatingPromo = document.getElementById('floatingPromo');
     floatingPromo.addEventListener('click', () => {
-      alert('¡Promoción especial! Gana 10 USD por cada amigo que invites y se registre.');
+      openTallyForm('promo_button');
+    });
+
+    // Tally.so Popup
+    const tallyPopupBtn = document.getElementById('tallyPopupBtn');
+    tallyPopupBtn.addEventListener('click', () => {
+      openTallyForm('floating_button');
     });
 
     // Animaciones de aparición
@@ -2427,36 +2441,44 @@
       heroImage.src = heroImages[currentImageIndex];
     }, 10000);
 
-    // Overlays
-    const overlayAd1 = document.getElementById('overlayAd1');
-    const closeOverlay1 = document.getElementById('closeOverlay1');
-    const overlayAd2 = document.getElementById('overlayAd2');
-    const closeOverlay2 = document.getElementById('closeOverlay2');
-    const hiddenAudioPlayer = document.getElementById('hiddenAudioPlayer');
-
-    // Mostrar Overlay 1 a los 3s
-    setTimeout(() => {
-      overlayAd1.style.display = 'flex';
-    }, 3000);
-
-    // Cerrar Overlay 1 + reproducir audio de YouTube
-    closeOverlay1.addEventListener('click', () => {
-      overlayAd1.style.display = 'none';
-      // Iniciar reproducción
-      // Autoplay del video de YouTube oculto (solo audio).
-      // El enlace debe ser "embed/VIDEO_ID?autoplay=1".
-      // Del video https://youtu.be/IP-mgS5MF4Y?si=..., ID = IP-mgS5MF4Y
-      hiddenAudioPlayer.src = "https://www.youtube.com/embed/IP-mgS5MF4Y?autoplay=1";
-    });
-
-    // Mostrar Overlay 2 a los 30s
-    setTimeout(() => {
-      overlayAd2.style.display = 'flex';
-    }, 30000);
-
-    // Cerrar Overlay 2
-    closeOverlay2.addEventListener('click', () => {
-      overlayAd2.style.display = 'none';
+    // Asegurar que el video se reproduzca correctamente
+    document.addEventListener('DOMContentLoaded', function() {
+      const heroVideo = document.querySelector('.hero-video');
+      if (heroVideo) {
+        heroVideo.play().catch(error => {
+          console.log('Error al reproducir el video automáticamente:', error);
+          // Crear un overlay de reproducción en dispositivos que no permiten autoplay
+          const playOverlay = document.createElement('div');
+          playOverlay.style = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+          `;
+          
+          const playButton = document.createElement('i');
+          playButton.className = 'fas fa-play-circle';
+          playButton.style = `
+            font-size: 7rem;
+            color: white;
+          `;
+          
+          playOverlay.appendChild(playButton);
+          document.querySelector('.hero').appendChild(playOverlay);
+          
+          playOverlay.addEventListener('click', () => {
+            heroVideo.play();
+            playOverlay.style.display = 'none';
+          });
+        });
+      }
     });
   </script>
 </body>
