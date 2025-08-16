@@ -1,0 +1,31 @@
+{
+  "name": "mega-chat-widget",
+  "version": "1.0.0",
+  "description": "Widget embebible de chatbot multimodal",
+  "main": "dist/embed.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.0",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.9",
+    "vite-plugin-dts": "^3.5.3"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.38.0"
+  },
+  "keywords": [
+    "chatbot",
+    "widget",
+    "ai",
+    "minimax",
+    "gemini",
+    "multimodal"
+  ],
+  "author": "MiniMax Agent",
+  "license": "MIT"
+}

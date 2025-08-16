@@ -1,0 +1,235 @@
+/* Estilos adicionales para el widget */
+
+/* Reset básico */
+#mega-chat-widget * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Variables CSS globales */
+:root {
+  --mega-chat-primary: #2563eb;
+  --mega-chat-primary-hover: #1d4ed8;
+  --mega-chat-success: #16a34a;
+  --mega-chat-error: #dc2626;
+  --mega-chat-warning: #d97706;
+  --mega-chat-gray-50: #f9fafb;
+  --mega-chat-gray-100: #f3f4f6;
+  --mega-chat-gray-200: #e5e7eb;
+  --mega-chat-gray-300: #d1d5db;
+  --mega-chat-gray-500: #6b7280;
+  --mega-chat-gray-700: #374151;
+  --mega-chat-gray-900: #111827;
+}
+
+/* Animaciones personalizadas */
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutDown {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Clases utilitarias */
+.mega-chat-loading {
+  animation: spin 1s linear infinite;
+}
+
+.mega-chat-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.mega-chat-slide-in {
+  animation: slideInUp 0.3s ease-out;
+}
+
+.mega-chat-slide-out {
+  animation: slideOutDown 0.3s ease-in;
+}
+
+/* Estilos para mensajes especiales */
+.message.system .message-content {
+  background: var(--mega-chat-warning);
+  color: white;
+  font-style: italic;
+  text-align: center;
+}
+
+.message.error .message-content {
+  background: var(--mega-chat-error);
+  color: white;
+  border-left: 4px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Estilos para archivos adjuntos */
+.attachment {
+  margin-top: 8px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.attachment.image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.attachment.image img:hover {
+  transform: scale(1.02);
+}
+
+/* Indicadores de estado */
+.status-recording {
+  color: var(--mega-chat-error) !important;
+  animation: pulse 1s infinite;
+}
+
+.status-transcribing {
+  color: var(--mega-chat-warning) !important;
+}
+
+.status-thinking {
+  color: var(--mega-chat-primary) !important;
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Alto contraste */
+@media (prefers-contrast: high) {
+  #mega-chat-widget {
+    --mega-chat-primary: #0000ff;
+    --mega-chat-gray-300: #000000;
+    --mega-chat-gray-500: #000000;
+    --mega-chat-gray-700: #000000;
+  }
+}
+
+/* Modo oscuro */
+@media (prefers-color-scheme: dark) {
+  #mega-chat-widget.auto {
+    --mega-chat-gray-50: #1f2937;
+    --mega-chat-gray-100: #374151;
+    --mega-chat-gray-200: #4b5563;
+    --mega-chat-gray-300: #6b7280;
+    --mega-chat-gray-500: #9ca3af;
+    --mega-chat-gray-700: #d1d5db;
+    --mega-chat-gray-900: #f9fafb;
+    color: #f9fafb;
+  }
+  
+  #mega-chat-widget.auto .chat-panel {
+    background: #1f2937;
+    border: 1px solid #374151;
+  }
+  
+  #mega-chat-widget.auto .input-wrapper textarea {
+    background: #374151;
+    border-color: #4b5563;
+    color: #f9fafb;
+  }
+  
+  #mega-chat-widget.auto .message.bot .message-content,
+  #mega-chat-widget.auto .message.admin .message-content {
+    background: #374151;
+    color: #f9fafb;
+  }
+}
+
+/* Foco visible para navegación por teclado */
+#mega-chat-widget button:focus-visible,
+#mega-chat-widget input:focus-visible,
+#mega-chat-widget textarea:focus-visible,
+#mega-chat-widget select:focus-visible {
+  outline: 2px solid var(--mega-chat-primary);
+  outline-offset: 2px;
+}
+
+/* Tooltips */
+[title] {
+  position: relative;
+}
+
+[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 10002;
+  margin-bottom: 4px;
+}
+
+/* Scrollbar personalizada */
+.chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: var(--mega-chat-gray-100);
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: var(--mega-chat-gray-300);
+  border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background: var(--mega-chat-gray-500);
+}
+
+/* Firefox scrollbar */
+.chat-messages {
+  scrollbar-width: thin;
+  scrollbar-color: var(--mega-chat-gray-300) var(--mega-chat-gray-100);
+}
